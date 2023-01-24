@@ -1,52 +1,86 @@
-<app-ecommerce-navbar></app-ecommerce-navbar>
-<section class="header relative pt-16 items-center flex h-screen max-h-860-px">
-  <div class="container mx-auto items-center flex flex-wrap">
-    <div class="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
-      <div class="pt-32 sm:pt-0">
-        <h2 class="font-semibold text-4xl text-blueGray-600">
-          Notus Angular - A beautiful extension for Tailwind CSS.
-        </h2>
-        <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
-          Notus Angular is Free and Open Source. It does not change any of the
-          CSS from
-          <a
-            href="https://tailwindcss.com/?ref=creativetim"
-            class="text-blueGray-600"
-            target="_blank"
-          >
-            Tailwind CSS.
-          </a>
-          It features multiple HTML elements and it comes with dynamic
-          components for ReactJS, Vue and Angular.
-        </p>
-        <div class="mt-12">
-          <a
-            href="https://www.creative-tim.com/learning-lab/tailwind/angular/overview/notus?ref=na-index-page"
-            target="_blank"
-            class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-red-600 active:bg-red-700 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-          >
-            Get started
-          </a>
-          <a
-            href="https://github.com/creativetimofficial/notus-angular?ref=creativetim"
-            class="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-            target="_blank"
-          >
-            Github Star
-          </a>
+<div [ngClass]="{'theme-light': isDarkEnable, 'theme-dark': !isDarkEnable}" class="transition-colors duration-1000 bg-primary">
+
+  <app-default-navbar [isDarkEnable]="isDarkEnable" (onClick)='changeTheme($event)'></app-default-navbar>
+  <!--TODO CREATE COMPONENT-->
+  <div id="carouselExampleCaptions" class="carousel slide relative  sm:h-350-px md:h-500-px lg:h-full" data-bs-ride="carousel">
+    <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0  mb-10">
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
+    </div>
+    <div class="carousel-inner relative w-full overflow-hidden ">
+      <div class="carousel-item active relative float-left w-full  sm:h-350-px md:h-500-px">
+        <img
+          src="assets/img/img_romero/at-the-dark-workshop-experienced-worker-in-protective-uniform-is-working-with-metal.jpg"
+          class="block w-full"
+          alt="..."
+        />
+        <div class="carousel-caption hidden md:block absolute text-center ">
+          <h5 class="text-xl -mt-20">First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item relative float-left w-full  sm:h-350-px md:h-500-px">
+        <img
+          src="assets/img/img_romero/man-in-protective-mask-is-cutting-metal-and-sparks-are-flying-away.jpg"
+          class="block w-full"
+          alt="..."
+        />
+        <div class="carousel-caption hidden md:block absolute text-center ">
+          <h5 class="text-xl -mt-20">Second slide label</h5>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item relative float-left w-full  sm:h-350-px md:h-500-px">
+        <img
+          src="assets/img/img_romero/pexels-korhan-erdol-2554128.jpg"
+          class="block w-full"
+          alt="..."
+        />
+        <div class="carousel-caption hidden md:block absolute text-center ">
+          <h5 class="text-xl -mt-20">Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
         </div>
       </div>
     </div>
+    <button
+      class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 
-  <img
-    class="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px"
-    src="assets/img/pattern_angular.png"
-    alt="..."
-  />
-</section>
-
-<section class="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
+<section class=" relative bg-blueGray-100">
   <div
     class="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
     style="transform: translateZ(0)"
@@ -67,18 +101,15 @@
     </svg>
   </div>
   <div class="container mx-auto">
-    <div class="flex flex-wrap items-center">
+    <div class="flex flex-wrap items-center pt-20">
       <div
-        class="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-32"
+        class="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto "
       >
         <div
           class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-red-600"
         >
-          <img
-            alt="..."
-            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
-            class="w-full align-middle rounded-t-lg"
-          />
+
+          <img src="assets/img/img_romero/man-fitter-working-doing-polishing-metal.jpg" alt="" class="w-full align-middle rounded-t-lg">
           <blockquote class="relative p-8 mb-4">
             <svg
               preserveAspectRatio="none"
@@ -541,62 +572,109 @@
   </div>
 </section>
 
-<section class="block relative z-1 bg-blueGray-600">
-  <div class="container mx-auto">
-    <div class="justify-center flex flex-wrap">
-      <div class="w-full lg:w-12/12 px-4 -mt-24">
-        <div class="flex flex-wrap">
-          <div class="w-full lg:w-4/12 px-4">
-            <h5 class="text-xl font-semibold pb-4 text-center">Login Page</h5>
-            <a [routerLink]="['/auth/login']">
-              <div
-                class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
-              >
-                <img
-                  alt="..."
-                  class="align-middle border-none max-w-full h-auto rounded-lg"
-                  src="assets/img/login.jpg"
-                />
-              </div>
-            </a>
+  <section class="block relative z-1 bg-blueGray-600">
+    <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <h2 class="sr-only text-text-primary">Products</h2>
+      <div class="grid grid-cols-1 gap-y-10 gap-x-6 grid-cols-4  xl:gap-x-8">
+        <a href="#" class="group">
+          <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+                 alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+                 class="h-full w-full object-cover object-center group-hover:opacity-75">
           </div>
+          <h3 class="mt-4 text-sm text-gray-700">Earthen Bottle</h3>
+          <p class="mt-1 text-lg font-medium text-gray-900">$48</p>
+        </a>
 
-          <div class="w-full lg:w-4/12 px-4">
-            <h5 class="text-xl font-semibold pb-4 text-center">Profile Page</h5>
-            <a [routerLink]="['/profile']">
-              <div
-                class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
-              >
-                <img
-                  alt="..."
-                  class="align-middle border-none max-w-full h-auto rounded-lg"
-                  src="assets/img/profile.jpg"
-                />
-              </div>
-            </a>
+        <a href="#" class="group">
+          <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg"
+                 alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                 class="h-full w-full object-cover object-center group-hover:opacity-75">
           </div>
+          <h3 class="mt-4 text-sm text-gray-700">Nomad Tumbler</h3>
+          <p class="mt-1 text-lg font-medium text-gray-900">$35</p>
+        </a>
 
-          <div class="w-full lg:w-4/12 px-4">
-            <h5 class="text-xl font-semibold pb-4 text-center">Landing Page</h5>
-            <a [routerLink]="['/landing']">
-              <div
-                class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
-              >
-                <img
-                  alt="..."
-                  class="align-middle border-none max-w-full h-auto rounded-lg"
-                  src="assets/img/landing.jpg"
-                />
-              </div>
-            </a>
+        <a href="#" class="group">
+          <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg"
+                 alt="Person using a pen to cross a task off a productivity paper card."
+                 class="h-full w-full object-cover object-center group-hover:opacity-75">
+          </div>
+          <h3 class="mt-4 text-sm text-gray-700">Focus Paper Refill</h3>
+          <p class="mt-1 text-lg font-medium text-gray-900">$89</p>
+        </a>
+
+        <a href="#" class="group">
+          <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg"
+                 alt="Hand holding black machined steel mechanical pencil with brass tip and top."
+                 class="h-full w-full object-cover object-center group-hover:opacity-75">
+          </div>
+          <h3 class="mt-4 text-sm text-gray-700">Machined Mechanical Pencil</h3>
+          <p class="mt-1 text-lg font-medium text-gray-900">$35</p>
+        </a>
+
+        <!-- More products... -->
+      </div>
+    </div>
+
+    <div class="container mx-auto">
+      <div class="justify-center flex flex-wrap">
+        <div class="w-full lg:w-12/12 px-4 -mt-24">
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-4/12 px-4">
+              <h5 class="text-xl font-semibold pb-4 text-center">Login Page</h5>
+              <a [routerLink]="['/auth/login']">
+                <div
+                  class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
+                >
+                  <img
+                    alt="..."
+                    class="align-middle border-none max-w-full h-auto rounded-lg"
+                    src="assets/img/login.jpg"
+                  />
+                </div>
+              </a>
+            </div>
+
+            <div class="w-full lg:w-4/12 px-4">
+              <h5 class="text-xl font-semibold pb-4 text-center">Profile Page</h5>
+              <a [routerLink]="['/profile']">
+                <div
+                  class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
+                >
+                  <img
+                    alt="..."
+                    class="align-middle border-none max-w-full h-auto rounded-lg"
+                    src="assets/img/profile.jpg"
+                  />
+                </div>
+              </a>
+            </div>
+
+            <div class="w-full lg:w-4/12 px-4">
+              <h5 class="text-xl font-semibold pb-4 text-center">Landing Page</h5>
+              <a [routerLink]="['/landing']">
+                <div
+                  class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
+                >
+                  <img
+                    alt="..."
+                    class="align-middle border-none max-w-full h-auto rounded-lg"
+                    src="assets/img/landing.jpg"
+                  />
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="py-20 bg-blueGray-600 overflow-hidden">
+  <section class="py-20 relative bg-blueGray-600 overflow-hidden">
   <div class="container mx-auto pb-64">
     <div class="flex flex-wrap justify-center">
       <div class="w-full md:w-5/12 px-12 md:px-4 ml-auto mr-auto md:mt-64">
@@ -704,3 +782,4 @@
   </div>
 </section>
 <app-footer></app-footer>
+</div>

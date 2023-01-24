@@ -19,8 +19,13 @@ import { RegisterComponent } from "./views/auth/register/register.component";
 import { IndexComponent } from "./views/index/index.component";
 import { LandingComponent } from "./views/landing/landing.component";
 import { ProfileComponent } from "./views/profile/profile.component";
+import {EcommerceComponent} from "./components/ecommerce/ecommerce.component";
+import {ProductListComponent} from "./components/ecommerce/products/product-list/product-list.component";
+import {ContactComponent} from "./views/contact/contact.component";
+import {ProjectsComponent} from "./views/projects/projects.component";
 
 const routes: Routes = [
+  { path: 'shop', loadChildren: () => import('./layouts/shop/shop.module').then(m => m.ShopModule) },
   // admin views
   {
     path: "admin",
@@ -43,7 +48,16 @@ const routes: Routes = [
       { path: "", redirectTo: "login", pathMatch: "full" },
     ],
   },
+  {
+    path: "ecommerce",
+    component: EcommerceComponent,
+    children: [
+      { path: "products", component: ProductListComponent },
+    ],
+  },
   // no layout views
+  { path: "projects", component: ProjectsComponent },
+  { path: "contact", component: ContactComponent },
   { path: "profile", component: ProfileComponent },
   { path: "landing", component: LandingComponent },
   { path: "", component: IndexComponent },

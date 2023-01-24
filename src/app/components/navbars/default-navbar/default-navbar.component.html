@@ -1,0 +1,103 @@
+<nav id="navbar" (scroll)="onScroll($event)"
+  class=" transition-colors duration-1000 top-0 fixed z-2 w-full flex flex-wrap items-center justify-between navbar-expand-lg  text-text-primary"
+>
+
+  <div class="z-40 flex justify-between w-screen">
+    <div class="px-5 xl:px-12 py-2 flex w-full items-center">
+      <a class="text-2xl font-bold font-heading" href="#">
+        <!-- <img class="h-9" src="logo.png" alt="logo"> -->
+        Logo
+      </a>
+      <!-- Nav Links -->
+      <ul class="hidden md:flex px-4 mx-auto  items-center  font-semibold font-heading space-x-12">
+        <li><a class="hover:text-gray-200" [routerLink]="['/']">Home</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/projects']">Proyectos</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/contact']">Contacto</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/shop/products']">Tienda</a></li>
+
+      </ul>
+      <div class="hidden space-x-5 md:flex items-end">
+        <a *ngIf="isDarkEnable" (click)="onClick.emit(changeTheme)" mode-button style="font-size:16px"><i class="fa-solid fa-moon"></i></a>
+        <a *ngIf="!isDarkEnable" (click)="onClick.emit(changeTheme)" mode-button style="font-size:16px"><i class="fa-solid fa-sun"></i></a>
+        <a class="flex items-center hover:text-gray-200" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <span class="flex absolute -mt-5 ml-4">
+              <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
+                </span>
+              </span>
+        </a>
+        <!-- Sign In / Register      -->
+        <a class="flex items-center hover:text-gray-200" [routerLink]="['/auth/login']">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </a>
+
+      </div>
+    </div>
+    <!-- Responsive navbar -->
+      <button class='md:hidden flex flex-col h-12 w-12  rounded justify-center items-center group ' (click)="setNavbarOpen()">
+        <div [ngClass]="{
+        'h-1 w-6 mb-1 bg-lightBlue-500 transition ease transform duration-300':true,
+        'rotate-45 translate-y-2 opacity-50 group-hover:opacity-100' : navbarOpen,
+        'opacity-50 group-hover:opacity-100': !navbarOpen}"> </div>
+          <div [ngClass]="{
+        'h-1 w-6 mb-1 bg-lightBlue-500 transition ease transform duration-300':true,
+        'opacity-0' : navbarOpen,
+        'opacity-50 group-hover:opacity-100': !navbarOpen}">        </div>
+          <div [ngClass]="{
+        'h-1 w-6  mb-1 bg-lightBlue-500 transition ease transform duration-300':true,
+        '-rotate-45 -translate-y-2 opacity-50 group-hover:opacity-100' : navbarOpen,
+        'opacity-50 group-hover:opacity-100': !navbarOpen}">
+        </div>
+      </button>
+
+  </div>
+  <div
+        [ngClass]="{ 'translate-x-0 ': navbarOpen, 'translate-x-full': !navbarOpen  }"
+         class="top-0 right-0 w-[35vw] bg-primary
+       px-5 pt-12   fixed z-2
+       ease-in-out duration-300
+       h-full
+      ">
+    <div class="divide-y divide-solid justify-end">
+      <div>
+        <a
+          [routerLink]="['/']"
+          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+        >
+          Home
+        </a>
+      </div>
+      <div>
+        <a
+          [routerLink]="['/projects']"
+          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+        >
+          Proyectos
+        </a>
+      </div>
+      <div>
+        <a
+          [routerLink]="['/contact']"
+          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+        >
+          Contacto
+        </a>
+      </div>
+      <div>
+        <a
+          [routerLink]="['/shop/products']"
+          class="link-color text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+        >
+          Tienda
+        </a>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+</nav>

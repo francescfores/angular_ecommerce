@@ -182,7 +182,7 @@ notus-angular
 │   │   │   │   │   └── footer.component.ts
 │   │   │   │   ├── footer-admin
 │   │   │   │   │   ├── footer-admin.component.html
-│   │   │   │   │   └── footer-admin.component.ts
+│   │   │   │   │   └── footer-ecommerce.component.ts
 │   │   │   │   └── footer-small
 │   │   │   │       ├── footer-small.component.html
 │   │   │   │       └── footer-small.component.ts
@@ -203,14 +203,14 @@ notus-angular
 │   │   │   │   │   └── auth-navbar.component.ts
 │   │   │   │   └── index-navbar
 │   │   │   │       ├── index-navbar.component.html
-│   │   │   │       └── ecommerce-navbar.component.ts
+│   │   │   │       └── default-navbar.component.ts
 │   │   │   └── sidebar
 │   │   │       ├── sidebar.component.html
 │   │   │       └── sidebar.component.ts
 │   │   ├── layouts
 │   │   │   ├── admin
 │   │   │   │   ├── admin.component.html
-│   │   │   │   └── admin.component.ts
+│   │   │   │   └── ecommerce.component.ts
 │   │   │   └── auth
 │   │   │       ├── auth.component.html
 │   │   │       └── auth.component.ts

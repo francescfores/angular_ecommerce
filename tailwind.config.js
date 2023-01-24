@@ -1,7 +1,10 @@
 const plugin = require("tailwindcss/plugin");
 const colors = require("tailwindcss/colors");
+const { createThemes } = require('tw-colors');
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
+  darkMode: 'class',
   purge: {
     enabled: true,
     content: [
@@ -11,6 +14,7 @@ module.exports = {
       "./*.js",
       "./**/*.ts",
       "./*.ts",
+      './src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js'
     ],
     options: {
       safelist: [],
@@ -19,25 +23,24 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
-      colors: {
-        // Light theme colors
-        'primary': '#2577c1',
-        'secondary-bg': '#fff',
-        'theme': '#fff',
-        'header-color': '#c23fe2',
-        'route-link-active': '#fff',
-        'link-color': '#555050',
-        'border-color': '#555050',
+      /*
+      'primary': '#2577c1',
+      'secondary-bg': '#fff',
+      'theme': '#fff',
+      'header-color': '#c23fe2',
+      'route-link-active': '#fff',
+      'link-color': '#555050',
+      'border-color': '#555050',
 
-        // Dark theme colors
-        'dark-primary': '#ff500b',
-        'dark-secondary-bg': '#424242',
-        'dark-theme': '#424242',
-        'dark-header-color': '#424242',
-        'dark-route-link-active': '#ff500b',
-        'dark-link-color': '#fff',
-        'dark-border-color': '#1cd61c',
-      },
+      // Dark theme colors
+      'dark-primary': '#ff500b',
+      'dark-secondary-bg': '#424242',
+      'dark-theme': '#424242',
+      'dark-header-color': '#424242',
+      'dark-route-link-active': '#ff500b',
+      'dark-link-color': '#fff',
+      'dark-border-color': '#1cd61c',
+      */
     },
     extend: {
       minHeight: {
@@ -97,6 +100,14 @@ module.exports = {
         full: "100%",
       },
     },
+    fontFamily: {
+      sans: [
+        'Montserrat',
+        'sans-serif',
+        , ...defaultTheme.fontFamily.sans
+      ]
+    },
+
   },
   variants: [
     "responsive",
@@ -114,9 +125,10 @@ module.exports = {
   ],
   plugins: [
     require("@tailwindcss/forms"),
+    require('tailwind-scrollbar'),
     plugin(function ({ addComponents, theme }) {
       const screens = theme("screens", {});
-      addComponents([
+     /* addComponents([
         {
           ".container": { width: "100%" },
         },
@@ -155,7 +167,45 @@ module.exports = {
             },
           },
         },
-      ]);
+      ]);*/
     }),
+    createThemes({
+      light: {
+        'primary': '#F5F6FA',
+        'text-primary': '#151D33',
+        'secondary': '#FFFFFF',
+        'ternary': '#f6f7f8',
+        'secondary-bg': '#151D33',
+        'theme': '#fff',
+        'header-color': '#c23fe2',
+        'route-link-active': '#fff',
+        'link-color': '#555050',
+        'border-color': '#555050',
+      },
+      dark: {
+        'primary': '#151D33',
+        'text-primary': '#F5F6FA',
+        'secondary': '#19233d',
+        'ternary': '#233054',
+        'secondary-bg': '#F5F6FA',
+        'theme': '#424242',
+        'header-color': '#424242',
+        'route-link-active': '#ff500b',
+        'link-color': '#fff',
+        'border-color': '#1cd61c',
+      },
+      fontFamily: {
+        sans: [
+          'Montserrat',
+          'sans-serif',
+          , ...defaultTheme.fontFamily.sans
+        ]
+      },
+    }),
+    require('tw-elements/dist/plugin'),
+    require('@tailwindcss/aspect-ratio'),
   ],
+  safelist: [{
+    pattern: /.*/
+  }]
 };

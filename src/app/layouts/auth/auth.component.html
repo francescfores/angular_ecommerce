@@ -1,13 +1,23 @@
-<div>
-  <app-auth-navbar></app-auth-navbar>
+<div [ngClass]="{'theme-light': isDarkEnable, 'theme-dark': !isDarkEnable}" class="transition-colors duration-1000 ">
+  <app-ecommerce-navbar  [isDarkEnable]="isDarkEnable" [transparent]="false" (onClick)='changeTheme($event)'></app-ecommerce-navbar>
   <main>
-    <section class="relative w-full h-full py-40 min-h-screen">
-      <div
+    <section class="pt-20 relative w-full h-full min-h-screen flex items-center bg-primary ">
+      <!--<div
         class="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
         style="background-image: url('assets/img/register_bg_2.png')"
-      ></div>
-      <router-outlet></router-outlet>
-      <app-footer-small [absolute]="true"></app-footer-small>
+      ></div>-->
+      <app-login (onClick)='register()'
+        [ngClass]="{ '-translate-x-0 ': !registerOpen, '-translate-x-full': registerOpen  }"
+        class="w-full transition ease-in-out duration-1000 fixed"></app-login>
+      <app-register (onClick)='register()'
+                 [ngClass]="{ 'translate-x-0 ': registerOpen, 'translate-x-full': !registerOpen  }"
+                    class="w-full transition ease-in-out duration-1000 fixed"></app-register>
+      <!--<router-outlet></router-outlet>-->
+      <!--
+   <app-footer-small [absolute]="true"></app-footer-small>
+    -->
+
     </section>
   </main>
 </div>
+
