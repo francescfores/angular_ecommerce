@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {first} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../../../services/api/authentication.service";
+import {ProductService} from "../../../services/api/product.service";
 
 @Component({
   selector: 'app-products-page',
@@ -134,9 +138,24 @@ export class ProductsPageComponent implements OnInit {
   openProductTypeSubCat;
   titleFilter;
   /*category end*/
-  constructor() { }
-
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+  ) {
+  }
   ngOnInit() {
+
+    this.productService.getProduct()
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);
+//          this.router.navigate(['/shop/products']);
+        },
+        error => {
+          //this.toastr.error('Invalid request', 'Toastr fun!');
+          // this.loading = false;
+        });
   }
 
   /*category filters*/
@@ -149,13 +168,11 @@ export class ProductsPageComponent implements OnInit {
   showSize(){
     this.openSize = !this.openSize;
   }
-
   showProductType(productType) {
     this.openProductTypeCat = 0;
     this.openProductType = productType.id;
     this.titleFilter = productType.name;
   }
-
   showproductTypeCat(productType, productTypeCat) {
     this.openProductTypeSubCat = 0;
     this.openProductType = productType.id;
@@ -170,9 +187,12 @@ export class ProductsPageComponent implements OnInit {
 
   }
   /*end category filters*/
-
-
   setFiltersOpen() {
     this.filtersOpen = !this.filtersOpen;
   }
+
+  filterProducts(){
+
+  };
+
 }

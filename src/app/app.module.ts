@@ -54,6 +54,12 @@ import {EcommerceComponent} from "./components/ecommerce/ecommerce.component";
 import {ComponentsModule} from "./components/components.module";
 import { ProjectsComponent } from './views/projects/projects.component';
 import { ContactComponent } from './views/contact/contact.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthenticationService} from "./services/api/authentication.service";
+import {ClientService} from "./services/api/client.service";
+import {JwtInterceptor} from "./services/interceptors/jwt.interceptor";
+import {ErrorInterceptor} from "./services/interceptors/error.interceptor";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -95,8 +101,11 @@ import { ContactComponent } from './views/contact/contact.component';
     ProjectsComponent,
     ContactComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ComponentsModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ComponentsModule, HttpClientModule,FormsModule, ReactiveFormsModule],
+  providers: [AuthenticationService, ClientService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   exports: [
   ]

@@ -24,6 +24,8 @@ import {ProductListComponent} from "./components/ecommerce/products/product-list
 import {ContactComponent} from "./views/contact/contact.component";
 import {ProjectsComponent} from "./views/projects/projects.component";
 
+import {NonAuthGuard} from './services/guards/non-auth.guard';
+
 const routes: Routes = [
   { path: 'shop', loadChildren: () => import('./layouts/shop/shop.module').then(m => m.ShopModule) },
   // admin views
@@ -44,6 +46,8 @@ const routes: Routes = [
   {
     path: "auth",
     component: AuthComponent,
+    canActivate: [NonAuthGuard],
+    canActivateChild: [NonAuthGuard],
     children: [
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent },
