@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "export NODE_OPTIONS=--openssl-legacy-provider && ng serve",
+    "start": "export NODE_OPTIONS=--max-old-space-size=4096 && export NODE_OPTIONS=--openssl-legacy-provider && ng serve --poll",
     "hmr": "ng serve --hmr",
     "build": "ng build",
     "test": "ng test",
