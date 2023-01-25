@@ -27,6 +27,7 @@ import {ProjectsComponent} from "./views/projects/projects.component";
 const routes: Routes = [
   { path: 'shop', loadChildren: () => import('./layouts/shop/shop.module').then(m => m.ShopModule) },
   // admin views
+  /*
   {
     path: "admin",
     component: AdminComponent,
@@ -38,6 +39,7 @@ const routes: Routes = [
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },
+   */
   // auth views
   {
     path: "auth",

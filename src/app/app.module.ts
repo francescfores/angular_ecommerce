@@ -58,7 +58,7 @@ import { ContactComponent } from './views/contact/contact.component';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
+   /* DashboardComponent,
     CardBarChartComponent,
     CardLineChartComponent,
     IndexDropdownComponent,
@@ -81,10 +81,10 @@ import { ContactComponent } from './views/contact/contact.component';
     AdminNavbarComponent,
     IndexNavbarComponent,
     AdminComponent,
-    AuthComponent,
     MapsComponent,
     SettingsComponent,
-    TablesComponent,
+    TablesComponent,*/
+    AuthComponent,
     LoginComponent,
     RegisterComponent,
     IndexComponent,
