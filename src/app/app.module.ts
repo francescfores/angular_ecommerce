@@ -73,6 +73,14 @@ import { OrdersComponent } from './views/admin/orders/orders.component';
 import { ChartsComponent } from './views/admin/charts/charts.component';
 import { PaymentsComponent } from './views/admin/payments/payments.component';
 import { SendingsComponent } from './views/admin/sendings/sendings.component';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from '@abacritt/angularx-social-login';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -125,10 +133,27 @@ import { SendingsComponent } from './views/admin/sendings/sendings.component';
     PaymentsComponent,
     SendingsComponent,
   ],
-  imports: [NgxPayPalModule,BrowserModule, AppRoutingModule, BrowserAnimationsModule, ComponentsModule, HttpClientModule,FormsModule, ReactiveFormsModule],
+  imports: [NgxPayPalModule,BrowserModule, AppRoutingModule, BrowserAnimationsModule, ComponentsModule, HttpClientModule,FormsModule, ReactiveFormsModule,SocialLoginModule],
   providers: [AuthenticationService, ClientService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '124147147180-roi438596d3n7af2o66bpj2oospc68fl.apps.googleusercontent.com'
+            )
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent],
   exports: [

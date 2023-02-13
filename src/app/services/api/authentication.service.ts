@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 
 import { Client } from '../../models/client';
 import {Router} from '@angular/router';
+import {SocialAuthService} from "@abacritt/angularx-social-login";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -13,7 +14,8 @@ export class AuthenticationService {
   public currentClient: Observable<Client>;
   public user: Client;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router,  private socialAuthService: SocialAuthService
+  ) {
     this.currentClientSubject = new BehaviorSubject<Client>(JSON.parse(localStorage.getItem('currentClient')));
     this.currentClient = this.currentClientSubject.asObservable();
   }
@@ -74,7 +76,28 @@ export class AuthenticationService {
         return this.user;
       }));
   }
-
+  loginGoogle(email, id_token) {
+    const headers = new HttpHeaders();
+    headers.append('Content-type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+    // headers.append('Access-Control-Allow-Headers','X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method');
+    headers.append('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, DELETE');
+    headers.append('Allow','GET, POST, OPTIONS, PUT, DELETE');
+    const httpOptions = {
+      headers,
+    };
+    return this.http.post<any>(`${environment.apiUrl}api/login_client_google`, { email, id_token }, httpOptions)
+      // return this.http.post<any>(`$/users/authenticate`, { username, password })
+      .pipe(map(data => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        console.log('login');
+        this.user = data.client;
+        this.user.token = data.token;
+        localStorage.setItem('currentClient', JSON.stringify(this.user));
+        this.currentClientSubject.next(this.user);
+        return this.user;
+      }));
+  }
   logout() {
     console.log('logout');
     // remove user from local storage and set current user to null
@@ -86,6 +109,7 @@ export class AuthenticationService {
     //
     // }
     this.currentClientSubject.next(null);
+    this.socialAuthService.signOut();
     this.router.navigate(['/auth/login'], { queryParams: { returnUrl: '' }});
   }
 }
