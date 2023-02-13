@@ -15,6 +15,11 @@ export class ErrorInterceptor implements HttpInterceptor {
         // auto logout if 401 response returned from api
         this.authenticationService.logout();
         // location.reload(true);
+      } else if (err.status === 500 && err.error.message ==='Token has expired') {
+
+        console.log(err.error.message);
+        console.log(err.error.message ==='Token has expired');
+        this.authenticationService.logout();
       }
 
       const error = err.error.message || err.statusText;

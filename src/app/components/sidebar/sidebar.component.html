@@ -69,6 +69,263 @@
         </div>
       </form>
 
+      <hr class="my-4 md:min-w-full" />
+      <!-- Heading -->
+      <!--<h6
+        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+      >
+        Panel de control
+      </h6>-->
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/profile']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminProfile="routerLinkActive"
+            [ngClass]="
+              adminProfile.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminProfile.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Panel de control
+          </a>
+        </li>
+
+      </ul>
+
+      <hr class="my-4 md:min-w-full" />
+      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        Gestión de Productos
+      </h6>
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/products']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminProducts="routerLinkActive"
+            [ngClass]="
+              adminProducts.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminProducts.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Products
+          </a>
+        </li>
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/categories']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminCategories="routerLinkActive"
+            [ngClass]="
+              adminCategories.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminCategories.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Categories
+          </a>
+        </li>
+      </ul>
+
+      <hr class="my-4 md:min-w-full" />
+      <!--<h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        Gestión de clientes
+      </h6>-->
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/clients']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminClients="routerLinkActive"
+            [ngClass]="
+              adminClients.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminClients.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Products
+          </a>
+        </li>
+
+      </ul>
+
+
+      <hr class="my-4 md:min-w-full" />
+      <!--<h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        Gestión de pedidos
+      </h6>-->
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/orders']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminOrders="routerLinkActive"
+            [ngClass]="
+              adminOrders.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminOrders.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Pedidos
+          </a>
+        </li>
+      </ul>
+
+
+      <hr class="my-4 md:min-w-full" />
+      <!--<h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        Estadísticas
+      </h6>-->
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/charts']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminCharts="routerLinkActive"
+            [ngClass]="
+              adminCharts.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminCharts.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Estadísticas
+          </a>
+        </li>
+
+      </ul>
+
+      <hr class="my-4 md:min-w-full" />
+      <!--<h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        Configuración de pagos
+      </h6>-->
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/payments']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminPayments="routerLinkActive"
+            [ngClass]="
+              adminPayments.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminPayments.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Pagos
+          </a>
+        </li>
+
+      </ul>
+
+      <hr class="my-4 md:min-w-full" />
+      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        Configuración de envío
+      </h6>
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/sendings']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminProducts="routerLinkActive"
+            [ngClass]="
+              adminProducts.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminProducts.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Products
+          </a>
+        </li>
+
+      </ul>
+
+      <hr class="my-4 md:min-w-full" />
+      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        Configuración de impuestos
+      </h6>
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/taxes']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminProducts="routerLinkActive"
+            [ngClass]="
+              adminProducts.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminProducts.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Products
+          </a>
+        </li>
+
+      </ul>
+
+
       <!-- Divider -->
       <hr class="my-4 md:min-w-full" />
       <!-- Heading -->
@@ -101,7 +358,27 @@
             Dashboard
           </a>
         </li>
-
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/products']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminDashboard="routerLinkActive"
+            [ngClass]="
+              adminDashboard.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminDashboard.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Products
+          </a>
+        </li>
         <li class="items-center">
           <a
             [routerLink]="['/admin/settings']"

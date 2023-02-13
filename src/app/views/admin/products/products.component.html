@@ -1,0 +1,553 @@
+<!--
+
+
+<div>
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Profile</h3>
+        <p class="mt-1 text-sm text-gray-600">This information will be displayed publicly so be careful what you share.</p>
+      </div>
+    </div>
+    <div class="mt-5 md:col-span-2 md:mt-0">
+      <form action="#" method="POST">
+        <div class="shadow sm:overflow-hidden sm:rounded-md">
+          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label for="company-website" class="block text-sm font-medium text-gray-700">Website</label>
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">http://</span>
+                  <input type="text" name="company-website" id="company-website" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="www.example.com">
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label for="about" class="block text-sm font-medium text-gray-700">About</label>
+              <div class="mt-1">
+                <textarea id="about" name="about" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="you@example.com"></textarea>
+              </div>
+              <p class="mt-2 text-sm text-gray-500">Brief description for your profile. URLs are hyperlinked.</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Photo</label>
+              <div class="mt-1 flex items-center">
+                <span class="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
+                  <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </span>
+                <button type="button" class="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Change</button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Cover photo</label>
+              <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                <div class="space-y-1 text-center">
+                  <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <div class="flex text-sm text-gray-600">
+                    <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                      <span>Upload a file</span>
+                      <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                    </label>
+                    <p class="pl-1">or drag and drop</p>
+                  </div>
+                  <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+            <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="hidden sm:block" aria-hidden="true">
+  <div class="py-5">
+    <div class="border-t border-gray-200"></div>
+  </div>
+</div>
+-->
+<div class="mt-10 sm:mt-0" >
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="p-4 sm:px-0 flex flex-row justify-start items-center space-x-2">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Productos</h3>
+      </div>
+    </div>
+    <div class="mt-5 md:col-span-2 md:mt-0">
+      <div
+        class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
+        [ngClass]="color === 'light' ? 'bg-white' : 'bg-warmGray-50 text-gray-600'"
+      >
+        <div class="block w-full overflow-x-auto">
+          <!-- Projects table -->
+          <table *ngIf="product_pg" class="items-center w-full bg-transparent border-collapse">
+            <thead>
+            <tr>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Imagen
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Nombre
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Desc
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Precio
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Cantidad
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >Accion</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pr of product_pg.data">
+              <th
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+              >
+                <img
+                  src="http://ctrl-api.test/storage/images/{{pr.img}}"
+                  class="h-12 w-12 bg-white rounded-full border"
+                  alt="..."
+                />
+              </th>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.name}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.desc}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.price}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.stock}}
+              </td>
+              <td
+                class=" flex space-x-2 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                <svg (click)="editProduct(pr.id)" class="h-5 w-5 text-black"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
+                <svg (click)="deleteProduct(pr.id)" class="h-4 w-4 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div *ngIf="product_pg" class="flex justify-center">
+        <nav aria-label="Page navigation example">
+          <ul class="flex list-style-none">
+            <li class="page-item" *ngFor="let pr of product_pg.links">
+              <a (click)="paginatedProducts(pr.label)" [ngClass]="{
+              'bg-blue-400 text-white': product_pg.current_page === pr.label,
+              'bg-transparent text-gray-800': product_pg.current_page !== pr.label
+              }"
+                 class="page-link relative block py-1.5 px-3 rounded border-0
+              outline-none transition-all
+              duration-300 rounded  hover:text-gray-800 focus:shadow-none"
+              >{{pr.label}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="p-4 sm:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Crear producto</h3>
+        <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
+      </div>
+    </div>
+    <div class="mt-5 md:col-span-2 md:mt-0">
+      <form [formGroup]="registerForm">
+        <div class="overflow-hidden shadow sm:rounded-md">
+          <div class="bg-white px-4 py-5 sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6">
+                <div class="flex flex-row justify-start items-center space-x-2">
+                  <h3 class="text-lg font-medium leading-6 text-gray-900">Tipo</h3>
+                  <select  (change)="productType($event)" id="country" name="country" autocomplete="country-name"
+                           class="w-1/4 block rounded-md border border-gray-300
+                  bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                    <option  [value]="1">Producto simple</option>
+                    <option  [value]="2">Producto variable</option>
+                  </select>
+                  <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
+                </div>
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="inputName" class="block text-sm font-medium text-gray-700">Nombre</label>
+                <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" formControlName="name" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">name is required</div>
+                </div>
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="inputDesc" class="block text-sm font-medium text-gray-700">Desc</label>
+                <input id="inputDesc" [ngClass]="{ 'is-invalid': submitted && f.desc.errors }" formControlName="desc" type="text" name="first-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <div *ngIf="submitted && f.desc.errors" class="invalid-feedback">
+                  <div *ngIf="f.desc.errors.required">desc is required</div>
+                </div>
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="inputPrice" class="block text-sm font-medium text-gray-700">Precio</label>
+                <input id="inputPrice" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" formControlName="price" type="text" name="first-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                  <div *ngIf="f.price.errors.required">price is required</div>
+                </div>
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="inputStock" class="block text-sm font-medium text-gray-700">Cantidad</label>
+                <input id="inputStock" [ngClass]="{ 'is-invalid': submitted && f.stock.errors }" formControlName="stock" type="text" name="first-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <div *ngIf="submitted && f.stock.errors" class="invalid-feedback">
+                  <div *ngIf="f.stock.errors.required">stock is required</div>
+                </div>
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <input id="inputImg" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all" (change)="onFileChanged($event)"/>
+                <label
+                  [ngClass]="{'bg-blue-500':!submitted && this.selectedFile === null,
+                                     'bg-green-500':!submitted && this.selectedFile !== null || submitted && this.selectedFile !== null,
+                                     'bg-red-500':submitted && this.selectedFile === null}"
+                  class=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="inputImg">Imagen</label>
+                <label class="ml-4 text-xs" for="inputImg">{{this.selectedFile?.name}} {{this.selectedFile}}</label>
+                <div *ngIf="submitted && f.img.errors" class="invalid-feedback">
+                  <div *ngIf="f.img.errors.required">img is required</div>
+                </div>
+              </div>
+              <div class="col-span-2 sm:col-span-2">
+                <label class="block text-sm font-medium text-gray-700">Categoria</label>
+                <select formControlName="category"  (change)="selectCategory($event)"
+                        autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                  <option [value]="null">Selecciona una categoria</option>
+                  <option *ngFor="let value of this.categories"
+                          [value]="value.id">
+                    {{value.name}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-span-2 sm:col-span-2">
+                <label class="block text-sm font-medium text-gray-700">subcategory</label>
+                <select formControlName="subcategory"  (change)="selectSubCategory($event)"
+                        autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                  <option [value]="null">Selecciona una subcategory</option>
+                  <option *ngFor="let value of this.subcategories"
+                          [value]="value.id">
+                    {{value.name}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-span-2 sm:col-span-2">
+                <label class="block text-sm font-medium text-gray-700">supercategory</label>
+                <select  formControlName="supercategory"  (change)="selectSuperCategory($event)"
+                         autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                  <option [value]="null">Selecciona una supercategory</option>
+                  <option *ngFor="let value of this.supercategories"
+                          [value]="value.id">
+                    {{value.name}}
+                  </option>
+                </select>
+              </div>
+
+              <!--
+              <div class="col-span-6 sm:col-span-3">
+                <label for="country" class="block text-sm font-medium text-gray-700">Color</label>
+                <select  id="country" name="country" autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                  <option *ngFor="let color of colors;"
+                          [value]="color.id">
+                    {{color.name}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="size" class="block text-sm font-medium text-gray-700">Tamaño</label>
+                <select  id="size" name="country" autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                  <option *ngFor="let size of sizes;"
+                          [value]="size.id">
+                    {{size.name}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-span-6">
+                <label for="street-address" class="block text-sm font-medium text-gray-700">Street address</label>
+                <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+
+              <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                <input type="text" name="city" id="city" autocomplete="address-level2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                <label for="region" class="block text-sm font-medium text-gray-700">State / Province</label>
+                <input type="text" name="region" id="region" autocomplete="address-level1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                <label for="postal-code" class="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
+                <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+              -->
+            </div>
+          </div>
+          <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+            <button [disabled]="loading" (click)="passBack()" type="submit" class="inline-flex justify-center rounded-md border border-transparent
+            bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none
+             focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              <div *ngIf="loading" class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+              Save</button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="mt-10 sm:mt-0" *ngIf="type===2">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="p-4 sm:px-0 flex flex-row justify-start items-center space-x-2">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Variaciones</h3>
+        <select    name="country" autocomplete="country-name"
+                 class="w-1/4 block rounded-md border border-gray-300
+                  bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+          <option value="1">Añadir variación</option>
+          <option (click)="createAllVariation()" value="2">Crear variaciones para todos los atributos</option>
+        </select>
+        <button type="submit" class="inline-flex justify-center rounded-md border
+        border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white
+        shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Crear</button>
+
+        <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
+      </div>
+    </div>
+    <div class="mt-5 md:col-span-2 md:mt-0">
+      <form action="#" method="POST">
+        <div class="overflow-hidden shadow sm:rounded-md">
+          <div class="bg-white px-4 py-5 sm:p-6">
+              <div  class="flex space-x-2">
+                <div class="flex-1" *ngFor="let attr of attributes_group | keyvalue">
+                  <label for="country" class="block text-sm font-medium text-gray-700">{{ attr.key }}</label>
+                  <select [(ngModel)]="selectedOptions[attr.key]" (ngModelChange)="selectVariation($event)"
+                          id="country" name="{{attr.key}}" autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                    <option [value]="null">Selecciona un/a {{ attr.key }}</option>
+                    <option *ngFor="let value of attr.value"
+                            [value]="value.id">
+                      {{value.value}}
+                    </option>
+                  </select>
+                </div>
+                <div class="self-end">
+                  <button (click)="createVariation()" type="submit"
+                          class="inline-flex justify-center rounded-md border border-transparent
+                        bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700
+                        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Añadir</button>
+                </div>
+              </div>
+          </div>
+          <div *ngFor="let variation of variations; let i = index" class="border-t border-gray-200 px-4 py-6">
+            <h3 class="-mx-2 -my-3 flow-root">
+              <button  type="button"
+                      class="flex w-full items-center justify-start px-2 py-3 text-gray-400 hover:text-gray-500"
+                      aria-controls="filter-section-mobile-0" aria-expanded="false" (click)="toggleExpansion(i)">
+                <span class="font-medium text-gray-900">Variation {{i}}</span>
+                <span *ngFor="let attribute of variation.attributes;" class="p-2 font-medium text-gray-900">{{attribute.name}} {{attribute.value}}</span>
+                <span class="p-2 font-medium text-gray-900">{{variation.name}} {{variation.img}} {{variation.price}} {{variation.stock}}</span>
+                <span class="ml-auto">
+                    <svg *ngIf="expandedDivId !== i" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                    </svg>
+                    <svg *ngIf="expandedDivId === i" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+              </button>
+            </h3>
+            <div class="pt-6" id="filter-section-0" *ngIf="expandedDivId === i" [id]="i">
+              <div class="space-y-4">
+                <form *ngIf="variationsForm[i]" [formGroup]="variationsForm[i]">
+                  <div class="overflow-hidden shadow sm:rounded-md">
+                    <div class="bg-white px-4 py-5 sm:p-6">
+                      <div class="grid grid-cols-6 gap-6">
+                        <div class="col-span-6 sm:col-span-3">
+                          <label for="inputPrice" class="block text-sm font-medium text-gray-700">Precio</label>
+                          <input id="inputPrice" [ngClass]="{ 'is-invalid': submitted && fv(i).price.errors }" formControlName="price" type="text" name="first-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                          <div *ngIf="submitted && fv(i).price.errors" class="invalid-feedback">
+                            <div *ngIf="fv(i).price.errors.required">price is required</div>
+                          </div>
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                          <label for="inputStock" class="block text-sm font-medium text-gray-700">Cantidad</label>
+                          <input id="inputStock" [ngClass]="{ 'is-invalid': submitted && fv(i).stock.errors }" formControlName="stock" type="text" name="first-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                          <div *ngIf="submitted && fv(i).stock.errors" class="invalid-feedback">
+                            <div *ngIf="fv(i).stock.errors.required">stock is required</div>
+                          </div>
+                        </div>
+                        <div class="col-span-6 sm:col-span-4 flex justify-between flex-wrap">
+                          <img
+                            src="http://ctrl-api.test/storage/images/{{variation.img}}"
+                            class="h-12 w-12 bg-white rounded-full border"
+                            alt="..."
+                          />
+                        </div>
+                        <div class="col-span-6 sm:col-span-4 flex justify-between flex-wrap">
+                          <div class="col-span-6 sm:col-span-3">
+                            <input id="inputImg2" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all"
+                                   (change)="onFileChangedVariation($event,variation.id)"/>
+                            <label
+                              [ngClass]="{'bg-blue-500':!submitted && this.selectedFileVariations[variation.id] === null,
+                                     'bg-green-500':!submitted && this.selectedFileVariations[variation.id] !== null ||
+                                      submitted && this.selectedFileVariations[variation.id] !== null,
+                                     'bg-red-500':submitted && this.selectedFileVariations[variation.id] === null}"
+                              class=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="inputImg2">Imagen</label>
+                            <label class="ml-4 text-xs" for="inputImg2">
+                              selectedFileVariations:{{this.selectedFileVariations[variation.id]?.name}}
+                              <br> selectedFile:{{this.selectedFile?.name}}</label>
+                            <div *ngIf="submitted && fv(i).img.errors" class="invalid-feedback">
+                              <div *ngIf="fv(i).img.errors.required">img is required</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                      <button [disabled]="loading" (click)="saveVariation(variation)" type="submit" class="inline-flex justify-center rounded-md border border-transparent
+            bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none
+             focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        <div *ngIf="loading" class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+                        Save</button>
+
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+            <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-alert [autocloseTime]="autocloseTime" [show]="show" [text]="text" [color]="color"></app-alert>
+<!--
+<div class="hidden sm:block" aria-hidden="true">
+  <div class="py-5">
+    <div class="border-t border-gray-200"></div>
+  </div>
+</div>
+
+<div class="mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Notifications</h3>
+        <p class="mt-1 text-sm text-gray-600">Decide which communications you'd like to receive and how.</p>
+      </div>
+    </div>
+    <div class="mt-5 md:col-span-2 md:mt-0">
+      <form action="#" method="POST">
+        <div class="overflow-hidden shadow sm:rounded-md">
+          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <fieldset>
+              <legend class="sr-only">By Email</legend>
+              <div class="text-base font-medium text-gray-900" aria-hidden="true">By Email</div>
+              <div class="mt-4 space-y-4">
+                <div class="flex items-start">
+                  <div class="flex h-5 items-center">
+                    <input id="comments" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label for="comments" class="font-medium text-gray-700">Comments</label>
+                    <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="flex h-5 items-center">
+                    <input id="candidates" name="candidates" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label for="candidates" class="font-medium text-gray-700">Candidates</label>
+                    <p class="text-gray-500">Get notified when a candidate applies for a job.</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="flex h-5 items-center">
+                    <input id="offers" name="offers" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label for="offers" class="font-medium text-gray-700">Offers</label>
+                    <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend class="contents text-base font-medium text-gray-900">Push Notifications</legend>
+              <p class="text-sm text-gray-500">These are delivered via SMS to your mobile phone.</p>
+              <div class="mt-4 space-y-4">
+                <div class="flex items-center">
+                  <input id="push-everything" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                  <label for="push-everything" class="ml-3 block text-sm font-medium text-gray-700">Everything</label>
+                </div>
+                <div class="flex items-center">
+                  <input id="push-email" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                  <label for="push-email" class="ml-3 block text-sm font-medium text-gray-700">Same as email</label>
+                </div>
+                <div class="flex items-center">
+                  <input id="push-nothing" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                  <label for="push-nothing" class="ml-3 block text-sm font-medium text-gray-700">No push notifications</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+            <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+-->
+
+

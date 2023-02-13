@@ -1,3 +1,16 @@
+@import './assets/styles/spark-animation.css';
+@import './assets/styles/swiper.css';
+@import './assets/styles/slider.css';
+@import '~animate.css/animate.min.css';
+
 .duration-2000{
   transition-duration: 2000ms;
+}
+
+
+
+@font-face {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  font-style: normal;
 }

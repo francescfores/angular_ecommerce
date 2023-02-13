@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
     // this.router.navigate(['/']);
     if (this.loginForm.valid) {
       console.log('data');
-
       // this.appService.login();
       this.loading = true;
-      this.authenticationService.login(this.f.email.value, this.f.password.value)
+      this.authenticationService.login('client_ecommerce@gmail.com', '123456')
+      //this.authenticationService.login(this.f.email.value, this.f.password.value)
         .pipe(first())
         .subscribe(
           data => {

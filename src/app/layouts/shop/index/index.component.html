@@ -1,6 +1,6 @@
-<div [ngClass]="{'theme-light': isDarkEnable, 'theme-dark': !isDarkEnable}" class="transition-colors duration-1000 bg-primary">
+<div [ngClass]="{'theme-light': isDarkEnable, 'theme-dark': !isDarkEnable}" class="transition-colors duration-1000 bg-white">
 <app-ecommerce-navbar [isDarkEnable]="isDarkEnable" [transparent]="false" (onClick)='changeTheme($event)'></app-ecommerce-navbar>
-  <div class="py-20 px-2">
+  <div class="py-12">
     <router-outlet></router-outlet>
   </div>
 </div>

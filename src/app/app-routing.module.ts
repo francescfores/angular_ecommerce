@@ -25,11 +25,21 @@ import {ContactComponent} from "./views/contact/contact.component";
 import {ProjectsComponent} from "./views/projects/projects.component";
 
 import {NonAuthGuard} from './services/guards/non-auth.guard';
+import {HomeComponent} from "./views/home/home.component";
+import {AuthAdminComponent} from "./layouts/auth_admin/auth-admin.component";
+import {LoginAdminComponent} from "./views/auth/login-admin/login-admin.component";
+import {RegisterAdminComponent} from "./views/auth/register-admin/register-admin.component";
+import {ProductsComponent} from "./views/admin/products/products.component";
+import {EditProductComponent} from "./views/admin/products/edit-product/edit-product.component";
+import {CategoriesComponent} from "./views/admin/categories/categories.component";
+import {ClientsComponent} from "./views/admin/clients/clients.component";
+import {OrdersComponent} from "./views/admin/orders/orders.component";
+import {ChartsComponent} from "./views/admin/charts/charts.component";
+import {PaymentsComponent} from "./views/admin/payments/payments.component";
 
 const routes: Routes = [
   { path: 'shop', loadChildren: () => import('./layouts/shop/shop.module').then(m => m.ShopModule) },
   // admin views
-  /*
   {
     path: "admin",
     component: AdminComponent,
@@ -38,10 +48,17 @@ const routes: Routes = [
       { path: "settings", component: SettingsComponent },
       { path: "tables", component: TablesComponent },
       { path: "maps", component: MapsComponent },
+      { path: "profile", component: ProfileComponent },
+      { path: "products", component: ProductsComponent },
+      { path: "edit-product", component: EditProductComponent },
+      { path: "categories", component: CategoriesComponent },
+      { path: "clients", component: ClientsComponent },
+      { path: "orders", component: OrdersComponent },
+      { path: "charts", component: ChartsComponent },
+      { path: "payments", component: PaymentsComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },
-   */
   // auth views
   {
     path: "auth",
@@ -55,23 +72,36 @@ const routes: Routes = [
     ],
   },
   {
+    path: "auth-admin",
+    component: AuthAdminComponent,
+    canActivate: [NonAuthGuard],
+    canActivateChild: [NonAuthGuard],
+    children: [
+      { path: "login", component: LoginAdminComponent },
+      { path: "register", component: RegisterAdminComponent },
+      { path: "", redirectTo: "login", pathMatch: "full" },
+    ],
+  },
+  {
     path: "ecommerce",
     component: EcommerceComponent,
     children: [
       { path: "products", component: ProductListComponent },
     ],
   },
-  // no layout views
+  // no layout viewsv
   { path: "projects", component: ProjectsComponent },
   { path: "contact", component: ContactComponent },
+  { path: "", component: HomeComponent },
   { path: "profile", component: ProfileComponent },
   { path: "landing", component: LandingComponent },
-  { path: "", component: IndexComponent },
+  //{ path: "home", component: IndexComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+
 })
 export class AppRoutingModule {}

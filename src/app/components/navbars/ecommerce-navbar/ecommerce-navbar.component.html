@@ -1,5 +1,5 @@
 <nav id="navbar"
-     class="font-px bg-nav-color text-white transition-colors duration-1000 top-0 fixed z-20 w-full flex flex-wrap items-center justify-between navbar-expand-lg  "
+     class=" font-px bg-primary text-white transition-colors duration-1000 top-0 fixed z-20 w-full flex flex-wrap items-center justify-between navbar-expand-lg  "
 >
 
   <div class="z-40 flex justify-between w-screen z-3">
@@ -20,16 +20,16 @@
         </div>
       </button>
 
-      <a class="text-2xl font-bold font-heading mx-auto items-center" href="#">
+      <a class="text-2xl font-bold font-heading items-start" href="#">
         <!-- <img class="h-9" src="logo.png" alt="logo"> -->
-        <img *ngIf="isDarkEnable" class="w-40 logo logo-black" src="assets/img/logo_pull_black.svg" alt="PULL&amp;BEAR">
-        <img *ngIf="!isDarkEnable" class="w-24 logo logo-black" src="assets/img/logo_pull_white.svg" alt="PULL&amp;BEAR">
+        <img *ngIf="isDarkEnable" class="w-10 logo logo-black" src="assets/icons/romero_logo.png" alt="PULL&amp;BEAR">
+        <img *ngIf="!isDarkEnable" class="w-10 logo logo-black" src="assets/icons/romero_logo.png" alt="PULL&amp;BEAR">
       </a>
       <!-- Nav Links -->
       <ul class="hidden md:flex px-4 mx-auto  items-center space-x-12">
-        <li><a class="hover:text-gray-200" href="#">Home</a></li>
-        <li><a class="hover:text-gray-200" href="#">Proyectos</a></li>
-        <li><a class="hover:text-gray-200" href="#">Contacto</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/home']">Home</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/projects']">Proyectos</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/contact']">Contacto</a></li>
         <li><a class="hover:text-gray-200" [routerLink]="['/shop/products']">Tienda</a></li>
       </ul>
       <div class="md:hidden space-x-5 flex items-end">
@@ -74,20 +74,33 @@
   </div>
   <div
     [ngClass]="{ 'translate-x-0 ': loginOpen, 'translate-x-full': !loginOpen, 'opacity-100': loginOpen, 'opacity-0': !loginOpen}"
-    class=" top-0 right-0 w-[10vw] bg-primary
-       px-5 mt-12 fixed z-0
+    class="top-0 right-0 w-1/6 divide-neutral-700 text-neutral-700
+       px-5 mt-14 fixed z-0 bg-white
        ease-in-out duration-300
       ">
-    <div class="divide-y divide-solid justify-end">
-      <div>
+    <div class="divide-y divide-solid divide-neutral-700 w-1/4 ">
+      <div *ngIf="client">
+        <a  (click)="logOut()"
+            class=" w-full text-sm leading-relaxed inline-block mr-4 py-2 whitespace-nowrap"
+        >
+          Logout
+        </a>
+        <a
+          class=" w-full text-sm leading-relaxed inline-block mr-4 py-2 whitespace-nowrap"
+        >
+          Mi cuenta
+        </a>
+
+      </div>
+      <div *ngIf="!client">
         <a
           [routerLink]="['/auth/login']"
           class=" text-sm leading-relaxed inline-block mr-4 py-2 whitespace-nowrap"
         >
           Login
         </a>
-
       </div>
+
     </div>
   </div>
   <div
@@ -100,7 +113,7 @@
     <div class="divide-y divide-solid justify-end">
       <div>
         <a
-          [routerLink]="['/']"
+          [routerLink]="['/home']"
           class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
         >
           Home

@@ -1,0 +1,1962 @@
+<div [ngClass]="{'theme-light': isDarkEnable, 'theme-dark': !isDarkEnable}" class="transition-colors duration-1000">
+  <app-default-navbar [isDarkEnable]="isDarkEnable" (onClick)='changeTheme($event)'></app-default-navbar>
+  <main>
+    <style>
+      .neon_effect:hover{
+        box-shadow: 0 0 4px #ff8e51, 0 0 8px #ff8e51, 0 0 12px #964528;
+        transition-duration: 500ms;
+      }
+      :root {
+        --clr-neon: #804425;
+      }
+      .neon-button {
+        font-size: 1.3rem;
+
+        display: inline-block;
+        cursor: pointer;
+        text-decoration: none;
+        border: #ff8e51 .06em solid;
+        padding: .25em 1em;
+        opacity: 0.8;
+        position: relative;
+        /*   transition: background-color 100ms linear; */
+      }
+
+      .neon-button::before {
+        pointer-events: none;
+        content: '';
+        position: absolute;
+        background: #ff8e51;
+        top: 120%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        transform: perspective(1em) rotateX(40deg) scale(0.4, 0.25);
+        filter: blur(1em);
+        opacity: 0.5;
+      }
+
+      .neon-button:hover, .neon-button:focus {
+        /*   background: #ff8e51; */
+        text-shadow: none;
+        opacity: 1;
+      }
+
+      .neon-button::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 100ms linear;
+      }
+
+      .neon-button:hover::before, .neon-button:focus::before {
+        opacity: 1;
+      }
+      .neon-button:hover::after, .neon-button:focus::after {
+        opacity: 1;
+      }
+    </style>
+    <style>
+
+      .blue {
+        background-color: #262626;
+      }
+
+      .section-title {
+        text-align: center;
+        color: white;
+        text-transform: uppercase;
+        position: absolute;
+        max-width: 80%;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        font-family: 'Oswald', sans-serif;
+      }
+
+      h2 {
+        font-size: 3.5em;
+        font-weight: 100;
+      }
+
+      h3 {
+        font-size: 2em;
+        font-weight: 100;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
+
+      section {
+        height: auto;
+        min-height: 400px;
+        position: relative;
+      }
+
+      .separator {
+        top: 0;
+      }
+
+      .separator-bottom {
+        /*position: absolute;*/
+        bottom: 0;
+      }
+
+      #five .section-title {
+        padding-bottom:2.5em;
+      }
+    </style>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+      .item {
+        position: relative;
+        float: left;
+        overflow: hidden;
+        margin: 5px 5px;
+        min-width: 420px;
+        max-width: 410px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+        box-sizing: border-box;
+        background-color:#fdba74;
+      }
+
+      .item:hover{
+        cursor: pointer;
+      }
+
+      .item *{
+        transition: all 0.35s ease-in-out;
+      }
+
+      img {
+
+      }
+
+      .item:hover img {
+        opacity: 0;
+      }
+
+      .text{
+        width: 80%;
+        height: 90%;
+        position: absolute;
+        top: -100px;
+        left: 10%;
+      }
+      .item:hover .text{
+        top: 20%;
+      }
+
+      .item:hover .button{
+        bottom: 20%;
+      }
+
+      .item .button{
+        position: absolute;
+        bottom: -100px;
+        left: 25%;
+        width: 50%;
+        padding: 15px;
+        box-sizing: border-box;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .button:hover{
+      }
+
+      /* Modal */
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+      }
+
+      .modal-content {
+        background-color: #F5F5F5;
+        margin: 5% auto;
+        box-sizing: border-box;
+        width: 700px;
+        max-height: 714px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      }
+
+      .scale{
+        animation: scale 0.5s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes scale{
+        from{transform: scale(0);}
+        to{transform: scale(1);}
+      }
+
+      #img{
+        max-width: 100%;
+        vertical-align: top;
+        height: 310px;
+      }
+
+      #details{
+        padding: 25px;
+        text-align: left;
+        position: relative;
+        height: 264px;
+        box-sizing: border-box;
+        border-top: 1px solid #363638;
+      }
+
+      #details *{
+        transition: all .3s;
+      }
+
+      #title{
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      #details .button{
+        position: absolute;
+        width: 30%;
+        background-color: #01A2AC;
+        color: #F5F5F5;
+        text-align: center;
+        left: 25px;
+        bottom: 35px;
+        padding: 15px;
+      }
+
+      #details i{
+        position: absolute;
+        bottom: 30px;
+        right: 25px;
+        font-size: 3rem;
+        color: #01A2AC;
+      }
+
+      #details .button:hover,
+      i:hover{
+        cursor: pointer;
+        opacity: 0.8;
+      }
+
+      /* Close Button */
+      .close {
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        right: 10px;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #363638;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+    <section class="">
+      <!--head-->
+      <section>
+        <div class="flex h-screen w-full">
+          <div class="relative h-full w-1/2 text-slate-900 bg-neutral-800">
+            <img class="absolute top-0 left-0 h-full w-full object-cover object-center opacity-50"
+                 src="assets/img/img_romero/welding-gd957043be_1920.jpg" alt="imagen" />
+          </div>
+          <div class="bg-slate- relative h-full w-1/2 bg-neutral-800">
+            <div class="animate__animated animate__slideInRight opacity-1 absolute top-0 left-0 flex h-screen h-full w-full items-start justify-start p-2">
+              <div class="my-auto my-28 ml-3 h-1/2 w-2/3 flex-col space-y-12 text-left sm:ml-10">
+                <div class=" ">
+                  <h1 class="text-sm font-bold text-white">Romero</h1>
+                  <div class="m-0 mt-8 w-8 border-b-2 border-orange-400"></div>
+                </div>
+
+                <div class="">
+                  <h1 class="text-1xl font-bold text-white sm:text-4xl md:text-5xl">Especialistas en soldadura</h1>
+                </div>
+                <div class="">
+                  <h1 class="text-left text-[12px] text-white sm:text-sm">Soy un experto en una variedad de técnicas de soldadura, incluyendo MIG, TIG, soldadura con electrodo y soldadura con gas. Me especializo en trabajar con diferentes tipos de metales, incluyendo acero, aluminio y bronce.</h1>
+                </div>
+                <div class="">
+                  <button class="neon_effect neon-button rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+                </div>
+                <div class="">
+                  <button class="neon_effect mt-10 rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--services-->
+      <section id="five" class="bg-neutral-800 text-slate-800">
+        <div class="w-full">
+          <div class="border-t-1d relative flex w-full items-center justify-center bg-neutral-800 py-32 text-white">
+            <div class="m-0 w-full space-y-6 text-center sm:w-2/3">
+              <div class="">
+                <h1 class="text-2xl font-semibold">Servicios</h1>
+                <div class="mt-3 flex w-full justify-center">
+                  <div class="w-12 border-b-4 border-orange-400"></div>
+                </div>
+              </div>
+              <div class="">
+                <h1 class="text-2xl font-bold sm:text-3xl md:text-4xl lg:md:text-6xl">Soldadura de precisión y calidad</h1>
+              </div>
+              <div class="">
+                <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <svg class="separator-bottom" xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0.2 0 151 27" preserveAspectRatio="none">
+          <g transform="translate(-18.766517,-159.24846)">
+            <path style="fill:#fb923c;" d="m 18.898809,169.7732 h 11.150298 v -10.20536 l 10.016369,10.01637 10.016369,10.01637 v -9.82738 h 20.032738 v -10.20536 l 20.127232,20.12723 v -9.92187 h 19.938245 v -10.01637 l 19.93824,19.93824 v -9.92187 h 19.93824 v -10.20536 l 20.12723,20.12723 v 5.19718 H 18.898809 Z" />
+            <path style="fill:#fdba74 ;" d="m 18.898809,171.88988 h 11.150298 v -10.20536 l 10.016368,10.01637 10.016368,10.01637 v -9.82738 h 20.032739 v -10.20536 l 20.127233,20.12723 v -9.92187 h 19.938245 v -10.01637 l 19.93824,19.93824 v -9.92187 h 19.93825 v -10.20536 l 20.12723,20.12723 v 5.19718 H 18.898809 Z" />
+          </g>
+        </svg>
+        <div class="flex flex-col justify-around bg-orange-300 text-white">
+          <div class="m-2 flex flex-wrap p-1">
+            <div class="flex w-1/2 items-center justify-center break-all">
+              <img width="400" src="/assets/illustrations/frank_welder_illustration_svg_transparent_for_landing_page_f1173ec8-a580-4338-9e7a-36f3fe5e46a8(1).png" alt="" />
+            </div>
+            <div class="flex w-1/2 items-center break-all p-10">
+              <div class="w-full space-y-6 text-left">
+                <h1 class="pr-5 text-3xl font-semibold">Soldadura TIG</h1>
+                <div class="mt-3 flex justify-start">
+                  <div class="w-16 border-b-4 border-neutral-700"></div>
+                </div>
+
+                <h1 class="text-md">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-around bg-orange-300 text-white">
+          <div class="m-2 flex flex-wrap p-1">
+            <div class="flex w-1/2 items-center break-all p-10">
+              <div class="w-full space-y-6 text-left">
+                <h1 class="pr-5 text-3xl font-semibold">Soldadura MIG</h1>
+                <div class="mt-3 flex justify-start">
+                  <div class="w-16 border-b-4 border-neutral-700"></div>
+                </div>
+
+                <h1 class="text-md">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+              </div>
+            </div>
+            <div class="flex w-1/2 items-center justify-center break-all">
+              <img width="400" src="/assets/illustrations/frank_welder_illustration_svg_transparent_for_landing_page_f1173ec8-a580-4338-9e7a-36f3fe5e46a8(1).png" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-around bg-orange-300 text-white">
+          <div class="m-2 flex flex-wrap p-1">
+            <div class="flex w-1/2 items-center justify-center break-all">
+              <img width="400" src="/assets/illustrations/frank_welder_illustration_svg_transparent_for_landing_page_f1173ec8-a580-4338-9e7a-36f3fe5e46a8(1).png" alt="" />
+            </div>
+            <div class="flex w-1/2 items-center break-all p-10">
+              <div class="w-full space-y-6 text-left">
+                <h1 class="pr-5 text-3xl font-semibold">Soldadura con electrodo revestido</h1>
+                <div class="mt-3 flex justify-start">
+                  <div class="w-16 border-b-4 border-neutral-700"></div>
+                </div>
+
+                <h1 class="text-md">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--projects-->
+
+      <section class="">
+        <svg class="bg-orange-300 separator-bottom" xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0.2 0 151 27" preserveAspectRatio="none">
+          <g transform="translate(-18.766517,-159.24846)">
+            <path style="fill #171717;" d="m 18.898809,169.7732 h 11.150298 v -10.20536 l 10.016369,10.01637 10.016369,10.01637 v -9.82738 h 20.032738 v -10.20536 l 20.127232,20.12723 v -9.92187 h 19.938245 v -10.01637 l 19.93824,19.93824 v -9.92187 h 19.93824 v -10.20536 l 20.12723,20.12723 v 5.19718 H 18.898809 Z" />
+            <path style="fill:#262626 ;" d="m 18.898809,171.88988 h 11.150298 v -10.20536 l 10.016368,10.01637 10.016368,10.01637 v -9.82738 h 20.032739 v -10.20536 l 20.127233,20.12723 v -9.92187 h 19.938245 v -10.01637 l 19.93824,19.93824 v -9.92187 h 19.93825 v -10.20536 l 20.12723,20.12723 v 5.19718 H 18.898809 Z" />
+          </g>
+        </svg>
+        <div class="w-full">
+          <div class="border-t-1d relative flex w-full items-center justify-center bg-neutral-800 pt-64 pb-32 text-white">
+            <div class="m-0 w-full space-y-6 text-center sm:w-2/3">
+              <div class="">
+                <h1 class="text-2xl font-semibold">Proyectos</h1>
+                <div class="mt-3 flex w-full justify-center">
+                  <div class="w-12 border-b-4 border-orange-400"></div>
+                </div>
+              </div>
+              <div class="">
+                <h1 class="text-2xl font-bold sm:text-3xl md:text-4xl lg:md:text-6xl">Soldadura de precisión y calidad</h1>
+              </div>
+              <div class="">
+                <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pt-10 pb-64 flex justify-center flex-wrap w-full bg-neutral-800 text-neutral-700">
+          <div class="item" id="1">
+            <img id='img' src="https://images.unsplash.com/photo-1508124780861-b1687f9a13e5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f841d43a63c085e930aa5b6b33e89a9f&auto=format&fit=crop&w=1385&q=80" alt="" />
+            <div class="text ">
+              <h3>PROJECT 1</h3>
+              <p>Short Description</p>
+            </div>
+            <div class="button border-4  border-neutral-700 hover:text-orange-300 text-neutral-700 hover:bg-neutral-700">Learn More</div>
+          </div>
+          <div class="item" id="1">
+            <img id='img' src="https://images.unsplash.com/photo-1508124780861-b1687f9a13e5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f841d43a63c085e930aa5b6b33e89a9f&auto=format&fit=crop&w=1385&q=80" alt="" />
+            <div class="text ">
+              <h3>PROJECT 1</h3>
+              <p>Short Description</p>
+            </div>
+            <div class="button border-4  border-neutral-700 hover:text-orange-300 text-neutral-700 hover:bg-neutral-700">Learn More</div>
+          </div>
+          <div class="item" id="1">
+            <img id='img' src="https://images.unsplash.com/photo-1508124780861-b1687f9a13e5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f841d43a63c085e930aa5b6b33e89a9f&auto=format&fit=crop&w=1385&q=80" alt="" />
+            <div class="text ">
+              <h3>PROJECT 1</h3>
+              <p>Short Description</p>
+            </div>
+            <div class="button border-4  border-neutral-700 hover:text-orange-300 text-neutral-700 hover:bg-neutral-700">Learn More</div>
+          </div>
+          <div class="item" id="1">
+            <img id='img' src="https://images.unsplash.com/photo-1508124780861-b1687f9a13e5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f841d43a63c085e930aa5b6b33e89a9f&auto=format&fit=crop&w=1385&q=80" alt="" />
+            <div class="text ">
+              <h3>PROJECT 1</h3>
+              <p>Short Description</p>
+            </div>
+            <div class="button border-4  border-neutral-700 hover:text-orange-300 text-neutral-700 hover:bg-neutral-700">Learn More</div>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div id="preview" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="img" src="" />
+            <div id="details">
+              <h3 id="title"></h3>
+              <p id="info">Some text</p>
+              <div class="button" id="live">View</div>
+              <i class="fab fa-github-square" id="github"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="five" class=" bg-neutral-800 text-slate-800">
+        <svg class="separator-bottom" xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0.2 0 151 27" preserveAspectRatio="none">
+          <g transform="translate(-18.766517,-159.24846)">
+            <path style="fill:#171717;" d="m 18.898809,169.7732 h 11.150298 v -10.20536 l 10.016369,10.01637 10.016369,10.01637 v -9.82738 h 20.032738 v -10.20536 l 20.127232,20.12723 v -9.92187 h 19.938245 v -10.01637 l 19.93824,19.93824 v -9.92187 h 19.93824 v -10.20536 l 20.12723,20.12723 v 5.19718 H 18.898809 Z" />
+            <path style="fill:#262626 ;" d="m 18.898809,171.88988 h 11.150298 v -10.20536 l 10.016368,10.01637 10.016368,10.01637 v -9.82738 h 20.032739 v -10.20536 l 20.127233,20.12723 v -9.92187 h 19.938245 v -10.01637 l 19.93824,19.93824 v -9.92187 h 19.93825 v -10.20536 l 20.12723,20.12723 v 5.19718 H 18.898809 Z" />
+          </g>
+        </svg>
+
+        <div class="w-full">
+          <div class="border-t-1d relative flex w-full items-center justify-center bg-neutral-800 pt-64 text-white">
+            <div class="m-0 w-full space-y-6 text-center sm:w-2/3">
+              <div class="">
+                <h1 class="text-2xl font-semibold">Contacto</h1>
+                <div class="mt-3 flex w-full justify-center">
+                  <div class="w-12 border-b-4 border-orange-400"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pt-32 flex h-screen w-full opacity-100">
+          <div class="text-warmGray-100 relative h-full w-1/2 bg-orange-400">
+            <img class="absolute top-0 left-0 h-full w-full object-cover object-center opacity-50" src="https://6e6d14b2f7130ea9.demo.carrd.co/assets/images/image04.jpg?v=0079a125" alt="imagen" />
+          </div>
+          <div class="bg-slate- relative h-full w-1/2 bg-neutral-800 ">
+            <div class="animate__animated animate__slideInRight opacity-1 absolute top-0 left-0 flex h-screen h-full w-full items-start justify-start p-4">
+              <div class="my-auto ml-5 h-full w-full flex-col space-y-12 text-left text-white">
+                <form action=""></form>
+                <div class="animate__animated my-auto">
+                  <h1 class="text-sm font-bold">Formulario de contacto</h1>
+                  <div class="m-0 mt-8 w-8 border-b-2 border-orange-400"></div>
+                </div>
+
+                <div class="animate__animated my-auto">
+                  <div class="mb-4">
+                    <label class="mb-2 block text-sm font-bold" for="username"> Nombre </label>
+                    <input class="text-w focus:shadow-outline w-full appearance-none rounded border bg-transparent py-2 px-3 leading-tight shadow focus:border-orange-400 focus:outline-none" id="username" type="text" placeholder="Username" />
+                    <label class="mb-2 block text-sm font-bold" for="username"> Email </label>
+                    <input class="text-w focus:shadow-outline w-full appearance-none rounded border bg-transparent py-2 px-3 leading-tight shadow focus:border-orange-400 focus:outline-none" id="username" type="text" placeholder="Username" />
+                    <label class="mb-2 block text-sm font-bold" for="username"> Asunto </label>
+                    <input class="text-w focus:shadow-outline w-full appearance-none rounded border bg-transparent py-2 px-3 leading-tight shadow focus:border-orange-400 focus:outline-none" id="username" type="text" placeholder="Username" />
+                    <label class="mb-2 block text-sm font-bold" for="username"> Mensaje </label>
+                    <textarea class="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-white transition ease-in-out focus:border-orange-400 focus:bg-transparent focus:outline-none" id="exampleFormControlTextarea1" rows="3" placeholder="Your message"></textarea>
+                    <h1 class="mt-2 text-left text-sm font-bold text-white">desc contact</h1>
+                    <button class="neon_effect mt-14 rounded-full border border-orange-400 py-2 px-4 font-bold text-white opacity-80 hover:border-transparent hover:bg-transparent hover:opacity-100">Enivar</button>
+                  </div>
+                </div>
+                <div class="animate__animated my-auto text-center"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="bg-primay flex items-center justify-center space-y-6 break-all bg-neutral-800 p-10 text-white">
+        <div class="mb-auto w-full space-x-2 space-y-20 text-center">
+          <h1>buttons</h1>
+          <button class="neon_effect neon-button rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+          <button class="neon_effect neon-button rounded-sm border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contactodd</button><button class="neon_effect rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+          <button class="neon_effect rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+          <button class="neon_effect rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+          <button class="neon_effect rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+          <button class="neon_effect rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+          <button class="neon_effect rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+          <button class="neon_effect rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+          <button class="neon_effect rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+          <button class="neon_effect rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+        </div>
+      </div>
+
+      <div class="hidden h-1/2 w-full bg-slate-900 text-white lg:block">
+        <div class="grid grid-cols-4 gap-0">
+          <div class="flex w-full items-end justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tw-full flex items-end justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full items-start justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full items-start justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hidden h-1/2 w-full bg-slate-900 text-white md:block lg:hidden">
+        <div class="grid grid-cols-2 gap-0">
+          <div class="flex w-full items-end justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tw-full flex items-end justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full items-start justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full items-start justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="h-1/2 w-full bg-slate-900 text-white md:hidden">
+        <div class="grid grid-cols-1 gap-0">
+          <div class="flex w-full items-end justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tw-full flex items-end justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full items-start justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+          <div class="flex w-full items-center justify-center p-2">
+            <div class="w-full break-all">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated mb-auto w-full space-y-6 text-center"
+                [ngClass]="{'animate__delay-1s':isVisible[1],
+              'animate__jackInTheBox': isVisible[1],
+              'hidden': !isVisible[1]}"
+              >
+                <div class="">
+                  <h1 class="text-lg font-semibold">Soldadura de estructuras metálicas</h1>
+                  <div class="mt-3 flex w-full justify-center">
+                    <div class="w-9 border-b-2 border-orange-400"></div>
+                  </div>
+                </div>
+                <div class="">
+                  <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full items-start justify-center">
+            <div class="">
+              <img class="h-auto w-auto object-cover object-center opacity-50" src="https://img.freepik.com/foto-gratis/corte-metal-equipo-plasma-planta_176420-4755.jpg?w=1380&t=st=1674886487~exp=1674887087~hmac=7715cc71fe7c355870c92007cd13e078c5889f75aad09cb314db2a0933974542" alt="imagen" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section id="first">
+        <h2 class="section-title">A free collection of svg separators</h2>
+      </section>
+      <section id="second" class="blue">
+        <svg class="separator" width="100%" height="120" viewBox="0.1 0.1 180 40" preserveAspectRatio="none">
+          <g transform="translate(-18.298844,-77.973964)">
+            <path style="fill:#b5002b;" d="M 31.615583,86.351641 H 192.16499 v 26.901969 c 0,0 -32.03411,-14.237983 -59.62682,-12.72484 -22.34188,1.2252 -54.779359,9.72634 -54.779359,9.72634 0,0 -22.029534,3.62882 -34.471238,-1.88988 -12.441702,-5.51871 -11.67199,-22.013589 -11.67199,-22.013589 z" />
+            <path style="fill:#ff1a51;" d="M 18.441597,78.106256 H 198.58126 v 39.288614 c 0,0 -43.10672,-27.825245 -73.47599,-19.687823 -30.369264,8.137423 -46.832208,12.548653 -46.832208,12.548653 0,0 -32.775418,8.05972 -46.735258,0 C 17.577964,102.19598 18.441597,78.106256 18.441597,78.106256 Z" />
+          </g>
+        </svg>
+        <h2 class="section-title">#curvescome</h2>
+      </section>
+      <section id="third">
+        <svg class="separator" xmlns="http://www.w3.org/2000/svg" width="100%" height="140" viewBox="0.5 0.2 176 30" preserveAspectRatio="none">
+          <g transform="translate(-13.668562,-111.38266)">
+            <path style="fill:#80B3F2;" d="M 13.898015,111.51495 H 190.83044 v 26.19241 l -45.97036,-14.43255 -42.22858,7.48354 -45.970361,-14.96709 -31.003265,16.03617 z" />
+          </g>
+        </svg>
+        <h2 class="section-title">#yipikayei</h2>
+      </section>
+      <section id="third" class="blue">
+        <svg class="separator" xmlns="http://www.w3.org/2000/svg" width="100%" height="166.61502" viewBox="0.4 0.2 200 44" preserveAspectRatio="none">
+          <g class="separator" transform="translate(-9.2218046,-83.494585)">
+            <path style="fill:#b5002b;" d="M 9.484815,89.716055 H 209.81018 V 126.90507 L 110.46368,93.705147 9.579391,127.39334 Z" />
+            <path style="fill:#ff1a51;" d="M 9.3544335,83.626877 H 209.68181 V 120.29057 L 110.46368,93.705147 9.4490103,120.77195 Z" />
+          </g>
+        </svg>
+
+        <h2 class="section-title">#pixelator</h2>
+      </section>
+      <section id="four">
+        <svg class="separator" xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0.2 0 178 30" preserveAspectRatio="none">
+          <g transform="translate(-14.514284,-115.36352)">
+            <path style="fill:#4074b5;" d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z" />
+            <path style="fill:#80B3F2;" d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z" />
+          </g>
+        </svg>
+        <h2 class="section-title">#sure?</h2>
+      </section>
+      <section id="five" class="blue">
+        <svg class="separator" xmlns="http://www.w3.org/2000/svg" width="100%" height="90" viewBox="0.1 0.3 200 19" preserveAspectRatio="none">
+          <g transform="translate(-0.21755166,-100.15454)">
+            <path style="fill:#ff1a51;" d="M 0.2688579,100.29477 H 200.98548 c 0,0 -99.37375,39.84098 -200.7166221,0 z" />
+          </g>
+        </svg>
+        <h2 class="section-title">#okletsgo</h2>
+        <svg class="separator-bottom" xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0.2 0 151 27" preserveAspectRatio="none">
+          <g transform="translate(-18.766517,-159.24846)">
+            <path style="fill:#a66026;" d="m 18.898809,169.7732 h 11.150298 v -10.20536 l 10.016369,10.01637 10.016369,10.01637 v -9.82738 h 20.032738 v -10.20536 l 20.127232,20.12723 v -9.92187 h 19.938245 v -10.01637 l 19.93824,19.93824 v -9.92187 h 19.93824 v -10.20536 l 20.12723,20.12723 v 5.19718 H 18.898809 Z" />
+            <path style="fill:#0f172a ;" d="m 18.898809,171.88988 h 11.150298 v -10.20536 l 10.016368,10.01637 10.016368,10.01637 v -9.82738 h 20.032739 v -10.20536 l 20.127233,20.12723 v -9.92187 h 19.938245 v -10.01637 l 19.93824,19.93824 v -9.92187 h 19.93825 v -10.20536 l 20.12723,20.12723 v 5.19718 H 18.898809 Z" />
+          </g>
+        </svg>
+      </section>
+      <div class="bg-primay flex items-center justify-center space-y-6 break-all p-10 text-white">
+        <div
+          (window:scroll)="onWindowScroll($event)"
+          class="my-element animate__animated mb-auto w-full space-x-2 space-y-20 text-center"
+          [ngClass]="{'animate__delay-1s':isVisible[3],
+             'animate__jackInTheBox': isVisible[3],
+             'hidden': !isVisible[3]}"
+        >
+          <h1>buttons</h1>
+          <button class="neon_effect neon-button rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+          <button class="neon_effect neon-button rounded-sm border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contactodd</button><button class="neon_effect rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+          <button class="neon_effect rounded-full border border-orange-400 py-2 px-4 font-bold text-white hover:border-transparent">Contacto</button>
+        </div>
+      </div>
+      <div class="flex items-center justify-center space-y-6 break-all bg-white p-10 text-slate-800">
+        <div
+          (window:scroll)="onWindowScroll($event)"
+          class="my-element animate__animated mb-auto w-full space-x-2 space-y-20 text-center"
+          [ngClass]="{'animate__delay-1s':isVisible[3],
+             'animate__jackInTheBox': isVisible[3],
+             'hidden': !isVisible[3]}"
+        >
+          <h1>buttons</h1>
+          <button class="neon_effect neon-button border-24 rounded-full border border-orange-400 py-2 px-4 font-bold hover:border-transparent">Contacto</button>
+          <button class="neon_effect neon-button borderborder-24 rounded-sm border-orange-400 py-2 px-4 font-bold hover:border-transparent">Contactodd</button><button class="rounded-full border-2 border-orange-400 py-2 px-4 font-bold opacity-90 hover:opacity-100">Contactod</button>
+          <button class="neon_effect border-24 rounded-full border border-orange-400 py-2 px-4 font-bold hover:border-transparent">Contacto</button>
+        </div>
+      </div>
+      <div class="mx-auto">
+        <div class="bg-primay flex h-screen items-center justify-center">
+          <div class="flex h-1/2 w-1/2 items-center justify-center bg-blue-900">
+            <div class="text-wrap flex flex-col items-center justify-center overflow-hidden bg-blue-900">
+              <div
+                (window:scroll)="onWindowScroll($event)"
+                class="my-element animate__animated"
+                [ngClass]="{
+                   'animate__delay-1s':isVisible[2],
+                   'animate__jackInTheBox': isVisible[2],
+                    'hidden': !isVisible[2]}"
+              >
+                <h1 class="flex text-5xl font-bold text-white">11111111111 1111111111111111111111111111111111111111111111 1111111111111111111111111111111111111111111111 1111111111111111111111111111111111111111111111 1111111111111111111111111111111111111111111111 1111111111111111111111111111111111111111111111 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h1 class="text-center my-10">flex row</h1>
+      <div class="flex flex-row bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center my-10">flex wrap</h1>
+      <div class="flex flex-row flex-wrap bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center my-10">flex reverse wrap</h1>
+      <div class="flex flex-row-reverse flex-wrap bg-slate-400">
+        <div class="bg-orange-300 p-20">01</div>
+        <div class="bg-orange-300 p-20">02</div>
+        <div class="bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center my-10">flex col</h1>
+      <div class="flex flex-col bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center my-10">Col reverse</h1>
+      <div class="flex flex-col-reverse bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+
+      <h1 class="text-center">justify end</h1>
+      <div class="flex justify-end bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center">justify start</h1>
+
+      <div class="flex justify-start bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center">justify- center</h1>
+      <div class="flex justify-center bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center">justify between</h1>
+
+      <div class="flex justify-between bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center">justify around</h1>
+      <div class="flex justify-around bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center">justify around col</h1>
+      <div class="flex flex-col justify-around bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+      <h1 class="text-center">justify around</h1>
+      <div class="flex  justify-around bg-slate-400 ">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+      <div class="flex  justify-around bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+      <h1 class="text-center">justify center and items start</h1>
+      <div class="flex  justify-center items-start bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+      <h1 class="text-center">justify center and items end</h1>
+
+      <div class="flex  justify-center items-end bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+
+      <div class="flex  justify-center items-center bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+      <h1 class="text-center">justify center and items baseline diference a  items start</h1>
+
+      <div class="flex  justify-center items-baseline bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 text-sm p-1">01</div>
+        <div class="m-2 bg-orange-300 text-lg p-1">02</div>
+        <div class="m-2 bg-orange-300 text-3xl p-1">03</div>
+      </div>
+      <div class="flex  justify-center items-start bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 text-sm p-1">01</div>
+        <div class="m-2 bg-orange-300 text-lg p-1">02</div>
+        <div class="m-2 bg-orange-300 text-3xl p-1">03</div>
+      </div>
+
+      <div class="flex  justify-center items-start bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 w-52 p-1">01</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">02</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">03</div>
+      </div>
+      <div class="flex  justify-between items-center bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 w-52 p-1">01</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">02</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">03</div>
+      </div>
+
+      <div class="flex  justify-between items-center bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 w-52 p-1">01</div>
+        <div class="m-2 bg-orange-300 w-52 p-1 self-start">02</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">03</div>
+      </div>
+
+      <div class="flex flex-col justify-between items-center bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 w-52 p-1">01</div>
+        <div class="m-2 bg-orange-300 w-52 p-1 self-start">02</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">03</div>
+      </div>
+      <div class="flex  bg-slate-400 h-64">
+        <div class="m-2 flex-1 bg-orange-300  p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+      </div>
+      <div class="flex  bg-slate-400 h-64">
+        <div class="m-2 flex-1 bg-orange-300  p-1">01</div>
+        <div class="m-2 flex-1 bg-orange-300 p-1">02</div>
+      </div>
+      <div class="flex  bg-slate-400 h-64">
+        <div class="m-2 flex-1 bg-orange-300  p-1">01</div>
+        <div class="m-2 flex-1 bg-orange-300 p-1">02</div>
+        <div class="m-2  bg-orange-300 p-1">03</div>
+      </div>
+      <div class="flex  bg-slate-400 h-64">
+        <div class="m-2 flex-1 sm:order-1 bg-orange-300  p-1">01</div>
+        <div class="m-2 flex-1 sm:order-3  bg-orange-300 p-1">02</div>
+        <div class="m-2 flex-1  sm:order-2  bg-orange-300 p-1">03</div>
+      </div>
+
+      <h1 class="text-center my-10" >Create</h1>
+
+      <h1 class="text-center">justify around col</h1>
+      <div class="w-full">
+        <div class="border-t-1d relative flex w-full items-center justify-center  py-10  text-white bg-slate-900">
+          <div class="m-0 w-full space-y-6 text-center sm:w-1/2">
+            <div class="">
+              <h1 class="text-2xl font-semibold">Servicios</h1>
+              <div class="mt-3 flex w-full justify-center">
+                <div class="w-9 border-b-2 border-orange-300"></div>
+              </div>
+            </div>
+            <div class="">
+              <h1 class="text-2xl font-bold sm:text-3xl md:text-4xl lg:md:text-6xl">Soldadura de precisión y calidad</h1>
+            </div>
+            <div class="">
+              <h1 class="text-sm">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col justify-around bg-slate-900 text-white">
+        <div class="m-2 flex flex-wrap  p-1">
+          <div class="w-1/2 break-all  flex items-center justify-center ">
+            <img width="400" src="http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/debris4_blue.png" alt="">
+          </div>
+          <div class="w-1/2 break-all flex items-center p-10">
+            <div class="w-full space-y-6 text-left">
+              <h1 class="text-3xl font-semibold pr-5">Soldddadura de estructuras metássslicas</h1>
+              <div class="mt-3 flex justify-start">
+                <div class="w-16 border-b-4 border-orange-300"></div>
+              </div>
+
+              <h1 class="text-md">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col justify-around bg-slate-900 text-white">
+        <div class="m-2 flex flex-wrap  p-1">
+
+          <div class="w-1/2 break-all flex items-center p-10">
+            <div class="w-full space-y-6 text-left">
+              <h1 class="text-3xl font-semibold pr-5">Soldddadura de estructuras metássslicas</h1>
+              <div class="mt-3 flex justify-start">
+                <div class="w-16 border-b-4 border-orange-300"></div>
+              </div>
+
+              <h1 class="text-md">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+            </div>
+          </div>
+          <div class="w-1/2 break-all  flex items-center justify-center ">
+            <img width="400" src="http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/debris4_blue.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col justify-around bg-slate-900 text-white">
+        <div class="m-2 flex flex-wrap  p-1">
+          <div class="w-1/2 break-all  flex items-center justify-center ">
+            <img width="400" src="http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/debris4_blue.png" alt="">
+          </div>
+          <div class="w-1/2 break-all flex items-center p-10">
+            <div class="w-full space-y-6 text-left">
+              <h1 class="text-3xl font-semibold pr-5">Soldddadura de estructuras metássslicas</h1>
+              <div class="mt-3 flex justify-start">
+                <div class="w-16 border-b-4 border-orange-300"></div>
+              </div>
+
+              <h1 class="text-md">Ofrecemos servicios de soldadura para proyectos comerciales, industriales y residenciales. Sea cual sea el tamaño o la complejidad de su proyecto, nos esforzamos por entregar trabajos de soldadura de la más alta calidad y cumplir con los plazos de entrega.</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="learning">
+      <h1 class="text-center my-10">flex row</h1>
+      <div class="flex flex-row bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center my-10">flex wrap</h1>
+      <div class="flex flex-row flex-wrap bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center my-10">flex reverse wrap</h1>
+      <div class="flex flex-row-reverse flex-wrap bg-slate-400">
+        <div class="bg-orange-300 p-20">01</div>
+        <div class="bg-orange-300 p-20">02</div>
+        <div class="bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center my-10">flex col</h1>
+      <div class="flex flex-col bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center my-10">Col reverse</h1>
+      <div class="flex flex-col-reverse bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+
+      <h1 class="text-center">justify end</h1>
+      <div class="flex justify-end bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center">justify start</h1>
+
+      <div class="flex justify-start bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center">justify- center</h1>
+      <div class="flex justify-center bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center">justify between</h1>
+
+      <div class="flex justify-between bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center">justify around</h1>
+      <div class="flex justify-around bg-slate-400">
+        <div class="m-2 bg-orange-300 p-20">01</div>
+        <div class="m-2 bg-orange-300 p-20">02</div>
+        <div class="m-2 bg-orange-300 p-20">03</div>
+      </div>
+      <h1 class="text-center">justify around col</h1>
+      <div class="flex flex-col justify-around bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+      <h1 class="text-center">justify around</h1>
+      <div class="flex  justify-around bg-slate-400 ">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+      <div class="flex  justify-around bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+      <h1 class="text-center">justify center and items start</h1>
+      <div class="flex  justify-center items-start bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+      <h1 class="text-center">justify center and items end</h1>
+
+      <div class="flex  justify-center items-end bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+
+      <div class="flex  justify-center items-center bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+        <div class="m-2 bg-orange-300 p-1">03</div>
+      </div>
+      <h1 class="text-center">justify center and items baseline diference a  items start</h1>
+
+      <div class="flex  justify-center items-baseline bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 text-sm p-1">01</div>
+        <div class="m-2 bg-orange-300 text-lg p-1">02</div>
+        <div class="m-2 bg-orange-300 text-3xl p-1">03</div>
+      </div>
+      <div class="flex  justify-center items-start bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 text-sm p-1">01</div>
+        <div class="m-2 bg-orange-300 text-lg p-1">02</div>
+        <div class="m-2 bg-orange-300 text-3xl p-1">03</div>
+      </div>
+
+      <div class="flex  justify-center items-start bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 w-52 p-1">01</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">02</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">03</div>
+      </div>
+      <div class="flex  justify-between items-center bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 w-52 p-1">01</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">02</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">03</div>
+      </div>
+
+      <div class="flex  justify-between items-center bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 w-52 p-1">01</div>
+        <div class="m-2 bg-orange-300 w-52 p-1 self-start">02</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">03</div>
+      </div>
+
+      <div class="flex flex-col justify-between items-center bg-slate-400 h-64">
+        <div class="m-2 bg-orange-300 w-52 p-1">01</div>
+        <div class="m-2 bg-orange-300 w-52 p-1 self-start">02</div>
+        <div class="m-2 bg-orange-300 w-52 p-1">03</div>
+      </div>
+      <div class="flex  bg-slate-400 h-64">
+        <div class="m-2 flex-1 bg-orange-300  p-1">01</div>
+        <div class="m-2 bg-orange-300 p-1">02</div>
+      </div>
+      <div class="flex  bg-slate-400 h-64">
+        <div class="m-2 flex-1 bg-orange-300  p-1">01</div>
+        <div class="m-2 flex-1 bg-orange-300 p-1">02</div>
+      </div>
+      <div class="flex  bg-slate-400 h-64">
+        <div class="m-2 flex-1 bg-orange-300  p-1">01</div>
+        <div class="m-2 flex-1 bg-orange-300 p-1">02</div>
+        <div class="m-2  bg-orange-300 p-1">03</div>
+      </div>
+      <div class="flex  bg-slate-400 h-64">
+        <div class="m-2 flex-1 sm:order-1 bg-orange-300  p-1">01</div>
+        <div class="m-2 flex-1 sm:order-3  bg-orange-300 p-1">02</div>
+        <div class="m-2 flex-1  sm:order-2  bg-orange-300 p-1">03</div>
+      </div>
+
+      <h1 class="text-center my-10" >Create</h1>
+      <div class="flex  bg-slate-400 ">
+        <div class="m-2 flex-1 bg-orange-300 p-1 flex items-start justify-center">
+          <div class="bg-slate-500 h-full">
+            <img src="http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/debris4_blue.png" alt="">
+          </div>
+        </div>
+        <div class="m-2 flex-1 bg-orange-300 p-1">
+          <div class="flex items-start justify-start h-full">
+            <h1>szfsdfsdfsdfsdfsdfsdfsdf</h1>
+          </div>
+        </div>
+      </div>
+      <h1 class="text-center">justify around col</h1>
+      <div class="flex flex-col justify-around bg-slate-400 ">
+        <div class="m-2 flex flex-wrap  p-1">
+          <div class="w-1/2 break-all bg-orange-300 flex items-start justify-start ">
+            <img src="http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/debris4_blue.png" alt="">
+          </div>
+          <div class="w-1/2 break-all bg-orange-300 flex items-start justify-start ">
+            <h1>1szfsdfsdfsdfsdfsdfsdfsdf</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="servicios">
+
+    </section>
+    <section class="proyectos">
+
+    </section>
+    <section class="exp">
+
+    </section>
+    <section class="contacto">
+
+    </section>
+    <section class="precios">
+
+    </section>
+    <section class="blog">
+
+    </section>
+    <section class="beneficios">
+
+    </section>
+    <!--
+     <div
+      class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75"
+    >
+      <div
+        class="absolute top-0 w-full h-full bg-center bg-cover"
+        style="
+        background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80');
+      "
+      >
+      <span
+        id="blackOverlay"
+        class="w-full h-full absolute opacity-75 bg-black"
+      ></span>
+      </div>
+      <div class="container relative mx-auto">
+        <div class="items-center flex flex-wrap">
+          <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+            <div class="pr-12">
+              <h1 class="text-white font-semibold text-5xl">
+                Your story starts with us.
+              </h1>
+              <p class="mt-4 text-lg text-blueGray-200">
+                This is a simple example of a Landing Page you can build using
+                Notus Angular. It features multiple CSS components based on the
+                Tailwind CSS design system.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
+        style="transform: translateZ(0)"
+      >
+        <svg
+          class="absolute bottom-0 overflow-hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          version="1.1"
+          viewBox="0 0 2560 100"
+          x="0"
+          y="0"
+        >
+          <polygon
+            class="text-blueGray-200 fill-current"
+            points="2560 0 2560 100 0 100"
+          ></polygon>
+        </svg>
+      </div>
+    </div>
+
+
+    <section class="pb-20 bg-blueGray-200 -mt-24">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap">
+          <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+            <div
+              class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
+            >
+              <div class="px-4 py-5 flex-auto">
+                <div
+                  class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400"
+                >
+                  <i class="fas fa-award"></i>
+                </div>
+                <h6 class="text-xl font-semibold">Awarded Agency</h6>
+                <p class="mt-2 mb-4 text-blueGray-500">
+                  Divide details about your product or agency work into parts. A
+                  paragraph describing a feature will be enough.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full md:w-4/12 px-4 text-center">
+            <div
+              class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
+            >
+              <div class="px-4 py-5 flex-auto">
+                <div
+                  class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400"
+                >
+                  <i class="fas fa-retweet"></i>
+                </div>
+                <h6 class="text-xl font-semibold">Free Revisions</h6>
+                <p class="mt-2 mb-4 text-blueGray-500">
+                  Keep you user engaged by providing meaningful information.
+                  Remember that by this time, the user is curious.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 w-full md:w-4/12 px-4 text-center">
+            <div
+              class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
+            >
+              <div class="px-4 py-5 flex-auto">
+                <div
+                  class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400"
+                >
+                  <i class="fas fa-fingerprint"></i>
+                </div>
+                <h6 class="text-xl font-semibold">Verified Company</h6>
+                <p class="mt-2 mb-4 text-blueGray-500">
+                  Write a few lines about each one. A paragraph describing a
+                  feature will be enough. Keep you user engaged!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center mt-32">
+          <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
+            <div
+              class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"
+            >
+              <i class="fas fa-user-friends text-xl"></i>
+            </div>
+            <h3 class="text-3xl mb-2 font-semibold leading-normal">
+              Working with us is a pleasure
+            </h3>
+            <p
+              class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600"
+            >
+              Don't let your uses guess by attaching tooltips and popoves to any
+              element. Just make sure you enable them first via JavaScript.
+            </p>
+            <p
+              class="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-600"
+            >
+              The kit comes with three pre-built pages to help you get started
+              faster. You can change the text and images and you're good to go.
+              Just make sure you enable them first via JavaScript.
+            </p>
+            <a [routerLink]="['/']" class="font-bold text-blueGray-700 mt-8">
+              Check Notus Angular!
+            </a>
+          </div>
+
+          <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
+            <div
+              class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-red-600"
+            >
+              <img
+                alt="..."
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80"
+                class="w-full align-middle rounded-t-lg"
+              />
+              <blockquote class="relative p-8 mb-4">
+                <svg
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 583 95"
+                  class="absolute left-0 w-full block h-95-px -top-94-px"
+                >
+                  <polygon
+                    points="-30,95 583,95 583,65"
+                    class="text-red-600 fill-current"
+                  ></polygon>
+                </svg>
+                <h4 class="text-xl font-bold text-white">Top Notch Services</h4>
+                <p class="text-md font-light mt-2 text-white">
+                  The Arctic Ocean freezes every winter and much of the sea-ice
+                  then thaws every summer, and that process will continue whatever
+                  happens.
+                </p>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative py-20">
+      <div
+        class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
+        style="transform: translateZ(0)"
+      >
+        <svg
+          class="absolute bottom-0 overflow-hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          version="1.1"
+          viewBox="0 0 2560 100"
+          x="0"
+          y="0"
+        >
+          <polygon
+            class="text-white fill-current"
+            points="2560 0 2560 100 0 100"
+          ></polygon>
+        </svg>
+      </div>
+
+      <div class="container mx-auto px-4">
+        <div class="items-center flex flex-wrap">
+          <div class="w-full md:w-4/12 ml-auto mr-auto px-4">
+            <img
+              alt="..."
+              class="max-w-full rounded-lg shadow-lg"
+              src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+            />
+          </div>
+          <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
+            <div class="md:pr-12">
+              <div
+                class="text-red-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-red-300"
+              >
+                <i class="fas fa-rocket text-xl"></i>
+              </div>
+              <h3 class="text-3xl font-semibold">A growing company</h3>
+              <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
+                The extension comes with three pre-built pages to help you get
+                started faster. You can change the text and images and you're good
+                to go.
+              </p>
+              <ul class="list-none mt-6">
+                <li class="py-2">
+                  <div class="flex items-center">
+                    <div>
+                    <span
+                      class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-200 mr-3"
+                    >
+                      <i class="fas fa-fingerprint"></i>
+                    </span>
+                    </div>
+                    <div>
+                      <h4 class="text-blueGray-500">
+                        Carefully crafted components
+                      </h4>
+                    </div>
+                  </div>
+                </li>
+                <li class="py-2">
+                  <div class="flex items-center">
+                    <div>
+                    <span
+                      class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-200 mr-3"
+                    >
+                      <i class="fab fa-html5"></i>
+                    </span>
+                    </div>
+                    <div>
+                      <h4 class="text-blueGray-500">Amazing page examples</h4>
+                    </div>
+                  </div>
+                </li>
+                <li class="py-2">
+                  <div class="flex items-center">
+                    <div>
+                    <span
+                      class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-200 mr-3"
+                    >
+                      <i class="far fa-paper-plane"></i>
+                    </span>
+                    </div>
+                    <div>
+                      <h4 class="text-blueGray-500">Dynamic components</h4>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pt-20 pb-48">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center text-center mb-24">
+          <div class="w-full lg:w-6/12 px-4">
+            <h2 class="text-4xl font-semibold">Here are our heroes</h2>
+            <p class="text-lg leading-relaxed m-4 text-blueGray-500">
+              According to the National Oceanic and Atmospheric Administration,
+              Ted, Scambos, NSIDClead scentist, puts the potentially record
+              maximum.
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap">
+          <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+            <div class="px-6">
+              <img
+                alt="..."
+                src="assets/img/team-1-800x800.jpg"
+                class="shadow-lg rounded-full mx-auto max-w-120-px"
+              />
+              <div class="pt-6 text-center">
+                <h5 class="text-xl font-bold">Ryan Tompson</h5>
+                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
+                  Web Developer
+                </p>
+                <div class="mt-6">
+                  <button
+                    class="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <button
+                    class="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+                  <button
+                    class="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-dribbble"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+            <div class="px-6">
+              <img
+                alt="..."
+                src="assets/img/team-2-800x800.jpg"
+                class="shadow-lg rounded-full mx-auto max-w-120-px"
+              />
+              <div class="pt-6 text-center">
+                <h5 class="text-xl font-bold">Romina Hadid</h5>
+                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
+                  Marketing Specialist
+                </p>
+                <div class="mt-6">
+                  <button
+                    class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-google"></i>
+                  </button>
+                  <button
+                    class="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+            <div class="px-6">
+              <img
+                alt="..."
+                src="assets/img/team-3-800x800.jpg"
+                class="shadow-lg rounded-full mx-auto max-w-120-px"
+              />
+              <div class="pt-6 text-center">
+                <h5 class="text-xl font-bold">Alexa Smith</h5>
+                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
+                  UI/UX Designer
+                </p>
+                <div class="mt-6">
+                  <button
+                    class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-google"></i>
+                  </button>
+                  <button
+                    class="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <button
+                    class="bg-blueGray-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+            <div class="px-6">
+              <img
+                alt="..."
+                src="assets/img/team-4-470x470.png"
+                class="shadow-lg rounded-full mx-auto max-w-120-px"
+              />
+              <div class="pt-6 text-center">
+                <h5 class="text-xl font-bold">Jenna Kardi</h5>
+                <p class="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
+                  Founder and CEO
+                </p>
+                <div class="mt-6">
+                  <button
+                    class="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-dribbble"></i>
+                  </button>
+                  <button
+                    class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-google"></i>
+                  </button>
+                  <button
+                    class="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <button
+                    class="bg-blueGray-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-20 relative block bg-blueGray-800">
+      <div
+        class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
+        style="transform: translateZ(0)"
+      >
+        <svg
+          class="absolute bottom-0 overflow-hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          version="1.1"
+          viewBox="0 0 2560 100"
+          x="0"
+          y="0"
+        >
+          <polygon
+            class="text-blueGray-800 fill-current"
+            points="2560 0 2560 100 0 100"
+          ></polygon>
+        </svg>
+      </div>
+
+      <div class="container mx-auto px-4 lg:pt-24 lg:pb-64">
+        <div class="flex flex-wrap text-center justify-center">
+          <div class="w-full lg:w-6/12 px-4">
+            <h2 class="text-4xl font-semibold text-white">Build something</h2>
+            <p class="text-lg leading-relaxed mt-4 mb-4 text-blueGray-400">
+              Put the potentially record low maximum sea ice extent tihs year down
+              to low ice. According to the National Oceanic and Atmospheric
+              Administration, Ted, Scambos.
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap mt-12 justify-center">
+          <div class="w-full lg:w-3/12 px-4 text-center">
+            <div
+              class="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
+            >
+              <i class="fas fa-medal text-xl"></i>
+            </div>
+            <h6 class="text-xl mt-5 font-semibold text-white">
+              Excelent Services
+            </h6>
+            <p class="mt-2 mb-4 text-blueGray-400">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
+          <div class="w-full lg:w-3/12 px-4 text-center">
+            <div
+              class="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
+            >
+              <i class="fas fa-poll text-xl"></i>
+            </div>
+            <h5 class="text-xl mt-5 font-semibold text-white">
+              Grow your market
+            </h5>
+            <p class="mt-2 mb-4 text-blueGray-400">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
+          <div class="w-full lg:w-3/12 px-4 text-center">
+            <div
+              class="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
+            >
+              <i class="fas fa-lightbulb text-xl"></i>
+            </div>
+            <h5 class="text-xl mt-5 font-semibold text-white">Launch time</h5>
+            <p class="mt-2 mb-4 text-blueGray-400">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="relative block py-24 lg:pt-0 bg-blueGray-800">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center lg:-mt-64 -mt-48">
+          <div class="w-full lg:w-6/12 px-4">
+            <div
+              class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200"
+            >
+              <div class="flex-auto p-5 lg:p-10">
+                <h4 class="text-2xl font-semibold">Want to work with us?</h4>
+                <p class="leading-relaxed mt-1 mb-4 text-blueGray-500">
+                  Complete this form and we will get back to you in 24 hours.
+                </p>
+                <div class="relative w-full mb-3 mt-8">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="full-name"
+                  >
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="Full Name"
+                  />
+                </div>
+
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="email"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="Email"
+                  />
+                </div>
+
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="message"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    rows="4"
+                    cols="80"
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                    placeholder="Type a message..."
+                  ></textarea>
+                </div>
+                <div class="text-center mt-6">
+                  <button
+                    class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                  >
+                    Send Message
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    -->
+  </main>
+
+<app-footer></app-footer>
+</div>

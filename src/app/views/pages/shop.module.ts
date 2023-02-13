@@ -8,14 +8,16 @@ import {ComponentsModule} from '../../components/components.module';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
 import {ProductService} from '../../services/api/product.service';
+import {NgxPayPalModule} from "ngx-paypal";
 
 @NgModule({
   declarations: [ProductsPageComponent,ProductListComponent, ProductDetailComponent, CartComponent],
-  imports: [
-    CommonModule,
-    ShopRoutingModule,
-    ComponentsModule
-  ],
+    imports: [
+        CommonModule,
+        ShopRoutingModule,
+        ComponentsModule,
+        NgxPayPalModule
+    ],
   exports: [ProductsPageComponent],
   providers: [ProductService]
 })

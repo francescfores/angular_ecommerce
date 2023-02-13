@@ -29,8 +29,6 @@ export class DefaultNavbarComponent implements OnInit, OnDestroy {
 
   }
   scroll = (): void => {
-    console.log(window.scrollY);
-    console.log(window.scrollY >= 50);
     if(window.scrollY <= 50){
       $('#navbar').addClass('bg-transparent');
       $('#navbar').removeClass('bg-primary');

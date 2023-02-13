@@ -48,6 +48,32 @@ export class AuthenticationService {
         return this.user;
       }));
   }
+  loginUser(email, password) {
+    console.log(email);
+    console.log(password);
+    console.log('cors');
+    console.log(environment.apiUrl);
+    const headers = new HttpHeaders();
+    headers.append('Content-type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+    // headers.append('Access-Control-Allow-Headers','X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method');
+    headers.append('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, DELETE');
+    headers.append('Allow','GET, POST, OPTIONS, PUT, DELETE');
+    const httpOptions = {
+      headers,
+    };
+    return this.http.post<any>(`${environment.apiUrl}api/login`, { email, password }, httpOptions)
+      // return this.http.post<any>(`$/users/authenticate`, { username, password })
+      .pipe(map(data => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        console.log('login');
+        this.user = data.user;
+        this.user.token = data.token;
+        localStorage.setItem('currentClient', JSON.stringify(this.user));
+        this.currentClientSubject.next(this.user);
+        return this.user;
+      }));
+  }
 
   logout() {
     console.log('logout');
@@ -60,6 +86,6 @@ export class AuthenticationService {
     //
     // }
     this.currentClientSubject.next(null);
-    this.router.navigate(['/auth/sign-in'], { queryParams: { returnUrl: '' }});
+    this.router.navigate(['/auth/login'], { queryParams: { returnUrl: '' }});
   }
 }

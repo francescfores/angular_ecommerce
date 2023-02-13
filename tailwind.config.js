@@ -17,7 +17,7 @@ module.exports = {
       './src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js'
     ],
     options: {
-      safelist: [],
+      pattern: /.*/
     },
   },
   theme: {
@@ -171,13 +171,14 @@ module.exports = {
     }),
     createThemes({
       light: {
-        'primary': '#F5F6FA',
-        'secondary': '#DCDDE0',
-        'ternary': '#B6B7BA',
-        'text-primary': '#151D33',
-        'text-secondary': '#F5F6FA',
+        'primary': '#fdba74',
+        'secondary': '#d77f37',
+        'ternary': '#a66026',
+        'text-primary': '#404040',
+        'text-secondary': '#262626',
+        'text-ternary': '#171717',
         'primary-bg': '#151D33',
-        'bt-primary': '#46A39B',
+        'bt-primary': '#fff' ,
         'nav-color': '#46A39B',
         'theme': '#fff',
         'header-color': '#c23fe2',
@@ -186,12 +187,13 @@ module.exports = {
         'border-color': '#555050',
       },
       dark: {
-        'primary': '#151D33',
-        'secondary': '#19233d',
-        'ternary': '#233054',
-        'text-primary': '#F5F6FA',
-        'text-secondary': '#151D33',
-        'primary-bg': '#F5F6FA',
+        'primary': '#404040',
+        'secondary': '#262626',
+        'ternary': '#171717',
+        'text-primary': '#fdba74',
+        'text-secondary': '#a66026',
+        'text-ternary': '#a66026',
+        'primary-bg': '#404040',
         'bt-primary': 'rgb(34,80,77)',
         'nav-color': 'rgb(34,80,77)',
         'theme': '#424242',
