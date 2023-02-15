@@ -14,16 +14,13 @@ export class ClientService {
   constructor(private http: HttpClient) {
   }
 
-  getClient() {
-    console.log('getclientes');
-    return this.http.get<any>(`${environment.apiUrl}api/client`, {  })
+  getClientsPaginated(page) {
+    return this.http.get<any>(`${environment.apiUrl}api/client_paginated?page=`+page, {  })
       .pipe(map(respons => {
-        // store client details and jwt token in local storage to keep client logged in between page refreshes
-        console.log(respons);
+        // store product details and jwt token in local storage to keep product logged in between page refreshes
         return respons;
       }));
   }
-
   getClientById(id) {
     console.log('getclientById');
     return this.http.get<any>(`${environment.apiUrl}api/client/${id}`, { params: id })

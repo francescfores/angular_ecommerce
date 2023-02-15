@@ -1,1 +1,464 @@
-<p>categories works!</p>
+<div *ngIf="create_category" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <!--
+    Background backdrop, show/hide based on modal state.
+    Entering: "ease-out duration-300"
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "ease-in duration-200"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+      <!--
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div class="w-1/2 relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="bg-white">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-10 sm:mt-0 w-full">
+              <div class="xl:grid xl:grid-cols-3 xl:gap-6">
+
+                <div class="mt-5 xl:col-span-2 xl:mt-0">
+                  <div class="xl:col-span-1">
+                    <div class="p-4">
+                      <h3 class="text-lg font-medium leading-6 text-gray-900">Crear Categoria</h3>
+                      <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
+                    </div>
+                  </div>
+                  <form [formGroup]="formCategory">
+                    <div class="overflow-hidden shadow sm:rounded-md">
+                      <div class="bg-white p-4">
+                        <div class="grid grid-cols-6 gap-6">
+                          <div class="col-span-6 ">
+                            <label for="inputName" class="block text-sm font-medium text-gray-700">Nombre</label>
+                            <input id="inputName" [ngClass]="{ 'is-invalid': submitted && fc.name.errors }" formControlName="name" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <div *ngIf="submitted && fc.name.errors" class="invalid-feedback">
+                              <div *ngIf="fc.name.errors.required">name is required</div>
+                            </div>
+                          </div>
+                          <div class="col-span-6 ">
+                            <label for="inputDesc" class="block text-sm font-medium text-gray-700">Desc</label>
+                            <input id="inputDesc" [ngClass]="{ 'is-invalid': submitted && fc.desc.errors }" formControlName="desc" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <div *ngIf="submitted && fc.desc.errors" class="invalid-feedback">
+                              <div *ngIf="fc.desc.errors.required">desc is required</div>
+                            </div>
+                          </div>
+                          <div class="col-span-6">
+                            <input id="inputImg" formControlName="img" [ngClass]="{ 'is-invalid': submitted && fc.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all" (change)="onFileChanged($event)"/>
+                            <label
+                              [ngClass]="{'bg-blue-500':!submitted && this.selectedFile === null,
+                                     'bg-green-500':!submitted && this.selectedFile !== null || submitted && this.selectedFile !== null,
+                                     'bg-red-500':submitted && this.selectedFile === null}"
+                              class=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="inputImg">Imagen</label>
+                            <label class="ml-4 text-xs" for="inputImg">{{this.selectedFile?.name}} {{this.selectedFile}}</label>
+                            <div *ngIf="submitted && fc.img.errors" class="invalid-feedback">
+                              <div *ngIf="fc.img.errors.required">img is required</div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 flex justify-between items-center space-x-2">
+          <button (click)="create_category=false" class="self-end inline-flex justify-center rounded-full text-gray-700
+           border border-gray-300 bg-white
+           py-2 px-4 text-sm
+          font-medium  shadow-sm
+          hover:bg-gray-50 ">
+            Cerrar</button>
+
+          <button [disabled]="loading" (click)="createCategory()" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-orange-600 py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-orange-700 ">
+            <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+            Crear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-10 sm:mt-0" >
+  <div class="xl:grid xl:grid-cols-3 xl:gap-6">
+    <div class="xl:col-span-1">
+      <div class="p-4 sm:px-0 flex flex-row justify-between items-center space-x-2">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Productos</h3>
+        <button (click)="create_category=true" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-orange-600 py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-orange-700 focus:outline-none ">
+          Crear</button>
+      </div>
+
+    </div>
+    <div class="mt-5 xl:col-span-2 xl:mt-0">
+      <div
+        class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-warmGray-50 text-gray-600"
+      >
+
+        <div class="block w-full overflow-x-auto">
+          <!-- Projects table -->
+
+          <table *ngIf="categories" class="items-center w-full bg-transparent border-collapse">
+            <thead>
+            <tr>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Imagen
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                name
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                desc
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >Accion</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pr of categories.data" >
+              <th
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+              >
+                <img
+                  src="http://ctrl-api.test/storage/images/{{pr.img}}"
+                  class="h-12 w-12 bg-white rounded-full border"
+                  alt="..."
+                />
+              </th>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.name}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.desc}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-right"              >
+                <div class="flex justify-between items-center ">
+                  <div class="group relative flex items-center justify-center">
+                    <svg (click)="getSubCategorysByCategoryPaginated(1, pr.id)"  class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">
+                      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                      <line x1="7" y1="7" x2="7.01" y2="7" />
+                    </svg>
+                    <div class="mb-2 opacity-0 w-32 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 bottom-full  px-3 pointer-events-none">
+                      Ver subcategorias
+                      <svg class="absolute text-black h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
+                    </div>
+                  </div>
+
+                  <svg (click)="editCategory(pr.id)" class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
+                  <svg (click)="deleteCategory(pr.id)" class="h-5 w-5 text-red-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div *ngIf="categories" class="flex justify-center">
+        <nav aria-label="Page navigation example">
+          <ul class="flex list-style-none">
+            <li class="page-item" *ngFor="let pr of categories.links">
+              <a (click)="paginatedProducts(pr.label)" [ngClass]="{
+              'bg-blue-400 text-white': categories.current_page === pr.label,
+              'bg-transparent text-gray-800': categories.current_page !== pr.label
+              }"
+                 class="page-link relative block py-1.5 px-3 rounded border-0
+              outline-none transition-all
+              duration-300 rounded  hover:text-gray-800 focus:shadow-none"
+              >{{pr.label}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mt-10 sm:mt-0" >
+  <div class="xl:grid xl:grid-cols-3 xl:gap-6">
+    <div class="xl:col-span-1">
+      <div class="p-4 sm:px-0 flex flex-row justify-start items-center space-x-2">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Productos</h3>
+      </div>
+    </div>
+    <div class="mt-5 xl:col-span-2 xl:mt-0">
+      <div
+        class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-warmGray-50 text-gray-600"
+      >
+        <div class="block w-full overflow-x-auto">
+          <!-- Projects table -->
+          <table *ngIf="subcategories" class="items-center w-full bg-transparent border-collapse" >
+            <thead>
+            <tr>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Imagen
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                name
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                info
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                num
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                date
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                status
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                total
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >Accion</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pr of subcategories.data" (click)="getSuperCategorysBySubCategoryPaginated(1, pr.id)">
+              <th
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+              >
+                <img
+                  src="http://ctrl-api.test/storage/images/{{pr.img}}"
+                  class="h-12 w-12 bg-white rounded-full border"
+                  alt="..."
+                />
+              </th>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.name}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.info}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.num}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.date}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.status}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.total}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-right"              >
+                <div class="flex justify-between items-center">
+                  <svg (click)="editSubcategory(pr.id)" class="h-5 w-5 text-black"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
+                  <svg (click)="deleteSubcategory(pr.id)" class="h-4 w-4 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div *ngIf="subcategories" class="flex justify-center">
+        <nav aria-label="Page navigation example">
+          <ul class="flex list-style-none">
+            <li class="page-item" *ngFor="let pr of subcategories.links">
+              <a (click)="paginatedSubCategorys(pr.label)" [ngClass]="{
+              'bg-blue-400 text-white': subcategories.current_page === pr.label,
+              'bg-transparent text-gray-800': subcategories.current_page !== pr.label
+              }"
+                 class="page-link relative block py-1.5 px-3 rounded border-0
+              outline-none transition-all
+              duration-300 rounded  hover:text-gray-800 focus:shadow-none"
+              >{{pr.label}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mt-10 sm:mt-0" >
+  <div class="xl:grid xl:grid-cols-3 xl:gap-6">
+    <div class="xl:col-span-1">
+      <div class="p-4 sm:px-0 flex flex-row justify-start items-center space-x-2">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Productos</h3>
+      </div>
+    </div>
+    <div class="mt-5 xl:col-span-2 xl:mt-0">
+      <div
+        class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-warmGray-50 text-gray-600"
+      >
+        <div class="block w-full overflow-x-auto">
+          <!-- Projects table -->
+          <table *ngIf="supercategories" class="items-center w-full bg-transparent border-collapse">
+            <thead>
+            <tr>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Imagen
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                name
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                info
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                num
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                date
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                status
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                total
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >Accion</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pr of supercategories.data">
+              <th
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+              >
+                <img
+                  src="http://ctrl-api.test/storage/images/{{pr.img}}"
+                  class="h-12 w-12 bg-white rounded-full border"
+                  alt="..."
+                />
+              </th>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.name}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.info}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.num}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.date}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.status}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.total}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-right"              >
+                <div class="flex justify-between items-center">
+                  <svg (click)="editSupercategory(pr.id)" class="h-5 w-5 text-black"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
+                  <svg (click)="deleteProduct(pr.id)" class="h-4 w-4 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div *ngIf="supercategories" class="flex justify-center">
+        <nav aria-label="Page navigation example">
+          <ul class="flex list-style-none">
+            <li class="page-item" *ngFor="let pr of supercategories.links">
+              <a (click)="paginatedSuperCategorys(pr.label)" [ngClass]="{
+              'bg-blue-400 text-white': supercategories.current_page === pr.label,
+              'bg-transparent text-gray-800': supercategories.current_page !== pr.label
+              }"
+                 class="page-link relative block py-1.5 px-3 rounded border-0
+              outline-none transition-all
+              duration-300 rounded  hover:text-gray-800 focus:shadow-none"
+              >{{pr.label}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<app-alert class="z-50 fixed" [autocloseTime]="autocloseTime" [show]="show" [text]="text" [color]="color"></app-alert>

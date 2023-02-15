@@ -112,4 +112,24 @@ export class AuthenticationService {
     this.socialAuthService.signOut();
     this.router.navigate(['/auth/login'], { queryParams: { returnUrl: '' }});
   }
+
+  checkRoles(expectedRoles: string[]): boolean {
+    let isAuthorized = false;
+    const userRoles = this.getRoles();
+
+    // Itera sobre los roles esperados y comprueba si el usuario tiene alguno de ellos
+    expectedRoles.forEach(role => {
+      if (userRoles.indexOf(role) > -1) {
+        isAuthorized = true;
+      }
+    });
+
+    return isAuthorized;
+  }
+
+  getRoles(): string[] {
+    // Obtiene los roles del usuario desde el objeto currentClientValue
+    const userRoles = this.currentClientValue.roles;
+    return userRoles ? userRoles.map(role => role.name) : [];
+  }
 }

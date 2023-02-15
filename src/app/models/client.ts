@@ -7,7 +7,7 @@ export class Client {
   mobile: string;
   address: string;
   location: string;
-  role: string;
+  roles: [];
   token: string;
   points: string;
 }

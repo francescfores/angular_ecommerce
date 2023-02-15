@@ -21,8 +21,33 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     private authenticationService: AuthenticationService
   ) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const expectedRoles = route.data.roles;
+    console.log(route.data.roles);
+    if(route.data.roles){
+      const isAuthorized = this.authenticationService.checkRoles(expectedRoles);
+
+      if (!isAuthorized) {
+        this.router.navigate(['/']);
+        return false;
+      }
+      return true;
+    }else{
+      const currentUser = this.authenticationService.currentClientValue;
+      if (currentUser) {
+          return true;
+      }else {
+        this.router.navigate(['/']);
+      }
+    }
+  }
+
+  canActivate2(route: ActivatedRouteSnapshot, state: RouterStateSnapshot,) {
     const currentUser = this.authenticationService.currentClientValue;
+    console.log('canActivate');
+    console.log(currentUser.roles[0]);
+    console.log(route.data.roles);
+    console.log(route.data.roles.indexOf(currentUser.roles[0].name));
     if (currentUser) {
       // check if route is restricted by role
       if (route.data.roles && route.data.roles.indexOf(currentUser.roles[0].name) === -1) {

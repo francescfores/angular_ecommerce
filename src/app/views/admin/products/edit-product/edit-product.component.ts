@@ -84,14 +84,13 @@ export class EditProductComponent implements OnInit {
     this.getParams();
     this.getCategories();
     this.getAttributes();
-    this.getProduct();
-
   }
   getParams(){
     this.route.queryParamMap
       .subscribe((params) => {
           this.queryObj = { ...params.keys, ...params };
           this.id =this.queryObj.params.id;
+          this.getProduct();
         }
       );
   }

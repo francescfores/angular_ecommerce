@@ -21,7 +21,7 @@ import { RegisterComponent } from "./views/auth/register/register.component";
 // no layouts views
 import { IndexComponent } from "./views/index/index.component";
 import { LandingComponent } from "./views/landing/landing.component";
-import { ProfileComponent } from "./views/profile/profile.component";
+import { ProfileComponent } from "./views/pages/profile/profile.component";
 
 // components for views and layouts
 
@@ -77,9 +77,14 @@ import {
   SocialLoginModule,
   SocialAuthServiceConfig,
   GoogleLoginProvider,
-  FacebookLoginProvider
+  FacebookLoginProvider, GoogleInitOptions
 } from '@abacritt/angularx-social-login';
+import { TaxesComponent } from './views/admin/taxes/taxes.component';
+import { EditCategoryComponent } from './views/admin/categories/edit-category/edit-category.component';
+import { EditSubcategoryComponent } from './views/admin/categories/edit-subcategory/edit-subcategory.component';
+import { EditSupercategoryComponent } from './views/admin/categories/edit-supercategory/edit-supercategory.component';
 
+const googleLoginOptions: GoogleInitOptions = { oneTapEnabled: false}// default is true };
 
 @NgModule({
   declarations: [
@@ -132,6 +137,10 @@ import {
     ChartsComponent,
     PaymentsComponent,
     SendingsComponent,
+    TaxesComponent,
+    EditCategoryComponent,
+    EditSubcategoryComponent,
+    EditSupercategoryComponent,
   ],
   imports: [NgxPayPalModule,BrowserModule, AppRoutingModule, BrowserAnimationsModule, ComponentsModule, HttpClientModule,FormsModule, ReactiveFormsModule,SocialLoginModule],
   providers: [AuthenticationService, ClientService,
@@ -145,8 +154,8 @@ import {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '124147147180-roi438596d3n7af2o66bpj2oospc68fl.apps.googleusercontent.com'
-            )
+              '124147147180-roi438596d3n7af2o66bpj2oospc68fl.apps.googleusercontent.com',
+               googleLoginOptions ),
           }
         ],
         onError: (err) => {

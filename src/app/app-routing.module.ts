@@ -18,7 +18,7 @@ import { RegisterComponent } from "./views/auth/register/register.component";
 // no layouts views
 import { IndexComponent } from "./views/index/index.component";
 import { LandingComponent } from "./views/landing/landing.component";
-import { ProfileComponent } from "./views/profile/profile.component";
+import { ProfileComponent } from "./views/pages/profile/profile.component";
 import {EcommerceComponent} from "./components/ecommerce/ecommerce.component";
 import {ProductListComponent} from "./components/ecommerce/products/product-list/product-list.component";
 import {ContactComponent} from "./views/contact/contact.component";
@@ -36,26 +36,44 @@ import {ClientsComponent} from "./views/admin/clients/clients.component";
 import {OrdersComponent} from "./views/admin/orders/orders.component";
 import {ChartsComponent} from "./views/admin/charts/charts.component";
 import {PaymentsComponent} from "./views/admin/payments/payments.component";
+import {AuthGuard} from "./services/guards/auth.guard";
+import {TaxesComponent} from "./views/admin/taxes/taxes.component";
+import {EditCategoryComponent} from "./views/admin/categories/edit-category/edit-category.component";
+import {EditSubcategoryComponent} from "./views/admin/categories/edit-subcategory/edit-subcategory.component";
+import {EditSupercategoryComponent} from "./views/admin/categories/edit-supercategory/edit-supercategory.component";
 
 const routes: Routes = [
-  { path: 'shop', loadChildren: () => import('./layouts/shop/shop.module').then(m => m.ShopModule) },
+  { canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    path: 'shop',
+    loadChildren: () => import('./layouts/shop/shop.module').then(m => m.ShopModule)
+  },
   // admin views
   {
     path: "admin",
     component: AdminComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    data: {
+      roles: ['superadmin','admin']
+    },
     children: [
       { path: "dashboard", component: DashboardComponent },
       { path: "settings", component: SettingsComponent },
       { path: "tables", component: TablesComponent },
       { path: "maps", component: MapsComponent },
-      { path: "profile", component: ProfileComponent },
+      //{ path: "profile", component: ProfileComponent },
       { path: "products", component: ProductsComponent },
       { path: "edit-product", component: EditProductComponent },
+      { path: "edit-category", component: EditCategoryComponent },
+      { path: "edit-subcategory", component: EditSubcategoryComponent },
+      { path: "edit-supercategory", component: EditSupercategoryComponent },
       { path: "categories", component: CategoriesComponent },
       { path: "clients", component: ClientsComponent },
       { path: "orders", component: OrdersComponent },
       { path: "charts", component: ChartsComponent },
       { path: "payments", component: PaymentsComponent },
+      { path: "taxes", component: TaxesComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },

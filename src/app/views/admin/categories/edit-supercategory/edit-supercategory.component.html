@@ -1,0 +1,174 @@
+<div *ngIf="create_subcategory" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <!--
+    Background backdrop, show/hide based on modal state.
+    Entering: "ease-out duration-300"
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "ease-in duration-200"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+      <!--
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div class="w-1/2 relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="bg-white">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-10 sm:mt-0 w-full">
+              <div class="xl:grid xl:grid-cols-3 xl:gap-6">
+
+                <div class="mt-5 xl:col-span-2 xl:mt-0">
+                  <div class="xl:col-span-1">
+                    <div class="p-4">
+                      <h3 class="text-lg font-medium leading-6 text-gray-900">Crear Subategoria</h3>
+                      <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
+                    </div>
+                  </div>
+                  <form [formGroup]="formSubcategory">
+                    <div class="overflow-hidden shadow sm:rounded-md">
+                      <div class="bg-white p-4">
+                        <div class="grid grid-cols-6 gap-6">
+                          <div class="col-span-6 ">
+                            <label for="inputName" class="block text-sm font-medium text-gray-700">Nombre</label>
+                            <input id="inputName" [ngClass]="{ 'is-invalid': submitted && fsc.name.errors }" formControlName="name" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <div *ngIf="submitted && fsc.name.errors" class="invalid-feedback">
+                              <div *ngIf="fsc.name.errors.required">name is required</div>
+                            </div>
+                          </div>
+                          <div class="col-span-6 ">
+                            <label for="inputDesc" class="block text-sm font-medium text-gray-700">Desc</label>
+                            <input id="inputDesc" [ngClass]="{ 'is-invalid': submitted && fsc.desc.errors }" formControlName="desc" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <div *ngIf="submitted && fsc.desc.errors" class="invalid-feedback">
+                              <div *ngIf="fsc.desc.errors.required">desc is required</div>
+                            </div>
+                          </div>
+                          <div class="col-span-6">
+                            <input id="inputImg" formControlName="img" [ngClass]="{ 'is-invalid': submitted && fsc.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all"
+                                   (change)="onFileChangedSubcat($event)"/>
+                            <label
+                              [ngClass]="{'bg-blue-500':!submitted && this.selectedFile === null,
+                                     'bg-green-500':!submitted && this.selectedFile !== null || submitted && this.selectedFile !== null,
+                                     'bg-red-500':submitted && this.selectedFile === null}"
+                              class=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="inputImg">Imagen</label>
+                            <label class="ml-4 text-xs" for="inputImg">{{this.selectedFile?.name}} {{this.selectedFile}}</label>
+                            <div *ngIf="submitted && fsc.img.errors" class="invalid-feedback">
+                              <div *ngIf="fsc.img.errors.required">img is required</div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 flex justify-between items-center space-x-2">
+          <button (click)="create_subcategory=false" class="self-end inline-flex justify-center rounded-full text-gray-700
+           border border-gray-300 bg-white
+           py-2 px-4 text-sm
+          font-medium  shadow-sm
+          hover:bg-gray-50 ">
+            Cerrar</button>
+
+          <button [disabled]="loading" (click)="createSubcategory()" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-orange-600 py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-orange-700 ">
+            <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+            Crear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+  <!--
+    Modal panel, show/hide based on modal state.
+
+    Entering: "ease-out duration-300"
+      From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      To: "opacity-100 translate-y-0 sm:scale-100"
+    Leaving: "ease-in duration-200"
+      From: "opacity-100 translate-y-0 sm:scale-100"
+      To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+  -->
+  <div class="w-full relative transform overflow-hidden rounded-lg bg-white text-left transition-all">
+    <div class="p-4">
+      <h3 class="text-lg font-medium leading-6 text-gray-900">Crear Categoria</h3>
+      <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
+    </div>
+    <div class="bg-white">
+      <div class="sm:flex sm:items-start">
+        <div class="mt-10 sm:mt-0 w-full">
+          <div class="xl:grid xl:grid-cols-3 xl:gap-6">
+
+            <div class="mt-5 xl:col-span-2 xl:mt-0">
+              <div class="xl:col-span-1">
+
+              </div>
+              <form [formGroup]="formCategory">
+                <div class="overflow-hidden ">
+                  <div class="bg-white p-4">
+                    <div class="grid grid-cols-6 gap-6">
+                      <div class="col-span-6 ">
+                        <label for="inputName" class="block text-sm font-medium text-gray-700">Nombre</label>
+                        <input id="inputName" [ngClass]="{ 'is-invalid': submitted && fc.name.errors }" formControlName="name" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <div *ngIf="submitted && fc.name.errors" class="invalid-feedback">
+                          <div *ngIf="fc.name.errors.required">name is required</div>
+                        </div>
+                      </div>
+                      <div class="col-span-6 ">
+                        <label for="inputDesc" class="block text-sm font-medium text-gray-700">Desc</label>
+                        <input id="inputDesc" [ngClass]="{ 'is-invalid': submitted && fc.desc.errors }" formControlName="desc" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <div *ngIf="submitted && fc.desc.errors" class="invalid-feedback">
+                          <div *ngIf="fc.desc.errors.required">desc is required</div>
+                        </div>
+                      </div>
+                      <div class="col-span-6">
+                        <input id="inputImg" formControlName="img" [ngClass]="{ 'is-invalid': submitted && fc.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all" (change)="onFileChanged($event)"/>
+                        <label
+                          class=" bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" for="inputImg">Imagen</label>
+                        <label class="ml-4 text-xs" for="inputImg">{{this.selectedFile?.name}} {{this.selectedFile}}</label>
+                        <div *ngIf="submitted && fc.img.errors" class="invalid-feedback">
+                          <div *ngIf="fc.img.errors.required">img is required</div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-4 flex justify-end items-center space-x-2">
+
+      <button [disabled]="loading" (click)="updateSuperCategory()" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-orange-600 py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-orange-700 ">
+        <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+        Crear</button>
+    </div>
+  </div>
+</div>
+

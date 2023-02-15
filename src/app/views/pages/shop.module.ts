@@ -9,9 +9,11 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { CartComponent } from './cart/cart.component';
 import {ProductService} from '../../services/api/product.service';
 import {NgxPayPalModule} from "ngx-paypal";
+import {ProfileComponent} from './profile/profile.component';
+import { ProfileClientComponent } from './profile-client/profile-client.component';
 
 @NgModule({
-  declarations: [ProductsPageComponent,ProductListComponent, ProductDetailComponent, CartComponent],
+  declarations: [ ProductsPageComponent,ProductListComponent, ProductDetailComponent, CartComponent, ProfileClientComponent],
     imports: [
         CommonModule,
         ShopRoutingModule,

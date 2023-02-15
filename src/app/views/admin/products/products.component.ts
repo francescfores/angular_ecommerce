@@ -345,7 +345,7 @@ export class ProductsComponent implements OnInit {
 
   editProduct(id) {
     console.log(id)
-    this.router.navigate(['/admin/edit-product'],id);
+    //this.router.navigate(['/admin/edit-product'],id);
     this.router.navigate(
       ['/admin/edit-product'],
       { queryParams: { id } }
