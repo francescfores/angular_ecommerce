@@ -11,7 +11,8 @@ export const environment = {
     accessToken: 'pk.eyJ1IjoiZ29sZGVubWFjZWRldiIsImEiOiJjazBnYnFxb3AwNWdqM2JuNWRwazZxMWY0In0._I3zpcM9QTHNqcXWjWpD6Q',
     mapStyle: 'mapbox://styles/goldenmacedev/ck49vpeap08b61cnubglcag7l'
   },
-  hmr: true
+  hmr: true,
+  stripe_public_key:'pk_test_51MdcD9G72AP1pY3usq8Eun6PO8buzaLm1nHdbu7KjxOQ6ms4Qxy3faW7BN8rhX8oBVFgS9dv3Lq12wLZHjGvXTLN00twOfb7EK',
 };
 
 

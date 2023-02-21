@@ -82,14 +82,15 @@ export class EditProductComponent implements OnInit {
   }
   ngOnInit() {
     this.getParams();
-    this.getCategories();
-    this.getAttributes();
+
   }
   getParams(){
     this.route.queryParamMap
       .subscribe((params) => {
           this.queryObj = { ...params.keys, ...params };
           this.id =this.queryObj.params.id;
+          this.getCategories();
+          this.getAttributes();
           this.getProduct();
         }
       );
@@ -104,6 +105,7 @@ export class EditProductComponent implements OnInit {
           this.variations = this.product.variations;
           this.selectedFileVariations[this.variations.length]=this.selectedFile;
           this.category = this.categories.find(x=>x.id===Number(this.product.category.id ));
+          console.log('this.category');
           if (this.category) {
             // La propiedad category no está definida
             this.subcategories= this.category.subcategories;
@@ -111,9 +113,9 @@ export class EditProductComponent implements OnInit {
             this.supercategories= this.subcategory.supercategories;
             this.supercategory = this.supercategories.find(x=>x.id===Number(this.product.supercategory.id ));
           }
-          console.log(this.product.category.id);
+          console.log(this.product);
           console.log(this.category);
-          console.log(this.product.img);
+          console.log(this.supercategory);
 
           //init forms
           this.registerForm = this.formBuilder.group({
@@ -225,11 +227,13 @@ export class EditProductComponent implements OnInit {
       if (exists) {
       } else {
         this.variations.push({
+          product: undefined,
           id:this.variations.length,
           price:this.f.price.value,
           stock:this.f.stock.value,
           img:this.selectedFile,
-          attributes:this.variationsSelected
+          attributes:this.variationsSelected,
+          total:0
         });
 
         this.variationsForm.push(

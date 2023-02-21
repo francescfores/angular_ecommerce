@@ -83,6 +83,8 @@ import { TaxesComponent } from './views/admin/taxes/taxes.component';
 import { EditCategoryComponent } from './views/admin/categories/edit-category/edit-category.component';
 import { EditSubcategoryComponent } from './views/admin/categories/edit-subcategory/edit-subcategory.component';
 import { EditSupercategoryComponent } from './views/admin/categories/edit-supercategory/edit-supercategory.component';
+import { NgxStripeModule } from "ngx-stripe";
+import {ProductService} from "./services/api/product.service";
 
 const googleLoginOptions: GoogleInitOptions = { oneTapEnabled: false}// default is true };
 
@@ -142,7 +144,11 @@ const googleLoginOptions: GoogleInitOptions = { oneTapEnabled: false}// default 
     EditSubcategoryComponent,
     EditSupercategoryComponent,
   ],
-  imports: [NgxPayPalModule,BrowserModule, AppRoutingModule, BrowserAnimationsModule, ComponentsModule, HttpClientModule,FormsModule, ReactiveFormsModule,SocialLoginModule],
+  imports: [NgxPayPalModule,BrowserModule, AppRoutingModule, BrowserAnimationsModule, ComponentsModule, HttpClientModule,FormsModule,
+    ReactiveFormsModule,
+    SocialLoginModule,
+    NgxStripeModule.forRoot('pk_test_51MdcD9G72AP1pY3usq8Eun6PO8buzaLm1nHdbu7KjxOQ6ms4Qxy3faW7BN8rhX8oBVFgS9dv3Lq12wLZHjGvXTLN00twOfb7EK'),
+  ],
   providers: [AuthenticationService, ClientService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
@@ -162,7 +168,7 @@ const googleLoginOptions: GoogleInitOptions = { oneTapEnabled: false}// default 
           console.error(err);
         }
       } as SocialAuthServiceConfig,
-    }
+    },
   ],
   bootstrap: [AppComponent],
   exports: [

@@ -1,11 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {first} from "rxjs/operators";
 import {Router} from "@angular/router";
-import {AuthenticationService} from "../../../services/api/authentication.service";
 import {ProductService} from "../../../services/api/product.service";
-import * as slider from './../../../../assets/js/slider.js';
-import {Product} from "../../../models/product";
+import {Product, Variation} from "../../../models/product";
 import {Cart} from "../../../models/cart";
+
 @Component({
   selector: 'app-products-page',
   templateUrl: './products-page.component.html',
@@ -14,69 +13,6 @@ import {Cart} from "../../../models/cart";
 export class ProductsPageComponent implements OnInit, OnDestroy {
   /*category filters*/
   categories2:any;
-  productTypes = [
-    {
-      id:1,
-      name:'Ropa',
-      desc:'ProductType',
-      categories :[
-        {
-          id:1,
-          name:'Camisetas',
-          subcategories :[
-            {id:1,name:'Camisetas básicas'},
-            {id:2,name:'Camisetas print'},
-            {id:3,name:'Camisetas sin mangas'},
-          ]},
-        {
-          id:2,
-          name:'Sudaderas',
-          subcategories :[
-            {id:1,name:'Sudaderas con capucha'},
-            {id:2,name:'Sudaderas'},
-            {id:3,name:'Sudaderas con cremallera'},
-          ]},
-      ]},
-    {
-      id:2,
-      name:'Zapatos',
-      desc:'ProductType',
-      categories :[
-        {
-          id:1,
-          name:'Camisetas',
-          subcategories :[
-            {id:1,name:'Camisetas básicas'},
-            {id:2,name:'Camisetas print'},
-            {id:3,name:'Camisetas sin mangas'},
-          ]},
-        {
-          id:2,
-          name:'Sudaderas',
-          subcategories :[
-            {id:1,name:'Sudaderas con capucha'},
-            {id:2,name:'Sudaderas'},
-            {id:3,name:'Sudaderas con cremallera'},
-          ]},
-      ]}
-    ]
-  filtres = [
-    {
-      name:'Colors',
-      subcategories :[
-        {id:1,name:'White'},
-        {id:2,name:'Blue'},
-        {id:3,name:'Brown'},
-      ]},
-    {
-      name:'Size',
-      subcategories :[
-        {id:1,name:'S'},
-        {id:2,name:'M'},
-        {id:3,name:'L'},
-        {id:4,name:'XL'},
-      ]},
-  ];
   filtersOpen = false;
   colors;
   sizes;
@@ -88,7 +24,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   openProductTypeCat;
   openProductTypeSubCat;
   titleFilter;
-  products;
+  products:Variation[]=[];
   /*category end*/
   private filters = {
     searchFilters: [
@@ -112,7 +48,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     this.getCartFromLocalStorage();
   }
 
-  addProductToCart(product: Product) {
+  addProductToCart(product: Variation) {
     this.cart.products.push(product);
     this.saveCartToLocalStorage();
     console.log(this.cart)
@@ -213,11 +149,55 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   }
 
   filterProducts(){
-    console.log(this.filters);
     this.productService.sendFilters(this.filters).subscribe(
       data => {
         this.products = data.data.product;
-//          this.router.navigate(['/shop/products']);
+        //console.error('this.products')
+        //console.log(this.products)
+        //console.log(this.products[3]?.variations[0])
+        /*this.products  = data.data.product.flatMap(product => {
+          if (product.type===2) {
+            return product.variations.map(variation => ({
+              id: variation.id,
+              name: `${product.name}`,
+              price: variation.price,
+              img: variation.img,
+              stock: variation.stock,
+              type: product.type,
+              product: product,
+            }));
+          } else {
+            return [product];
+          }
+        }) ;
+        */
+        /*
+        this.products = this.products.reduce((accumulator, product) => {
+          if (product.type === 2) {
+            const colorVariations = product.variations.filter(variation => {
+              const attributes = variation.attributes;
+              return attributes && attributes.find(attr => attr.name === 'color');
+            });
+            if (colorVariations.length === 0) {
+              return accumulator;
+            }
+            const variations = colorVariations.map(variation => ({
+              id: variation.id,
+              name: `${product.name}`,
+              price: variation.price,
+              img: variation.img,
+              stock: variation.stock,
+              type: product.type,
+              product: product,
+            }));
+            return accumulator.concat(variations);
+          } else {
+            return accumulator.concat(product);
+          }
+        }, []);
+        */
+        console.log(this.products)
+        //          this.router.navigate(['/shop/products']);
       },
       error => {
         //this.toastr.error('Invalid request', 'Toastr fun!');

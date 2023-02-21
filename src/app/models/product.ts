@@ -21,6 +21,8 @@ export class Variation {
   stock :any;
   img: File;
   attributes: any[];
+  product:Product=undefined;
+  total:any;
 }
 
 

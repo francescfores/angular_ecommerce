@@ -172,9 +172,9 @@ export class ProductService {
     product.variations.forEach((variation, index) => {
       const name = variation.img as File;
 
-      console.log(variation.id);
-      console.log(variation.img);
-      console.log(variation.img.name);
+      //console.log(variation.id);
+      //console.log(variation.img);
+      //console.log(variation.img.name);
       params.append(`variation[${index}][id]`, variation.id);
       params.append(`variation[${index}][price]`, variation.price);
       params.append(`variation[${index}][stock]`, variation.stock);

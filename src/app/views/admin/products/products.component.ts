@@ -226,6 +226,7 @@ export class ProductsComponent implements OnInit {
     //this.loading = true;
     if (this.type===1){
       if (this.registerForm.valid){
+      this.product.type = this.type;
       this.product.name = this.f.name.value;
       this.product.desc = this.f.desc.value;
       this.product.price = this.f.price.value;
@@ -269,7 +270,7 @@ export class ProductsComponent implements OnInit {
           }
 
         });
-
+      this.product.type = this.type;
       this.product.name = this.f.name.value;
       this.product.desc = this.f.desc.value;
       this.product.price = this.f.price.value;

@@ -7,6 +7,7 @@ import {EcommerceNavbarComponent} from "../../components/navbars/ecommerce-navba
 import {DefaultNavbarComponent} from "../../components/navbars/default-navbar/default-navbar.component";
 import {AppModule} from "../../app.module";
 import {ComponentsModule} from "../../components/components.module";
+import {StripeModule} from "stripe-angular";
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import {ComponentsModule} from "../../components/components.module";
   imports: [
     CommonModule,
     ShopRoutingModule,
-    ComponentsModule
+    ComponentsModule,
   ],
   exports: [IndexComponent]
 })

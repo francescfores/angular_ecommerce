@@ -1,4 +1,4 @@
-import {Product} from "./product";
+import {Product, Variation} from "./product";
 
 export class Cart {
   id: number;
@@ -8,6 +8,6 @@ export class Cart {
   date: any;
   status: any;
   total: any;
-  products: Product[]=[];
+  products: Variation[]=[];
 }
 
