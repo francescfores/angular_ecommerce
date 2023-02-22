@@ -135,11 +135,13 @@ export class CartComponent implements OnInit, AfterViewInit {
     console.log(this.cart.products)
   }
   ngAfterViewInit():void{
+    /*
     if (!this.authenticationService.currentClientValue) {
       this.router.navigate(['/auht/login']);
     }else {
       this.client =this.authenticationService.currentClientValue;
     }
+    */
   }
   getCartFromLocalStorage() {
     const cart = localStorage.getItem('cart');

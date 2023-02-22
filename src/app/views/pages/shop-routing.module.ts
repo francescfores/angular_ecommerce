@@ -5,6 +5,7 @@ import {ProductDetailComponent} from './product-detail/product-detail.component'
 import {CartComponent} from './cart/cart.component';
 import {ProfileComponent} from './profile/profile.component';
 import {ProfileClientComponent} from "./profile-client/profile-client.component";
+import {AuthGuard} from "../../services/guards/auth.guard";
 
 
 const routes: Routes = [
@@ -22,7 +23,9 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileClientComponent
+    component: ProfileClientComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
   },
 ];
 

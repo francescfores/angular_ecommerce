@@ -43,8 +43,8 @@ import {EditSubcategoryComponent} from "./views/admin/categories/edit-subcategor
 import {EditSupercategoryComponent} from "./views/admin/categories/edit-supercategory/edit-supercategory.component";
 
 const routes: Routes = [
-  { canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+  { canActivate: [NonAuthGuard],
+    canActivateChild: [NonAuthGuard],
     path: 'shop',
     loadChildren: () => import('./layouts/shop/shop.module').then(m => m.ShopModule)
   },
