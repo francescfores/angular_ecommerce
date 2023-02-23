@@ -128,7 +128,7 @@ export class ProductService {
       }
     });
     formData.append('variations', JSON.stringify(product.variations));
-
+    console.log(product.variations);
     product.variations.forEach((variation, index) => {
       const name = variation.img as File;
 

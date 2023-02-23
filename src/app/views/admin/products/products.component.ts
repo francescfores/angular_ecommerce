@@ -80,6 +80,7 @@ export class ProductsComponent implements OnInit {
       category: [null ],
       subcategory: [null ],
       supercategory: [null ],
+      attributes: [null ],
     });
   }
 
@@ -106,6 +107,7 @@ export class ProductsComponent implements OnInit {
         res => {
           this.attributes = res.data.attributes;
           this.attributes_group = res.data.attributes_group;
+          this.loadSelects();
 //          this.router.navigate(['/shop/products']);
         },
         error => {
@@ -134,31 +136,39 @@ export class ProductsComponent implements OnInit {
   toggleExpansion(divId) {
     this.expandedDivId = this.expandedDivId === divId ? '' : divId;
   }
-  productType(test) {
-    this.type = Number(test.target.value);
+
+  loadSelects() {
     for (const key of Object.keys(this.attributes_group)) {
       this.selectedOptions[key] = null;
     }
-
-
   }
+
+  productType(test) {
+    this.type = Number(test.target.value);
+  }
+
   selectVariation(seleccionado: any) {
-    const attribute = this.attributes.find(x => x.id === Number(seleccionado));
-    const name = this.variationsSelected.find(x => x.name === attribute.name);
-    if(name){
-      this.variationsSelected = this.variationsSelected.filter(x => x.name !== attribute.name);
-      this.variationsSelected.push(attribute);
-    }else{
-      this.variationsSelected.push(attribute);
+    console.log('seleccionado',seleccionado)
+
+    if(seleccionado!==null){
+      const attribute = this.attributes.find(x => x.id === Number(seleccionado));
+      console.log('attribute',attribute)
+
+      console.log('this.variationsSelected',this.variationsSelected)
+      const name = this.variationsSelected.find(x => x.name === attribute.name);
+
+      if(name){
+        this.variationsSelected = this.variationsSelected.filter(x => x.name !== attribute.name);
+        this.variationsSelected.push(attribute);
+      }else{
+        this.variationsSelected.push(attribute);
+      }
+      this.variationsSelected.sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
     }
-    this.variationsSelected.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
-    console.log('attribute');
-    console.log(attribute);
-    console.log(this.variationsSelected);
   }
   createVariation() {
     if(this.variationsSelected.length > 0){
@@ -224,40 +234,12 @@ export class ProductsComponent implements OnInit {
     this.color='info'
     this.show=true;
     //this.loading = true;
-    if (this.type===1){
-      if (this.registerForm.valid){
-      this.product.type = this.type;
-      this.product.name = this.f.name.value;
-      this.product.desc = this.f.desc.value;
-      this.product.price = this.f.price.value;
-      this.product.stock = this.f.stock.value;
-      this.product.img = this.selectedFile;
-      this.product.category = this.category.id;
-      this.product.subcategory = this.subcategory.id;
-      this.product.supercategory = this.supercategory.id;
-
-      this.productService.createProduct(this.product)
-        .pipe(first())
-        .subscribe(
-          res => {
-            //this.categories = res.data.category;
-
-            this.text='Producto creado'
-            this.color='success'
-            this.submitted = false;
-            console.log(res.data);
-          },
-          error => {
-            // this.loading = false;
-          });
-    } else {
-        this.show=true;
-        this.text='error'
-        this.color='success'
-      }
-  }else if (this.type===2){
       if (this.registerForm.valid) {
-
+        if(this.type===1){
+          console.log(this.variations);
+          console.log(this.variations[0]);
+          this.createVariation();
+        }
         Object.entries(this.variationsForm).forEach(([key, value], index) => {
           if(value.valid){
             this.show=true;
@@ -299,7 +281,6 @@ export class ProductsComponent implements OnInit {
         this.text='error'
         this.color='danger'
       }
-    }
   }
   selectCategory($event: any) {
     this.category = this.categories.find(x=>x.id===Number($event.target.value));
@@ -313,11 +294,9 @@ export class ProductsComponent implements OnInit {
       this.supercategories= this.subcategory.supercategories;
     }
   }
-
   selectSuperCategory($event: any) {
     this.supercategory = this.supercategories.find(x=>x.id===Number($event.target.value));
   }
-
   paginatedProducts(pr) {
     Number(this.product_pg.current_page)
     if(pr==='Previous'){
@@ -343,7 +322,6 @@ export class ProductsComponent implements OnInit {
         error => {
         });
   }
-
   editProduct(id) {
     console.log(id)
     //this.router.navigate(['/admin/edit-product'],id);
@@ -352,7 +330,6 @@ export class ProductsComponent implements OnInit {
       { queryParams: { id } }
     );
   }
-
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     //this.registerForm.controls['img'].setValue(this.selectedFile);
@@ -366,15 +343,12 @@ export class ProductsComponent implements OnInit {
     console.log(this.selectedFileVariations[id].name);
     //this.registerForm.controls['img'].setValue(this.selectedFile);
   }
-
   saveVariation(variation: any) {
-    console.log('saveVariation');
-    console.log('saveVariation');
-    console.log(this.fv(variation.id).stock.value);
-    this.variations.find(x=>x.id ===variation.id).price=this.fv(variation.id).price.value;
-    this.variations.find(x=>x.id ===variation.id).stock=this.fv(variation.id).stock.value;
+      this.variations.find(x=>x.id ===variation.id).price=this.f.price.value;
+      this.variations.find(x=>x.id ===variation.id).stock=this.f.stock.value;
+      this.variations.find(x=>x.id ===variation.id).price=this.fv(variation.id).price.value;
+      this.variations.find(x=>x.id ===variation.id).stock=this.fv(variation.id).stock.value;
     this.product.variations=this.variations;
-    console.log(this.product.variations);
     Object.entries(this.variationsForm).forEach(([key, value], index) => {
       if(value.valid){
         this.show=true;
@@ -388,7 +362,6 @@ export class ProductsComponent implements OnInit {
 
     });
   }
-
   deleteProduct(id) {
     this.productService.deleteProduct(id)
       .pipe(first())

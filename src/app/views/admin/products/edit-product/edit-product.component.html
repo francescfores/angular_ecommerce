@@ -1,12 +1,12 @@
 <div class="mt-10 sm:mt-0">
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
+  <div class=" flex flex-col">
+    <div class="">
       <div class="p-4 sm:px-0">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Crear producto</h3>
         <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
       </div>
     </div>
-    <div class="mt-5 md:col-span-2 md:mt-0">
+    <div class="mt-5">
       <form *ngIf="registerForm" [formGroup]="registerForm">
         <div class="overflow-hidden shadow sm:rounded-md">
           <div class="bg-white px-4 py-5 sm:p-6">
@@ -65,7 +65,7 @@
                                      'bg-green-500':!submitted && this.selectedFile !== null || submitted && this.selectedFile !== null,
                                      'bg-red-500':submitted && this.selectedFile === null}"
                   class=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="inputImg">Imagen</label>
-                <label class="ml-4 text-xs" for="inputImg">{{this.selectedFile?.name}} {{this.selectedFile}}</label>
+                <label class="ml-4 text-xs" for="inputImg">{{this.selectedFile?.name}}</label>
                 <div *ngIf="submitted && f.img.errors" class="invalid-feedback">
                   <div *ngIf="f.img.errors.required">img is required</div>
                 </div>
@@ -159,9 +159,9 @@
   </div>
 </div>
 <div class="mt-10 sm:mt-0" *ngIf="type===2">
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="p-4 sm:px-0 flex flex-row justify-start items-center space-x-2">
+  <div class="flex flex-col">
+    <div class="">
+      <div class="p-8 sm:px-0 flex flex-row justify-start items-center space-x-4">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Variaciones</h3>
         <select    name="country" autocomplete="country-name"
                    class="w-1/4 block rounded-md border border-gray-300
@@ -176,7 +176,7 @@
         <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
       </div>
     </div>
-    <div class="mt-5 md:col-span-2 md:mt-0">
+    <div class="">
       <form action="#" method="POST">
         <div class="overflow-hidden shadow sm:rounded-md">
           <div class="bg-white px-4 py-5 sm:p-6">

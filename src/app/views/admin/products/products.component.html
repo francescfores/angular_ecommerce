@@ -78,20 +78,20 @@
 </div>
 -->
 <div class="mt-10 sm:mt-0" >
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
+  <div class="flex flex-col">
+    <div class="">
       <div class="p-4 sm:px-0 flex flex-row justify-start items-center space-x-2">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Productos</h3>
       </div>
     </div>
-    <div class="mt-5 md:col-span-2 md:mt-0">
+    <div class="mt-5">
       <div
         class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
         [ngClass]="color === 'light' ? 'bg-white' : 'bg-warmGray-50 text-gray-600'"
       >
         <div class="block w-full overflow-x-auto">
           <!-- Projects table -->
-          <table *ngIf="product_pg" class="items-center w-full bg-transparent border-collapse">
+          <table class="items-center w-full bg-transparent border-collapse">
             <thead>
             <tr>
               <th
@@ -124,7 +124,7 @@
               >Accion</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="product_pg" >
             <tr *ngFor="let pr of product_pg.data">
               <th
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
@@ -156,10 +156,11 @@
                 {{pr.stock}}
               </td>
               <td
-                class=" flex space-x-2 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-              >
-                <svg (click)="editProduct(pr.id)" class="h-5 w-5 text-black"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
-                <svg (click)="deleteProduct(pr.id)" class="h-4 w-4 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-right"              >
+                <div class="flex justify-between items-center ">
+                  <svg (click)="editProduct(pr.id)" class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
+                  <svg (click)="deleteProduct(pr.id)" class="h-5 w-5 text-red-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
+                </div>
               </td>
             </tr>
             </tbody>
@@ -187,14 +188,14 @@
 </div>
 
 <div class="mt-10 sm:mt-0">
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
+  <div class="flex flex-col">
+    <div class="">
       <div class="p-4 sm:px-0">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Crear producto</h3>
         <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
       </div>
     </div>
-    <div class="mt-5 md:col-span-2 md:mt-0">
+    <div class="mt-5">
       <form [formGroup]="registerForm">
         <div class="overflow-hidden shadow sm:rounded-md">
           <div class="bg-white px-4 py-5 sm:p-6">
@@ -239,7 +240,7 @@
                   <div *ngIf="f.stock.errors.required">stock is required</div>
                 </div>
               </div>
-              <div class="col-span-6 sm:col-span-3">
+              <div class="col-span-6">
                 <input id="inputImg" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all" (change)="onFileChanged($event)"/>
                 <label
                   [ngClass]="{'bg-blue-500':!submitted && this.selectedFile === null,
@@ -283,6 +284,23 @@
                     {{value.name}}
                   </option>
                 </select>
+              </div>
+              <div class="col-span-6" *ngIf="attributes_group">
+                <label class="block text-sm font-medium text-gray-700">Atributos</label>
+                <div  class="flex space-x-2">
+                  <div class="flex-1" *ngFor="let attr of attributes_group | keyvalue">
+                    <label for="country" class="block text-sm font-medium text-gray-700">{{ attr.key }}</label>
+                    <select formControlName="attributes"  [(ngModel)]="selectedOptions[attr.key]" (ngModelChange)="selectVariation($event)"
+                            id="country" name="{{attr.key}}" autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300
+                            bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                      <option [value]="null">Selecciona un/a {{ attr.key }}</option>
+                      <option *ngFor="let value of attr.value"
+                              [value]="value.id">
+                        {{value.value}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
               </div>
 
               <!--
@@ -340,9 +358,9 @@
   </div>
 </div>
 <div class="mt-10 sm:mt-0" *ngIf="type===2">
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="p-4 sm:px-0 flex flex-row justify-start items-center space-x-2">
+  <div class="flex flex-col">
+    <div class="">
+      <div class="p-8 sm:px-0 flex flex-row justify-start items-center space-x-4">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Variaciones</h3>
         <select    name="country" autocomplete="country-name"
                  class="w-1/4 block rounded-md border border-gray-300
@@ -357,7 +375,7 @@
         <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
       </div>
     </div>
-    <div class="mt-5 md:col-span-2 md:mt-0">
+    <div class="">
       <form action="#" method="POST">
         <div class="overflow-hidden shadow sm:rounded-md">
           <div class="bg-white px-4 py-5 sm:p-6">
