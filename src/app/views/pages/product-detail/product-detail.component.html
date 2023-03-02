@@ -1,6 +1,6 @@
-<div class="container mx-auto">
+<div class="mx-auto w-full p-20 bg-white">
   <div class="grid gap-6 grid-cols-1 lg:grid-cols-5">
-    <div class="lg:col-span-3">
+    <div class="lg:col-span-2">
       <div >
         <div class="relative">
           <template x-for="image in images">
@@ -8,7 +8,7 @@
               <img :src="image" alt="" class="w-auto mx-auto">
             </div>
           </template><div x-show="activeImage === image" class="aspect-w-3 aspect-h-2">
-          <img :src="image" alt="" class="w-auto mx-auto" src="assets/img/products/1_1.jpg">
+          <img :src="image" alt="" class="w-auto mx-auto" src="http://ctrl-api.test/storage/images/{{this.selectedVariation?.img}}">
         </div><div x-show="activeImage === image" class="aspect-w-3 aspect-h-2" style="display: none;">
           <img :src="image" alt="" class="w-auto mx-auto" src="img/1_2.jpg">
         </div><div x-show="activeImage === image" class="aspect-w-3 aspect-h-2" style="display: none;">
@@ -45,12 +45,11 @@
         </div>
       </div>
     </div>
-    <div class="lg:col-span-2">
-      <h1 class="text-lg font-semibold">
-        Logitech G502 HERO High Performance Wired Gaming Mouse, HERO 25K
-        Sensor, 25,600 DPI, RGB, Adjustable Weights, 11
+    <div class="lg:col-span-3 pl-20">
+      <h1 class="text-lg font-semibold" *ngIf="product">
+        {{product?.name}}
       </h1>
-      <div class="text-xl font-bold mb-6">$17.99</div>
+      <div class="text-xl font-bold mb-6" *ngIf="selectedVariation">{{selectedVariation?.price}}</div>
       <div class="flex items-center mb-6">
         <div class="flex items-center text-orange-400">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -77,16 +76,39 @@
         <label for="quantity" class="block font-bold mr-4">
           Quantity
         </label>
-        <input type="number" name="quantity" x-ref="quantityEl" value="1" class="w-32 focus:border-purple-500 focus:outline-none rounded">
+        <input min="1" value="{{selectedVariation?.count}}" (change)="updateCount($event, product)" type="number" name="quantity" x-ref="quantityEl"  class="w-32 focus:border-purple-500 focus:outline-none rounded">
+        <p>Total: {{this.selectedVariation?.total}}</p>
       </div>
-      <button class="btn-primary py-4 text-lg flex justify-center min-w-0 w-full mb-6">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-        </svg>
-        Add to Cart
-      </button>
+      <div class="flex items-center justify-between mb-5" *ngFor="let attr of attributes_group | keyvalue">
+        <label for="country" class="block text-sm font-medium text-gray-700">{{ attr.key }}</label>
+        <label for="country" class="block text-sm font-medium text-gray-700">{{ selectedOptions[attr.key] }}</label>
+        <select [(ngModel)]="selectedOptions[attr.key]" (ngModelChange)="selectAttribute($event)"
+                [ngClass]="{'text-blueGray-700 bg-gray-500':selectAttributes[attr.key]?.disabled}"
+                id="country" name="{{attr.key}}" autocomplete="country-name"
+                class="mt-1 block w-2/3 rounded-md border border-gray-300 bg-transparent
+                focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+          <option [value]="[attr.key]">Selecciona un/a {{ attr.key }}</option>
+          <option *ngFor="let value of attr.value"  [ngClass]="{'text-blueGray-700 bg-blueGray-500':value?.disabled}"
+                  [value]="value.id">
+            {{value.value}}
+            {{value?.disabled}}
+          </option>
+        </select>
+      </div>
+
+        <button (click)="addToCart()"
+          [ngClass]="{'bg-primary':valid && !addedCart,'bg-gray-500':!valid,'bg-yellow-300':valid && addedCart}"
+          [disabled]="!valid" class=" btn-primary py-4 text-lg flex justify-center min-w-0 w-full mb-6 text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <p *ngIf="valid && !addedCart">Add to Cart</p>
+          <p *ngIf="valid && addedCart">Quitar del carrito</p>
+          <p *ngIf="!valid">No hay stock</p>
+        </button>
       <div class="mb-6" x-data="{expanded: false}">
         <div x-show="expanded" x-collapse.min.120px="" class="text-gray-500 wysiwyg-content" style="height: 120px; overflow: hidden;">
+          <p>Desc:</p>
           <table>
             <tbody>
             <tr>

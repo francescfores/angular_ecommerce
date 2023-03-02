@@ -54,7 +54,7 @@ export class ProductsComponent implements OnInit {
   text: any;
   color: any;
   show=false;
-  autocloseTime=20000;
+  autocloseTime=2000;
   private product_pg: any;
 
 
@@ -95,11 +95,8 @@ export class ProductsComponent implements OnInit {
           this.product_pg.current_page =data.data.product_pg.current_page+'';
           this.colors = data.data.color;
           this.sizes = data.data.size;
-//          this.router.navigate(['/shop/products']);
         },
         error => {
-          //this.toastr.error('Invalid request', 'Toastr fun!');
-          // this.loading = false;
         });
     this.productService.getAttributes()
       .pipe(first())
@@ -108,22 +105,16 @@ export class ProductsComponent implements OnInit {
           this.attributes = res.data.attributes;
           this.attributes_group = res.data.attributes_group;
           this.loadSelects();
-//          this.router.navigate(['/shop/products']);
         },
         error => {
-          //this.toastr.error('Invalid request', 'Toastr fun!');
-          // this.loading = false;
         });
     this.productService.getCategories()
       .pipe(first())
       .subscribe(
         res => {
           this.categories = res.data.category;
-//          this.router.navigate(['/shop/products']);
         },
         error => {
-          //this.toastr.error('Invalid request', 'Toastr fun!');
-          // this.loading = false;
         });
   }
 
@@ -182,6 +173,9 @@ export class ProductsComponent implements OnInit {
         }
       }
       if (exists) {
+        this.show=true;
+        this.text='La variaicon ya existe!'
+        this.color='warning'
       } else {
         this.variations.push({
           id:this.variations.length,
@@ -228,6 +222,36 @@ export class ProductsComponent implements OnInit {
     }
   }
 
+  setDataForm(){
+    this.product.type = this.type;
+    this.product.name = this.f.name.value;
+    this.product.desc = this.f.desc.value;
+    this.product.price = this.f.price.value;
+    this.product.stock = this.f.stock.value;
+    this.product.img = this.selectedFile;
+    this.product.category = this.category.id;
+    this.product.subcategory = this.subcategory.id;
+    this.product.supercategory = this.supercategory.id;
+    this.product.variations = this.variations;
+  }
+
+  createProduct(){
+    this.productService.addProduct2(this.product)
+      .pipe(first())
+      .subscribe(
+        res => {
+          this.text='Producto creado'
+          this.color='success'
+          this.submitted = false;
+          console.log(res);
+        },
+        error => {
+          this.text='Error del servidor'
+          this.color='error'
+          this.submitted = false;
+        });
+  }
+
   passBack() {
     this.submitted = true;
     this.text='esperando el servior creado'
@@ -239,46 +263,27 @@ export class ProductsComponent implements OnInit {
           console.log(this.variations);
           console.log(this.variations[0]);
           this.createVariation();
-        }
-        Object.entries(this.variationsForm).forEach(([key, value], index) => {
-          if(value.valid){
-            this.show=true;
-            this.text='success'
-            this.color='success'
-          }else{
-            this.show=true;
-            this.text='error'
-            this.color='danger'
-          }
-
-        });
-      this.product.type = this.type;
-      this.product.name = this.f.name.value;
-      this.product.desc = this.f.desc.value;
-      this.product.price = this.f.price.value;
-      this.product.stock = this.f.stock.value;
-      this.product.img = this.selectedFile;
-      this.product.category = this.category.id;
-      this.product.subcategory = this.subcategory.id;
-      this.product.supercategory = this.supercategory.id;
-
-      this.product.variations = this.variations;
-      this.productService.addProduct2(this.product)
-        .pipe(first())
-        .subscribe(
-          res => {
-
-            this.text='Producto creado'
-            this.color='success'
-            this.submitted = false;
-            console.log(res);
-          },
-          error => {
-            // this.loading = false;
+          this.setDataForm();
+          this.createProduct();
+        }else {
+          let valid = false;
+          Object.entries(this.variationsForm).forEach(([key, value], index) => {
+            if(value.valid){
+              this.setDataForm();
+              valid = true;
+            }else{
+              this.show=true;
+              this.text='Variacion incorrecta'
+              this.color='danger'
+            }
           });
+          if(valid){
+            this.createProduct();
+          }
+        }
     }else {
         this.show=true;
-        this.text='error'
+        this.text='Formulario incorreco'
         this.color='danger'
       }
   }
@@ -344,6 +349,8 @@ export class ProductsComponent implements OnInit {
     //this.registerForm.controls['img'].setValue(this.selectedFile);
   }
   saveVariation(variation: any) {
+    console.log(this.variationsForm);
+    console.log(variation.id);
       this.variations.find(x=>x.id ===variation.id).price=this.f.price.value;
       this.variations.find(x=>x.id ===variation.id).stock=this.f.stock.value;
       this.variations.find(x=>x.id ===variation.id).price=this.fv(variation.id).price.value;

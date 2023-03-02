@@ -10,6 +10,7 @@ import {StripeCardComponent, StripeService} from "ngx-stripe";
 import {StripeCardElementOptions, StripeElementsOptions} from "@stripe/stripe-js";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
+import {AddressService} from "../../../services/api/address.service";
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -60,19 +61,26 @@ export class CartComponent implements OnInit, AfterViewInit {
   text: any;
   color: any;
   show=false;
-  autocloseTime=20000;
+  autocloseTime=1000;
 
   //step 2
   formPersonalData: FormGroup;
   submitted = false;
 
   success=false;
+  private countries: any;
+  private country: any;
+  private provinces: any;
+  private province: any;
+  private rates: any;
+  private carrier: any;
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
     private paypal: NgxPayPalModule,
     private orderService: OrderService,
+    private addressService: AddressService,
     private fb: FormBuilder,
     private stripeService: StripeService,
     private http: HttpClient
@@ -80,23 +88,58 @@ export class CartComponent implements OnInit, AfterViewInit {
     this.payPal = paypal;
     this.cart = new Cart();
     this.step=1;
+    this.addressService.getContries()
+      .pipe(first())
+      .subscribe(
+        res => {
+          this.countries =res.data;
+          this.country = this.countries.find(x=>x.id===this.countries[0].id);
+          this.provinces= this.country.provinces;
+          this.province= this.country.provinces[0];
+          this.fpd.country.setValue(this.country.id);
+          this.fpd.province.setValue(this.provinces[0].id);
+          console.error('this.country');
+          console.log(this.country);
+          console.log(this.province);
+          console.log(this.fpd.country.value);
+          console.log(this.fpd.province.value);
+        },
+        error => {
+          console.log(error)
+        });
+    this.addressService.getRates()
+      .pipe(first())
+      .subscribe(
+        res => {
+          console.log(res)
+
+          this.rates =res.Rates;
+          console.log(this.rates)
+
+          //this.loading=false;
+//          this.router.navigate(['/shop/products']);
+        },
+        error => {
+          console.log('----------res-------')
+          console.log(error)
+        });
     this.getCartFromLocalStorage();
+    this.groupProducts();
     this.stripeTest = this.fb.group({
       name: ['', [Validators.required]]
     });
-
     this.formPersonalData = this.fb.group({
-      name: ['', [Validators.required]],
-      surnames: ['', [Validators.required]],
-      dni: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      address_detail: ['', [Validators.required]],
-      observations: ['', [Validators.required]],
-      country: ['', [Validators.required]],
-      postal_code: ['', [Validators.required]],
-      population: ['', [Validators.required]],
-      province: ['', [Validators.required]],
+      name: ['f', [Validators.required]],
+      surnames: ['f', [Validators.required]],
+      dni: ['34', [Validators.required]],
+      phone: ['64', [Validators.required]],
+      address: ['Carre illa de genova n8', [Validators.required]],
+      address_detail: ['3b', [Validators.required]],
+      notes: ['No tengo timbre', [Validators.required]],
+      country: ['España', [Validators.required]],
+      postal_code: ['43500', [Validators.required]],
+      population: ['Tortosa', [Validators.required]],
+      province: ['Tarragona', [Validators.required]],
     });
 
   }
@@ -130,31 +173,50 @@ export class CartComponent implements OnInit, AfterViewInit {
       console.log('product.total ', product.total)
       this.totalPrice = parseFloat(parseFloat(product.total+this.totalPrice).toFixed(2));
     });
-    this.cart.products = this.groupedProducts;
-    console.log('this.cart.products')
-    console.log(this.cart.products)
   }
   ngAfterViewInit():void{
-    /*
     if (!this.authenticationService.currentClientValue) {
       this.router.navigate(['/auht/login']);
     }else {
       this.client =this.authenticationService.currentClientValue;
     }
-    */
   }
   getCartFromLocalStorage() {
+
     const cart = localStorage.getItem('cart');
     if (cart) {
       this.cart = JSON.parse(cart);
     }
-    console.log('this.cart')
+    console.log('getCartFromLocalStorage')
     console.log(this.cart)
-    this.groupProducts();
-
   }
+
+  saveCartToLocalStorage() {
+    console.log('saveCartToLocalStorage')
+    console.log(this.cart)
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+  removeProduct(product) {
+    console.log('remove', product)
+    const index = this.groupedProducts.findIndex(x => x.id === product.id);
+
+    console.log('remove', product)
+    if (index > -1) {
+      this.groupedProducts.splice(index, 1);
+      this.cart.products.splice(index, 1);
+      this.saveCartToLocalStorage();
+      this.totalPrice = (this.totalPrice-product.total);
+      console.log('product.total', product.total)
+
+      this.totalPrice = Number(parseFloat(String(this.totalPrice)).toFixed(2));
+
+    }
+  }
+
   ngOnInit(): void {
-    this.initConfig();
+
+    //this.initConfig();
   }
   //stripe generar un token para la intencion de pago
 
@@ -190,26 +252,36 @@ export class CartComponent implements OnInit, AfterViewInit {
     this.loading=true;
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     const data = {amount: this.totalPrice*100, currency: 'EUR', token: this.token.id};
-    const response = await this.http.post(`${environment.apiUrl}api/payment-intent`, data, {headers: headers}).toPromise();
-    console.log('response');
-    console.log(response);
-    const { paymentIntent, error } = await this.stripeService.confirmCardPayment(response.toString(), {
-      payment_method: {
-        card: this.card.element,
-        billing_details: {
-          name: this.fc.name.value
+    try {
+      const result = await this.http.post(`${environment.apiUrl}api/payment-intent`, data, {headers: headers}).toPromise();
+      console.log(result);
+      const { paymentIntent, error } = await this.stripeService.confirmCardPayment(result.toString(), {
+        payment_method: {
+          card: this.card.element,
+          billing_details: {
+            name: this.fc.name.value
+          }
         }
+      }).toPromise();
+      // Capturar errores z
+      // Capturar errores
+      if (error) {
+        // Manejo de errores
+        this.show=true;
+        this.text=error
+        this.color='danger'
+        this.loading=false;
+        console.log(error);
+      }else{
+        console.log(paymentIntent);
+        this.createOrder(paymentIntent);
       }
-    }).toPromise();
-    // Capturar errores
-    // Capturar errores
-    if (error) {
-      // Manejo de errores
-      console.log(error);
+    } catch(error) {
+      this.show=true;
+      this.text=error
+      this.color='danger'
       this.loading=false;
-    }else{
-      console.log(paymentIntent);
-      this.createOrder();
+      console.log(error);
     }
   }
   //stripe end
@@ -332,8 +404,40 @@ export class CartComponent implements OnInit, AfterViewInit {
     if(step===3){
       this.submitted = true;
       if (this.formPersonalData.valid){
-        this.step=step;
-        this.submitted = false;
+        this.addressService.validAddress({
+          address:this.fpd.address.value,
+          country:this.country.code,
+          province:this.province.name,
+          population:this.fpd.population.value,
+          postal_code:this.fpd.postal_code.value,
+        })
+          .pipe(first())
+          .subscribe(
+            res => {
+              console.log(res.result.verdict)
+              console.log(res.result.verdict?.addressComplete)
+              //validar mejor la url ejemplo Administrative area level (provincia)
+              if(res.result.verdict?.addressComplete){
+                this.show=true;
+                this.text='Direccion correcta'
+                this.color='success'
+                this.step=step;
+                this.submitted = false;
+              }else{
+                this.show=true;
+                this.text='Direccion invalida'
+                this.color='danger'
+                this.submitted = false;
+              }
+              //this.loading=false;
+//          this.router.navigate(['/shop/products']);
+            },
+            error => {
+              this.loading=false;
+              // this.loading = false;
+            });
+
+
       } else {
         console.log('invalid');
         this.show=true;
@@ -341,8 +445,18 @@ export class CartComponent implements OnInit, AfterViewInit {
         this.color='danger'
       }
     }
-
     if(step===4){
+      if (this.carrier){
+        //this.createOrder(step);
+        this.step=step;
+      } else {
+        console.log('invalid');
+        this.show=true;
+        this.text='Selecciona una opcion de entrega'
+        this.color='danger'
+      }
+    }
+    if(step===5){
       this.submitted = true;
       this.createToken(step);
     }
@@ -357,38 +471,50 @@ export class CartComponent implements OnInit, AfterViewInit {
     if (event.target.value > 0) {
       this.totalPrice = (this.totalPrice-product.total) + (number*product.price);
       this.totalPrice = Math.round(this.totalPrice * 100) / 100;
-      product = this.cart.products.find(x=> x.id === product.id);
+      product = this.groupedProducts.find(x=> x.id === product.id);
       product.total = Math.round((number*product.price) * 100) / 100
       product.count = Number(number)
-      //  let key = event.target.value;
-      // if (key === 'ArrowUp') {
-      // } else if (key === 'ArrowDown') {
-      // }
-    }
-  }
-  removeProduct(product) {
-    console.log('remove', product)
-    const index = this.groupedProducts.findIndex(x => x.id === product.id);
+      //for (let i = product.count;i!==0;i--){
+     //   this.cart.products.push(product)
+     // }
+      //this.saveCartToLocalStorage();
 
-    console.log('remove', product)
-    if (index > -1) {
-      this.groupedProducts.splice(index, 1);
     }
-    this.totalPrice = (this.totalPrice-product.total);
   }
-  createOrder(){
+  createOrder(payment){
 
     this.cart.total=this.totalPrice;
+    this.cart.products=this.groupedProducts;
+    this.cart.payment=payment;
+    this.cart.shipping= {
+      carrier:this.carrier,
+      name:this.fpd.name.value,
+      surnames:this.fpd.surnames.value,
+      dni:this.fpd.dni.value,
+      phone:this.fpd.phone.value,
+      address:this.fpd.address.value,
+      address_detail:this.fpd.address_detail.value,
+      notes:this.fpd.notes.value,
+      country:this.country,
+      zip:this.fpd.postal_code.value,
+      city:this.fpd.population.value,
+      province:this.province
+    };
     this.orderService.createOrder(this.cart,this.client.id)
       .pipe(first())
       .subscribe(
         res => {
           console.log(res)
-          this.success=true;
+          //this.success=true;
+          this.loading=false;
+          //this.createToken(this.step);
+
           //this.loading=false;
 //          this.router.navigate(['/shop/products']);
         },
         error => {
+          console.log(error)
+          this.createToken(this.step);
           this.loading=false;
           // this.loading = false;
         });
@@ -396,5 +522,32 @@ export class CartComponent implements OnInit, AfterViewInit {
 
   goToShop() {
     this.router.navigate(['/shop/products']);
+  }
+
+  selectCountry($event: any) {
+    this.country = this.countries.find(x=>x.id===Number($event.target.value));
+    console.log(this.country);
+    if (this.country !== undefined) {
+      this.provinces= this.country.provinces;
+      console.log(this.provinces);
+      //TODO set form address
+    }
+  }
+  selectProvince($event: any) {
+    this.province = this.provinces.find(x=>x.id===Number($event.target.value));
+    if (this.province !== undefined) {
+      //TODO set form address
+    }
+    console.log(this.province);
+  }
+
+  //onShowChange(value: boolean) {
+  //  console.log(value);
+  //  this.show = value;
+  //}
+  selectRate(value: any) {
+    this.carrier=value;
+    console.log(this.carrier);
+
   }
 }

@@ -41,6 +41,8 @@ import {TaxesComponent} from "./views/admin/taxes/taxes.component";
 import {EditCategoryComponent} from "./views/admin/categories/edit-category/edit-category.component";
 import {EditSubcategoryComponent} from "./views/admin/categories/edit-subcategory/edit-subcategory.component";
 import {EditSupercategoryComponent} from "./views/admin/categories/edit-supercategory/edit-supercategory.component";
+import {SendingsComponent} from "./views/admin/sendings/sendings.component";
+import {EditOrderComponent} from "./views/admin/orders/edit-order/edit-order.component";
 
 const routes: Routes = [
   { canActivate: [NonAuthGuard],
@@ -71,9 +73,11 @@ const routes: Routes = [
       { path: "categories", component: CategoriesComponent },
       { path: "clients", component: ClientsComponent },
       { path: "orders", component: OrdersComponent },
+      { path: "edit-order", component: EditOrderComponent },
       { path: "charts", component: ChartsComponent },
       { path: "payments", component: PaymentsComponent },
       { path: "taxes", component: TaxesComponent },
+      { path: "sendings", component: SendingsComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },

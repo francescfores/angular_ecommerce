@@ -85,6 +85,7 @@ import { EditSubcategoryComponent } from './views/admin/categories/edit-subcateg
 import { EditSupercategoryComponent } from './views/admin/categories/edit-supercategory/edit-supercategory.component';
 import { NgxStripeModule } from "ngx-stripe";
 import {ProductService} from "./services/api/product.service";
+import { EditOrderComponent } from './views/admin/orders/edit-order/edit-order.component';
 
 const googleLoginOptions: GoogleInitOptions = { oneTapEnabled: false}// default is true };
 
@@ -143,6 +144,7 @@ const googleLoginOptions: GoogleInitOptions = { oneTapEnabled: false}// default 
     EditCategoryComponent,
     EditSubcategoryComponent,
     EditSupercategoryComponent,
+    EditOrderComponent,
   ],
   imports: [NgxPayPalModule,BrowserModule, AppRoutingModule, BrowserAnimationsModule, ComponentsModule, HttpClientModule,FormsModule,
     ReactiveFormsModule,

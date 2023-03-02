@@ -9,5 +9,7 @@ export class Cart {
   status: any;
   total: any;
   products: Variation[]=[];
+  payment:any;
+  shipping:any;
 }
 

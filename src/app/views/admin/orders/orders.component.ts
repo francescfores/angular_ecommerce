@@ -39,12 +39,29 @@ export class OrdersComponent implements OnInit{
           // this.loading = false;
         });
   }
-  editProduct(id) {
-
+  editOrder(id) {
+    console.log(id)
+    this.router.navigate(
+      ['/admin/edit-order'],
+      { queryParams: { id } }
+    );
   }
+  deleteOrder(id) {
+    /*
+    this.orderService.deleteProduct(id)
+      .pipe(first())
+      .subscribe(
+        res => {
 
-  deleteProduct(id) {
-
+          this.text='Producto creado'
+          this.color='success'
+          this.submitted = false;
+          console.log(res);
+        },
+        error => {
+          // this.loading = false;
+        });
+    */
   }
 
   paginatedProducts(pr) {

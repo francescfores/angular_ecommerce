@@ -25,6 +25,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   openProductTypeSubCat;
   titleFilter;
   products:Variation[]=[];
+  selectFilter=null;
   /*category end*/
   private filters = {
     searchFilters: [
@@ -89,6 +90,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
           this.attributes = res.data.attributes;
           this.attributes_group = res.data.attributes_group;
           this.attributes_group = res.data.attributes_group;
+          console.log('this.attributes_group');
           console.log(this.attributes_group);
 //          this.router.navigate(['/shop/products']);
         },
@@ -101,8 +103,9 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   //  slider.resetSlider();
   }
   /*category filters*/
-  showColors(){
-    this.openColors = !this.openColors;
+  showFilter(attr){
+    console.log(attr.key)
+    this.selectFilter = (this.selectFilter === attr.key) ? null : attr.key;
   }
   showCategory(){
     this.openCategory = !this.openCategory;
@@ -248,4 +251,13 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
 
   }
 
+  detail(id_product: number, id_variation: any) {
+    console.log(id_product)
+    console.log(id_variation)
+    //this.router.navigate(['/admin/edit-product'],id);
+    this.router.navigate(
+      ['/shop/product-detail'],
+      { queryParams: { id_product,id_variation } }
+    );
+  }
 }

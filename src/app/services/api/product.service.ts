@@ -62,6 +62,16 @@ export class ProductService {
       }));
   }
 
+  getVariationById(id) {
+    console.log('getproductById');
+    return this.http.get<any>(`${environment.apiUrl}api/product_variaiton/`+id)
+      .pipe(map(respons => {
+        // store product details and jwt token in local storage to keep product logged in between page refreshes
+        console.log(respons);
+        return respons;
+      }));
+  }
+
   createProduct(product: Product) {
     let params = new FormData();
     Object.keys(product).forEach(key => {
@@ -176,6 +186,7 @@ export class ProductService {
       //console.log(variation.img);
       //console.log(variation.img.name);
       params.append(`variation[${index}][id]`, variation.id);
+      params.append(`variation[${index}][new]`, variation.new);
       params.append(`variation[${index}][price]`, variation.price);
       params.append(`variation[${index}][stock]`, variation.stock);
       //params.append(`variation[${index}][img]`, variation.img, name.name);

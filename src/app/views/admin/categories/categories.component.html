@@ -76,9 +76,9 @@
 
           <button [disabled]="loading" (click)="createCategory()" class="self-end inline-flex justify-center rounded-full
           border border-transparent
-          bg-orange-600 py-2 px-4 text-sm
+          bg-primary py-2 px-4 text-sm
           font-medium text-white shadow-sm
-          hover:bg-orange-700 ">
+          hover:bg-secondary ">
             <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
             Crear</button>
         </div>
@@ -88,27 +88,23 @@
 </div>
 
 <div class="mt-10 sm:mt-0" >
-  <div class="xl:grid xl:grid-cols-3 xl:gap-6">
-    <div class="xl:col-span-1">
+  <div class="flex flex-col">
+    <div class="">
       <div class="p-4 sm:px-0 flex flex-row justify-between items-center space-x-2">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Categorias</h3>
         <button (click)="create_category=true" class="self-end inline-flex justify-center rounded-full
           border border-transparent
-          bg-orange-600 py-2 px-4 text-sm
+          bg-primary py-2 px-4 text-sm
           font-medium text-white shadow-sm
-          hover:bg-orange-700 focus:outline-none ">
+          hover:bg-secondary focus:outline-none ">
           Crear</button>
       </div>
-
     </div>
-    <div class="mt-5 xl:col-span-2 xl:mt-0">
+    <div class="mt-5">
       <div
         class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-warmGray-50 text-gray-600"
       >
-
         <div class="block w-full overflow-x-auto">
-          <!-- Projects table -->
-
           <table *ngIf="categories" class="items-center w-full bg-transparent border-collapse">
             <thead>
             <tr>
@@ -181,7 +177,7 @@
           <ul class="flex list-style-none">
             <li class="page-item" *ngFor="let pr of categories.links">
               <a (click)="paginatedProducts(pr.label)" [ngClass]="{
-              'bg-blue-400 text-white': categories.current_page === pr.label,
+              'bg-primary text-white': categories.current_page === pr.label,
               'bg-transparent text-gray-800': categories.current_page !== pr.label
               }"
                  class="page-link relative block py-1.5 px-3 rounded border-0
@@ -196,18 +192,17 @@
   </div>
 </div>
 <div class="mt-10 sm:mt-0" >
-  <div class="xl:grid xl:grid-cols-3 xl:gap-6">
-    <div class="xl:col-span-1">
+  <div class="flex flex-col">
+    <div class="">
       <div class="p-4 sm:px-0 flex flex-row justify-start items-center space-x-2">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Subategorias</h3>
       </div>
     </div>
-    <div class="mt-5 xl:col-span-2 xl:mt-0">
+    <div class="mt-5">
       <div
         class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-warmGray-50 text-gray-600"
       >
         <div class="block w-full overflow-x-auto">
-          <!-- Projects table -->
           <table *ngIf="subcategories" class="items-center w-full bg-transparent border-collapse" >
             <thead>
             <tr>
@@ -252,7 +247,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let pr of subcategories.data" (click)="getSuperCategorysBySubCategoryPaginated(1, pr.id)">
+            <tr *ngFor="let pr of subcategories.data" >
               <th
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
               >
@@ -294,9 +289,19 @@
               </td>
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-right"              >
-                <div class="flex justify-between items-center">
-                  <svg (click)="editSubcategory(pr.id)" class="h-5 w-5 text-black"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
-                  <svg (click)="deleteSubcategory(pr.id)" class="h-4 w-4 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
+                <div class="flex justify-between items-center ">
+                  <div class="group relative flex items-center justify-center">
+                    <svg (click)="getSuperCategorysBySubCategoryPaginated(1, pr.id)"  class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">
+                      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                      <line x1="7" y1="7" x2="7.01" y2="7" />
+                    </svg>
+                    <div class="mb-2 opacity-0 w-32 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 bottom-full  px-3 pointer-events-none">
+                      Ver supercategorias
+                      <svg class="absolute text-black h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
+                    </div>
+                  </div>
+                  <svg (click)="editSubcategory(pr.id)" class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
+                  <svg (click)="deleteSubcategory(pr.id)" class="h-5 w-5 text-red-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
                 </div>
               </td>
             </tr>
@@ -309,7 +314,7 @@
           <ul class="flex list-style-none">
             <li class="page-item" *ngFor="let pr of subcategories.links">
               <a (click)="paginatedSubCategorys(pr.label)" [ngClass]="{
-              'bg-blue-400 text-white': subcategories.current_page === pr.label,
+              'bg-primary text-white': subcategories.current_page === pr.label,
               'bg-transparent text-gray-800': subcategories.current_page !== pr.label
               }"
                  class="page-link relative block py-1.5 px-3 rounded border-0
@@ -324,18 +329,17 @@
   </div>
 </div>
 <div class="mt-10 sm:mt-0" >
-  <div class="xl:grid xl:grid-cols-3 xl:gap-6">
-    <div class="xl:col-span-1">
+  <div class="flex flex-col">
+    <div class="">
       <div class="p-4 sm:px-0 flex flex-row justify-start items-center space-x-2">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Supercategorias</h3>
       </div>
     </div>
-    <div class="mt-5 xl:col-span-2 xl:mt-0">
+    <div class="mt-5">
       <div
         class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-warmGray-50 text-gray-600"
       >
         <div class="block w-full overflow-x-auto">
-          <!-- Projects table -->
           <table *ngIf="supercategories" class="items-center w-full bg-transparent border-collapse">
             <thead>
             <tr>
@@ -422,9 +426,9 @@
               </td>
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-right"              >
-                <div class="flex justify-between items-center">
-                  <svg (click)="editSupercategory(pr.id)" class="h-5 w-5 text-black"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
-                  <svg (click)="deleteProduct(pr.id)" class="h-4 w-4 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
+                <div class="flex justify-between items-center ">
+                  <svg (click)="editSupercategory(pr.id)" class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
+                  <svg (click)="deleteSupercategory(pr.id)" class="h-5 w-5 text-red-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
                 </div>
               </td>
             </tr>
@@ -437,7 +441,7 @@
           <ul class="flex list-style-none">
             <li class="page-item" *ngFor="let pr of supercategories.links">
               <a (click)="paginatedSuperCategorys(pr.label)" [ngClass]="{
-              'bg-blue-400 text-white': supercategories.current_page === pr.label,
+              'bg-primary text-white': supercategories.current_page === pr.label,
               'bg-transparent text-gray-800': supercategories.current_page !== pr.label
               }"
                  class="page-link relative block py-1.5 px-3 rounded border-0

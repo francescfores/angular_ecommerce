@@ -39,7 +39,7 @@ export class EditProductComponent implements OnInit {
   private variationsSelected=[];
   private attributes_group: any;
   selectedOption= null;
-  selectedOptions: any = {};
+  selectedOptions=[];
   selectedCategory=null;
   selectedSubCategory=null;
   selectedSuperCategory=null;
@@ -58,6 +58,7 @@ export class EditProductComponent implements OnInit {
   color: any;
   show=false;
   autocloseTime=20000;
+  loaded=false;
 
   constructor(
     private productService: ProductService,
@@ -78,7 +79,7 @@ export class EditProductComponent implements OnInit {
     return this.registerForm.controls;
   }
    fv(i) {
-    return this.variationsForm[i].controls;
+      return this.variationsForm[i].controls;
   }
   ngOnInit() {
     this.getParams();
@@ -90,8 +91,6 @@ export class EditProductComponent implements OnInit {
           this.queryObj = { ...params.keys, ...params };
           this.id =this.queryObj.params.id;
           this.getCategories();
-          this.getAttributes();
-          this.getProduct();
         }
       );
   }
@@ -105,7 +104,6 @@ export class EditProductComponent implements OnInit {
           this.variations = this.product.variations;
           this.selectedFileVariations[this.variations.length]=this.selectedFile;
           this.category = this.categories.find(x=>x.id===Number(this.product.category.id ));
-          console.log('this.category');
           if (this.category) {
             // La propiedad category no está definida
             this.subcategories= this.category.subcategories;
@@ -113,45 +111,26 @@ export class EditProductComponent implements OnInit {
             this.supercategories= this.subcategory.supercategories;
             this.supercategory = this.supercategories.find(x=>x.id===Number(this.product.supercategory.id ));
           }
-          console.log(this.product);
-          console.log(this.category);
-          console.log(this.supercategory);
-
           //init forms
-          this.registerForm = this.formBuilder.group({
-            name: [this.product.name, Validators.required],
-            desc: [this.product.desc, Validators.required],
-            price: [this.product.price, Validators.required],
-            img: [this.product.img, []],
-            stock: [this.product.stock, Validators.required],
-            category: [this.product.category ? this.product.category.id : null, Validators.required],
-            subcategory: [this.product.subcategory ? this.product.subcategory.id : null, Validators.required],
-            supercategory: [this.product.supercategory ? this.product.supercategory.id : null, Validators.required],
-          });
-
-          if(this.variations){
-            console.log('show variations');
-            this.type=2;
-            Object.entries(this.variations).forEach(([key, value], index) => {
-              // name Bobby Hadz 0
-              // country Chile 1
-              console.log(key, value, index);
-              //this.f.stock.setValue('');
-              this.variationsForm.push(
-                this.formBuilder.group({
-                  price: [value.price, Validators.required],
-                  stock: [value.stock, Validators.required],
-                  img: [value.img, []],
-                })
-              ) ;
-
+          this.setFormProduct();
+          this.setFormVariations();
+          if(this.product.type===1){
+            console.log('this.variations[0]')
+            console.log(this.variations[0])
+            console.log(this.selectedOptions)
+            console.log(this.selectedOptions['color'])
+            console.log(this.selectedOptions['size'])
+            console.log(this.selectedOptions['size'])
+            this.variations[0].attributes.forEach(value => {
+              console.log(value)
+              console.log(this.selectedOptions[value.name])
+              this.selectedOptions[value.name] =value.id;
+              this.selectVariation(value.id);
             });
-            console.log(this.variationsForm);
+            console.log(this.selectedOptions)
 
           }
-
-
-
+          this.loaded=true;
 
         },
         error => {
@@ -164,6 +143,10 @@ export class EditProductComponent implements OnInit {
         res => {
           this.attributes = res.data.attributes;
           this.attributes_group = res.data.attributes_group;
+            for (const key of Object.keys(this.attributes_group)) {
+              this.selectedOptions[key] = null;
+            }
+          this.getProduct();
 //          this.router.navigate(['/shop/products']);
         },
         error => {
@@ -176,59 +159,100 @@ export class EditProductComponent implements OnInit {
       .subscribe(
         res => {
           this.categories = res.data.category;
-
-//          this.router.navigate(['/shop/products']);
+          this.getAttributes();
         },
         error => {
           // this.loading = false;
         });
+  }
+  setFormProduct(){
+    this.registerForm = this.formBuilder.group({
+      type: [this.product.type, Validators.required],
+      name: [this.product.name, Validators.required],
+      desc: [this.product.desc, Validators.required],
+      price: [this.product.price, Validators.required],
+      img: [this.product.img, []],
+      stock: [this.product.stock, Validators.required],
+      category: [this.product.category ? this.product.category.id : null, Validators.required],
+      subcategory: [this.product.subcategory ? this.product.subcategory.id : null, Validators.required],
+      supercat: [this.product.supercategory ? this.product.supercategory.id : null, Validators.required],
+      attributes: [null],
+    });
+  }
+  setFormVariations(){
+    if(this.variations){
+      Object.entries(this.variations).forEach(([key, value], index) => {
+        this.variationsForm[value.id] =
+          this.formBuilder.group({
+            price: [value.price, Validators.required],
+            stock: [value.stock, Validators.required],
+            img: [value.img, []],
+          })
+      });
+    }
   }
 
   toggleExpansion(divId) {
     this.expandedDivId = this.expandedDivId === divId ? '' : divId;
   }
   productType(test) {
-    this.type = Number(test.target.value);
+    this.product.type = Number(test.target.value);
     for (const key of Object.keys(this.attributes_group)) {
       this.selectedOptions[key] = null;
     }
-
-
   }
   selectVariation(seleccionado: any) {
-    const attribute = this.attributes.find(x => x.id === Number(seleccionado));
-    const name = this.variationsSelected.find(x => x.name === attribute.name);
-    if(name){
-      this.variationsSelected = this.variationsSelected.filter(x => x.name !== attribute.name);
-      this.variationsSelected.push(attribute);
-    }else{
-      this.variationsSelected.push(attribute);
-    }
-    this.variationsSelected.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
-    console.log('attribute');
-    console.log(attribute);
-    console.log(this.variationsSelected);
+      const attribute = this.attributes.find(x => x.id === Number(seleccionado));
+      const name = this.variationsSelected.find(x => x.name === attribute.name);
+      if(name){
+        this.variationsSelected = this.variationsSelected.filter(x => x.name !== attribute.name);
+        this.variationsSelected.push(attribute);
+      }else{
+        this.variationsSelected.push(attribute);
+      }
+      this.variationsSelected.sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
+      console.log('attribute');
+      console.log(attribute);
+      console.log(this.variationsSelected);
   }
   createVariation() {
     if(this.variationsSelected.length > 0){
       let exists = false;
+      console.log('-------this.variations-------');
       for (let variation of this.variations) {
-        if (variation.attributes.length === this.variationsSelected.length) {
-          exists = variation.attributes.every((value, index) => value === this.variationsSelected[index]);
-          if (exists) {
+        for (let i = 0; i < variation.attributes.length; i++) {
+          console.log('variation')
+          console.log(variation.attributes[i] )
+          console.log(this.variationsSelected[i])
+          if (variation.attributes[i].id !== this.variationsSelected[i].id) {
+            exists = false;
             break;
           }
+          exists = true;
         }
       }
       if (exists) {
+        this.show=true;
+        this.text='La variaicon ya existe!'
+        this.color='warning'
       } else {
+        //this.variations[0].id=1;
+        //this.variations[1].id=2;
+        let id=this.variations.length;
+        console.log('id------------')
+        console.log(id)
+        while(this.variations.find(x=>x.id ===id)){
+          id++;
+        }
+        console.log(id);
         this.variations.push({
           product: undefined,
-          id:this.variations.length,
+          id:id,
+          new : true,
           price:this.f.price.value,
           stock:this.f.stock.value,
           img:this.selectedFile,
@@ -236,13 +260,11 @@ export class EditProductComponent implements OnInit {
           total:0
         });
 
-        this.variationsForm.push(
-          this.formBuilder.group({
+        this.variationsForm[id]= this.formBuilder.group({
             price: [this.f.price.value, Validators.required],
             stock: [this.f.stock.value, Validators.required],
             img: [this.f.img.value, Validators.required],
-          })
-        ) ;
+          });
         this.selectedFileVariations[this.variations.length]=this.selectedFile;
 
       }
@@ -274,6 +296,25 @@ export class EditProductComponent implements OnInit {
       });
     }
   }
+  saveVariation(variation: any) {
+    //this.variations.find(x=>x.id ===variation.id).price=this.f.price.value;
+    //this.variations.find(x=>x.id ===variation.id).stock=this.f.stock.value;
+    this.variations.find(x=>x.id ===variation.id).price=this.fv(variation.id).price.value;
+    this.variations.find(x=>x.id ===variation.id).stock=this.fv(variation.id).stock.value;
+    this.product.variations=this.variations;
+    Object.entries(this.variationsForm).forEach(([key, value], index) => {
+      if(value.valid){
+        this.show=true;
+        this.text='success'
+        this.color='success'
+      }else{
+        this.show=true;
+        this.text='error'
+        this.color='danger'
+      }
+
+    });
+  }
 
 
   passBack() {
@@ -282,40 +323,11 @@ export class EditProductComponent implements OnInit {
     this.color='info'
     this.show=true;
     //this.loading = true;
-    if (this.type===1){
-      if (this.registerForm.valid) {
-      this.product.name = this.f.name.value;
-      this.product.desc = this.f.desc.value;
-      this.product.price = this.f.price.value;
-      this.product.stock = this.f.stock.value;
-      this.product.img = this.selectedFile;
-      this.product.category = this.category.id;
-      this.product.subcategory = this.subcategory.id;
-      this.product.supercategory = this.supercategory.id;
-
-      this.productService.createProduct(this.product)
-        .pipe(first())
-        .subscribe(
-          res => {
-            //this.categories = res.data.category;
-            this.show=true;
-            this.text='Producto creado'
-            this.color='success'
-
-            this.submitted = false;
-            console.log(res.data);
-          },
-          error => {
-            // this.loading = false;
-          });
-      } else {
-        this.show=true;
-        this.text='error'
-        this.color='success'
-      }
-    }else if (this.type===2){
       if (this.registerForm.valid) {
         //validation variations
+        if(this.product.type===1){
+          this.variations[0].attributes=this.variationsSelected;
+        }
         Object.entries(this.variationsForm).forEach(([key, value], index) => {
          if(value.valid){
            this.show=true;
@@ -333,7 +345,6 @@ export class EditProductComponent implements OnInit {
         this.product.desc = this.f.desc.value;
         this.product.price = this.f.price.value;
         this.product.stock = this.f.stock.value;
-        this.product.img = this.selectedFile;
         this.product.category = this.category.id;
         this.product.subcategory = this.subcategory.id;
         this.product.supercategory = this.supercategory.id;
@@ -365,7 +376,6 @@ export class EditProductComponent implements OnInit {
         this.text='error'
         this.color='danger'
       }
-    }
   }
   selectCategory($event: any) {
     this.category = this.categories.find(x=>x.id===Number($event.target.value));
@@ -392,6 +402,7 @@ export class EditProductComponent implements OnInit {
       .pipe(first())
       .subscribe(
         res => {
+          this.product.img = res.data.img;
 
           this.text='imagen creado'
           this.color='success'
@@ -424,4 +435,5 @@ export class EditProductComponent implements OnInit {
     console.log(this.selectedFileVariations[id].name);
     //this.registerForm.controls['img'].setValue(this.selectedFile);
   }
+
 }

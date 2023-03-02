@@ -41,7 +41,7 @@
 </div>
 <div class="w-full py-6">
   <div class="flex">
-    <div (click)="goStep(1)" class="w-1/4">
+    <div (click)="goStep(1)" class="w-1/5">
       <div class="relative mb-2">
         <div
         class="w-10 h-10 mx-auto bg-secondary border-2 border-gray-200 rounded-full text-lg text-white flex items-center">
@@ -55,14 +55,13 @@
 
       <div class="text-xs text-center md:text-base">Carrito</div>
     </div>
-
-    <div (click)="goStep(2)" class="w-1/4">
+    <div (click)="goStep(2)" class="w-1/5">
       <div class="relative mb-2">
         <div
           class="absolute flex align-center items-center align-middle content-center" style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
           <div
             [ngClass]="{
-          'bg-primary': step >= 2 && step <= 4,
+          'bg-primary': step >= 2 && step <= 5,
           'bg-gray-200': step ===1}" class="w-full  rounded items-center align-middle align-center flex-1">
             <div class="w-0  py-1 rounded" style="width: 100%;"></div>
           </div>
@@ -70,7 +69,7 @@
 
         <div
           [ngClass]="{
-          'bg-secondary text-white': step >= 2 && step <= 4,
+          'bg-secondary text-white': step >= 2 && step <= 5,
           'bg-white text-gray-600': step ===1}"
           class="w-10 h-10 mx-auto border-2 border-gray-200  rounded-full text-lg text-white flex items-center">
           <span class="text-center  w-full">
@@ -80,20 +79,18 @@
           </span>
         </div>
       </div>
-
       <div class="text-xs text-center md:text-base">Dirección de envío</div>
+
     </div>
-    <!--
     <div (click)="goStep(3)" class="w-1/5">
       <div class="relative mb-2">
         <div class="absolute flex align-center items-center align-middle content-center" style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
-          <div
-            class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1">
+          <div class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1">
             <div
               [ngClass]="{
-              'bg-primary': step >= 3 && step <= 5,
+              'bg-primary': step >= 3 && step <=5,
               'bg-gray-200': step ===2}"
-              class="w-0  py-1 rounded" style="width: 100%;"></div>
+              class="w-0 py-1 rounded" style="width: 100%;"></div>
           </div>
         </div>
 
@@ -104,58 +101,58 @@
           class="w-10 h-10 mx-auto border-2 border-gray-200 rounded-full text-lg text-white flex items-center">
           <span class="text-center w-full">
             <svg class="w-full fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-              <path class="heroicon-ui" d="M9 4.58V4c0-1.1.9-2 2-2h2a2 2 0 0 1 2 2v.58a8 8 0 0 1 1.92 1.11l.5-.29a2 2 0 0 1 2.74.73l1 1.74a2 2 0 0 1-.73 2.73l-.5.29a8.06 8.06 0 0 1 0 2.22l.5.3a2 2 0 0 1 .73 2.72l-1 1.74a2 2 0 0 1-2.73.73l-.5-.3A8 8 0 0 1 15 19.43V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-.58a8 8 0 0 1-1.92-1.11l-.5.29a2 2 0 0 1-2.74-.73l-1-1.74a2 2 0 0 1 .73-2.73l.5-.29a8.06 8.06 0 0 1 0-2.22l-.5-.3a2 2 0 0 1-.73-2.72l1-1.74a2 2 0 0 1 2.73-.73l.5.3A8 8 0 0 1 9 4.57zM7.88 7.64l-.54.51-1.77-1.02-1 1.74 1.76 1.01-.17.73a6.02 6.02 0 0 0 0 2.78l.17.73-1.76 1.01 1 1.74 1.77-1.02.54.51a6 6 0 0 0 2.4 1.4l.72.2V20h2v-2.04l.71-.2a6 6 0 0 0 2.41-1.4l.54-.51 1.77 1.02 1-1.74-1.76-1.01.17-.73a6.02 6.02 0 0 0 0-2.78l-.17-.73 1.76-1.01-1-1.74-1.77 1.02-.54-.51a6 6 0 0 0-2.4-1.4l-.72-.2V4h-2v2.04l-.71.2a6 6 0 0 0-2.41 1.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+              <path class="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-2.3-8.7l1.3 1.29 3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42z"/>
             </svg>
           </span>
         </div>
       </div>
-      <div class="text-xs text-center md:text-base">
-        Opciones de entrega</div>
+      <div class="text-xs text-center md:text-base">Opciones de entrega</div>
     </div>
-    -->
-    <div (click)="goStep(3)" class="w-1/4">
+    <div (click)="goStep(4)" class="w-1/5">
       <div class="relative mb-2">
         <div class="absolute flex align-center items-center align-middle content-center" style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
-          <div class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1">
+          <div
+            class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1">
             <div
               [ngClass]="{
-              'bg-primary': step >= 3 && step <=4,
-              'bg-gray-200': step ===2}"
-              class="w-0 py-1 rounded" style="width: 100%;"></div>
+              'bg-primary': step >= 4 && step <= 5,
+              'bg-gray-200': step ===3}"
+              class="w-0  py-1 rounded" style="width: 100%;"></div>
           </div>
         </div>
 
         <div
           [ngClass]="{
-          'bg-secondary text-white': step >= 3 && step <= 4,
-          'bg-white text-gray-600': step ===2}"
+          'bg-secondary text-white': step >= 4 && step <= 5,
+          'bg-white text-gray-600': step ===3}"
           class="w-10 h-10 mx-auto border-2 border-gray-200 rounded-full text-lg text-white flex items-center">
           <span class="text-center w-full">
             <svg class="w-full fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-              <path class="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-2.3-8.7l1.3 1.29 3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42z"/>
+              <path class="heroicon-ui" d="M9 4.58V4c0-1.1.9-2 2-2h2a2 2 0 0 1 2 2v.58a8 8 0 0 1 1.92 1.11l.5-.29a2 2 0 0 1 2.74.73l1 1.74a2 2 0 0 1-.73 2.73l-.5.29a8.06 8.06 0 0 1 0 2.22l.5.3a2 2 0 0 1 .73 2.72l-1 1.74a2 2 0 0 1-2.73.73l-.5-.3A8 8 0 0 1 15 19.43V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-.58a8 8 0 0 1-1.92-1.11l-.5.29a2 2 0 0 1-2.74-.73l-1-1.74a2 2 0 0 1 .73-2.73l.5-.29a8.06 8.06 0 0 1 0-2.22l-.5-.3a2 2 0 0 1-.73-2.72l1-1.74a2 2 0 0 1 2.73-.73l.5.3A8 8 0 0 1 9 4.57zM7.88 7.64l-.54.51-1.77-1.02-1 1.74 1.76 1.01-.17.73a6.02 6.02 0 0 0 0 2.78l.17.73-1.76 1.01 1 1.74 1.77-1.02.54.51a6 6 0 0 0 2.4 1.4l.72.2V20h2v-2.04l.71-.2a6 6 0 0 0 2.41-1.4l.54-.51 1.77 1.02 1-1.74-1.76-1.01.17-.73a6.02 6.02 0 0 0 0-2.78l-.17-.73 1.76-1.01-1-1.74-1.77 1.02-.54-.51a6 6 0 0 0-2.4-1.4l-.72-.2V4h-2v2.04l-.71.2a6 6 0 0 0-2.41 1.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
             </svg>
           </span>
         </div>
       </div>
 
       <div class="text-xs text-center md:text-base">Método de pago</div>
+
     </div>
-    <div (click)="goStep(4)" class="w-1/4">
+    <div (click)="goStep(5)" class="w-1/5">
       <div class="relative mb-2">
         <div class="absolute flex align-center items-center align-middle content-center" style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
           <div
             class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1">
             <div
             [ngClass]="{
-             'bg-primary': step >= 4 && step <=4,
-              'bg-gray-200': step ===3}"
+             'bg-primary': step ===5,
+              'bg-gray-200': step ===4}"
             class="w-0 py-1 rounded" style="width: 100%;"></div>
           </div>
         </div>
         <div
           [ngClass]="{
-          'bg-secondary text-white': step >= 4 && step <= 4,
-          'bg-white text-gray-600': step ===3}"
+          'bg-secondary text-white': step ===5,
+          'bg-white text-gray-600': step ===4}"
           class="w-10 h-10 mx-auto  border-2 border-gray-200 rounded-full text-lg text-white flex items-center">
           <span class="text-center  w-full">
             <svg class="w-full fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -182,7 +179,7 @@
       <!-- Product Items -->
       <div>
         <!-- Product Item -->
-        <div *ngFor="let product of this.cart.products;" class="w-full flex flex-col sm:flex-row items-center gap-4">
+        <div *ngFor="let product of this.groupedProducts;" class="w-full flex flex-col sm:flex-row items-center gap-4">
           <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
             <img class="object-cover" alt="" src="http://ctrl-api.test/storage/images/{{product.img}}">
           </a>
@@ -190,10 +187,11 @@
             <div class="flex justify-between mb-3">
               <h3 >{{product.product.name}}</h3>
               <span class="text-lg font-semibold">
-                          $<span>{{product.total}}</span>
+                          <span>{{product.total}}€</span>
                         </span>
             </div>
             <div class="flex justify-between items-center">
+              <p>{{product.price}}€</p>
               <div class="flex items-center">
                 Qty:
                 <input min="1" (change)="updateCount($event, product)" value="{{product.count}}" type="number" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16">
@@ -275,30 +273,44 @@
               <div *ngIf="submitted && fpd.address.errors" class="invalid-feedback">
                 <div *ngIf="fpd.address.errors.required">address is required</div>
               </div>
-              <input [ngClass]="{ 'is-invalid': submitted && fpd.address_detail.errors }" formControlName="address_detail" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              <input value="Carre illa de genova n8" [ngClass]="{ 'is-invalid': submitted && fpd.address_detail.errors }" formControlName="address_detail" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               placeholder="Piso, escalera, puerta, etc.">
               <div *ngIf="submitted && fpd.address_detail.errors" class="invalid-feedback">
                 <div *ngIf="fpd.address_detail.errors.required">address_detail is required</div>
               </div>
-              <input [ngClass]="{ 'is-invalid': submitted && fpd.observations.errors }" formControlName="observations" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              <input [ngClass]="{ 'is-invalid': submitted && fpd.notes.errors }" formControlName="notes" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               placeholder="Escribe aquí tus observaciones para la agencia...">
-              <div *ngIf="submitted && fpd.observations.errors" class="invalid-feedback">
-                <div *ngIf="fpd.observations.errors.required">observations is required</div>
+              <div *ngIf="submitted && fpd.notes.errors" class="invalid-feedback">
+                <div *ngIf="fpd.notes.errors.required">notes is required</div>
               </div>
             </div>
             <div class="flex flex-row space-x-2">
               <div class="w-1/2">
                 <label for="inputCountry" class="block text-sm font-medium text-gray-700">País</label>
-                <input id="inputCountry" [ngClass]="{ 'is-invalid': submitted && fpd.country.errors }" formControlName="country" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <select id="inputCountry" formControlName="country"  (change)="selectCountry($event)" [ngClass]="{ 'is-invalid': submitted && fpd.country.errors }"
+                        autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                  <option [value]="null">Selecciona un país</option>
+                  <option *ngFor="let value of countries"
+                          [value]="value.id">
+                    {{value.name}}
+                  </option>
+                </select>
                 <div *ngIf="submitted && fpd.country.errors" class="invalid-feedback">
                   <div *ngIf="fpd.country.errors.required">country is required</div>
                 </div>
               </div>
               <div class="w-1/2">
-                <label for="inputPostalCode" class="block text-sm font-medium text-gray-700">Código postal</label>
-                <input id="inputPostalCode" [ngClass]="{ 'is-invalid': submitted && fpd.postal_code.errors }" formControlName="postal_code" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                <div *ngIf="submitted && fpd.postal_code.errors" class="invalid-feedback">
-                  <div *ngIf="fpd.postal_code.errors.required">postal code is required</div>
+                <label for="inputProvince" class="block text-sm font-medium text-gray-700">Provincia</label>
+                <select id="inputProvince" formControlName="province"  (change)="selectProvince($event)" [ngClass]="{ 'is-invalid': submitted && fpd.province.errors }"
+                        autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                  <option [value]="null">Selecciona una provincia</option>
+                  <option *ngFor="let value of provinces"
+                          [value]="value.id">
+                    {{value.name}}
+                  </option>
+                </select>
+                <div *ngIf="submitted && fpd.province.errors" class="invalid-feedback">
+                  <div *ngIf="fpd.province.errors.required">province is required</div>
                 </div>
               </div>
             </div>
@@ -311,12 +323,13 @@
                 </div>
               </div>
               <div class="w-1/2">
-                <label for="inputProvince" class="block text-sm font-medium text-gray-700">Provincia</label>
-                <input id="inputProvince" [ngClass]="{ 'is-invalid': submitted && fpd.province.errors }" formControlName="province" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                <div *ngIf="submitted && fpd.province.errors" class="invalid-feedback">
-                  <div *ngIf="fpd.province.errors.required">province is required</div>
+                <label for="inputPostalCode" class="block text-sm font-medium text-gray-700">Código postal</label>
+                <input id="inputPostalCode" [ngClass]="{ 'is-invalid': submitted && fpd.postal_code.errors }" formControlName="postal_code" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <div *ngIf="submitted && fpd.postal_code.errors" class="invalid-feedback">
+                  <div *ngIf="fpd.postal_code.errors.required">postal code is required</div>
                 </div>
               </div>
+
             </div>
           </div>
           </form>
@@ -333,37 +346,32 @@
     </div>
   </div>
 </section>
-<!--
-<section *ngIf="step === 3">
+
+<section >
   <div
-    [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': step === 3}"
+    [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow block ': step === 3,'hidden': step !== 3}"
     class="p-10 container lg:w-2/3 xl:w-2/3 mx-auto">
     <h1 class="text-3xl font-bold mb-6">Opciones de entrega</h1>
     <div x-data="" class="bg-white p-4 rounded-lg shadow">
-      <div>
-        <div *ngFor="let varation of this.cart.products;" class="w-full flex flex-col sm:flex-row items-center gap-4">
-          <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
-            <img class="object-cover" alt="" src="{{varation.img}}">
-          </a>
-          <div class="flex-1 flex flex-col justify-between">
-            <div class="flex justify-between mb-3">
-              <h3 x-text="product.title">{{varation.product.name}}</h3>
-              <span class="text-lg font-semibold">
-                          $<span x-text="product.price">{{varation.price}}</span>
-                        </span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div class="flex items-center">
-                Qty:
-                <input type="number" x-model="product.quantity" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16">
+      <div class="my-auto ml-5 h-full flex-col space-y-12 text-left text-neutral-700">
+        <form [formGroup]="formPersonalData">
+          <div class="flex flex-col space-y-4">
+            <div class="flex flex-row space-x-2">
+              <div class="w-full">
+                <label for="inputCountry" class="block text-sm font-medium text-gray-700">Selecciona una opcion</label>
+                <div *ngFor="let value of rates" class="mt-4">
+                  <input (change)="selectRate(value)" name="rate" value="{{value.carrier_id}}" type="radio" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 text-sm text-gray-600 mt-4">{{value.carrier}} {{value.detailed_pricing[0].price}}€</label>
+                  <label class="ml-3 text-sm text-gray-600 mt-4">Fecha de entrega : {{value.delivery_days}} dias</label>
+                </div>
+
               </div>
-              <a href="#" class="text-purple-600 hover:text-purple-500">Remove</a>
             </div>
           </div>
-        </div>
+        </form>
       </div>
 
-      <div class="border-t border-gray-300 pt-4">
+      <div class="pt-4">
         <button (click)="goStep(4)" type="submit" class="
         text-white bg-text-primary
         hover:border-2 hover:border-primary
@@ -375,10 +383,9 @@
     </div>
   </div>
 </section>
--->
-<section >
+<section> <!-- no use  *ngIf="step === 3" for get cart.element else cart.element no exist--->
   <div
-    [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow block ': step === 3,'hidden': step !== 3}"
+    [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow block ': step === 4,'hidden': step !== 4}"
     class="p-10 container lg:w-2/3 xl:w-2/3 mx-auto hidden">
     <h1 class="text-3xl font-bold mb-6">Método de pago</h1>
     <div x-data="" class="bg-white p-4 rounded-lg shadow">
@@ -393,7 +400,7 @@
           </div>
           <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions">
           </ngx-stripe-card>
-          <button (click)="goStep(4)" class="self-end inline-flex justify-center rounded-full
+          <button (click)="goStep(5)" class="self-end inline-flex justify-center rounded-full
           border border-transparent
           bg-orange-600 py-2 px-4 text-sm
           font-medium text-white shadow-sm
@@ -406,7 +413,7 @@
     </div>
   </div>
 </section>
-<section *ngIf="step === 4 && !showPaypalButtons">
+<section *ngIf="step === 5 && !showPaypalButtons">
   <div *ngIf=" loading" class='flex items-center justify-center h-96'>
     <div style="border-top-color:transparent" class="w-8 h-8 border-4 border-blue-200 rounded-full animate-spin"></div>
     <p class="ml-2"></p>
@@ -427,15 +434,14 @@
             <div class="flex justify-between mb-3">
               <h3 x-text="product.title">{{product.name}}</h3>
               <span class="text-lg font-semibold">
-                          $<span x-text="product.price">{{product.price}}</span>
+                          <span x-text="product.price">{{product.price}}€</span>
                         </span>
             </div>
             <div class="flex justify-between items-center">
+              <p>{{product.price}}</p>
               <div class="flex items-center">
-                Qty:
-                <input type="number" x-model="product.quantity" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16">
+                Qty: {{product.count}}
               </div>
-              <a href="#" class="text-purple-600 hover:text-purple-500">Remove</a>
             </div>
           </div>
         </div>
@@ -458,7 +464,7 @@
     </div>
   </div>
 </section>
-<section *ngIf="step === 5 && showPaypalButtons">
+<!--<section *ngIf="step === 5 && showPaypalButtons">
   <div *ngIf=" loading" class='flex items-center justify-center h-96'>
     <div style="border-top-color:transparent" class="w-8 h-8 border-4 border-blue-200 rounded-full animate-spin"></div>
     <p class="ml-2"></p>
@@ -471,6 +477,6 @@
     </ngx-paypal>
     <button *ngIf="showPaypalButtons" (click)="back()">Volver atras</button>
   </div>
-</section>
-<app-alert class="z-50 fixed" [autocloseTime]="autocloseTime" [show]="show" [text]="text" [color]="color"></app-alert>
+</section>-->
+<app-alert (showChange)="show=!show" class="z-50 fixed" [autocloseTime]="autocloseTime" [show]="show" [text]="text" [color]="color"></app-alert>
 

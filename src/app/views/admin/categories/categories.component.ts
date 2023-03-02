@@ -277,4 +277,8 @@ export class CategoriesComponent implements OnInit{
       { queryParams: { id } }
     );
   }
+
+  deleteSupercategory(id) {
+
+  }
 }

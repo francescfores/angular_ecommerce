@@ -277,9 +277,9 @@
             [routerLink]="['/admin/sendings']"
             class="text-xs uppercase py-3 font-bold block"
             routerLinkActive
-            #adminProducts="routerLinkActive"
+            #adminEnvios="routerLinkActive"
             [ngClass]="
-              adminProducts.isActive
+              adminEnvios.isActive
                 ? 'text-red-600 hover:text-red-700'
                 : 'text-blueGray-700 hover:text-blueGray-500'
             "
@@ -287,10 +287,10 @@
             <i
               class="fas fa-tv mr-2 text-sm"
               [ngClass]="
-                adminProducts.isActive ? 'opacity-75' : 'text-blueGray-300'
+                adminEnvios.isActive ? 'opacity-75' : 'text-blueGray-300'
               "
             ></i>
-            Products
+            Envios
           </a>
         </li>
 
@@ -306,9 +306,9 @@
             [routerLink]="['/admin/taxes']"
             class="text-xs uppercase py-3 font-bold block"
             routerLinkActive
-            #adminProducts="routerLinkActive"
+            #adminTaxes="routerLinkActive"
             [ngClass]="
-              adminProducts.isActive
+              adminTaxes.isActive
                 ? 'text-red-600 hover:text-red-700'
                 : 'text-blueGray-700 hover:text-blueGray-500'
             "
@@ -316,7 +316,7 @@
             <i
               class="fas fa-tv mr-2 text-sm"
               [ngClass]="
-                adminProducts.isActive ? 'opacity-75' : 'text-blueGray-300'
+                adminTaxes.isActive ? 'opacity-75' : 'text-blueGray-300'
               "
             ></i>
             Impuestos
