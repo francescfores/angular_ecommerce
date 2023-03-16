@@ -8,7 +8,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angula
 export class AlertComponent implements OnInit, OnChanges{
   @Input() text='test';
   @Input() color='info'; // danger/info/warning/success
-  @Input() autocloseTime:number;
+  @Input() autocloseTime=4000;
   @Input() show=false;
   closed=true;
 

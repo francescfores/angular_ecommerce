@@ -24,7 +24,7 @@ export class CategoriesComponent implements OnInit{
   text: any;
   color: any;
   show=false;
-  autocloseTime=20000;
+  autocloseTime=2000;
   private category: Category;
   private selectedFile: any;
   loading=false;
@@ -242,7 +242,7 @@ export class CategoriesComponent implements OnInit{
               console.log(res.data);
             },
             error => {
-              // this.loading = false;
+              this.loading = false;
             });
       } else {
         console.log('invalid');

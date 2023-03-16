@@ -165,10 +165,23 @@
         </div>
     </div>
 
-    <main class="mx-auto w-full p-20 bg-white">
-      <div class="p-10 pb-5 w-full flex items-baseline justify-between border-b border-gray-200">
-        <h1 class="text-4xl font-bold tracking-tight text-gray-900">{{titleFilter}}</h1>
-
+    <main class="mx-auto w-full px-10 py-6 bg-warmGray-100">
+      <div class="bg-primary flex items-center p-1 rounded-md mb-6">
+        <input (keyup)="searchProduct($event)"
+               class="h-auto px-3 py-2 w-full  border-0  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm
+                  shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-500"/>
+        <button type="button" class="p-2 text-gray-400" (click)="searchOpen=!searchOpen">
+          <svg class="h-5 w-5 text-white"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="10" cy="10" r="7" />  <line x1="21" y1="21" x2="15" y2="15" /></svg>
+        </button>
+      </div>
+      <div class="pb-5 w-full flex items-baseline justify-between border-b border-gray-200 h-12">
+        <div class="flex">
+          <h1 *ngIf="titleFilterCat!=null" class="text-xl font-bold tracking-tight text-gray-900">{{titleFilterCat}}</h1>
+          <h1 *ngIf="titleFilterSubCat!=null" class="text-md font-bold tracking-tight text-gray-900 mt-1 mx-2">></h1>
+          <h1 *ngIf="titleFilterSubCat!=null" class="text-xl font-bold tracking-tight text-gray-900">  {{titleFilterSubCat}}</h1>
+          <h1 *ngIf="titleFilterSuperCat!=null" class="text-md font-bold tracking-tight text-gray-900 mt-1 mx-2">></h1>
+          <h1 *ngIf="titleFilterSuperCat!=null" class="text-xl font-bold tracking-tight text-gray-900" > {{titleFilterSuperCat}}</h1>
+        </div>
         <div class="flex items-center">
           <div class="relative inline-block text-left">
             <div class="flex justify-center">
@@ -177,8 +190,6 @@
                   <button
                     class="
           dropdown-toggle
-          px-6
-          py-2.5
           bg-transparent
           text-text-gray-500
           font-medium
@@ -342,28 +353,25 @@
             </div>
           </div>
 
-          <button type="button" (click)="filterProducts()" class="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
+          <!--<button type="button" (click)="filterProducts()" class="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
             <span class="sr-only">View grid</span>
-            <!-- Heroicon name: mini/squares-2x2 -->
             <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5zm0 9A2.25 2.25 0 0011 13.25v2.5A2.25 2.25 0 0013.25 18h2.5A2.25 2.25 0 0018 15.75v-2.5A2.25 2.25 0 0015.75 11h-2.5z" clip-rule="evenodd" />
             </svg>
-          </button>
+          </button>-->
           <button type="button" class="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden" (click)="setFiltersOpen()">
             <span class="sr-only">Filters</span>
-            <!-- Heroicon name: mini/funnel -->
             <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z" clip-rule="evenodd" />
             </svg>
           </button>
+
         </div>
       </div>
 
-      <section aria-labelledby="products-heading" class="p-10 ">
-        <h2 id="products-heading" class="sr-only">{{titleFilter}}</h2>
+      <section aria-labelledby="products-heading" class="">
 
-        <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-          <!-- Filters -->
+        <div class="p-2 pt-4 grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
           <form class="hidden lg:block">
             <h3 class="sr-only">Categories</h3>
             <ul role="list" class=" space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
@@ -402,21 +410,26 @@
                    [ngClass]="{ 'max-h-screen ': this.selectFilter === attr.key, 'max-h-0 ': this.selectFilter != attr.key}">
                 <div class="space-y-4 pt-6">
                   <div class="flex items-center" >
-                    <input (change)="onAttributeSelected(value)" id="filter-color-0" name="{{value.id}}" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                    <input (change)="onAttributeSelected(value)" id="filter-color-0" name="{{value.id}}" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-primary ring-0">
                     <label for="filter-color-0" class="ml-3 text-sm text-gray-600">{{value.value}}</label>
                   </div>
                 </div>
               </div>
             </div>
           </form>
-
-          <!-- Product grid -->
           <div class="lg:col-span-3">
             <!-- Replace with your content -->
-            <div class="h-96 rounded-lg lg:h-full">
-              <div *ngIf="products.length > 0" class="grid gap-8 grig-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div class="rounded-lg lg:h-full">
+              <div class="flex items-center pr-2 pb-2 ">
+                <button class="mx-2 bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex
+                items-center border rounded-full" *ngFor="let attr of filters.searchFilters[5]?.attributes">
+                  <p class="text-sm">{{attr.value}}</p>
+                  <svg class="ml-2 h-3 w-3 text-gray-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>
+                </button>
+              </div>
+              <div *ngIf="products?.length > 0" class="grid gap-8 grig-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 <!-- Product Item -->
-                <div *ngFor="let variation of products;"  class="text-sm border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white">
+                <div *ngFor="let variation of products;"  class="text-sm border border-1 border-gray-200 hover:border-gray-600 transition-colors bg-white">
                   <!--<div *ngIf="product.variations.length > 0" >
                     <div  *ngFor="let variation of product.variations;">
                       <a [routerLink]="['/shop/product-detail']"
@@ -444,10 +457,11 @@
                       </div>
                     </div>
                   </div> -->
-                  <div >
-                    <a (click)="detail(variation.product.id,variation.id)"
+                  <div (click)="detail(variation.product.id,variation.id)">
+                    <a
                        class="block overflow-hidden">
-                      <img src="http://ctrl-api.test/storage/images/{{variation.img}}" alt="" class="w-full rounded-lg hover:scale-105 hover:rotate-1 transition-transform">
+                      <img src="http://ctrl-api.test/storage/images/{{variation.img}}" width="90" height="90"  alt=""
+                           class="w-full  hover:scale-105 hover:rotate-1 transition-transform">
                     </a>
                     <div class="p-4">
                       <h3 class="">
@@ -455,8 +469,7 @@
                           {{variation?.product?.name}}
                         </a>
                       </h3>
-                      <h5 class="font-bold">{{variation?.price}}€</h5>
-                      <h5 class="font-bold">{{variation?.product?.price}}€</h5>
+                      <h5 class="font-bold">{{variation?.price/100 | number:'1.2-2'}}€</h5>
                     </div>
                     <div class="flex justify-between py-3 px-4">
                       <button class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors bg-purple-600 text-white" :class="isInWatchlist(id) ? 'bg-purple-600 text-white' : 'text-purple-600'">
@@ -464,14 +477,38 @@
                           <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                         </svg>
                       </button>
-                      <button (click)="addProductToCart(variation)" class="bg-primary hover:bg-secondary text-white font-bold  px-2 rounded">
-                        Add to Cart
-                      </button>
+                      <!--<button (click)="detail(variation.product.id,variation.id)" class="bg-primary hover:bg-secondary text-white font-bold  px-2 rounded">
+                        <svg class="h-5 w-5 text-white-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                      </button>-->
                     </div>
                   </div>
                 </div>
+
                 <!--/ Product Item -->
               </div>
+              <div *ngIf="loading" class='flex items-center justify-center h-96'>
+                <div style="border-top-color:transparent" class="w-8 h-8 border-4 border-blue-200 rounded-full animate-spin"></div>
+                <p class="ml-2"></p>
+              </div>
+            </div>
+            <div *ngIf="product_pg" class="flex justify-center p-4">
+              <nav aria-label="Page navigation example">
+                <ul class="flex list-style-none">
+                  <li class="page-item" *ngFor="let pr of product_pg.links">
+                    <a (click)="paginatedProducts(pr.label)" [ngClass]="{
+              'bg-primary text-white': product_pg.current_page === pr.label,
+              'bg-transparent text-gray-800': product_pg.current_page !== pr.label
+              }"
+                       class="page-link relative block py-1.5 px-3 rounded border-0
+              outline-none transition-all
+              duration-300 rounded  hover:text-gray-800 focus:shadow-none"
+                    >{{pr.label}}</a>
+                  </li>
+                </ul>
+              </nav>
             </div>
             <!-- /End replace -->
           </div>

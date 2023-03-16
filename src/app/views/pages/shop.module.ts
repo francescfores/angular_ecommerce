@@ -15,10 +15,11 @@ import {NgxStripeModule, StripeCardComponent} from "ngx-stripe";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import { PaymentComponent } from './payment/payment.component';
+import { CardComponent } from './card/card.component';
 
 
 @NgModule({
-  declarations: [ProductsPageComponent, ProductListComponent, ProductDetailComponent, CartComponent, ProfileClientComponent, PaymentComponent, PaymentComponent],
+  declarations: [ProductsPageComponent, ProductListComponent, ProductDetailComponent, CartComponent, ProfileClientComponent, PaymentComponent, PaymentComponent, CardComponent],
     imports: [
         CommonModule,
         ShopRoutingModule,

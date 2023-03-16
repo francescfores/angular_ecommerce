@@ -11,6 +11,7 @@ import {StripeCardElementOptions, StripeElementsOptions} from "@stripe/stripe-js
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {AddressService} from "../../../services/api/address.service";
+import {CarrierService} from "../../../services/api/carrier.service";
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -22,10 +23,10 @@ export class CartComponent implements OnInit, AfterViewInit {
   private payPal: NgxPayPalModule;
 
   loading=false;
-  private cart: Cart;
+  cart: Cart;
   step: number;
   groupedProducts = [];
-  private totalPrice=0;
+  totalPrice=0;
   private client: any;
 
   //stripe
@@ -54,26 +55,28 @@ export class CartComponent implements OnInit, AfterViewInit {
     locale: 'es',
   };
   stripeTest: FormGroup;
-  private token: any;
+  token: any;
   //end stripe
 
   //alert
   text: any;
   color: any;
   show=false;
-  autocloseTime=1000;
+  autocloseTime=2000;
 
   //step 2
   formPersonalData: FormGroup;
   submitted = false;
 
   success=false;
-  private countries: any;
-  private country: any;
-  private provinces: any;
-  private province: any;
+  countries: any;
+  country: any;
+  provinces: any;
+  province: any;
   private rates: any;
-  private carrier: any;
+  carrier: any;
+  carriers: any;
+  sub_total: number;
 
   constructor(
     private router: Router,
@@ -81,47 +84,117 @@ export class CartComponent implements OnInit, AfterViewInit {
     private paypal: NgxPayPalModule,
     private orderService: OrderService,
     private addressService: AddressService,
+    private carrierService: CarrierService,
     private fb: FormBuilder,
-    private stripeService: StripeService,
+    public stripeService: StripeService,
     private http: HttpClient
   ) {
     this.payPal = paypal;
     this.cart = new Cart();
     this.step=1;
+  }
+  get fc() {
+    return this.stripeTest.controls;
+  }
+  get fpd() {
+    return this.formPersonalData.controls;
+  }
+  groupProducts() {
+    this.groupedProducts = this.cart.products.reduce((acc, curr) => {
+      const itemIndex = acc.findIndex(item => item.id === curr.id);
+      const price = Number(curr.price);
+      if (itemIndex === -1) {
+        acc.push({
+          product: curr.product,
+          id: curr.id,
+          img: curr.img,
+          count: 1,
+          price: price,
+          total: price
+        });
+      } else {
+
+        acc[itemIndex].count++;
+        //acc[itemIndex].total += Number(price)+Number(acc[itemIndex].total);
+        acc[itemIndex].total += +price;
+
+        //acc[itemIndex].total = Math.round(acc[itemIndex].total * 100) / 100;
+      }
+      return acc;
+    }, []);
+    this.updateCartTotal();
+
+  }
+
+  updateCartTotal(){
+    this.groupedProducts.forEach(product => {
+      this.totalPrice = Number(product.total)+Number(this.totalPrice);
+    });
+  }
+  ngAfterViewInit():void{
+
+  }
+  getCartFromLocalStorage() {
+
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      this.cart = JSON.parse(cart);
+    }
+  }
+
+  saveCartToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+  removeProduct(product) {
+    const index = this.groupedProducts.findIndex(x => x.id === product.id);
+    if (index > -1) {
+      this.groupedProducts.splice(index, 1);
+      this.cart.products.splice(index, 1);
+      this.saveCartToLocalStorage();
+      this.totalPrice = (this.totalPrice-product.total);
+      this.totalPrice = Number(parseFloat(String(this.totalPrice)).toFixed(2));
+
+    }
+
+  }
+
+  ngOnInit(): void {
+
     this.addressService.getContries()
       .pipe(first())
       .subscribe(
         res => {
+          console.log('¡sdddddddddddddddddddddddddddddd')
+          console.log(res)
+          console.log(res.data)
           this.countries =res.data;
           this.country = this.countries.find(x=>x.id===this.countries[0].id);
           this.provinces= this.country.provinces;
           this.province= this.country.provinces[0];
           this.fpd.country.setValue(this.country.id);
           this.fpd.province.setValue(this.provinces[0].id);
-          console.error('this.country');
-          console.log(this.country);
-          console.log(this.province);
-          console.log(this.fpd.country.value);
-          console.log(this.fpd.province.value);
         },
         error => {
-          console.log(error)
         });
+    //shippypro
     this.addressService.getRates()
       .pipe(first())
       .subscribe(
         res => {
-          console.log(res)
-
           this.rates =res.Rates;
-          console.log(this.rates)
-
           //this.loading=false;
 //          this.router.navigate(['/shop/products']);
         },
         error => {
-          console.log('----------res-------')
-          console.log(error)
+        });
+    this.carrierService.getCarriers()
+      .pipe(first())
+      .subscribe(
+        res => {
+          this.carriers =res.data;
+        },
+        error => {
         });
     this.getCartFromLocalStorage();
     this.groupProducts();
@@ -142,86 +215,11 @@ export class CartComponent implements OnInit, AfterViewInit {
       province: ['Tarragona', [Validators.required]],
     });
 
-  }
-  get fc() {
-    return this.stripeTest.controls;
-  }
-  get fpd() {
-    return this.formPersonalData.controls;
-  }
-  groupProducts() {
-    this.groupedProducts = this.cart.products.reduce((acc, curr) => {
-      const itemIndex = acc.findIndex(item => item.id === curr.id);
-      const price = parseFloat(parseFloat(curr.price.replace(',', '.')).toFixed(2));
-      if (itemIndex === -1) {
-        acc.push({
-          product: curr.product,
-          id: curr.id,
-          img: curr.img,
-          count: 1,
-          price: price,
-          total: price });
-      } else {
-        acc[itemIndex].count++;
-        acc[itemIndex].total += price;
-        acc[itemIndex].total = Math.round(acc[itemIndex].total * 100) / 100;
-      }
-
-      return acc;
-    }, []);
-    this.groupedProducts.forEach(product => {
-      console.log('product.total ', product.total)
-      this.totalPrice = parseFloat(parseFloat(product.total+this.totalPrice).toFixed(2));
-    });
-  }
-  ngAfterViewInit():void{
-    if (!this.authenticationService.currentClientValue) {
-      this.router.navigate(['/auht/login']);
-    }else {
-      this.client =this.authenticationService.currentClientValue;
-    }
-  }
-  getCartFromLocalStorage() {
-
-    const cart = localStorage.getItem('cart');
-    if (cart) {
-      this.cart = JSON.parse(cart);
-    }
-    console.log('getCartFromLocalStorage')
-    console.log(this.cart)
-  }
-
-  saveCartToLocalStorage() {
-    console.log('saveCartToLocalStorage')
-    console.log(this.cart)
-    localStorage.setItem('cart', JSON.stringify(this.cart));
-  }
-
-  removeProduct(product) {
-    console.log('remove', product)
-    const index = this.groupedProducts.findIndex(x => x.id === product.id);
-
-    console.log('remove', product)
-    if (index > -1) {
-      this.groupedProducts.splice(index, 1);
-      this.cart.products.splice(index, 1);
-      this.saveCartToLocalStorage();
-      this.totalPrice = (this.totalPrice-product.total);
-      console.log('product.total', product.total)
-
-      this.totalPrice = Number(parseFloat(String(this.totalPrice)).toFixed(2));
-
-    }
-  }
-
-  ngOnInit(): void {
-
     //this.initConfig();
   }
   //stripe generar un token para la intencion de pago
 
   createToken(step): void {
-
     const name = this.stripeTest.get('name').value;
     if(this.stripeTest.valid){
       this.stripeService
@@ -229,14 +227,13 @@ export class CartComponent implements OnInit, AfterViewInit {
         .subscribe((result) => {
           if (result.token) {
             this.token=result.token;
+            console.log(this.token);
             // Use the token
-            console.log(result.token.id);
             this.submitted = false;
             this.step=step;
             //this.paymentIntent();
           } else if (result.error) {
             // Error creating the token
-            console.log(result.error.message);
             this.show=true;
             this.text=result.error.message
             this.color='danger'
@@ -251,10 +248,9 @@ export class CartComponent implements OnInit, AfterViewInit {
   async paymentIntent(){
     this.loading=true;
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    const data = {amount: this.totalPrice*100, currency: 'EUR', token: this.token.id};
+    const data = {amount: this.totalPrice, currency: 'EUR', token: this.token.id};
     try {
       const result = await this.http.post(`${environment.apiUrl}api/payment-intent`, data, {headers: headers}).toPromise();
-      console.log(result);
       const { paymentIntent, error } = await this.stripeService.confirmCardPayment(result.toString(), {
         payment_method: {
           card: this.card.element,
@@ -271,9 +267,7 @@ export class CartComponent implements OnInit, AfterViewInit {
         this.text=error
         this.color='danger'
         this.loading=false;
-        console.log(error);
       }else{
-        console.log(paymentIntent);
         this.createOrder(paymentIntent);
       }
     } catch(error) {
@@ -281,7 +275,6 @@ export class CartComponent implements OnInit, AfterViewInit {
       this.text=error
       this.color='danger'
       this.loading=false;
-      console.log(error);
     }
   }
   //stripe end
@@ -414,8 +407,6 @@ export class CartComponent implements OnInit, AfterViewInit {
           .pipe(first())
           .subscribe(
             res => {
-              console.log(res.result.verdict)
-              console.log(res.result.verdict?.addressComplete)
               //validar mejor la url ejemplo Administrative area level (provincia)
               if(res.result.verdict?.addressComplete){
                 this.show=true;
@@ -434,12 +425,9 @@ export class CartComponent implements OnInit, AfterViewInit {
             },
             error => {
               this.loading=false;
-              // this.loading = false;
+              this.text='error'
             });
-
-
       } else {
-        console.log('invalid');
         this.show=true;
         this.text='Formulario invalido'
         this.color='danger'
@@ -450,7 +438,6 @@ export class CartComponent implements OnInit, AfterViewInit {
         //this.createOrder(step);
         this.step=step;
       } else {
-        console.log('invalid');
         this.show=true;
         this.text='Selecciona una opcion de entrega'
         this.color='danger'
@@ -460,14 +447,11 @@ export class CartComponent implements OnInit, AfterViewInit {
       this.submitted = true;
       this.createToken(step);
     }
+    //this.text='Step undefined'
 
-    console.log(step)
   }
   updateCount(event, product) {
     let number = event.target.value;
-    console.log('product');
-    console.log(product);
-    console.log(this.groupedProducts.find(x=> x.id === product.id));
     if (event.target.value > 0) {
       this.totalPrice = (this.totalPrice-product.total) + (number*product.price);
       this.totalPrice = Math.round(this.totalPrice * 100) / 100;
@@ -504,8 +488,7 @@ export class CartComponent implements OnInit, AfterViewInit {
       .pipe(first())
       .subscribe(
         res => {
-          console.log(res)
-          //this.success=true;
+          this.success=true;
           this.loading=false;
           //this.createToken(this.step);
 
@@ -513,10 +496,11 @@ export class CartComponent implements OnInit, AfterViewInit {
 //          this.router.navigate(['/shop/products']);
         },
         error => {
-          console.log(error)
           this.createToken(this.step);
           this.loading=false;
-          // this.loading = false;
+          this.show=true;
+          this.text=error
+          this.color='danger'
         });
   }
 
@@ -526,10 +510,8 @@ export class CartComponent implements OnInit, AfterViewInit {
 
   selectCountry($event: any) {
     this.country = this.countries.find(x=>x.id===Number($event.target.value));
-    console.log(this.country);
     if (this.country !== undefined) {
       this.provinces= this.country.provinces;
-      console.log(this.provinces);
       //TODO set form address
     }
   }
@@ -538,16 +520,9 @@ export class CartComponent implements OnInit, AfterViewInit {
     if (this.province !== undefined) {
       //TODO set form address
     }
-    console.log(this.province);
   }
-
-  //onShowChange(value: boolean) {
-  //  console.log(value);
-  //  this.show = value;
-  //}
   selectRate(value: any) {
     this.carrier=value;
-    console.log(this.carrier);
-
+    this.sub_total= Number(this.carrier.rate)+ this.totalPrice
   }
 }

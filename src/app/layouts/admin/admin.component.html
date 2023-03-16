@@ -1,10 +1,10 @@
 <div>
   <app-sidebar></app-sidebar>
-  <div [ngClass]="{'theme-light': isDarkEnable, 'theme-dark': !isDarkEnable}" class="bg-blueGray-100 relative md:ml-64 bg-blueGray-100">
+  <div [ngClass]="{'theme-light': isDarkEnable, 'theme-dark': !isDarkEnable}" class="bg-blueGray-100 relative md:ml-64">
     <!--<app-admin-navbar></app-admin-navbar>
     <app-header-stats></app-header-stats>
     <div class="px-4 md:px-10 mx-auto w-full -m-24">-->
-      <div class="px-4 md:px-10 mx-auto w-full py-10">
+      <div class="px-0 md:px-10 mx-auto w-full py-10">
       <router-outlet></router-outlet>
       <app-footer-admin></app-footer-admin>
     </div>

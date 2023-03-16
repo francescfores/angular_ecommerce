@@ -24,7 +24,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   openProductTypeCat;
   openProductTypeSubCat;
   titleFilter;
-  products:Variation[]=[];
+  products:any;
   selectFilter=null;
   /*category end*/
   private filters = {
@@ -35,12 +35,17 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
       { colors: []},
       { sizes: [] },
       { attributes: []},
+      { name: null},
     ]
   };
   private cart: Cart;
 
   attributes:any;
   attributes_group=[];
+  private titleFilterCat: any;
+  private titleFilterSubCat: any;
+  private titleFilterSuperCat: any;
+  private product_pg: any;
   constructor(
     private router: Router,
     private productService: ProductService,
@@ -68,20 +73,26 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.loading=true;
     this.productService.getProducts()
       .pipe(first())
       .subscribe(
         data => {
           console.log(data);
           this.categories2 = data.data.category;
-          this.products = data.data.product;
           this.colors = data.data.color;
           this.sizes = data.data.size;
+          this.loading=false;
+          this.product_pg = data.data.product_pg;
+          this.product_pg.current_page = this.product_pg.current_page+'';
+          this.products = this.product_pg.data;
+
 //          this.router.navigate(['/shop/products']);
         },
         error => {
           //this.toastr.error('Invalid request', 'Toastr fun!');
           // this.loading = false;
+          this.loading=false;
         });
     this.productService.getAttributes()
       .pipe(first())
@@ -114,9 +125,12 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     this.openSize = !this.openSize;
   }
   showProductType(cat) {
+    this.loading=true;
     this.openProductTypeCat = 0;
     this.openProductType = cat.id;
-    this.titleFilter = cat.name
+    this.titleFilterCat = cat.name
+    this.titleFilterSubCat =null;
+    this.titleFilterSuperCat =null;
     console.log(this.filters.searchFilters[0].category);
     console.log(cat.id);
     this.filters.searchFilters[0].category = cat.id
@@ -126,19 +140,22 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     this.filterProducts();
   }
   showproductTypeCat(cat, subcat) {
+    this.loading=true;
     this.openProductTypeSubCat = 0;
     this.openProductType = cat.id;
     this.openProductTypeCat = subcat.id;
-    this.titleFilter = subcat.name;
+    this.titleFilterSubCat = subcat.name;
+    this.titleFilterSuperCat =null;
     this.filters.searchFilters[0].category = null
     this.filters.searchFilters[1].subcategory = subcat.id
     this.filterProducts();
   }
   showproductTypeSubCat(cat, subcat, supercat) {
+    this.loading=true;
     this.openProductType = cat.id;
     this.openProductTypeCat = subcat.id;
     this.openProductTypeSubCat = supercat.id;
-    this.titleFilter = supercat.name;
+    this.titleFilterSuperCat = supercat.name;
     this.filters.searchFilters[0].category = null
     this.filters.searchFilters[1].subcategory = null
     this.filters.searchFilters[2].supercategory = supercat.id
@@ -147,17 +164,26 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
 
   }
   /*end category filters*/
+  loading=false;
+  searchOpen=false;
+
   setFiltersOpen() {
     this.filtersOpen = !this.filtersOpen;
   }
 
   filterProducts(){
-    this.productService.sendFilters(this.filters).subscribe(
+    this.product_pg.current_page = 1+'';
+    this.productService.sendFilters(this.filters,this.product_pg.current_page).subscribe(
       data => {
-        this.products = data.data.product;
-        //console.error('this.products')
-        //console.log(this.products)
-        //console.log(this.products[3]?.variations[0])
+        //this.products = data.data.product;
+        this.loading=false;
+        this.product_pg = data.data.product_pg;
+        this.product_pg.current_page = this.product_pg.current_page+'';
+        this.products  = this.product_pg.data;
+        console.log(this.products )
+        this.products  = this.getObjectValues( this.products );
+        console.log(this.products )
+
         /*this.products  = data.data.product.flatMap(product => {
           if (product.type===2) {
             return product.variations.map(variation => ({
@@ -199,14 +225,103 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
           }
         }, []);
         */
-        console.log(this.products)
         //          this.router.navigate(['/shop/products']);
       },
       error => {
         //this.toastr.error('Invalid request', 'Toastr fun!');
-        // this.loading = false;
+        this.loading = false;
       });
   };
+
+  //nose porque al hacer la paginacion y hacer la 2 consulta el obteto data no es un array como se espera por eso esta funcion
+  /*
+  Esta función utiliza Array.isArray y typeof para verificar si el valor es un array o un objeto, respectivamente. Luego, si es un array,
+   filtra los elementos que sean objetos y crea un nuevo array con ellos usando Array.filter
+   Si es un objeto, extrae los valores del objeto usando Object.values, filtra los elementos que sean objetos y crea un nuevo array con ellos.
+   */
+
+  getObjectValues(value) {
+    if (Array.isArray(value)) {
+      return value.filter(item => typeof item === 'object' && item !== null && !Array.isArray(item));
+    } else if (typeof value === 'object' && value !== null) {
+      return Object.values(value).filter(item => typeof item === 'object' && item !== null && !Array.isArray(item));
+    } else {
+      return [];
+    }
+  }
+  paginatedProducts(pr) {
+    Number(this.product_pg.current_page)
+    if(pr==='Previous'){
+      pr--;
+    }else if(pr==='Next'){
+      pr = Number(this.product_pg.current_page)
+      if(pr === this.product_pg.last_page){
+        pr = Number(this.product_pg.current_page)
+      }else{
+        pr++;
+      }
+    }
+    this.product_pg.current_page=pr;
+    //this.filterProducts();
+    this.productService.sendFilters(this.filters,this.product_pg.current_page).subscribe(
+      data => {
+        //this.products = data.data.product;
+        this.loading=false;
+        this.product_pg = data.data.product_pg;
+        this.product_pg.current_page = this.product_pg.current_page+'';
+        this.products  = this.product_pg.data;
+        console.log(this.products )
+        this.products  = this.getObjectValues( this.products );
+        console.log(this.products )
+
+        /*this.products  = data.data.product.flatMap(product => {
+          if (product.type===2) {
+            return product.variations.map(variation => ({
+              id: variation.id,
+              name: `${product.name}`,
+              price: variation.price,
+              img: variation.img,
+              stock: variation.stock,
+              type: product.type,
+              product: product,
+            }));
+          } else {
+            return [product];
+          }
+        }) ;
+        */
+        /*
+        this.products = this.products.reduce((accumulator, product) => {
+          if (product.type === 2) {
+            const colorVariations = product.variations.filter(variation => {
+              const attributes = variation.attributes;
+              return attributes && attributes.find(attr => attr.name === 'color');
+            });
+            if (colorVariations.length === 0) {
+              return accumulator;
+            }
+            const variations = colorVariations.map(variation => ({
+              id: variation.id,
+              name: `${product.name}`,
+              price: variation.price,
+              img: variation.img,
+              stock: variation.stock,
+              type: product.type,
+              product: product,
+            }));
+            return accumulator.concat(variations);
+          } else {
+            return accumulator.concat(product);
+          }
+        }, []);
+        */
+        //          this.router.navigate(['/shop/products']);
+      },
+      error => {
+        //this.toastr.error('Invalid request', 'Toastr fun!');
+        this.loading = false;
+      });
+  }
 
   onCategorySelected(category: any) {
     this.filters.searchFilters[0].category = category.id;
@@ -222,12 +337,14 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   }
 
   onAttributeSelected(color: any) {
+    this.loading=true;
     const index = this.filters.searchFilters[5].attributes.findIndex(c => c.id === color.id);
     if (index !== -1) {
       this.filters.searchFilters[5].attributes.splice(index, 1);
     } else {
-      this.filters.searchFilters[5].attributes.push({ id: color.id });
+      this.filters.searchFilters[5].attributes.push({ id: color.id, value:color.value });
     }
+    console.log(this.filters.searchFilters[5].attributes);
     this.filterProducts();
   }
 
@@ -259,5 +376,17 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
       ['/shop/product-detail'],
       { queryParams: { id_product,id_variation } }
     );
+  }
+
+  openSearch() {
+
+  }
+  searchProduct(event, product) {
+    console.log(event)
+    this.loading=true;
+    console.log(event.target.value)
+    this.filters.searchFilters[6].name = event.target.value;
+
+    this.filterProducts();
   }
 }

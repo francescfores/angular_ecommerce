@@ -60,6 +60,7 @@ export class ProductsComponent implements OnInit {
 
   public variationsForm: FormGroup[]=[];
   selectedFileVariations=[];
+  create_product: boolean;
 
   constructor(
     private router: Router,
@@ -85,14 +86,14 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productService.getProducts()
+    this.productService.getProductsPaginated(1)
       .pipe(first())
       .subscribe(
         data => {
           this.categories = data.data.category;
-          this.products = data.data.product;
-          this.product_pg = data.data.product_pg;
-          this.product_pg.current_page =data.data.product_pg.current_page+'';
+          this.products = data.data.product_admin;
+          this.product_pg = data.data.product_admin;
+          this.product_pg.current_page =data.data.product_admin.current_page+'';
           this.colors = data.data.color;
           this.sizes = data.data.size;
         },
@@ -200,6 +201,7 @@ export class ProductsComponent implements OnInit {
     }
     console.log(this.variations);
   }
+  //TODO
   createAllVariation() {
     // Recorrer el objeto
     let attributesGroup=this.attributes_group;
@@ -252,13 +254,14 @@ export class ProductsComponent implements OnInit {
         });
   }
 
-  passBack() {
+  create() {
     this.submitted = true;
     this.text='esperando el servior creado'
     this.color='info'
     this.show=true;
     //this.loading = true;
       if (this.registerForm.valid) {
+
         if(this.type===1){
           console.log(this.variations);
           console.log(this.variations[0]);
@@ -318,8 +321,8 @@ export class ProductsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.product_pg = data.data.product_pg;
-          this.product_pg.current_page = data.data.product_pg.current_page+'';
+          this.product_pg = data.data.product_admin;
+          this.product_pg.current_page = data.data.product_admin.current_page+'';
           console.log(pr);
           console.log(this.product_pg.current_page);
           console.log(this.product_pg.current_page===pr);

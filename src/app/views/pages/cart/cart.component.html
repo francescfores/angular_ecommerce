@@ -167,54 +167,49 @@
   </div>
 </div>
 
-<section>
+<section *ngIf="step === 1 && groupedProducts" >
 
-</section>
-<section *ngIf="step === 1">
   <div
     [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': step === 1}"
     class="p-10 container lg:w-2/3 xl:w-2/3 mx-auto">
     <h1 class="text-3xl font-bold mb-6">Artículos de su carrito</h1>
     <div x-data="" class="bg-white p-4 rounded-lg shadow">
-      <!-- Product Items -->
       <div>
-        <!-- Product Item -->
-        <div *ngFor="let product of this.groupedProducts;" class="w-full flex flex-col sm:flex-row items-center gap-4">
+        <div *ngFor="let product of this.groupedProducts;" class="w-full flex flex-col sm:flex-row items-center gap-4 py-2 cart-product">
           <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
             <img class="object-cover" alt="" src="http://ctrl-api.test/storage/images/{{product.img}}">
           </a>
           <div class="flex-1 flex flex-col justify-between">
             <div class="flex justify-between mb-3">
-              <h3 >{{product.product.name}}</h3>
-              <span class="text-lg font-semibold">
-                          <span>{{product.total}}€</span>
-                        </span>
+              <h3 >{{product?.product.name}}</h3>
+              <svg id="remove-{{product.id}}" (click)="removeProduct(product)"  class="h-5 w-5 text-red-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"
+                   stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+              </svg>
             </div>
             <div class="flex justify-between items-center">
-              <p>{{product.price}}€</p>
+              <p>{{product.price/100 | number:'1.2-2'}}€</p>
               <div class="flex items-center">
                 Qty:
                 <input min="1" (change)="updateCount($event, product)" value="{{product.count}}" type="number" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16">
               </div>
-              <a  (click)="removeProduct(product)" class="text-purple-600 hover:text-purple-500">Remove</a>
+              <span class="text-lg font-semibold">
+                          <span>{{product.total/100 | number:'1.2-2'}}€</span>
+                        </span>
             </div>
           </div>
         </div>
-        <!--/ Product Item -->
-
-        <!-- Product Item -->
       </div>
-
       <div class="border-t border-gray-300 pt-4">
         <div class="flex justify-between">
           <span class="font-semibold">Subtotal</span>
-          <span class="text-xl" x-text="`$${total}`">${{totalPrice}}</span>
+          <span class="text-xl" id="totalPrice_step1">{{totalPrice/100 | number:'1.2-2'}}€</span>
         </div>
         <p class="text-gray-500 mb-6">
           Envío e impuestos calculados al finalizar la compra.
         </p>
 
-        <button (click)="goStep(2)" type="submit" class="
+        <button id="step-1" (click)="goStep(2)" type="submit" class="
         text-white bg-text-primary
         hover:border-2 hover:border-primary
         hover:text-primary hover:bg-transparent
@@ -232,7 +227,7 @@
     <h1 class="text-3xl font-bold mb-6">Datos personales</h1>
     <div x-data="" class="bg-white p-4 rounded-lg shadow">
         <div class="my-auto ml-5 h-full flex-col space-y-12 text-left text-neutral-700">
-          <form [formGroup]="formPersonalData">
+          <form [formGroup]="formPersonalData" id="formPersonalData">
           <div class="flex flex-col space-y-4">
             <div class="flex flex-row space-x-2">
               <div class="w-1/2">
@@ -335,7 +330,7 @@
           </form>
         </div>
       <div class="pt-4">
-        <button (click)="goStep(3)" type="submit" class="
+        <button id="step-2" (click)="goStep(3)" type="submit" class="
         text-white bg-text-primary
         hover:border-2 hover:border-primary
         hover:text-primary hover:bg-transparent
@@ -354,21 +349,23 @@
     <h1 class="text-3xl font-bold mb-6">Opciones de entrega</h1>
     <div x-data="" class="bg-white p-4 rounded-lg shadow">
       <div class="my-auto ml-5 h-full flex-col space-y-12 text-left text-neutral-700">
-        <form [formGroup]="formPersonalData">
           <div class="flex flex-col space-y-4">
             <div class="flex flex-row space-x-2">
-              <div class="w-full">
+              <div class="w-full" *ngIf="carriers" >
                 <label for="inputCountry" class="block text-sm font-medium text-gray-700">Selecciona una opcion</label>
                 <div *ngFor="let value of rates" class="mt-4">
                   <input (change)="selectRate(value)" name="rate" value="{{value.carrier_id}}" type="radio" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label class="ml-3 text-sm text-gray-600 mt-4">{{value.carrier}} {{value.detailed_pricing[0].price}}€</label>
+                  <label class="ml-3 text-sm text-gray-600 mt-4">{{value.carrier}} {{value.detailed_pricing[0].price/100 | number:'1.2-2'}}€</label>
                   <label class="ml-3 text-sm text-gray-600 mt-4">Fecha de entrega : {{value.delivery_days}} dias</label>
                 </div>
-
+                <div *ngFor="let value of carriers" class="mt-4" id="delivery_options">
+                  <input (change)="selectRate(value)" name="rate" value="{{value.carrier_id}}" type="radio" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 text-sm text-gray-600 mt-4">{{value.carrier}} {{value.rate/100 | number:'1.2-2'}}€</label>
+                  <label class="ml-3 text-sm text-gray-600 mt-4">Entrega : {{value.delivery_days}} dias</label>
+                </div>
               </div>
             </div>
           </div>
-        </form>
       </div>
 
       <div class="pt-4">
@@ -389,7 +386,7 @@
     class="p-10 container lg:w-2/3 xl:w-2/3 mx-auto hidden">
     <h1 class="text-3xl font-bold mb-6">Método de pago</h1>
     <div x-data="" class="bg-white p-4 rounded-lg shadow">
-      <form novalidate [formGroup]="stripeTest">
+      <form novalidate [formGroup]="stripeTest" id="payment_metod">
         <div class="flex flex-col space-y-6">
           <label for="inputName" class="block text-sm font-medium text-gray-700">Titular</label>
           <input id="inputName" [ngClass]="{ 'is-invalid': submitted && fc.name.errors }" formControlName="name" type="text" name="first-name"
@@ -398,9 +395,9 @@
           <div *ngIf="submitted && fc.name.errors" class="invalid-feedback">
             <div *ngIf="fc.name.errors.required">name is required</div>
           </div>
-          <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions">
+          <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions" id="stripe_card">
           </ngx-stripe-card>
-          <button (click)="goStep(5)" class="self-end inline-flex justify-center rounded-full
+          <button id="comfirm_payment" (click)="goStep(5)" class="self-end inline-flex justify-center rounded-full
           border border-transparent
           bg-orange-600 py-2 px-4 text-sm
           font-medium text-white shadow-sm
@@ -413,57 +410,82 @@
     </div>
   </div>
 </section>
-<section *ngIf="step === 5 && !showPaypalButtons">
+<section *ngIf="step === 5 " id="resum"> <!-- && !showPaypalButtons --->
   <div *ngIf=" loading" class='flex items-center justify-center h-96'>
     <div style="border-top-color:transparent" class="w-8 h-8 border-4 border-blue-200 rounded-full animate-spin"></div>
     <p class="ml-2"></p>
   </div>
-  <div *ngIf=" !loading"
-    [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': step === 4}"
-    class="p-10 container lg:w-2/3 xl:w-2/3 mx-auto">
-    <h1 class="text-3xl font-bold mb-6">Resumen</h1>
-    <div x-data="" class="bg-white p-4 rounded-lg shadow">
-      <!-- Product Items -->
-      <div>
-        <!-- Product Item -->
-        <div *ngFor="let product of this.groupedProducts;" class="w-full flex flex-col sm:flex-row items-center gap-4">
-          <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
-            <img class="object-cover" alt="" src="{{product.img}}">
-          </a>
-          <div class="flex-1 flex flex-col justify-between">
-            <div class="flex justify-between mb-3">
-              <h3 x-text="product.title">{{product.name}}</h3>
-              <span class="text-lg font-semibold">
-                          <span x-text="product.price">{{product.price}}€</span>
+  <div class="flex flex-wrap justify-between ">
+    <div *ngIf=" !loading"
+         [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': step === 5}"
+         class="p-10 w-auto mx-auto grid grid-cols-12 gap-6">
+      <h1 class="text-3xl font-bold col-span-12">Resumen</h1>
+      <div x-data="" class="bg-white p-4 rounded-lg shadow col-span-8">
+        <div>
+          <div *ngFor="let product of this.groupedProducts;" class="w-full flex flex-col sm:flex-row items-center gap-4 py-2">
+            <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
+              <img class="object-cover" alt="" src="http://ctrl-api.test/storage/images/{{product.img}}">
+            </a>
+            <div class="flex-1 flex flex-col justify-between">
+              <div class="flex justify-between mb-3">
+                <h3 >{{product.product.name}}</h3>
+                <button (click)="removeProduct(product)" class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"
+                     stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></button>
+              </div>
+              <div class="flex justify-between items-center">
+                <p>{{product.price/100 | number:'1.2-2'}}€</p>
+                <div class="flex items-center">
+                  <p>Qty:&#160;{{product.count}}</p>
+
+                </div>
+                <span class="text-lg font-semibold">
+                          <span>{{product.total/100 | number:'1.2-2'}}€</span>
                         </span>
-            </div>
-            <div class="flex justify-between items-center">
-              <p>{{product.price}}</p>
-              <div class="flex items-center">
-                Qty: {{product.count}}
               </div>
             </div>
           </div>
         </div>
-        <!--/ Product Item -->
-        <!-- Product Item -->
-      </div>
 
-      <div class="border-t border-gray-300 pt-4">
-       <!-- <button (click)="createOrder()" type="submit" class="-->
-        <!-- <button *ngIf="!showPaypalButtons" (click)="pay()" type="submit" class="-->
-        <button [disabled]="loading" (click)="paymentIntent()" type="submit" class="
+      </div>
+      <div x-data="" class="h-min bg-white p-4 rounded-lg shadow col-span-4 gap-6">
+        <div class="flex justify-start py-4 ">
+          <h1 class="mr-16 text-md font-bold">Resumen</h1>
+        </div>
+        <div class="flex justify-between py-4 ">
+          <p class="mr-16 text-sm">Subtotal artículos</p>
+          <p class="text-sm font-bold" >{{totalPrice/100 | number:'1.2-2'}}€</p>
+        </div>
+        <div class="flex justify-between py-4 ">
+          <p class="mr-16 text-sm ">Envío estimado</p>
+          <p class="text-sm font-bold" >{{carrier.rate/100 | number:'1.2-2'}}€</p>
+        </div>
+        <!-- <div class="flex justify-between py-4 ">
+          <p class="mr-16 text-sm">Abono de portes</p>
+          <p class="text-sm font-bold text-green-400" >-5,00€</p>
+        </div>-->
+        <div class="border-t border-gray-300 pt-4"></div>
+        <div class="flex justify-between py-4 ">
+          <p class="mr-16 text-sm">Total (Impuestos incluidos)</p>
+          <p class="text-sm font-bold" >{{sub_total/100 | number:'1.2-2'}}€</p>
+        </div>
+        <div class="pt-4">
+          <!-- <button (click)="createOrder()" type="submit" class="-->
+          <!-- <button *ngIf="!showPaypalButtons" (click)="pay()" type="submit" class="-->
+          <button [disabled]="loading" (click)="paymentIntent()" type="submit" class="
         text-white bg-text-primary
         hover:border-2 hover:border-primary
         hover:text-primary hover:bg-transparent
         rounded-md w-full py-3 text-lg">
-          <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
-          Pagar
-        </button>
+            <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+            Pagar
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
 <!--<section *ngIf="step === 5 && showPaypalButtons">
   <div *ngIf=" loading" class='flex items-center justify-center h-96'>
     <div style="border-top-color:transparent" class="w-8 h-8 border-4 border-blue-200 rounded-full animate-spin"></div>

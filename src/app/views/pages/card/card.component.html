@@ -1,0 +1,12 @@
+<div [formGroup]="paymentElementForm">
+    <input matInput placeholder="name" formControlName="name" />
+    <input matInput placeholder="Email" type="email" formControlName="email" />
+    <input matInput placeholder="Address" formControlName="address" />
+    <input matInput placeholder="ZIP Code" formControlName="zipcode" />
+    <input matInput placeholder="city" formControlName="city" />
+  <ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">
+    <ngx-stripe-payment [clientSecret]="clientSecret">
+    </ngx-stripe-payment>
+  </ng-container>
+  <button (click)="pay()">PAY</button>
+</div>

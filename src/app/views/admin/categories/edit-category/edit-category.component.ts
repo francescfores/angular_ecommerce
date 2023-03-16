@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../../../services/api/product.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Product} from "../../../../models/product";
 import {Category} from "../../../../models/category";
@@ -36,7 +36,7 @@ export class EditCategoryComponent implements OnInit {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private formBuilder: UntypedFormBuilder,
-
+    private router: Router,
   ) {
     this.route.params.subscribe((params: Params) => this.id = params.id);
     this.category = new Category();
@@ -60,7 +60,6 @@ export class EditCategoryComponent implements OnInit {
   }
   ngOnInit() {
     this.getParams();
-
   }
   getParams(){
     this.route.queryParamMap
@@ -222,4 +221,16 @@ export class EditCategoryComponent implements OnInit {
       this.getSubCategorysByCategoryPaginated(pr, this.category_id);
   }
 
+  editSubcategory(id) {
+    console.log(id)
+    //this.router.navigate(['/admin/edit-category'],id);
+    this.router.navigate(
+      ['/admin/edit-subcategory'],
+      { queryParams: { id } }
+    );
+  }
+
+  deleteSubcategory(id) {
+
+  }
 }

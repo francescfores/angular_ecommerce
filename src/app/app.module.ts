@@ -86,6 +86,12 @@ import { EditSupercategoryComponent } from './views/admin/categories/edit-superc
 import { NgxStripeModule } from "ngx-stripe";
 import {ProductService} from "./services/api/product.service";
 import { EditOrderComponent } from './views/admin/orders/edit-order/edit-order.component';
+import { AttributesComponent } from './views/admin/attributes/attributes.component';
+import { EditAttributeComponent } from './views/admin/attributes/edit-attribute/edit-attribute.component';
+import { EditSendingComponent } from './views/admin/sendings/edit-sending/edit-sending.component';
+import { EditPaymentComponent } from './views/admin/payments/edit-payment/edit-payment.component';
+import { CarriersComponent } from './views/admin/carriers/carriers.component';
+import { EditCarrierComponent } from './views/admin/carriers/edit-carrier/edit-carrier.component';
 
 const googleLoginOptions: GoogleInitOptions = { oneTapEnabled: false}// default is true };
 
@@ -145,6 +151,12 @@ const googleLoginOptions: GoogleInitOptions = { oneTapEnabled: false}// default 
     EditSubcategoryComponent,
     EditSupercategoryComponent,
     EditOrderComponent,
+    AttributesComponent,
+    EditAttributeComponent,
+    EditSendingComponent,
+    EditPaymentComponent,
+    CarriersComponent,
+    EditCarrierComponent,
   ],
   imports: [NgxPayPalModule,BrowserModule, AppRoutingModule, BrowserAnimationsModule, ComponentsModule, HttpClientModule,FormsModule,
     ReactiveFormsModule,

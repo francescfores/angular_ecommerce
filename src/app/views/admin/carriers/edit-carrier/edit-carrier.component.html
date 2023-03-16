@@ -1,0 +1,76 @@
+<div class="h-screen flex justify-center sm:p-0 p-4 text-center items-start ">
+  <div class="w-auto relative transform overflow-hidden text-left transition-all">
+    <div class="p-4">
+      <h3 class="text-lg font-medium leading-6 text-gray-900">Editar Transportista</h3>
+    </div>
+    <div class="shadow-md rounded bg-white">
+      <div class="sm:flex sm:items-start">
+        <div class="mt-10 sm:mt-0 w-full">
+              <form [formGroup]="form">
+                <div class="overflow-hidden">
+                  <div class="bg-white px-4 py-5">
+                    <div class="grid grid-cols-6 gap-6 px-4">
+                      <div class="col-span-6 sm:col-span-3">
+                        <label for="inputName" class="block text-sm font-medium text-gray-700">Nombre</label>
+                        <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.carrier.errors }" formControlName="carrier" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <div *ngIf="submitted && f.carrier.errors" class="invalid-feedback">
+                          <div *ngIf="f.carrier.errors.required">carrier is required</div>
+                        </div>
+                      </div>
+
+                      <div class="col-span-6 sm:col-span-3">
+                        <label for="inputName" class="block text-sm font-medium text-gray-700">Id</label>
+                        <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.carrier_id.errors }" formControlName="carrier_id" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <div *ngIf="submitted && f.carrier_id.errors" class="invalid-feedback">
+                          <div *ngIf="f.carrier_id.errors.required">carrier_id is required</div>
+                        </div>
+                      </div>
+                      <div class="col-span-6 sm:col-span-3">
+                        <label for="inputName" class="block text-sm font-medium text-gray-700">Dias de entrega</label>
+                        <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.delivery_days.errors }" formControlName="delivery_days" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <div *ngIf="submitted && f.delivery_days.errors" class="invalid-feedback">
+                          <div *ngIf="f.delivery_days.errors.required">delivery_days is required</div>
+                        </div>
+                      </div>
+                      <div class="col-span-6 sm:col-span-3">
+                        <label for="inputName" class="block text-sm font-medium text-gray-700">Tarifa</label>
+                        <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.rate.errors }" formControlName="rate" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <div *ngIf="submitted && f.rate.errors" class="invalid-feedback">
+                          <div *ngIf="f.rate.errors.required">rate is required</div>
+                        </div>
+                      </div>
+                      <div class="col-span-6 sm:col-span-3">
+                        <label for="inputName" class="block text-sm font-medium text-gray-700">Id tarifa</label>
+                        <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.rate_id.errors }" formControlName="rate_id" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <div *ngIf="submitted && f.rate_id.errors" class="invalid-feedback">
+                          <div *ngIf="f.rate_id.errors.required">rate_id is required</div>
+                        </div>
+                      </div>
+                      <div class="col-span-6 sm:col-span-3">
+                        <label for="inputName" class="block text-sm font-medium text-gray-700">Servicio</label>
+                        <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.service.errors }" formControlName="service" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <div *ngIf="submitted && f.service.errors" class="invalid-feedback">
+                          <div *ngIf="f.service.errors.required">service is required</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+    <div class="p-4 flex justify-end items-center space-x-2">
+
+      <button [disabled]="loading" (click)="updateCarrier()" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-primary py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-secondary focus:outline-none ">
+        <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+        Actualizar</button>
+    </div>
+  </div>
+</div>
+<app-alert class="z-50 fixed" (showChange)="show=!show"  [show]="show" [text]="text" [color]="color"></app-alert>
+

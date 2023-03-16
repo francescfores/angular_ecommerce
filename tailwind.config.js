@@ -176,7 +176,7 @@ module.exports = {
         'text-primary': '#404040',
         'text-secondary': '#262626',
         'text-ternary': '#171717',
-        'primary-bg': '#151D33',
+        'primary-bg': '#fff',
         'bt-primary': '#fff' ,
         'nav-color': '#46A39B',
         'theme': '#fff',
@@ -186,7 +186,7 @@ module.exports = {
         'border-color': '#555050',
       },
       dark: {
-        'primary': '#404040',
+        'primary': '#404040',//rgb(51, 65, 85)
         'secondary': '#262626',
         'ternary': '#171717',
         'text-primary': '#fdba74',

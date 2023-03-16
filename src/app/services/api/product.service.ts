@@ -296,7 +296,8 @@ export class ProductService {
         }));
     }
 
-  sendFilters(filters):any {
-    return this.http.post(`${environment.apiUrl}api/product/filters`, filters);
+  sendFilters(filters,page):any {
+    return this.http.post(`${environment.apiUrl}api/product/filters?page=`+page, filters);
   }
-  }
+
+}

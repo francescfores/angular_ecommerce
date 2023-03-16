@@ -267,4 +267,4 @@
     </div>
   </div>
 </div>
-<app-alert [autocloseTime]="autocloseTime" [show]="show" [text]="text" [color]="color"></app-alert>
+<app-alert (showChange)="show=!show"  [autocloseTime]="autocloseTime" [show]="show" [text]="text" [color]="color"></app-alert>

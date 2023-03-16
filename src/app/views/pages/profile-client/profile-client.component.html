@@ -1,44 +1,69 @@
+<div class="grid grid-cols-12 gap-4 -mb-20 h-screen">
+  <ul
+    class="h-full bg-white shadow-xl col-span-2  flex list-none flex-col pl-0"
+    role="tablist"
+    data-te-nav-ref>
+    <li (click)="toggleTabs(1)"  role="presentation" class="flex text-center hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate
+          focus:border-transparent ">
+      <a
+        class="w-full block border-x-0 p-6  text-xs font-medium uppercase
+          leading-tight text-neutral-500 "
+        role="tab"
+        aria-controls="tabs-home03"
+        aria-selected="true">
+        Pedidos
+      </a>
+      <div [ngClass]="{ 'border-primary translate-x-full opacity-100': openTab === 1,'translate-x-4 opacity-0': openTab !== 1}"
+           class="border-transparent border-r-4 ease-in-out duration-500 transition-all"></div>    </li>
+    <li (click)="toggleTabs(2)"  role="presentation" class="flex text-center hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate
+          focus:border-transparent ">
+      <a
+        class="w-full block border-x-0 p-6  text-xs font-medium uppercase
+          leading-tight text-neutral-500 "
+        role="tab"
+        aria-controls="tabs-home03"
+        aria-selected="true">
+      Datos personales</a>
+      <div [ngClass]="{ 'border-primary translate-x-full opacity-100': openTab === 2,'translate-x-4 opacity-0': openTab !== 2}"
+           class="border-transparent border-r-4 ease-in-out duration-500 transition-all"></div>
+    </li>
 
 
-
-<main class="profile-page">
-  <div class="flex flex-wrap">
-    <div class="w-full">
-      <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
-        <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-          <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" (click)="toggleTabs(1)" [ngClass]="{'text-pink-600 bg-white': openTab !== 1, 'text-white bg-pink-600': openTab === 1}">
-            <i class="fas fa-space-shuttle text-base mr-1"></i> Datos personales
-          </a>
-        </li>
-        <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-          <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" (click)="toggleTabs(2)" [ngClass]="{'text-pink-600 bg-white': openTab !== 2, 'text-white bg-pink-600': openTab === 2}">
-            <i class="fas fa-cog text-base mr-1"></i> Pedidos
-          </a>
-        </li>
-        <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-          <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" (click)="toggleTabs(3)" [ngClass]="{'text-pink-600 bg-white': openTab !== 3, 'text-white bg-pink-600': openTab === 3}">
-            <i class="fas fa-briefcase text-base mr-1"></i> Devoluciones
-          </a>
-        </li>
-      </ul>
-      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-        <div class="px-4 py-5 flex-auto">
-          <div class="tab-content tab-space">
-            <div [ngClass]="{'hidden': openTab !== 1, 'block': openTab === 1}">
-              <p>
-                Datos personales
-              </p>
-              <div class="border-b border-gray-200 py-6" *ngFor="let order of orders">
-                <div class="-my-3 flow-root">
-                  <!-- Expand/collapse section button -->
-                  <button (click)="showOrderSelected(order)" type="button" class="flex w-full items-center justify-between  py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
-                    <div class="flex flex-col items-start justify-start">
-                      <p>Num pedido: {{order.id}}</p>
-                      <p>Fecha: {{order.date}} </p>
-                      <p>Total: {{order.total}}</p>
-                      <h3>Estado: {{order.status}}</h3>
-                    </div>
-                    <span class="ml-6 flex items-center"  >
+    <li (click)="toggleTabs(3)"  role="presentation" class="flex text-center hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate
+          focus:border-transparent ">
+      <a
+        [ngClass]="{ 'border-primary': openTab === 3}"
+        class="w-full block border-x-0 p-6  text-xs font-medium uppercase
+          leading-tight text-neutral-500 "
+        role="tab"
+        aria-controls="tabs-home03"
+        aria-selected="true">
+        Devoluciones</a>
+      <div [ngClass]="{ 'border-primary translate-x-full opacity-100': openTab === 3,'translate-x-4 opacity-0': openTab !== 3}"
+           class="border-transparent border-r-4 ease-in-out duration-500 transition-all"></div>
+    </li>
+  </ul>
+  <div class="col-span-10 flex flex-col px-12 pt-6 pb-32" *ngIf="openTab===1">
+    <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg border-0" >
+      <div class="rounded-t bg-white mb-0 px-6 py-6 border-b-2 border-gray-200">
+        <div class="text-center flex justify-between">
+          <h6 class="text-blueGray-700 text-xl font-bold">Historial de pedidos</h6>
+        </div>
+      </div>
+      <div class="flex-auto pt-0">
+        <div *ngFor="let order of orders" class="bg-white border-b-2 border-gray-200 p-10 w-full" [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': openTab === 1}" >
+          <div class="flex flex-col items-center" >
+            <div class="w-full" >
+              <div class="-my-3 flow-root">
+                <!-- Expand/collapse section button -->
+                <button (click)="showOrderSelected(order)" type="button" class="flex w-full items-center justify-between  py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
+                  <div class="flex flex-col items-start justify-start">
+                    <p>Num pedido: {{order.id}}</p>
+                    <p>Fecha: {{order.date}} </p>
+                    <p>Total: {{ order.total/100 | number:'1.2-2' }}€</p>
+                    <h3>Estado: {{order.status}}</h3>
+                  </div>
+                  <span class="ml-6 flex items-center"  >
                     <svg *ngIf="showOrder===order.id" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                     </svg>
@@ -46,183 +71,308 @@
                       <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
                     </svg>
                   </span>
-                  </button>
-                </div>
-                <div class="pt-6" id="filter-section-0" *ngIf="showOrder===order.id">
-
-
-                  <div *ngFor="let detail of order.details;" class="w-full flex flex-col sm:flex-row items-center gap-4">
-                    <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
-                      <img class="object-cover" alt="" src="{{detail?.variation?.img}}">
-                    </a>
-                    <div class="flex-1 flex flex-col justify-between">
-                      <div class="flex justify-between mb-3">
-                        <h3>{{detail?.id}}</h3>
-
-                        <h3>{{detail?.variation?.product.name}}</h3>
-                        <span class="text-lg font-semibold">
-                          $<span>{{detail?.variation?.price}}</span>
+                </button>
+              </div>
+              <div class="pt-6" id="filter-section-0" *ngIf="showOrder===order.id">
+                <div *ngFor="let detail of order.details;" class="w-full flex flex-col sm:flex-row items-center gap-4 py-3">
+                  <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
+                    <img class="object-cover" alt="" src="http://ctrl-api.test/storage/images/{{detail?.variation?.img}}">
+                  </a>
+                  <div class="flex-1 flex flex-col justify-between">
+                    <div class="flex justify-between mb-3">
+                      <h3>{{detail?.variation?.product.name}}</h3>
+                      <span class="text-lg font-semibold">
+                          <span>{{detail?.variation?.price}}€</span>
                         </span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <div class="flex items-center">
+                        Qty: {{detail?.quantity}}
                       </div>
-                      <div class="flex justify-between items-center">
-                        <div class="flex items-center">
-                          Qty: {{detail?.quantity}}
-                        </div>
+                      <div class="flex items-center">
+                        Total: {{ detail?.sub_total/100 | number:'1.2-2'}}€
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div [ngClass]="{'hidden': openTab !== 2, 'block': openTab === 2}">
-              <section class="relative block h-500-px">
-                <div
-                  class="absolute top-0 w-full h-full bg-center bg-cover"
-                  style="
-        background-image: url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80');
-      "
-                >
-      <span
-        id="blackOverlay"
-        class="w-full h-full absolute opacity-50 bg-black"
-      ></span>
-                </div>
-                <div
-                  class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
-                  style="transform: translateZ(0)"
-                >
-                  <svg
-                    class="absolute bottom-0 overflow-hidden"
-                    xmlns="http://www.w3.org/2000/svg"
-                    preserveAspectRatio="none"
-                    version="1.1"
-                    viewBox="0 0 2560 100"
-                    x="0"
-                    y="0"
-                  >
-                    <polygon
-                      class="text-blueGray-200 fill-current"
-                      points="2560 0 2560 100 0 100"
-                    ></polygon>
-                  </svg>
-                </div>
-              </section>
-              <section class="relative py-16 bg-blueGray-200">
-                <div class="container mx-auto px-4">
-                  <div
-                    class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64"
-                  >
-                    <div class="px-6">
-                      <div class="flex flex-wrap justify-center">
-                        <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                          <div class="relative">
-                            <img
-                              alt="..."
-                              src="assets/img/team-2-800x800.jpg"
-                              class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center"
-                        >
-                          <div class="py-6 px-3 mt-32 sm:mt-0">
-                            <button
-                              class="bg-red-600 active:bg-red-700 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                              type="button"
-                            >
-                              Connect
-                            </button>
-                          </div>
-                        </div>
-                        <div class="w-full lg:w-4/12 px-4 lg:order-1">
-                          <div class="flex justify-center py-4 lg:pt-4 pt-8">
-                            <div class="mr-4 p-3 text-center">
-                  <span
-                    class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
-                  >
-                    22
-                  </span>
-                              <span class="text-sm text-blueGray-400">Friends</span>
-                            </div>
-                            <div class="mr-4 p-3 text-center">
-                  <span
-                    class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
-                  >
-                    10
-                  </span>
-                              <span class="text-sm text-blueGray-400">Photos</span>
-                            </div>
-                            <div class="lg:mr-4 p-3 text-center">
-                  <span
-                    class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
-                  >
-                    89
-                  </span>
-                              <span class="text-sm text-blueGray-400">Comments</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="text-center mt-12">
-                        <h3
-                          class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2"
-                        >
-                          Jenna Stones
-                        </h3>
-                        <div
-                          class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase"
-                        >
-                          <i
-                            class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"
-                          ></i>
-                          Los Angeles, California
-                        </div>
-                        <div class="mb-2 text-blueGray-600 mt-10">
-                          <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                          Solution Manager - Creative Tim Officer
-                        </div>
-                        <div class="mb-2 text-blueGray-600">
-                          <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i>
-                          University of Computer Science
-                        </div>
-                      </div>
-                      <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
-                        <div class="flex flex-wrap justify-center">
-                          <div class="w-full lg:w-9/12 px-4">
-                            <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-                              An artist of considerable range, Jenna the name taken by
-                              Melbourne-raised, Brooklyn-based Nick Murphy writes, performs
-                              and records all of his own music, giving it a warm, intimate
-                              feel with a solid groove structure. An artist of considerable
-                              range.
-                            </p>
-                            <a href="javascript:void(0)" class="font-normal text-red-600">
-                              Show more
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-            <div [ngClass]="{'hidden': openTab !== 3, 'block': openTab === 3}">
-              <p>
-                Efficiently unleash cross-media information without
-                cross-media value. Quickly maximize timely deliverables for
-                real-time schemas.
-                <br />
-                <br />
-                Dramatically maintain clicks-and-mortar solutions
-                without functional solutions.
-              </p>
-            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    <div *ngIf="order_pg" class="flex justify-center p-4">
+      <nav aria-label="Page navigation example">
+        <ul class="flex list-style-none">
+          <li class="page-item" *ngFor="let pr of order_pg.links">
+            <a (click)="paginatedOrders(pr.label)" [ngClass]="{
+              'bg-primary text-white': order_pg.current_page === pr.label,
+              'bg-transparent text-gray-800': order_pg.current_page !== pr.label
+              }"
+               class="page-link relative block py-1.5 px-3 rounded border-0
+              outline-none transition-all
+              duration-300 rounded  hover:text-gray-800 focus:shadow-none"
+            >{{pr.label}}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
 
-</main>
+  </div>
+  <div class="col-span-10 flex px-12 pt-6 pb-32" *ngIf="openTab===2">
+    <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+      <div class="rounded-t bg-white mb-0 px-6 py-6">
+        <div class="text-center flex justify-between">
+          <h6 class="text-blueGray-700 text-xl font-bold">Datos personales</h6>
+        </div>
+      </div>
+      <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+        <form [formGroup]="form">
+          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            Informacion del usuario
+          </h6>
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Nick</label>
+                <input formControlName="nick" type="text"
+                       [ngClass]="{ 'is-invalid': submitted && fc.nick.errors }"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                <div *ngIf="submitted && fc.nick.errors" class="invalid-feedback">
+                  <div *ngIf="fc.nick.errors.required">nick is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Email
+                </label>
+                <input  formControlName="email"
+                        [ngClass]="{ 'is-invalid': submitted && fc.email.errors }"
+                        type="email"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  />
+                <div *ngIf="submitted && fc.email.errors" class="invalid-feedback">
+                  <div *ngIf="fc.email.errors.required">email is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="mt-6 border-b-1 border-blueGray-300" />
+
+          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            Informacion de contacto
+          </h6>
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Nombre
+                </label>
+                <input formControlName="name"
+                       [ngClass]="{ 'is-invalid': submitted && fc.name.errors }"
+                       type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  value="lucky.jesse"
+                />
+                <div *ngIf="submitted && fc.name.errors" class="invalid-feedback">
+                  <div *ngIf="fc.name.errors.required">name is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Apellidos
+                </label>
+                <input formControlName="surnames"
+                       [ngClass]="{ 'is-invalid': submitted && fc.surnames.errors }"
+                       type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  value="Lucky"
+                /><div *ngIf="submitted && fc.surnames.errors" class="invalid-feedback">
+                  <div *ngIf="fc.surnames.errors.required">surnames is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  DNI/CIF/NIF
+                </label>
+                <input formControlName="dni"
+                       [ngClass]="{ 'is-invalid': submitted && fc.dni.errors }"
+                       type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  value="Jesse"
+                /><div *ngIf="submitted && fc.dni.errors" class="invalid-feedback">
+                  <div *ngIf="fc.dni.errors.required">dni is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Móvil
+                </label>
+                <input formControlName="phone"
+                       [ngClass]="{ 'is-invalid': submitted && fc.phone.errors }"
+                       type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  value="Jesse"
+                /><div *ngIf="submitted && fc.phone.errors" class="invalid-feedback">
+                  <div *ngIf="fc.phone.errors.required">phone is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-12/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Dirección de envío
+                </label>
+                <input formControlName="address"
+                       [ngClass]="{ 'is-invalid': submitted && fc.address.errors }"
+                       type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                /><div *ngIf="submitted && fc.address.errors" class="invalid-feedback">
+                  <div *ngIf="fc.address.errors.required">address is required</div>
+                </div>
+                <input formControlName="address_detail"
+                       [ngClass]="{ 'is-invalid': submitted && fc.address_detail.errors }"
+                       type="text"
+                  class="mt-4 border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  value="Piso,escalera,etc"
+                /><div *ngIf="submitted && fc.address_detail.errors" class="invalid-feedback">
+                  <div *ngIf="fc.address_detail.errors.required">address_detail is required</div>
+                </div>
+                <input formControlName="notes"
+                       [ngClass]="{ 'is-invalid': submitted && fc.notes.errors }"
+                       type="text"
+                  class="mt-4 border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  value="Notas"
+                /><div *ngIf="submitted && fc.notes.errors" class="invalid-feedback">
+                  <div *ngIf="fc.notes.errors.required">notes is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  País
+                </label>
+                <input formControlName="country"
+                       [ngClass]="{ 'is-invalid': submitted && fc.country.errors }"
+                       type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  value="United States"
+                /><div *ngIf="submitted && fc.country.errors" class="invalid-feedback">
+                  <div *ngIf="fc.country.errors.required">country is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Província
+                </label>
+                <input formControlName="province"
+                       [ngClass]="{ 'is-invalid': submitted && fc.province.errors }"
+                       type="email"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  value="New York"
+                /><div *ngIf="submitted && fc.province.errors" class="invalid-feedback">
+                  <div *ngIf="fc.province.errors.required">province is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Población
+                </label>
+                <input formControlName="city"
+                       [ngClass]="{ 'is-invalid': submitted && fc.city.errors }"
+                       type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  value="Postal Code"
+                /><div *ngIf="submitted && fc.city.errors" class="invalid-feedback">
+                  <div *ngIf="fc.city.errors.required">city is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Codigo postal
+                </label>
+                <input formControlName="zip"
+                       [ngClass]="{ 'is-invalid': submitted && fc.zip.errors }"
+                  type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  value="Postal Code"
+                /><div *ngIf="submitted && fc.zip.errors" class="invalid-feedback">
+                  <div *ngIf="fc.zip.errors.required">zip is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="mt-6 border-b-1 border-blueGray-300" />
+
+          <div class="flex flex-wrap justify-between mt-8">
+            <div class="w-full lg:w-12/12 px-4">
+              <div class="relative w-full mb-3 flex flex-wrap justify-between">
+                <button  class="self-end inline-flex justify-center rounded-full text-gray-700
+           border border-gray-300 bg-white
+           py-2 px-4 text-sm
+          font-medium  shadow-sm
+          hover:bg-gray-50 ">
+                  Cerrar</button>
+                <button (click)="udpate()" [disabled]="loading"  class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-primary py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-secondary ">
+                  <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+                  Actualizar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-alert class="z-50 fixed" (showChange)="show=!show"  [show]="show" [text]="text" [color]="color"></app-alert>
+
+

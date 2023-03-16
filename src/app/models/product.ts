@@ -20,10 +20,10 @@ export class Variation {
   id: any;
   price :any;
   stock :any;
-  img: File;
+  img: any;
   attributes: Attribute[];
   product:Product=undefined;
-  total:any;
+  total:number;
   new:boolean;
 }
 

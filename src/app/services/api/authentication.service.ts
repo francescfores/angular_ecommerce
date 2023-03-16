@@ -25,16 +25,9 @@ export class AuthenticationService {
   }
 
   login(email, password) {
-    console.log(email);
-    console.log(password);
-    console.log('cors');
-    console.log(environment.apiUrl);
     const headers = new HttpHeaders();
     headers.append('Content-type', 'application/json');
-    headers.append('Access-Control-Allow-Origin', '*');
     // headers.append('Access-Control-Allow-Headers','X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method');
-    headers.append('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, DELETE');
-    headers.append('Allow','GET, POST, OPTIONS, PUT, DELETE');
     const httpOptions = {
       headers,
     };
@@ -42,7 +35,6 @@ export class AuthenticationService {
       // return this.http.post<any>(`$/users/authenticate`, { username, password })
       .pipe(map(data => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        console.log('login');
         this.user = data.client;
         this.user.token = data.token;
         localStorage.setItem('currentClient', JSON.stringify(this.user));

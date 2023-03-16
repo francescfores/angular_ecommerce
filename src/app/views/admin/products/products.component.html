@@ -1,8 +1,305 @@
-<div class="mt-10 sm:mt-0" >
+<div *ngIf="create_product" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+      <!--
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div class="p-4 w-auto relative transform overflow-hidden rounded-lg bg-white text-left transition-all ">
+        <div class="flex flex-col">
+          <div class="">
+            <div class="p-5 flex justify-between">
+              <h3 class="text-lg font-medium leading-6 text-gray-900">Crear producto</h3>
+              <button (click)="create_product=false">
+                <svg class="h-8 w-8 text-gray-500"  width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+
+              <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
+            </div>
+          </div>
+          <form [formGroup]="registerForm">
+            <div class="overflow-hidden">
+              <div class="bg-white px-4 py-5">
+                <div class="grid grid-cols-6 gap-6">
+                  <div class="col-span-6">
+                    <div class="flex flex-row justify-start items-center space-x-2">
+                      <h3 class="text-lg font-medium leading-6 text-gray-900">Tipo</h3>
+                      <select  (change)="productType($event)" id="country" name="country" autocomplete="country-name"
+                               class="w-1/4 block rounded-md border border-gray-300
+                  bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                        <option  [value]="1">Producto simple</option>
+                        <option  [value]="2">Producto variable</option>
+                      </select>
+                      <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputName" class="block text-sm font-medium text-gray-700">Nombre</label>
+                    <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" formControlName="name" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.name.errors.required">name is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputDesc" class="block text-sm font-medium text-gray-700">Desc</label>
+                    <input id="inputDesc" [ngClass]="{ 'is-invalid': submitted && f.desc.errors }" formControlName="desc" type="text" name="first-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.desc.errors" class="invalid-feedback">
+                      <div *ngIf="f.desc.errors.required">desc is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputPrice" class="block text-sm font-medium text-gray-700">Precio</label>
+                    <input  id="inputPrice" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" formControlName="price"
+                            type="number" name="first-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                      <div *ngIf="f.price.errors.required">price is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputStock" class="block text-sm font-medium text-gray-700">Cantidad</label>
+                    <input id="inputStock" [ngClass]="{ 'is-invalid': submitted && f.stock.errors }" formControlName="stock"
+                           type="number" name="first-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.stock.errors" class="invalid-feedback">
+                      <div *ngIf="f.stock.errors.required">stock is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6">
+                    <input id="inputImg" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all" (change)="onFileChanged($event)"/>
+                    <label
+                      [ngClass]="{'bg-gray-400':!submitted && this.selectedFile === null,
+                                     'bg-primary':!submitted && this.selectedFile !== null || submitted && this.selectedFile !== null,
+                                     'bg-red-500':submitted && this.selectedFile === null}"
+                      class=" hover:bg-primary text-white font-bold py-2 px-4 rounded" for="inputImg">Imagen</label>
+                    <label class="ml-4 text-xs" for="inputImg">{{this.selectedFile?.name}} {{this.selectedFile}}</label>
+                    <div *ngIf="submitted && f.img.errors" class="invalid-feedback">
+                      <div *ngIf="f.img.errors.required">img is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-2 sm:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700">Categoria</label>
+                    <select formControlName="category"  (change)="selectCategory($event)"
+                            autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                      <option [value]="null">Selecciona una categoria</option>
+                      <option *ngFor="let value of this.categories"
+                              [value]="value.id">
+                        {{value.name}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-span-2 sm:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700">subcategory</label>
+                    <select formControlName="subcategory"  (change)="selectSubCategory($event)"
+                            autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                      <option [value]="null">Selecciona una subcategory</option>
+                      <option *ngFor="let value of this.subcategories"
+                              [value]="value.id">
+                        {{value.name}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-span-2 sm:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700">supercategory</label>
+                    <select  formControlName="supercategory"  (change)="selectSuperCategory($event)"
+                             autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                      <option [value]="null">Selecciona una supercategory</option>
+                      <option *ngFor="let value of this.supercategories"
+                              [value]="value.id">
+                        {{value.name}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-span-6" *ngIf="attributes_group && type===1" >
+                    <label class="block text-sm font-medium text-gray-700">Atributos</label>
+                    <div  class="flex space-x-2">
+                      <div class="flex-1" *ngFor="let attr of attributes_group | keyvalue">
+                        <label for="country" class="block text-sm font-medium text-gray-700">{{ attr.key }}</label>
+                        <select [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOptions[attr.key]" (ngModelChange)="selectVariation($event)"
+                                id="country" name="{{attr.key}}" autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300
+                            bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                          <option [value]="null">Selecciona un/a {{ attr.key }}</option>
+                          <option *ngFor="let value of attr.value"
+                                  [value]="value.id">
+                            {{value.value}}
+                            {{value.id}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="mt-6 p-4" *ngIf="type===2">
+          <div class="flex flex-col">
+            <div class="">
+              <div class="flex justify-between space-x-4">
+                <h3 class="w-1/2 text-lg font-medium leading-6 text-gray-900">Variaciones</h3>
+                <div class="w-1/2 flex justify-end">
+                  <select name="country" autocomplete="country-name"
+                          class="mr-2 w-2/3 block rounded-md border border-gray-300
+                  bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                    <option value="1">Añadir variación</option>
+                    <option (click)="createAllVariation()" value="2">Crear variaciones para todos los atributos</option>
+                  </select>
+                  <button type="submit" class="self-end inline-flex justify-center rounded-full
+                                border border-transparent
+                                bg-primary py-2 px-4 text-sm
+                                font-medium text-white shadow-sm
+                                hover:bg-secondary">Crear</button>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <form action="#" method="POST">
+                <div class="overflow-hidden sm:rounded-md">
+                  <div class="bg-white py-10">
+                    <div  class="flex space-x-2">
+                      <div class="flex-1" *ngFor="let attr of attributes_group | keyvalue">
+                        <label for="country" class="block text-sm font-medium text-gray-700">{{ attr.key }}</label>
+                        <select [(ngModel)]="selectedOptions[attr.key]" (ngModelChange)="selectVariation($event)"
+                                id="country" name="{{attr.key}}" autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                          <option [value]="null">Selecciona un/a {{ attr.key }}</option>
+                          <option *ngFor="let value of attr.value"
+                                  [value]="value.id">
+                            {{value.value}}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="self-end">
+                        <button (click)="createVariation()" type="submit"
+                                class="self-end inline-flex justify-center rounded-full
+                                border border-transparent
+                                bg-primary py-2 px-4 text-sm
+                                font-medium text-white shadow-sm
+                                hover:bg-secondary"> Añadir</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngFor="let variation of variations; let i = index" class="border-b border-gray-200 px-4 py-6">
+                    <h3 class="-mx-2 -my-3 flow-root">
+                      <button  type="button"
+                               class="flex w-full items-center justify-start px-2 py-3 text-gray-400 hover:text-gray-500"
+                               aria-controls="filter-section-mobile-0" aria-expanded="false" (click)="toggleExpansion(i)">
+                        <span class="font-medium text-gray-900">Variation {{i}}</span>
+                        <span *ngFor="let attribute of variation.attributes;" class="p-2 font-medium text-gray-900">{{attribute.name}} {{attribute.value}}</span>
+                        <span class="p-2 font-medium text-gray-900">{{variation.name}} {{variation.img}} {{variation.price}} {{variation.stock}}</span>
+                        <span class="ml-auto">
+                    <svg *ngIf="expandedDivId !== i" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                    </svg>
+                    <svg *ngIf="expandedDivId === i" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                      </button>
+                    </h3>
+                    <div class="pt-6" id="filter-section-0" *ngIf="expandedDivId === i" [id]="i">
+                      <div class="space-y-4">
+                        <form *ngIf="variationsForm[i]" [formGroup]="variationsForm[i]">
+                          <div class="overflow-hidden shadow sm:rounded-md">
+                            <div class="bg-white px-4 py-5 sm:p-6">
+                              <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-3">
+                                  <label for="inputPrice" class="block text-sm font-medium text-gray-700">Precio</label>
+                                  <input id="inputPrice" [ngClass]="{ 'is-invalid': submitted && fv(i).price.errors }" formControlName="price" type="text" name="first-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                  <div *ngIf="submitted && fv(i).price.errors" class="invalid-feedback">
+                                    <div *ngIf="fv(i).price.errors.required">price is required</div>
+                                  </div>
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                  <label for="inputStock" class="block text-sm font-medium text-gray-700">Cantidad</label>
+                                  <input id="inputStock" [ngClass]="{ 'is-invalid': submitted && fv(i).stock.errors }" formControlName="stock" type="text" name="first-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                  <div *ngIf="submitted && fv(i).stock.errors" class="invalid-feedback">
+                                    <div *ngIf="fv(i).stock.errors.required">stock is required</div>
+                                  </div>
+                                </div>
+                                <div class="col-span-6 sm:col-span-4 flex justify-between flex-wrap">
+                                  <img
+                                    src="http://ctrl-api.test/storage/images/{{variation.img}}"
+                                    class="h-12 w-12 bg-white rounded-full border"
+                                    alt="..."
+                                  />
+                                </div>
+                                <div class="col-span-6 sm:col-span-4 flex justify-between flex-wrap">
+                                  <div class="col-span-6 sm:col-span-3">
+                                    <input id="inputImg2" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all"
+                                           (change)="onFileChangedVariation($event,variation.id)"/>
+                                    <label
+                                      [ngClass]="{'bg-gray-400':!submitted && this.selectedFileVariations[variation.id] === null,
+                                     'bg-primary':!submitted && this.selectedFileVariations[variation.id] !== null ||
+                                      submitted && this.selectedFileVariations[variation.id] !== null,
+                                     'bg-red-500':submitted && this.selectedFileVariations[variation.id] === null}"
+                                      class=" hover:bg-primary text-white font-bold py-2 px-4 rounded" for="inputImg2">Imagen</label>
+                                    <label class="ml-4 text-xs" for="inputImg2">
+                                      selectedFileVariations:{{this.selectedFileVariations[variation.id]?.name}}
+                                      <br> selectedFile:{{this.selectedFile?.name}}</label>
+                                    <div *ngIf="submitted && fv(i).img.errors" class="invalid-feedback">
+                                      <div *ngIf="fv(i).img.errors.required">img is required</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                              <button [disabled]="loading" (click)="saveVariation(variation)" type="submit" class="inline-flex justify-center rounded-md border border-transparent
+            bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none
+             focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                <div *ngIf="loading" class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+                                Save</button>
+
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 flex justify-between items-center">
+          <button (click)="create_product=false" class="self-end inline-flex justify-center rounded-full text-gray-700
+           border border-gray-300 bg-white
+           py-2 px-4 text-sm
+          font-medium  shadow-sm
+          hover:bg-gray-50 ">
+            Cerrar</button>
+          <button [disabled]="loading" (click)="create()" type="submit" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-primary py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-secondary ">
+            <div *ngIf="loading" class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+            Crear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-10 sm:mt-0 h-screen" >
   <div class="flex flex-col">
     <div class="">
-      <div class="p-4 sm:px-0 flex flex-row justify-start items-center space-x-2">
+      <div class="p-4 sm:px-0 flex flex-row justify-between items-center space-x-2">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Productos</h3>
+        <button (click)="create_product=true" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-primary py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-secondary focus:outline-none ">
+          Crear</button>
       </div>
     </div>
     <div class="mt-5">
@@ -52,7 +349,7 @@
               >
                 <img
                   src="http://ctrl-api.test/storage/images/{{pr.img}}"
-                  class="h-12 w-12 bg-white rounded-full border"
+                  class="h-16 w-16 bg-white rounded-full border"
                   alt="..."
                 />
               </th>
@@ -93,7 +390,7 @@
           <ul class="flex list-style-none">
             <li class="page-item" *ngFor="let pr of product_pg.links">
               <a (click)="paginatedProducts(pr.label)" [ngClass]="{
-              'bg-blue-400 text-white': product_pg.current_page === pr.label,
+              'bg-primary text-white': product_pg.current_page === pr.label,
               'bg-transparent text-gray-800': product_pg.current_page !== pr.label
               }"
                  class="page-link relative block py-1.5 px-3 rounded border-0
@@ -107,13 +404,14 @@
     </div>
   </div>
 </div>
-
+<!--
 <div class="mt-10 sm:mt-0">
   <div class="flex flex-col">
     <div class="">
-      <div class="p-4 sm:px-0">
+      <div class="p-4 flex justify-between">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Crear producto</h3>
-        <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
+        <svg class="h-8 w-8 text-gray-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>
       </div>
     </div>
     <div class="mt-5">
@@ -130,7 +428,6 @@
                     <option  [value]="1">Producto simple</option>
                     <option  [value]="2">Producto variable</option>
                   </select>
-                  <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
                 </div>
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -164,10 +461,10 @@
               <div class="col-span-6">
                 <input id="inputImg" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all" (change)="onFileChanged($event)"/>
                 <label
-                  [ngClass]="{'bg-blue-500':!submitted && this.selectedFile === null,
-                                     'bg-green-500':!submitted && this.selectedFile !== null || submitted && this.selectedFile !== null,
+                  [ngClass]="{'bg-gray-400':!submitted && this.selectedFile === null,
+                                     'bg-primary':!submitted && this.selectedFile !== null || submitted && this.selectedFile !== null,
                                      'bg-red-500':submitted && this.selectedFile === null}"
-                  class=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="inputImg">Imagen</label>
+                  class=" hover:bg-primary text-white font-bold py-2 px-4 rounded" for="inputImg">Imagen</label>
                 <label class="ml-4 text-xs" for="inputImg">{{this.selectedFile?.name}} {{this.selectedFile}}</label>
                 <div *ngIf="submitted && f.img.errors" class="invalid-feedback">
                   <div *ngIf="f.img.errors.required">img is required</div>
@@ -207,46 +504,6 @@
                 </select>
               </div>
 
-
-              <!--
-              <div class="col-span-6 sm:col-span-3">
-                <label for="country" class="block text-sm font-medium text-gray-700">Color</label>
-                <select  id="country" name="country" autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-                  <option *ngFor="let color of colors;"
-                          [value]="color.id">
-                    {{color.name}}
-                  </option>
-                </select>
-              </div>
-              <div class="col-span-6 sm:col-span-3">
-                <label for="size" class="block text-sm font-medium text-gray-700">Tamaño</label>
-                <select  id="size" name="country" autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-                  <option *ngFor="let size of sizes;"
-                          [value]="size.id">
-                    {{size.name}}
-                  </option>
-                </select>
-              </div>
-              <div class="col-span-6">
-                <label for="street-address" class="block text-sm font-medium text-gray-700">Street address</label>
-                <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-              <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-                <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-                <input type="text" name="city" id="city" autocomplete="address-level2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-              <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                <label for="region" class="block text-sm font-medium text-gray-700">State / Province</label>
-                <input type="text" name="region" id="region" autocomplete="address-level1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-
-              <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                <label for="postal-code" class="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
-                <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-              </div>
-              -->
             </div>
           </div>
           <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
@@ -276,8 +533,6 @@
         <button type="submit" class="inline-flex justify-center rounded-md border
         border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white
         shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Crear</button>
-
-        <!--<p class="mt-1 text-sm text-gray-600">Crear productos</p>-->
       </div>
     </div>
     <div class="">
@@ -354,11 +609,11 @@
                             <input id="inputImg2" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all"
                                    (change)="onFileChangedVariation($event,variation.id)"/>
                             <label
-                              [ngClass]="{'bg-blue-500':!submitted && this.selectedFileVariations[variation.id] === null,
-                                     'bg-green-500':!submitted && this.selectedFileVariations[variation.id] !== null ||
+                              [ngClass]="{'bg-gray-400':!submitted && this.selectedFileVariations[variation.id] === null,
+                                     'bg-primary':!submitted && this.selectedFileVariations[variation.id] !== null ||
                                       submitted && this.selectedFileVariations[variation.id] !== null,
                                      'bg-red-500':submitted && this.selectedFileVariations[variation.id] === null}"
-                              class=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="inputImg2">Imagen</label>
+                              class=" hover:bg-primary text-white font-bold py-2 px-4 rounded" for="inputImg2">Imagen</label>
                             <label class="ml-4 text-xs" for="inputImg2">
                               selectedFileVariations:{{this.selectedFileVariations[variation.id]?.name}}
                               <br> selectedFile:{{this.selectedFile?.name}}</label>
@@ -387,6 +642,7 @@
     </div>
   </div>
 </div>
-<app-alert [autocloseTime]="autocloseTime" [show]="show" [text]="text" [color]="color"></app-alert>
+-->
+<app-alert (showChange)="show=!show" [autocloseTime]="autocloseTime" [show]="show" [text]="text" [color]="color"></app-alert>
 
 

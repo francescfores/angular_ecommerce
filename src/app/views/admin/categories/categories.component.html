@@ -314,12 +314,12 @@
           <ul class="flex list-style-none">
             <li class="page-item" *ngFor="let pr of subcategories.links">
               <a (click)="paginatedSubCategorys(pr.label)" [ngClass]="{
-              'bg-primary text-white': subcategories.current_page === pr.label,
+              'bg-primary text-white hover:bg-secondary': subcategories.current_page === pr.label,
               'bg-transparent text-gray-800': subcategories.current_page !== pr.label
               }"
                  class="page-link relative block py-1.5 px-3 rounded border-0
               outline-none transition-all
-              duration-300 rounded  hover:text-gray-800 focus:shadow-none"
+              duration-300 rounded   focus:shadow-none"
               >{{pr.label}}</a>
             </li>
           </ul>

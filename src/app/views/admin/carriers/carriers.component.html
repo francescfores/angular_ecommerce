@@ -1,0 +1,211 @@
+<div *ngIf="create_carrier" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+      <!--
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div class="p-4 w-auto relative transform overflow-hidden rounded-lg bg-white text-left transition-all ">
+        <div class="flex flex-col">
+          <div class="">
+            <div class="p-5 flex justify-between">
+              <h3 class="text-lg font-medium leading-6 text-gray-900">Crear transportista</h3>
+              <button (click)="create_carrier=false">
+                <svg class="h-8 w-8 text-gray-500"  width="10" height="10" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <form [formGroup]="registerForm">
+            <div class="overflow-hidden">
+              <div class="bg-white px-4 py-5">
+                <div class="grid grid-cols-6 gap-6">
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputName" class="block text-sm font-medium text-gray-700">Nombre</label>
+                    <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.carrier.errors }" formControlName="carrier" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.carrier.errors" class="invalid-feedback">
+                      <div *ngIf="f.carrier.errors.required">carrier is required</div>
+                    </div>
+                  </div>
+
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputName" class="block text-sm font-medium text-gray-700">Id</label>
+                    <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.carrier_id.errors }" formControlName="carrier_id" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.carrier_id.errors" class="invalid-feedback">
+                      <div *ngIf="f.carrier_id.errors.required">carrier_id is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputName" class="block text-sm font-medium text-gray-700">Dias de entrega</label>
+                    <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.delivery_days.errors }" formControlName="delivery_days" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.delivery_days.errors" class="invalid-feedback">
+                      <div *ngIf="f.delivery_days.errors.required">delivery_days is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputName" class="block text-sm font-medium text-gray-700">Tarifa</label>
+                    <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.rate.errors }" formControlName="rate" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.rate.errors" class="invalid-feedback">
+                      <div *ngIf="f.rate.errors.required">rate is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputName" class="block text-sm font-medium text-gray-700">Id tarifa</label>
+                    <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.rate_id.errors }" formControlName="rate_id" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.rate_id.errors" class="invalid-feedback">
+                      <div *ngIf="f.rate_id.errors.required">rate_id is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputName" class="block text-sm font-medium text-gray-700">Servicio</label>
+                    <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.service.errors }" formControlName="service" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.service.errors" class="invalid-feedback">
+                      <div *ngIf="f.service.errors.required">service is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="p-4 flex justify-between items-center">
+          <button (click)="create_carrier=false" class="self-end inline-flex justify-center rounded-full text-gray-700
+           border border-gray-300 bg-white
+           py-2 px-4 text-sm
+          font-medium  shadow-sm
+          hover:bg-gray-50 ">
+            Cerrar</button>
+          <button [disabled]="loading" (click)="create()" type="submit" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-primary py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-secondary ">
+            <div *ngIf="loading" class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+            Crear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-10 sm:mt-0 h-screen" >
+  <div class="flex flex-col">
+    <div class="">
+      <div class="p-4 sm:px-0 flex flex-row justify-between items-center space-x-2">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Atributos</h3>
+        <button (click)="create_carrier=true" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-primary py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-secondary focus:outline-none ">
+          Crear</button>
+      </div>
+    </div>
+    <div class="mt-5">
+      <div
+        class="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded" >
+        <div class="block w-full overflow-x-auto">
+          <table class="items-center w-full bg-transparent border-collapse">
+            <thead>
+            <tr>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Id
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Nombre
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Dias de entrega
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Tarifa
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Servicio
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >Accion</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="carriers_pg" >
+            <tr *ngFor="let pr of carriers_pg.data">
+              <th
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+              >
+                <img
+                  src="http://ctrl-api.test/storage/images/{{pr.img}}"
+                  class="h-16 w-16 bg-white rounded-full border"
+                  alt="..."
+                />
+              </th>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.carrier_id}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.carrier}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.delivery_days}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{pr.rate}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-right"              >
+                <div class="flex justify-between items-center ">
+                  <svg (click)="editCarrier(pr.id)" class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
+                  <svg (click)="deleteCarrier(pr.id)" class="h-5 w-5 text-red-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div *ngIf="carriers_pg" class="flex justify-center">
+        <nav aria-label="Page navigation example">
+          <ul class="flex list-style-none">
+            <li class="page-item" *ngFor="let pr of carriers_pg.links">
+              <a (click)="paginatedCarriers(pr.label)" [ngClass]="{
+              'bg-primary text-white': carriers_pg.current_page === pr.label,
+              'bg-transparent text-gray-800': carriers_pg.current_page !== pr.label
+              }"
+                 class="page-link relative block py-1.5 px-3 rounded border-0
+              outline-none transition-all
+              duration-300 rounded  hover:text-gray-800 focus:shadow-none"
+              >{{pr.label}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<app-alert class="z-50 fixed" (showChange)="show=!show"  [autocloseTime]="autocloseTime" [show]="show" [text]="text" [color]="color"></app-alert>

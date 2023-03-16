@@ -6,6 +6,7 @@ import {CartComponent} from './cart/cart.component';
 import {ProfileComponent} from './profile/profile.component';
 import {ProfileClientComponent} from "./profile-client/profile-client.component";
 import {AuthGuard} from "../../services/guards/auth.guard";
+import {CardComponent} from "./card/card.component";
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
     component: ProfileClientComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
+  },
+  {
+    path: 'card',
+    component: CardComponent
   },
 ];
 

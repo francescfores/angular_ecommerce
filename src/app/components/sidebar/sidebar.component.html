@@ -1,5 +1,6 @@
 <nav
-  class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
+  class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden
+   shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
 >
   <div
     class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
@@ -148,6 +149,27 @@
             Categories
           </a>
         </li>
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/attributes']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminAtributos="routerLinkActive"
+            [ngClass]="
+              adminAtributos.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminAtributos.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Atributos
+          </a>
+        </li>
       </ul>
 
       <!--<hr class="my-4 md:min-w-full" />
@@ -208,20 +230,19 @@
         </li>
       </ul>
 
-
       <!--<hr class="my-4 md:min-w-full" />
-      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-        Estadísticas
-      </h6>-->
+     <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+       Configuración de envío
+     </h6>-->
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
-            [routerLink]="['/admin/charts']"
+            [routerLink]="['/admin/sendings']"
             class="text-xs uppercase py-3 font-bold block"
             routerLinkActive
-            #adminCharts="routerLinkActive"
+            #adminEnvios="routerLinkActive"
             [ngClass]="
-              adminCharts.isActive
+              adminEnvios.isActive
                 ? 'text-red-600 hover:text-red-700'
                 : 'text-blueGray-700 hover:text-blueGray-500'
             "
@@ -229,14 +250,43 @@
             <i
               class="fas fa-tv mr-2 text-sm"
               [ngClass]="
-                adminCharts.isActive ? 'opacity-75' : 'text-blueGray-300'
+                adminEnvios.isActive ? 'opacity-75' : 'text-blueGray-300'
               "
             ></i>
-            Estadísticas
+            Envios
           </a>
         </li>
 
       </ul>
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/carriers']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminCarrier="routerLinkActive"
+            [ngClass]="
+              adminCarrier.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminCarrier.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Carrier
+          </a>
+        </li>
+
+      </ul>
+
+      <!--<hr class="my-4 md:min-w-full" />
+      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        Estadísticas
+      </h6>-->
 
       <!--<hr class="my-4 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
@@ -267,34 +317,6 @@
 
       </ul>
 
-      <!--<hr class="my-4 md:min-w-full" />
-     <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-       Configuración de envío
-     </h6>-->
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-        <li class="items-center">
-          <a
-            [routerLink]="['/admin/sendings']"
-            class="text-xs uppercase py-3 font-bold block"
-            routerLinkActive
-            #adminEnvios="routerLinkActive"
-            [ngClass]="
-              adminEnvios.isActive
-                ? 'text-red-600 hover:text-red-700'
-                : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-tv mr-2 text-sm"
-              [ngClass]="
-                adminEnvios.isActive ? 'opacity-75' : 'text-blueGray-300'
-              "
-            ></i>
-            Envios
-          </a>
-        </li>
-
-      </ul>
 
       <hr class="my-4 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">

@@ -1,0 +1,164 @@
+<div  *ngIf="!updatePayment && loaded">
+  <div class="mt-10 sm:mt-0" >
+    <div class="flex flex-col">
+      <div class="">
+        <div class="p-4 sm:px-0 flex flex-row justify-between items-center space-x-2">
+          <div class="flex space-x-2">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Detalles del envio
+            </h3>
+            <svg [(ngModel)]="status" (click)="updatePayment=true" class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24" stroke-width="2"
+                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
+              <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+              <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+              <line x1="16" y1="5" x2="19" y2="8" />
+            </svg>
+          </div>
+          <button class="text-sm bg-transparent  w-auto font-semibold
+         py-1 px-4 border rounded-full w-32 "
+                  [ngClass]="{
+                  'text-grey-300 border-grey-300': status === 'pending',
+                  'text-yellow-300 border-yellow-300': status === 'processing',
+                  'text-green-300 border-green-300': status === 'succeeded',
+                  'text-blue-300 border-blue-300': status === 'refunded',
+                  'text-red-300 border-red-300': status === 'failed',
+                  'text-black-300 border-black-300': status === 'canceled',
+                  'text-orange-300 border-orange-300': status === 'awaiting',
+                  'text-purple-300 border-purple-300': status === 'requires_action'
+        }">
+            {{payment.status}}
+          </button>
+        </div>
+      </div>
+      <div class="mt-5">
+        <div class="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded text-gray-600"  >
+          <form [formGroup]="form" class="block w-full overflow-x-auto p-4 flex justify-between items-center grid grid-cols-6 gap-6">
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">stripe_payment_id</label>
+              <label class="ml-1 mt-1 block w-full">{{payment.stripe_payment_id}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">amount</label>
+              <label class="ml-1 mt-1 block w-full">{{payment.amount}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">currency</label>
+              <label class="ml-1 mt-1 block w-full">{{payment.currency}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">status</label>
+              <label class="ml-1 mt-1 block w-full">{{payment.status}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">payment_method</label>
+              <label class="ml-1 mt-1 block w-full">{{payment.payment_method}}</label>
+            </div>
+          </form>
+          <div class="p-4 flex justify-end items-center space-x-2">
+            <button [disabled]="loading" (click)="updateAttribute()" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-orange-600 py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-orange-700 ">
+              <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+              Crear</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div  *ngIf="updatePayment && loaded">
+  <div class="mt-10 sm:mt-0" >
+    <div class="flex flex-col">
+      <div class="">
+        <div class="p-4 sm:px-0 flex flex-row justify-between items-center space-x-2">
+          <div class="flex space-x-2">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Editar envio
+            </h3>
+            <svg [(ngModel)]="status" (click)="updatePayment=false" class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24" stroke-width="2"
+                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
+              <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+              <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+              <line x1="16" y1="5" x2="19" y2="8" />
+            </svg>
+          </div>
+          <select [(ngModel)]="status"  (change)="updateStatus($event)" class="pr-10 text-sm bg-transparent w-auto font-semibold
+         py-1 px-4 border  rounded-full  w-36 focus:border-0"
+                  [ngClass]="{
+                  'text-grey-300 border-grey-300': status === 'pending',
+                  'text-yellow-300 border-yellow-300': status === 'processing',
+                  'text-green-300 border-green-300': status === 'succeeded',
+                  'text-blue-300 border-blue-300': status === 'refunded',
+                  'text-red-300 border-red-300': status === 'failed',
+                  'text-black-300 border-black-300': status === 'canceled',
+                  'text-orange-300 border-orange-300': status === 'awaiting',
+                  'text-purple-300 border-purple-300': status === 'requires_action'
+                  }">
+            <option *ngFor="let value of statuses"
+                    [value]="value.key">
+              {{value.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="mt-5">
+        <div class="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded text-gray-600"  >
+          <form [formGroup]="form" class="block w-full overflow-x-auto p-4 flex justify-between items-center grid grid-cols-6 gap-6">
+            <div class="py-4 col-span-6">
+              <h3 class="text-lg font-medium leading-6 text-gray-900">Datos de la dirección</h3>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">stripe_payment_id</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.stripe_payment_id.errors }" formControlName="stripe_payment_id" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.stripe_payment_id.errors" class="invalid-feedback">
+                <div *ngIf="fc.stripe_payment_id.errors.required">stripe_payment_id is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">amount</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.amount.errors }" formControlName="amount" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.amount.errors" class="invalid-feedback">
+                <div *ngIf="fc.amount.errors.required">amount is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">currency</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.currency.errors }" formControlName="currency" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.currency.errors" class="invalid-feedback">
+                <div *ngIf="fc.currency.errors.required">currency is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">status</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.status.errors }" formControlName="status" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.status.errors" class="invalid-feedback">
+                <div *ngIf="fc.status.errors.required">status is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">payment_method</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.payment_method.errors }" formControlName="payment_method" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.payment_method.errors" class="invalid-feedback">
+                <div *ngIf="fc.payment_method.errors.required">payment_method is required</div>
+              </div>
+            </div>
+          </form>
+          <div class="p-4 flex justify-end items-center space-x-2">
+            <button [disabled]="loading" (click)="update()" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-orange-600 py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-orange-700 ">
+              <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+              Crear</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-alert class="z-50 fixed" (showChange)="show=!show"  [show]="show" [text]="text" [color]="color"></app-alert>
+

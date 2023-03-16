@@ -43,6 +43,12 @@ import {EditSubcategoryComponent} from "./views/admin/categories/edit-subcategor
 import {EditSupercategoryComponent} from "./views/admin/categories/edit-supercategory/edit-supercategory.component";
 import {SendingsComponent} from "./views/admin/sendings/sendings.component";
 import {EditOrderComponent} from "./views/admin/orders/edit-order/edit-order.component";
+import {AttributesComponent} from "./views/admin/attributes/attributes.component";
+import {EditAttributeComponent} from "./views/admin/attributes/edit-attribute/edit-attribute.component";
+import {EditPaymentComponent} from "./views/admin/payments/edit-payment/edit-payment.component";
+import {EditSendingComponent} from "./views/admin/sendings/edit-sending/edit-sending.component";
+import {CarriersComponent} from "./views/admin/carriers/carriers.component";
+import {EditCarrierComponent} from "./views/admin/carriers/edit-carrier/edit-carrier.component";
 
 const routes: Routes = [
   { canActivate: [NonAuthGuard],
@@ -71,13 +77,21 @@ const routes: Routes = [
       { path: "edit-subcategory", component: EditSubcategoryComponent },
       { path: "edit-supercategory", component: EditSupercategoryComponent },
       { path: "categories", component: CategoriesComponent },
+      { path: "attributes", component: AttributesComponent },
+      { path: "edit-attribute", component: EditAttributeComponent },
+
       { path: "clients", component: ClientsComponent },
       { path: "orders", component: OrdersComponent },
       { path: "edit-order", component: EditOrderComponent },
       { path: "charts", component: ChartsComponent },
       { path: "payments", component: PaymentsComponent },
+      { path: "edit-payment", component: EditPaymentComponent },
       { path: "taxes", component: TaxesComponent },
       { path: "sendings", component: SendingsComponent },
+      { path: "edit-sendings", component: EditSendingComponent },
+      { path: "carriers", component: CarriersComponent },
+      { path: "edit-carrier", component: EditCarrierComponent },
+
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },

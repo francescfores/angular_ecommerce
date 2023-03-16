@@ -1,0 +1,438 @@
+<div  *ngIf="!updateSending && loaded">
+  <div class="mt-10 sm:mt-0" >
+    <div class="flex flex-col">
+      <div class="">
+        <div class="p-4 sm:px-0 flex flex-row justify-between items-center space-x-2">
+          <div class="flex space-x-2">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Detalles del envio
+            </h3>
+            <svg [(ngModel)]="status" (click)="updateSending=true" class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24" stroke-width="2"
+                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
+              <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+              <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+              <line x1="16" y1="5" x2="19" y2="8" />
+            </svg>
+          </div>
+          <button class="text-sm bg-transparent   font-semibold
+         py-1 px-4 border rounded-full w-32 "
+                  [ngClass]="{
+        'text-amber-300 border-amber-300': status === 'pending',
+        'text-orange-300 border-orange-300': status === 'processing',
+        'text-blue-300 border-blue-300': status === 'shipped',
+        'text-green-300 border-green-300': status === 'delivered',
+        'text-gray-300 border-gray-300': status === 'returned',
+        'text-red-300 border-red-300': status === 'cancelled'
+        }">
+            {{sending.status}}
+          </button>
+        </div>
+      </div>
+      <div class="mt-5">
+        <div class="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded text-gray-600"  >
+          <form [formGroup]="form" class="block w-full overflow-x-auto p-4 flex justify-between items-center grid grid-cols-6 gap-6">
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">Nombre</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.name}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">Apellidos</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.surnames}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">Dni</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.dni}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">Telefono</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.phone}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">Dirección</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.address}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">address_detail</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.address_detail}}</label>
+            </div>
+            <div class="col-span-6 ">
+              <label class="block text-sm font-medium text-gray-700">notes</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.notes}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">country</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.country}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">zip</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.zip}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">city</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.city}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">province</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.province}}</label>
+
+            </div>
+            <div class="col-span-6 ">
+              <label class="block text-sm font-medium text-gray-700">email</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.email}}</label>
+
+            </div>
+            <div class="py-4 col-span-6">
+              <h3 class="text-lg font-medium leading-6 text-gray-900">Datos del transportista</h3>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">carrier_id</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.carrier_id}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">service</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.service}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">carrier</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.carrier}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">rate_id</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.rate_id}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">rate</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.rate}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">delivery_days</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.delivery_days}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">NewOrderID</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.NewOrderID}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">LabelURL</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.LabelURL}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">status</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.status}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">date</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.date}}</label>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">ref</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.ref}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">track_num</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.track_num}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">weight</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.weight}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">length</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.length}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">width</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.width}}</label>
+
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">height</label>
+              <label class="ml-1 mt-1 block w-full">{{sending.height}}</label>
+
+            </div>
+          </form>
+          <div class="p-4 flex justify-end items-center space-x-2">
+            <button [disabled]="loading" (click)="updateAttribute()" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-orange-600 py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-orange-700 ">
+              <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+              Crear</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div  *ngIf="updateSending && loaded">
+  <div class="mt-10 sm:mt-0" >
+    <div class="flex flex-col">
+      <div class="">
+        <div class="p-4 sm:px-0 flex flex-row justify-between items-center space-x-2">
+          <div class="flex space-x-2">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Editar envio
+            </h3>
+            <svg [(ngModel)]="status" (click)="updateSending=false" class="h-5 w-5 text-gray-500"  viewBox="0 0 24 24" stroke-width="2"
+                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
+              <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+              <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+              <line x1="16" y1="5" x2="19" y2="8" />
+            </svg>
+          </div>
+          <select [(ngModel)]="status"  (change)="updateStatus($event)" class="text-sm bg-transparent  font-semibold
+         py-1 px-4 border  rounded-full  w-36 focus:border-0"
+                  [ngClass]="{
+                  'text-amber-300 border-amber-300': status === 'pending',
+                  'text-orange-300 border-orange-300': status === 'processing',
+                  'text-blue-300 border-blue-300': status === 'shipped',
+                  'text-green-300 border-green-300': status === 'delivered',
+                  'text-gray-300 border-gray-300': status === 'returned',
+                  'text-red-300 border-red-300': status === 'cancelled'
+                  }">
+            <option *ngFor="let value of statuses"
+                    [value]="value.key">
+              {{value.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="mt-5">
+        <div class="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded text-gray-600"  >
+          <form [formGroup]="form" class="block w-full overflow-x-auto p-4 flex justify-between items-center grid grid-cols-6 gap-6">
+            <div class="py-4 col-span-6">
+              <h3 class="text-lg font-medium leading-6 text-gray-900">Datos de la dirección</h3>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">name</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.name.errors }" formControlName="name" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.name.errors" class="invalid-feedback">
+                <div *ngIf="fc.name.errors.required">name is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">surnames</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.surnames.errors }" formControlName="surnames" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.surnames.errors" class="invalid-feedback">
+                <div *ngIf="fc.surnames.errors.required">surnames is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">dni</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.dni.errors }" formControlName="dni" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.dni.errors" class="invalid-feedback">
+                <div *ngIf="fc.dni.errors.required">dni is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">phone</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.phone.errors }" formControlName="phone" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.phone.errors" class="invalid-feedback">
+                <div *ngIf="fc.phone.errors.required">phone is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">address</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.address.errors }" formControlName="address" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.address.errors" class="invalid-feedback">
+                <div *ngIf="fc.address.errors.required">address is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">address_detail</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.address_detail.errors }" formControlName="address_detail" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.address_detail.errors" class="invalid-feedback">
+                <div *ngIf="fc.address_detail.errors.required">address_detail is required</div>
+              </div>
+            </div>
+            <div class="col-span-6 ">
+              <label class="block text-sm font-medium text-gray-700">notes</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.notes.errors }" formControlName="notes" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.notes.errors" class="invalid-feedback">
+                <div *ngIf="fc.notes.errors.required">notes is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">country</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.country.errors }" formControlName="country" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.country.errors" class="invalid-feedback">
+                <div *ngIf="fc.country.errors.required">country is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">zip</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.zip.errors }" formControlName="zip" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.zip.errors" class="invalid-feedback">
+                <div *ngIf="fc.zip.errors.required">zip is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">city</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.city.errors }" formControlName="city" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.city.errors" class="invalid-feedback">
+                <div *ngIf="fc.city.errors.required">city is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">province</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.province.errors }" formControlName="province" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.province.errors" class="invalid-feedback">
+                <div *ngIf="fc.province.errors.required">province is required</div>
+              </div>
+            </div>
+            <div class="col-span-6 ">
+              <label class="block text-sm font-medium text-gray-700">email</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.email.errors }" formControlName="email" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.email.errors" class="invalid-feedback">
+                <div *ngIf="fc.email.errors.required">email is required</div>
+              </div>
+            </div>
+            <div class="py-4 col-span-6">
+              <h3 class="text-lg font-medium leading-6 text-gray-900">Datos del transportista</h3>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">carrier_id</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.carrier_id.errors }" formControlName="carrier_id" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.carrier_id.errors" class="invalid-feedback">
+                <div *ngIf="fc.carrier_id.errors.required">carrier_id is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">service</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.service.errors }" formControlName="service" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.service.errors" class="invalid-feedback">
+                <div *ngIf="fc.service.errors.required">service is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">carrier</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.carrier.errors }" formControlName="carrier" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.carrier.errors" class="invalid-feedback">
+                <div *ngIf="fc.carrier.errors.required">carrier is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">rate_id</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.rate_id.errors }" formControlName="rate_id" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.rate_id.errors" class="invalid-feedback">
+                <div *ngIf="fc.rate_id.errors.required">rate_id is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">rate</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.rate.errors }" formControlName="rate" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.rate.errors" class="invalid-feedback">
+                <div *ngIf="fc.rate.errors.required">rate is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">delivery_days</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.delivery_days.errors }" formControlName="delivery_days" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.delivery_days.errors" class="invalid-feedback">
+                <div *ngIf="fc.delivery_days.errors.required">delivery_days is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">NewOrderID</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.NewOrderID.errors }" formControlName="NewOrderID" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.NewOrderID.errors" class="invalid-feedback">
+                <div *ngIf="fc.NewOrderID.errors.required">NewOrderID is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">LabelURL</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.LabelURL.errors }" formControlName="LabelURL" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.LabelURL.errors" class="invalid-feedback">
+                <div *ngIf="fc.LabelURL.errors.required">LabelURL is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">status</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.status.errors }" formControlName="status" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.status.errors" class="invalid-feedback">
+                <div *ngIf="fc.status.errors.required">status is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">date</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.date.errors }" formControlName="date" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.date.errors" class="invalid-feedback">
+                <div *ngIf="fc.date.errors.required">date is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">ref</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.ref.errors }" formControlName="ref" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.ref.errors" class="invalid-feedback">
+                <div *ngIf="fc.ref.errors.required">ref is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">track_num</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.track_num.errors }" formControlName="track_num" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.track_num.errors" class="invalid-feedback">
+                <div *ngIf="fc.track_num.errors.required">track_num is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">weight</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.weight.errors }" formControlName="weight" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.weight.errors" class="invalid-feedback">
+                <div *ngIf="fc.weight.errors.required">weight is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">length</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.length.errors }" formControlName="length" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.length.errors" class="invalid-feedback">
+                <div *ngIf="fc.length.errors.required">length is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">width</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.width.errors }" formControlName="width" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.width.errors" class="invalid-feedback">
+                <div *ngIf="fc.width.errors.required">width is required</div>
+              </div>
+            </div>
+            <div class="col-span-3 ">
+              <label class="block text-sm font-medium text-gray-700">height</label>
+              <input [ngClass]="{ 'is-invalid': submitted && fc.height.errors }" formControlName="height" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fc.height.errors" class="invalid-feedback">
+                <div *ngIf="fc.height.errors.required">height is required</div>
+              </div>
+            </div>
+          </form>
+          <div class="p-4 flex justify-end items-center space-x-2">
+            <button [disabled]="loading" (click)="update()" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-orange-600 py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-orange-700 ">
+              <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+              Crear</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-alert class="z-50 fixed" (showChange)="show=!show"  [show]="show" [text]="text" [color]="color"></app-alert>
+

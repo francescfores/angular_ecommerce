@@ -15,6 +15,13 @@ export class OrderService {
   constructor(private http: HttpClient) {
   }
 
+  get() {
+    return this.http.get<any>(`${environment.apiUrl}api/order`, {  })
+      .pipe(map(respons => {
+        // store product details and jwt token in local storage to keep product logged in between page refreshes
+        return respons;
+      }));
+  }
   getOrdersPaginated(page) {
     return this.http.get<any>(`${environment.apiUrl}api/order_paginated?page=`+page, {  })
       .pipe(map(respons => {
@@ -40,6 +47,16 @@ export class OrderService {
         return respons;
       }));
   }
+  getOrderByClientPaginated(id, page) {
+    console.log('getorderById');
+    return this.http.get<any>(`${environment.apiUrl}api/client/`+id+`/order_paginated?page=`+page, {  })
+      .pipe(map(respons => {
+        // store order details and jwt token in local storage to keep order logged in between page refreshes
+        console.log(respons);
+        return respons;
+      }));
+  }
+
 
   createOrder2(cart:any) {
     console.log('createorder');
@@ -79,6 +96,14 @@ export class OrderService {
     });
     return this.http.put<any>(`${environment.apiUrl}api/order/${id}`, order, { params } );
   }
+
+  updateStatus(id, status) {
+    let params = new HttpParams();
+    console.log(status)
+    params = params.append('status', status);
+    return this.http.put<any>(`${environment.apiUrl}api/order_update_status/${id}`, status, { params } );
+  }
+
 
   deleteOrder(id) {
     console.log('destroyorder');
