@@ -421,11 +421,13 @@
             <!-- Replace with your content -->
             <div class="rounded-lg lg:h-full">
               <div class="flex items-center pr-2 pb-2 ">
-                <button class="mx-2 bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex
+                <div class="mx-2 bg-gray-200 hover:bg-gray-300 text-grey-darkest font-bold py-2 px-4 rounded inline-flex
                 items-center border rounded-full" *ngFor="let attr of filters.searchFilters[5]?.attributes">
                   <p class="text-sm">{{attr.value}}</p>
-                  <svg class="ml-2 h-3 w-3 text-gray-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>
-                </button>
+                  <button (click)="onAttributeSelected(attr)">
+                    <svg  class="ml-2 h-3 w-3 text-gray-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>
+                  </button>
+                </div>
               </div>
               <div *ngIf="products?.length > 0" class="grid gap-8 grig-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 <!-- Product Item -->

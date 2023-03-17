@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://ctrl-api.test/',
-  //apiUrl: 'https://laravelapi-production.up.railway.app/',
+  //apiUrl: 'http://ctrl-api.test/',
+  apiUrl: 'https://laravelapi-production.up.railway.app/',
   apiEndpoint: 'http://localhost:40151',
   mapbox: {
     accessToken: 'pk.eyJ1IjoiZ29sZGVubWFjZWRldiIsImEiOiJjazBnYnFxb3AwNWdqM2JuNWRwazZxMWY0In0._I3zpcM9QTHNqcXWjWpD6Q',

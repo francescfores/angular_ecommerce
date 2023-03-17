@@ -338,11 +338,16 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
 
   onAttributeSelected(color: any) {
     this.loading=true;
+    console.log(color);
     const index = this.filters.searchFilters[5].attributes.findIndex(c => c.id === color.id);
+    let el = document.querySelector(`input[name='${color.id}']`) as HTMLInputElement;
+
     if (index !== -1) {
       this.filters.searchFilters[5].attributes.splice(index, 1);
+      el.checked = false;
     } else {
       this.filters.searchFilters[5].attributes.push({ id: color.id, value:color.value });
+      el.checked = true;
     }
     console.log(this.filters.searchFilters[5].attributes);
     this.filterProducts();
