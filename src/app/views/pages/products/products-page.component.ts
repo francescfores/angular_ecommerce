@@ -36,21 +36,29 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
       { sizes: [] },
       { attributes: []},
       { name: null},
+      { sort: null},
     ]
   };
   private cart: Cart;
 
   attributes:any;
   attributes_group=[];
+
   private titleFilterCat: any;
   private titleFilterSubCat: any;
   private titleFilterSuperCat: any;
   private product_pg: any;
+  sortfilters=[];
+
   constructor(
     private router: Router,
     private productService: ProductService,
   ) {
     this.cart = new Cart();
+    this.sortfilters=[
+      {id:1,key:'Precio ascendente'},
+      {id:2,key:'Precio desscendente'},
+    ]
     this.getCartFromLocalStorage();
   }
 
@@ -394,4 +402,11 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
 
     this.filterProducts();
   }
+
+  onSortSelected(event) {
+     this.loading=true;
+     console.log(event.target.value);
+    this.filters.searchFilters[7].sort=event.target.value;
+    this.filterProducts();
+    }
 }

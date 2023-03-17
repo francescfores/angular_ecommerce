@@ -3,11 +3,6 @@
     <div class="lg:col-span-2">
       <div >
         <div class="relative">
-          <template x-for="image in images">
-            <div x-show="activeImage === image" class="aspect-w-3 aspect-h-2">
-              <img :src="image" alt="" class="w-auto mx-auto">
-            </div>
-          </template>
           <div x-show="activeImage === image" class="aspect-w-3 aspect-h-2">
           <img :src="image" alt="" class="w-auto mx-auto" src="http://ctrl-api.test/storage/images/{{this.selectedVariation?.img}}">
         </div>
