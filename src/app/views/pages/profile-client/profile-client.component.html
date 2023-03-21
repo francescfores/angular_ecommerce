@@ -1,4 +1,4 @@
-<div class="grid grid-cols-12 gap-4 -mb-20 h-screen">
+<div class="grid grid-cols-12 gap-4 -mb-20 h-auto">
   <ul
     class="h-full bg-white shadow-xl col-span-2  flex list-none flex-col pl-0"
     role="tablist"
@@ -105,7 +105,7 @@
       <nav aria-label="Page navigation example">
         <ul class="flex list-style-none">
           <li class="page-item" *ngFor="let pr of order_pg.links">
-            <a (click)="paginatedOrders(pr.label)" [ngClass]="{
+            <a (click)="paginated(pr.label)" [ngClass]="{
               'bg-primary text-white': order_pg.current_page === pr.label,
               'bg-transparent text-gray-800': order_pg.current_page !== pr.label
               }"

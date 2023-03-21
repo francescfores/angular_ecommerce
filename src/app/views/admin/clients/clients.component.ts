@@ -8,6 +8,7 @@ import {SubCategory} from "../../../models/subcategory";
 import {SuperCategory} from "../../../models/supercategory";
 import {first} from "rxjs/operators";
 import {ClientService} from "../../../services/api/client.service";
+import {SharedService} from "../../../services/api/shared.service";
 
 @Component({
   selector: 'app-clients',
@@ -19,26 +20,12 @@ export class ClientsComponent  implements OnInit {
   constructor(
     private router: Router,
     private clientService: ClientService,
+    private sharedService: SharedService,
   ) {
   }
 
   ngOnInit() {
-    this.clientService.getClientsPaginated(1)
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log(data);
-          console.log(data.clients);
-
-          this.clients= data.clients;
-          this.clients.current_page =data.clients.current_page+'';
-
-          console.log(data);
-        },
-        error => {
-          //this.toastr.error('Invalid request', 'Toastr fun!');
-          // this.loading = false;
-        });
+    this.getPaginated(1)
   }
 
   editProduct(id) {
@@ -49,29 +36,20 @@ export class ClientsComponent  implements OnInit {
 
   }
 
-  paginatedProducts(pr) {
-    Number(this.clients.current_page)
-    if(pr==='Previous'){
-      pr--;
-    }else if(pr==='Next'){
-      pr = Number(this.clients.current_page)
-      if(pr === this.clients.last_page){
-        pr = Number(this.clients.current_page)
-      }else{
-        pr++;
-      }
-    }
-    this.clientService.getClientsPaginated(pr)
+
+  getPaginated(page){
+    this.clientService.getClientsPaginated(page)
       .pipe(first())
       .subscribe(
         data => {
           this.clients = data.clients;
           this.clients.current_page = data.clients.current_page+'';
-          console.log(pr);
-          console.log(this.clients.current_page);
-          console.log(this.clients.current_page===pr);
         },
         error => {
         });
+  }
+  paginated(pr) {
+    this.clients.current_page=this.sharedService.paginated(pr, this.clients);
+    this.getPaginated(pr);
   }
 }

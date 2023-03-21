@@ -1,10 +1,7 @@
 <nav
   class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden
-   shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
->
-  <div
-    class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
-  >
+   shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6" >
+  <div class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto" >
     <!-- Toggler -->
     <button
       class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
@@ -16,10 +13,9 @@
     <!-- Brand -->
     <a
       [routerLink]="['/']"
-      class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-    >
-      <span class="block sm:hidden"> Tailwind Angular </span>
-      <span class="hidden sm:block"> Notus Angular </span>
+      class="md:block text-left text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-2 px-0" >
+      <!--<span class="block sm:hidden"> Tailwind Angular </span>-->
+      <span class="block">Admin</span>
     </a>
     <!-- User -->
     <ul class="md:hidden items-center flex flex-wrap list-none">
@@ -32,7 +28,8 @@
     </ul>
     <!-- Collapse -->
     <div
-      class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded"
+      class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-0 md:shadow-none shadow absolute top-0 left-0 right-0 z-40
+       overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded"
       [ngClass]="collapseShow"
     >
       <!-- Collapse header -->
@@ -45,7 +42,7 @@
               [routerLink]="['/']"
               class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             >
-              Notus Angular
+              Admin
             </a>
           </div>
           <div class="w-6/12 flex justify-end">
@@ -69,23 +66,22 @@
           />
         </div>
       </form>
-
-      <hr class="my-4 md:min-w-full" />
+      <!-- Divider -->
+      <hr class="my-2 md:min-w-full" />
       <!-- Heading -->
-      <!--<h6
-        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-      >
-        Panel de control
-      </h6>-->
+      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        Panel de Control
+      </h6>
+      <!-- Navigation -->
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
-            [routerLink]="['/admin/profile']"
+            [routerLink]="['/admin/dashboard']"
             class="text-xs uppercase py-3 font-bold block"
             routerLinkActive
-            #adminProfile="routerLinkActive"
+            #adminDashboard="routerLinkActive"
             [ngClass]="
-              adminProfile.isActive
+              adminDashboard.isActive
                 ? 'text-red-600 hover:text-red-700'
                 : 'text-blueGray-700 hover:text-blueGray-500'
             "
@@ -93,19 +89,45 @@
             <i
               class="fas fa-tv mr-2 text-sm"
               [ngClass]="
-                adminProfile.isActive ? 'opacity-75' : 'text-blueGray-300'
+                adminDashboard.isActive ? 'opacity-75' : 'text-blueGray-300'
               "
             ></i>
-            Panel de control
+            Dashboard
           </a>
         </li>
-
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/settings']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminSettings="routerLinkActive"
+            [ngClass]="
+              adminSettings.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tools mr-2 text-sm"
+              [ngClass]="
+                adminSettings.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Settings
+          </a>
+        </li>
       </ul>
 
-      <!--<hr class="my-4 md:min-w-full" />
-     <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-       Gestión de Productos
-     </h6>-->
+      <!-- Heading -->
+      <!--<h6
+        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+      >
+        Panel de control
+      </h6>-->
+      <hr class="my-2 md:min-w-full" />
+      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        Gestión de Productos
+      </h6>
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
@@ -172,10 +194,10 @@
         </li>
       </ul>
 
-      <!--<hr class="my-4 md:min-w-full" />
+      <hr class="my-2 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
         Gestión de clientes
-      </h6>-->
+      </h6>
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
@@ -202,10 +224,10 @@
       </ul>
 
 
-      <!--<hr class="my-4 md:min-w-full" />
+      <hr class="my-2 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
         Gestión de pedidos
-      </h6>-->
+      </h6>
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
@@ -230,10 +252,10 @@
         </li>
       </ul>
 
-      <!--<hr class="my-4 md:min-w-full" />
-     <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-       Configuración de envío
-     </h6>-->
+      <hr class="my-2 md:min-w-full" />
+      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        Gestión de envío
+      </h6>
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
@@ -256,9 +278,6 @@
             Envios
           </a>
         </li>
-
-      </ul>
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
             [routerLink]="['/admin/carriers']"
@@ -280,18 +299,17 @@
             Carrier
           </a>
         </li>
-
       </ul>
 
-      <!--<hr class="my-4 md:min-w-full" />
+      <!--<hr class="my-2 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
         Estadísticas
       </h6>-->
 
-      <!--<hr class="my-4 md:min-w-full" />
+      <hr class="my-2 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-       Configuración de pagos
-     </h6>-->
+        Configuración de pagos
+      </h6>
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
@@ -318,7 +336,7 @@
       </ul>
 
 
-      <hr class="my-4 md:min-w-full" />
+      <hr class="my-2 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
         Configuración de impuestos
       </h6>
@@ -348,38 +366,18 @@
       </ul>
 
 
+
       <!-- Divider -->
-      <hr class="my-4 md:min-w-full" />
+      <hr class="my-2 md:min-w-full" />
       <!-- Heading -->
       <h6
         class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
       >
-        Admin Layout Pages
+        Auth Layout Pages
       </h6>
       <!-- Navigation -->
 
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-        <li class="items-center">
-          <a
-            [routerLink]="['/admin/dashboard']"
-            class="text-xs uppercase py-3 font-bold block"
-            routerLinkActive
-            #adminDashboard="routerLinkActive"
-            [ngClass]="
-              adminDashboard.isActive
-                ? 'text-red-600 hover:text-red-700'
-                : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-tv mr-2 text-sm"
-              [ngClass]="
-                adminDashboard.isActive ? 'opacity-75' : 'text-blueGray-300'
-              "
-            ></i>
-            Dashboard
-          </a>
-        </li>
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
         <li class="items-center">
           <a
             [routerLink]="['/admin/products']"
@@ -403,28 +401,6 @@
         </li>
         <li class="items-center">
           <a
-            [routerLink]="['/admin/settings']"
-            class="text-xs uppercase py-3 font-bold block"
-            routerLinkActive
-            #adminSettings="routerLinkActive"
-            [ngClass]="
-              adminSettings.isActive
-                ? 'text-red-600 hover:text-red-700'
-                : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-tools mr-2 text-sm"
-              [ngClass]="
-                adminSettings.isActive ? 'opacity-75' : 'text-blueGray-300'
-              "
-            ></i>
-            Settings
-          </a>
-        </li>
-
-        <li class="items-center">
-          <a
             [routerLink]="['/admin/tables']"
             class="text-xs uppercase py-3 font-bold block"
             routerLinkActive
@@ -444,7 +420,6 @@
             Tables
           </a>
         </li>
-
         <li class="items-center">
           <a
             [routerLink]="['/admin/maps']"
@@ -466,19 +441,6 @@
             Maps
           </a>
         </li>
-      </ul>
-
-      <!-- Divider -->
-      <hr class="my-4 md:min-w-full" />
-      <!-- Heading -->
-      <h6
-        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-      >
-        Auth Layout Pages
-      </h6>
-      <!-- Navigation -->
-
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
         <li class="items-center">
           <a
             [routerLink]="['/auth/login']"
@@ -501,7 +463,7 @@
       </ul>
 
       <!-- Divider -->
-      <hr class="my-4 md:min-w-full" />
+      <hr class="my-2 md:min-w-full" />
       <!-- Heading -->
       <h6
         class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
@@ -533,7 +495,7 @@
       </ul>
 
       <!-- Divider -->
-      <hr class="my-4 md:min-w-full" />
+      <hr class="my-2 md:min-w-full" />
       <!-- Heading -->
       <h6
         class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"

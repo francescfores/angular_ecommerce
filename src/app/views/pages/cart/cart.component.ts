@@ -132,7 +132,11 @@ export class CartComponent implements OnInit, AfterViewInit {
     });
   }
   ngAfterViewInit():void{
-
+    if (this.authenticationService.currentClientValue) {
+      this.client =this.authenticationService.currentClientValue;
+    }else {
+      //this.router.navigate(['/auht/login']);
+    }
   }
   getCartFromLocalStorage() {
 

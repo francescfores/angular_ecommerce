@@ -9,6 +9,7 @@ import {$e} from "codelyzer/angular/styles/chars";
 import {SubCategory} from "../../../models/subcategory";
 import {SuperCategory} from "../../../models/supercategory";
 import {Product} from "../../../models/product";
+import {SharedService} from "../../../services/api/shared.service";
 
 @Component({
   selector: 'app-products',
@@ -66,6 +67,7 @@ export class ProductsComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private formBuilder: UntypedFormBuilder,
+    private sharedService: SharedService,
   ) {
     this.product = new Product();
     this.category = new Category();
@@ -305,31 +307,24 @@ export class ProductsComponent implements OnInit {
   selectSuperCategory($event: any) {
     this.supercategory = this.supercategories.find(x=>x.id===Number($event.target.value));
   }
-  paginatedProducts(pr) {
-    Number(this.product_pg.current_page)
-    if(pr==='Previous'){
-      pr--;
-    }else if(pr==='Next'){
-      pr = Number(this.product_pg.current_page)
-      if(pr === this.product_pg.last_page){
-        pr = Number(this.product_pg.current_page)
-      }else{
-        pr++;
-      }
-    }
-    this.productService.getProductsPaginated(pr)
+  getPaginated(page){
+    this.productService.getProductsPaginated(page)
       .pipe(first())
       .subscribe(
         data => {
           this.product_pg = data.data.product_admin;
           this.product_pg.current_page = data.data.product_admin.current_page+'';
-          console.log(pr);
-          console.log(this.product_pg.current_page);
-          console.log(this.product_pg.current_page===pr);
         },
         error => {
+          //this.toastr.error('Invalid request', 'Toastr fun!');
+          // this.loading = false;
         });
   }
+  paginated(pr) {
+    this.product_pg.current_page=this.sharedService.paginated(pr, this.product_pg);
+    this.getPaginated(pr)
+  }
+
   editProduct(id) {
     console.log(id)
     //this.router.navigate(['/admin/edit-product'],id);

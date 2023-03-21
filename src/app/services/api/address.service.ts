@@ -18,19 +18,11 @@ export class AddressService {
   }
 
   getRates() {
-    return this.http.get<any>(`${environment.apiUrl}api/shippypro/rates`)
-      .pipe(map(respons => {
-        // store category details and jwt token in local storage to keep category logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/shippypro/rates`);
   }
 
   getContries() {
-    return this.http.get<any>(`${environment.apiUrl}api/address/getCountries`)
-      .pipe(map(respons => {
-        // store category details and jwt token in local storage to keep category logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/address/getCountries`);
   }
 
 
@@ -39,10 +31,6 @@ export class AddressService {
     Object.keys(category).forEach(key => {
       params = params.append(key, category[key]);
     });
-    return this.http.post<any>(`${environment.apiUrl}api/shippypro/valid_address`, params)
-      .pipe(map(respons => {
-        // store category respons and jwt token in local storage to keep category logged in between page refreshes
-        return respons;
-      }));
+    return this.http.post<any>(`${environment.apiUrl}api/shippypro/valid_address`, params);
   }
 }

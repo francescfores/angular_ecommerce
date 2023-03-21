@@ -19,20 +19,11 @@ export class PaymentService {
   }
 
   getPaymentsPaginated(page) {
-    return this.http.get<any>(`${environment.apiUrl}api/`+this.entity+`_paginated?page=`+page, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/`+this.entity+`_paginated?page=`+page, {  });
   }
   getPaymentById(id) {
     console.log('getclientById');
-    return this.http.get<any>(`${environment.apiUrl}api/`+this.entity+`/${id}`, { params: id })
-      .pipe(map(respons => {
-        // store client details and jwt token in local storage to keep client logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/`+this.entity+`/${id}`, { params: id });
   }
   updatePayment(id, attribute: Payment) {
     let params = new HttpParams();

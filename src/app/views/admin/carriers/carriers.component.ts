@@ -6,6 +6,7 @@ import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {CarrierService} from "../../../services/api/carrier.service";
 import {Carrier} from "../../../models/carrier";
 import {Category} from "../../../models/category";
+import {SharedService} from "../../../services/api/shared.service";
 
 @Component({
   selector: 'app-carriers',
@@ -30,6 +31,7 @@ export class CarriersComponent implements OnInit {
     private router: Router,
     private carrierService: CarrierService,
     private formBuilder: UntypedFormBuilder,
+    private sharedService: SharedService,
   ){
     this.carrier = new Carrier();
     this.registerForm = this.formBuilder.group({
@@ -43,12 +45,12 @@ export class CarriersComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.getCarriersPaginated(1)
+    this.getPaginated(1)
   }
   get f() {
     return this.registerForm.controls;
   }
-  getCarriersPaginated(page){
+  getPaginated(page){
     this.carrierService.getCarriersPaginated(page)
       .pipe(first())
       .subscribe(
@@ -59,19 +61,10 @@ export class CarriersComponent implements OnInit {
         error => {
         });
   }
-  paginatedCarriers(pr) {
-    Number(this.carriers_pg.current_page)
-    if(pr==='Previous'){
-      pr--;
-    }else if(pr==='Next'){
-      pr = Number(this.carriers_pg.current_page)
-      if(pr === this.carriers_pg.last_page){
-        pr = Number(this.carriers_pg.current_page)
-      }else{
-        pr++;
-      }
-    }
-    this.getCarriersPaginated(pr)
+
+  paginated(pr) {
+    this.carriers_pg.current_page=this.sharedService.paginated(pr, this.carriers_pg);
+    this.getPaginated(pr)
   }
 
   create() {
@@ -123,7 +116,7 @@ export class CarriersComponent implements OnInit {
       .pipe(first())
       .subscribe(
         res => {
-          this.getCarriersPaginated(this.carriers_pg.current_pager)
+          this.getPaginated(this.carriers_pg.current_pager)
         },
         error => {
           // this.loading = false;

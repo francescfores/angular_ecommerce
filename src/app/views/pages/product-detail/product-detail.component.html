@@ -1,26 +1,19 @@
 <div class="mx-auto w-full p-20 bg-white">
   <div class="grid gap-6 grid-cols-1 lg:grid-cols-5">
     <div class="lg:col-span-2">
-      <div >
-        <div class="relative">
-          <div x-show="activeImage === image" class="aspect-w-3 aspect-h-2">
-          <img :src="image" alt="" class="w-auto mx-auto" src="http://ctrl-api.test/storage/images/{{this.selectedVariation?.img}}">
-        </div>
-          <!--  <div x-show="activeImage === image" class="aspect-w-3 aspect-h-2" style="display: none;">
-           <img :src="image" alt="" class="w-auto mx-auto" src="img/1_2.jpg">
-         </div>
-           <div x-show="activeImage === image" class="aspect-w-3 aspect-h-2" style="display: none;">
-           <img :src="image" alt="" class="w-auto mx-auto" src="img/1_3.jpg">
-         </div>
-           <div x-show="activeImage === image" class="aspect-w-3 aspect-h-2" style="display: none;">
-           <img :src="image" alt="" class="w-auto mx-auto" src="img/1_4.jpg">
-         </div> -->
-           <a  class="cursor-pointer bg-black/30 text-white absolute left-0 top-1/2 -translate-y-1/2">
+      <div *ngIf="loaded">
+        <div class="relative" >
+          <div class="aspect-w-3 aspect-h-4" >
+            <div *ngFor="let image of images; let i = index" class="flex items-center">
+              <img  alt="" class="w-auto mx-auto" src="http://ctrl-api.test/storage/images/{{image.path}}" [ngClass]="{'hidden display': i!==selectedImage}" >
+            </div>
+          </div>
+           <a (click)="selectetPreviousImage()" class="cursor-pointer bg-black/30 text-white absolute left-0 top-1/2 -translate-y-1/2">
              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
              </svg>
            </a>
-           <a class="cursor-pointer bg-black/30 text-white absolute right-0 top-1/2 -translate-y-1/2">
+           <a (click)="selectetNextImage()" class="cursor-pointer bg-black/30 text-white absolute right-0 top-1/2 -translate-y-1/2">
              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
              </svg>

@@ -312,7 +312,7 @@
         <nav aria-label="Page navigation example">
           <ul class="flex list-style-none">
             <li class="page-item" *ngFor="let pr of attributes_pg.links">
-              <a (click)="paginatedAttributes(pr.label)" [ngClass]="{
+              <a (click)="paginated(pr.label)" [ngClass]="{
               'bg-primary text-white': attributes_pg.current_page === pr.label,
               'bg-transparent text-gray-800': attributes_pg.current_page !== pr.label
               }"

@@ -18,11 +18,7 @@ export class CategoryService {
   }
 
   getCategorysPaginated(page) {
-    return this.http.get<any>(`${environment.apiUrl}api/category_paginated?page=`+page, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/category_paginated?page=`+page, {  });
   }
   getSubCategorysPaginated(page) {
     return this.http.get<any>(`${environment.apiUrl}api/subcategory_paginated?page=`+page, {  })
@@ -32,53 +28,26 @@ export class CategoryService {
       }));
   }
   getSubCategorysByCategoryPaginated(page,id) {
-    return this.http.get<any>(`${environment.apiUrl}api/category/${id}/subcategory_paginated?page=`+page, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/category/${id}/subcategory_paginated?page=`+page, {  });
   }
   getSuperCategorysPaginated(page) {
-    return this.http.get<any>(`${environment.apiUrl}api/supercategory_paginated?page=`+page, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/supercategory_paginated?page=`+page, {  });
   }
   getSuperCategorysBySubCategoryPaginated(page,id) {
-    return this.http.get<any>(`${environment.apiUrl}api/subcategory/${id}/supercategory_paginated?page=`+page, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/subcategory/${id}/supercategory_paginated?page=`+page, {  });
   }
   getCategoryById(id) {
     console.log('getcategoryById');
-    return this.http.get<any>(`${environment.apiUrl}api/product_category/${id}`, { params: id })
-      .pipe(map(respons => {
-        // store category details and jwt token in local storage to keep category logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/product_category/${id}`, { params: id });
   }
 
   getSubcategoryById(id) {
     console.log('getcategoryById');
-    return this.http.get<any>(`${environment.apiUrl}api/product_subcategory/${id}`, { params: id })
-      .pipe(map(respons => {
-        // store category details and jwt token in local storage to keep category logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/product_subcategory/${id}`, { params: id });
   }
   getSupercategoryById(id) {
     console.log('getcategoryById');
-    return this.http.get<any>(`${environment.apiUrl}api/product_supercategory/${id}`, { params: id })
-      .pipe(map(respons => {
-        // store category details and jwt token in local storage to keep category logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/product_supercategory/${id}`, { params: id });
   }
 
   createCategory2(category: Category) {
@@ -87,12 +56,7 @@ export class CategoryService {
     Object.keys(category).forEach(key => {
       params = params.append(key, category[key]);
     });
-    return this.http.post<any>(`${environment.apiUrl}api/category`, params)
-      .pipe(map(respons => {
-        // store category respons and jwt token in local storage to keep category logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
+    return this.http.post<any>(`${environment.apiUrl}api/category`, params);
   }
   createCategory(category: Category) {
     const params = new FormData();
@@ -109,12 +73,7 @@ export class CategoryService {
 
       }
     });
-    return this.http.post<any>(`${environment.apiUrl}api/product_category`,  params )
-      .pipe(map(data => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        console.log(data);
-        return data;
-      }));
+    return this.http.post<any>(`${environment.apiUrl}api/product_category`,  params );
   }
   createSubcategory(subcategory: SubCategory, id) {
     const params = new FormData();
@@ -131,12 +90,7 @@ export class CategoryService {
     });
     params.append('category_id', id);
 
-    return this.http.post<any>(`${environment.apiUrl}api/product_subcategory`,  params )
-      .pipe(map(data => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        console.log(data);
-        return data;
-      }));
+    return this.http.post<any>(`${environment.apiUrl}api/product_subcategory`,  params );
   }
   createSupercategory(subcategory: SuperCategory, id) {
     const params = new FormData();
@@ -153,12 +107,7 @@ export class CategoryService {
     });
     params.append('subcategory_id', id);
 
-    return this.http.post<any>(`${environment.apiUrl}api/product_supercategory`,  params )
-      .pipe(map(data => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        console.log(data);
-        return data;
-      }));
+    return this.http.post<any>(`${environment.apiUrl}api/product_supercategory`,  params );
   }
 
   updateCategory(id, category: Category) {

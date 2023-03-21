@@ -188,9 +188,7 @@
               <div>
                 <div class="dropdown relative">
 
-                  <select (change)="onSortSelected($event)" class="text-sm bg-transparent  font-semibold
-         py-1 px-4 border  rounded-full  w-36 focus:border-0"
-                         >
+                  <select (change)="onSortSelected($event)" class="text-sm bg-transparent  font-semibold py-1 px-8 border  rounded-full  w-auto focus:border-0" >
                     <option *ngFor="let value of sortfilters"
                             [value]="value.id">
                       {{value.key}}

@@ -15,6 +15,7 @@ export class ProductDetailComponent implements OnInit {
   private valid: boolean;
   private addedCart=false;
   private variation: any;
+  private loaded=false;
 
   constructor(
     private router: Router,
@@ -37,8 +38,8 @@ export class ProductDetailComponent implements OnInit {
   selectedAttributes: any;
   selected_attributes = {}; // Objeto para almacenar los atributos seleccionados por el usuario
   selectedVariation=null;
-
-
+  images:any;
+  selectedImage=0;
   getCartFromLocalStorage() {
 
     const cart = localStorage.getItem('cart');
@@ -49,32 +50,11 @@ export class ProductDetailComponent implements OnInit {
     console.log(this.cart)
   }
 
+
   saveCartToLocalStorage() {
     console.log('saveCartToLocalStorage')
     console.log(this.cart)
     localStorage.setItem('cart', JSON.stringify(this.cart));
-  }
-
-
-  getProductToCart() {
-    console.log('getProductToCart--------------')
-    console.log(this.id_variation)
-    console.log(this.cart.products.filter(x=>x.id === Number(this.selectedVariation.id)))
-    const products =this.cart.products.filter(x=>x.id === Number(this.selectedVariation.id));
-    let total=0;
-    let count=0;
-    if(products.length>0){
-      this.addedCart=true;
-    }else {
-      this.addedCart=false;
-    }
-    products.forEach(value => {
-      const price = parseFloat(parseFloat(value.price.replace(',', '.')).toFixed(2));
-      total= parseFloat((price + total).toFixed(2));
-      count++;
-    });
-    this.selectedVariation.total=total;
-    this.selectedVariation.count=count;
   }
 
   ngOnInit() {
@@ -114,6 +94,13 @@ export class ProductDetailComponent implements OnInit {
             this.selectedOptions[atributo.name]=this.attributes_group[atributo.name].find(x=>x.id===atributo.id).id;
             this.selectAttribute(atributo.id);
           });
+          this.images=[
+            {id:1, path:this.selectedVariation?.img},
+            {id:2, path:this.selectedVariation?.img},
+            {id:3, path:this.selectedVariation?.img},
+            {id:4, path:this.selectedVariation?.img}
+          ]
+          this.loaded=true;
         },
         error => {
         });
@@ -223,5 +210,19 @@ export class ProductDetailComponent implements OnInit {
 
     this.getVariaitonById();
 
+  }
+
+  selectetNextImage() {
+    console.log(this.selectedImage)
+    if(this.images.length-1>this.selectedImage){
+      this.selectedImage++;
+    }
+  }
+
+  selectetPreviousImage() {
+    console.log(this.selectedImage)
+    if(0<this.selectedImage){
+      this.selectedImage--;
+    }
   }
 }

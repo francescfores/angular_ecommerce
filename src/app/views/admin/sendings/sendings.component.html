@@ -11,7 +11,7 @@
       >
         <div class="block w-full overflow-x-auto">
           <!-- Projects table -->
-          <table *ngIf="clients" class="items-center w-full bg-transparent border-collapse">
+          <table *ngIf="sendings" class="items-center w-full bg-transparent border-collapse">
             <thead>
             <tr>
               <th
@@ -45,7 +45,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let pr of clients.data">
+            <tr *ngFor="let pr of sendings.data">
               <th
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
               >
@@ -84,13 +84,13 @@
           </table>
         </div>
       </div>
-      <div *ngIf="clients" class="flex justify-center">
+      <div *ngIf="sendings" class="flex justify-center">
         <nav aria-label="Page navigation example">
           <ul class="flex list-style-none">
-            <li class="page-item" *ngFor="let pr of clients.links">
-              <a (click)="paginatedProducts(pr.label)" [ngClass]="{
-              'bg-primary text-white': clients.current_page === pr.label,
-              'bg-transparent text-gray-800': clients.current_page !== pr.label
+            <li class="page-item" *ngFor="let pr of sendings.links">
+              <a (click)="paginated(pr.label)" [ngClass]="{
+              'bg-primary text-white': sendings.current_page === pr.label,
+              'bg-transparent text-gray-800': sendings.current_page !== pr.label
               }"
                  class="page-link relative block py-1.5 px-3 rounded border-0
               outline-none transition-all

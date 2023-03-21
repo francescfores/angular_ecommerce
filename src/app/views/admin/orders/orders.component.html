@@ -111,7 +111,7 @@
         <nav aria-label="Page navigation example">
           <ul class="flex list-style-none">
             <li class="page-item" *ngFor="let pr of orders.links">
-              <a (click)="paginatedProducts(pr.label)" [ngClass]="{
+              <a (click)="paginated(pr.label)" [ngClass]="{
               'bg-primary text-white': orders.current_page === pr.label,
               'bg-transparent text-gray-800': orders.current_page !== pr.label
               }"

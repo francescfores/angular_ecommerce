@@ -6,6 +6,7 @@ import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {AttributeService} from "../../../services/api/attribute.service";
 import {Attribute} from "../../../models/attribute";
 import {Category} from "../../../models/category";
+import {SharedService} from "../../../services/api/shared.service";
 
 @Component({
   selector: 'app-attributes',
@@ -30,6 +31,7 @@ export class AttributesComponent implements OnInit {
     private router: Router,
     private attributeService: AttributeService,
     private formBuilder: UntypedFormBuilder,
+    private sharedService: SharedService,
   ){
     this.attribute = new Attribute();
     this.registerForm = this.formBuilder.group({
@@ -41,13 +43,13 @@ export class AttributesComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.getAttributesPaginated(1)
+    this.getPaginated(1)
   }
   get f() {
     return this.registerForm.controls;
   }
-  getAttributesPaginated(page){
-    this.attributeService.getAttributesPaginated(page)
+  getPaginated(page){
+    this.attributeService.getPaginated(page)
       .pipe(first())
       .subscribe(
         data => {
@@ -57,19 +59,9 @@ export class AttributesComponent implements OnInit {
         error => {
         });
   }
-  paginatedAttributes(pr) {
-    Number(this.attributes_pg.current_page)
-    if(pr==='Previous'){
-      pr--;
-    }else if(pr==='Next'){
-      pr = Number(this.attributes_pg.current_page)
-      if(pr === this.attributes_pg.last_page){
-        pr = Number(this.attributes_pg.current_page)
-      }else{
-        pr++;
-      }
-    }
-    this.getAttributesPaginated(pr)
+  paginated(pr) {
+    this.attributes_pg.current_page=this.sharedService.paginated(pr, this.attributes_pg);
+    this.getPaginated(pr)
   }
 
   create() {
@@ -77,14 +69,12 @@ export class AttributesComponent implements OnInit {
     this.text='esperando el servior creado'
     this.color='info'
     this.show=true;
-    //this.loading = true;
     if (this.registerForm.valid){
       this.loading = true;
       this.attribute.name = this.f.name.value;
       this.attribute.value = this.f.value.value;
       this.attribute.desc = this.f.desc.value;
       this.attribute.img = this.selectedFile;
-      console.log('valid');
 
       this.attributeService.createAttribute(this.attribute)
         .pipe(first())
@@ -94,21 +84,17 @@ export class AttributesComponent implements OnInit {
             this.color='success'
             this.submitted = false;
             this.loading = false;
-            console.log(res.data);
           },
           error => {
             this.loading = false;
           });
     } else {
-      console.log('invalid');
       this.show=true;
       this.text='Formulario invalido'
       this.color='danger'
     }
   }
   editAttribute(id) {
-    console.log(id)
-    //this.router.navigate(['/admin/edit-category'],id);
     this.router.navigate(
       ['/admin/edit-attribute'],
       { queryParams: { id } }
@@ -119,7 +105,7 @@ export class AttributesComponent implements OnInit {
       .pipe(first())
       .subscribe(
         res => {
-          this.getAttributesPaginated(this.attributes_pg.current_pager)
+          this.getPaginated(this.attributes_pg.current_pager)
         },
         error => {
           // this.loading = false;

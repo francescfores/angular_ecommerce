@@ -93,7 +93,7 @@ export class AuthenticationService {
   logout() {
     console.log('logout');
     // remove user from local storage and set current user to null
-    // localStorage.removeItem('currentClient');
+    localStorage.removeItem('currentClient');
     localStorage.clear();
     // if ( this.currentClientSubject.value.businesses.length > 0 ) {
     //   localStorage.removeItem('business');

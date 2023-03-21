@@ -166,7 +166,7 @@
     symbol-observable "4.0.0"
     yargs "17.6.2"
 
-"@angular/common@>= 15.0.0", "@angular/common@>=15.0.0", "@angular/common@>=15.0.0 <16.0.0", "@angular/common@15.1.1":
+"@angular/common@>= 15.0.0", "@angular/common@>=14.0.0-0", "@angular/common@>=15.0.0", "@angular/common@>=15.0.0 <16.0.0", "@angular/common@15.1.1":
   version "15.1.1"
   resolved "https://registry.npmjs.org/@angular/common/-/common-15.1.1.tgz"
   integrity sha512-P4f2rK/YBQQT4clQrcQ9goLf53RS63Q1x2d1dvz7Syr3gcOUyxO7NZQ7Au5afzvbIKZ5Okd+X0+TCGV4q9wQjw==
@@ -201,7 +201,7 @@
   resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-9.0.0.tgz"
   integrity sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==
 
-"@angular/core@>= 15.0.0", "@angular/core@>=15.0.0", "@angular/core@>=15.0.0 <16.0.0", "@angular/core@15.1.1":
+"@angular/core@>= 15.0.0", "@angular/core@>=14.0.0-0", "@angular/core@>=15.0.0", "@angular/core@>=15.0.0 <16.0.0", "@angular/core@15.1.1":
   version "15.1.1"
   resolved "https://registry.npmjs.org/@angular/core/-/core-15.1.1.tgz"
   integrity sha512-nsz+IXdkQanAGhqA2vcwTrGGyw5zIm3TgtYQ/JqK185qkmlhsQfSRvdSPsFPhmIFYp9ngZVUbkhY3D4P3gDzIg==
@@ -232,7 +232,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/platform-browser@15.1.1":
+"@angular/platform-browser@>=14.0.0-0", "@angular/platform-browser@15.1.1":
   version "15.1.1"
   resolved "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-15.1.1.tgz"
   integrity sha512-U1MXowvyigmMpffsnMQI6e9gX7tA6Su7unY0pjN5u9wRYJIkEbKuFyVijguQ83bt+JK3ZBHXD0dvskYnscGUzg==
@@ -5339,6 +5339,13 @@ ngx-stripe@^15.4.4:
   version "15.4.4"
   resolved "https://registry.npmjs.org/ngx-stripe/-/ngx-stripe-15.4.4.tgz"
   integrity sha512-Y8GOabTj3jYS8abuFuq5Bhp2v6bw1mHUQjwnV7JvujCKPz1uqGtMnm8ZftfPOGcFB6iSf73WQytKEzPa+MtTow==
+  dependencies:
+    tslib "^2.3.0"
+
+ngx-toastr@^16.1.0:
+  version "16.1.0"
+  resolved "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-16.1.0.tgz"
+  integrity sha512-jMnkauggRE8264vR4NtOgK3QI7zmufO3Z7wrkg3j7A7ZVpkCKDXgklsAZM9aiHxDyttM2K+Na6a6L004uPeRKA==
   dependencies:
     tslib "^2.3.0"
 

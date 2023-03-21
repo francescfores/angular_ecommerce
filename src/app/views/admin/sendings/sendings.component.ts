@@ -4,6 +4,7 @@ import {ClientService} from "../../../services/api/client.service";
 import {first} from "rxjs/operators";
 import {SendingService} from "../../../services/api/sending.service";
 import {UntypedFormGroup} from "@angular/forms";
+import {SharedService} from "../../../services/api/shared.service";
 
 @Component({
   selector: 'app-sendings',
@@ -11,7 +12,7 @@ import {UntypedFormGroup} from "@angular/forms";
   styleUrls: ['./sendings.component.css']
 })
 export class SendingsComponent  implements OnInit {
-  clients=null;
+  sendings=null;
   //alert
   text: any;
   color: any;
@@ -20,27 +21,14 @@ export class SendingsComponent  implements OnInit {
 
   constructor(
     private router: Router,
-    private clientService: SendingService,
+    private sendingService: SendingService,
+    private sharedService: SharedService,
+
   ) {
   }
 
   ngOnInit() {
-    this.clientService.getSendingsPaginated(1)
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log(data);
-          console.log(data.sendings);
-
-          this.clients= data.sendings;
-          this.clients.current_page =data.sendings.current_page+'';
-
-          console.log(data);
-        },
-        error => {
-          //this.toastr.error('Invalid request', 'Toastr fun!');
-          // this.loading = false;
-        });
+    this.getPaginated(1);
   }
 
   editProduct(id) {
@@ -53,7 +41,7 @@ export class SendingsComponent  implements OnInit {
   }
 
   deleteProduct(id) {
-    this.clientService.deleteSending(id)
+    this.sendingService.deleteSending(id)
       .pipe(first())
       .subscribe(
         data => {
@@ -64,29 +52,20 @@ export class SendingsComponent  implements OnInit {
         });
   }
 
-  paginatedProducts(pr) {
-    Number(this.clients.current_page)
-    if(pr==='Previous'){
-      pr--;
-    }else if(pr==='Next'){
-      pr = Number(this.clients.current_page)
-      if(pr === this.clients.last_page){
-        pr = Number(this.clients.current_page)
-      }else{
-        pr++;
-      }
-    }
-    this.clientService.getSendingsPaginated(pr)
+
+  getPaginated(page){
+    this.sendingService.getSendingsPaginated(page)
       .pipe(first())
       .subscribe(
         data => {
-          this.clients = data.sendings;
-          this.clients.current_page = data.sendings.current_page+'';
-          console.log(pr);
-          console.log(this.clients.current_page);
-          console.log(this.clients.current_page===pr);
+          this.sendings = data.sendings;
+          this.sendings.current_page = data.sendings.current_page+'';
         },
         error => {
         });
+  }
+  paginated(pr) {
+    this.sendings.current_page=this.sharedService.paginated(pr, this.sendings);
+    this.getPaginated(pr)
   }
 }

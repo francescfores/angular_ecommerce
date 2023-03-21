@@ -15,20 +15,11 @@ export class ClientService {
   }
 
   getClientsPaginated(page) {
-    return this.http.get<any>(`${environment.apiUrl}api/client_paginated?page=`+page, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/client_paginated?page=`+page, {  });
   }
   getClientById(id) {
     console.log('getclientById');
-    return this.http.get<any>(`${environment.apiUrl}api/client/${id}`, { params: id })
-      .pipe(map(respons => {
-        // store client details and jwt token in local storage to keep client logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/client/${id}`, { params: id });
   }
 
   createClient(client: Client) {
@@ -37,12 +28,7 @@ export class ClientService {
     Object.keys(client).forEach(key => {
       params = params.append(key, client[key]);
     });
-    return this.http.post<any>(`${environment.apiUrl}api/client`, params)
-      .pipe(map(respons => {
-        // store client respons and jwt token in local storage to keep client logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
+    return this.http.post<any>(`${environment.apiUrl}api/client`, params);
   }
 
   updateClient(id, client: Client) {

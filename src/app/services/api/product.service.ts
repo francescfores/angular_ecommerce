@@ -15,11 +15,7 @@ export class ProductService {
   }
 
   getProducts() {
-    return this.http.get<any>(`${environment.apiUrl}api/product`, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/product`, {  });
   }
 
   getProductsPaginated(page) {

@@ -17,28 +17,15 @@ export class CarrierService {
   }
 
   getCarriers() {
-    return this.http.get<any>(`${environment.apiUrl}api/carrier`, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/carrier`, {  });
   }
 
   getCarriersPaginated(page) {
-    return this.http.get<any>(`${environment.apiUrl}api/carrier_paginated?page=`+page, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/carrier_paginated?page=`+page, {  });
   }
   getCarrierById(id) {
     console.log('getclientById');
-    return this.http.get<any>(`${environment.apiUrl}api/carrier/${id}`, { params: id })
-      .pipe(map(respons => {
-        // store client details and jwt token in local storage to keep client logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/carrier/${id}`, { params: id });
   }
 
   createCarrier(carrier: Carrier) {
@@ -51,12 +38,7 @@ export class CarrierService {
         params.append(key, carrier[key]);
       }
     });
-    return this.http.post<any>(`${environment.apiUrl}api/carrier`,  params )
-      .pipe(map(data => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        console.log(data);
-        return data;
-      }));
+    return this.http.post<any>(`${environment.apiUrl}api/carrier`,  params );
   }
   updateCarrier(id, carrier: Carrier) {
     let params = new HttpParams();

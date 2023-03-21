@@ -16,20 +16,11 @@ export class SendingService {
   }
 
   getSendingsPaginated(page) {
-    return this.http.get<any>(`${environment.apiUrl}api/sending_paginated?page=`+page, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/sending_paginated?page=`+page, {  });
   }
   getSendingById(id) {
     console.log('getclientById');
-    return this.http.get<any>(`${environment.apiUrl}api/sending/${id}`, { params: id })
-      .pipe(map(respons => {
-        // store client details and jwt token in local storage to keep client logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/sending/${id}`, { params: id });
   }
 
   updateSending(id, client: Sending) {

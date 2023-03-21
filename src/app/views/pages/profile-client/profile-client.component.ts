@@ -10,6 +10,7 @@ import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Attribute} from "../../../models/attribute";
 import {Client} from "../../../models/client";
 import {ClientService} from "../../../services/api/client.service";
+import {SharedService} from "../../../services/api/shared.service";
 
 @Component({
   selector: 'app-profile-client',
@@ -38,6 +39,7 @@ export class ProfileClientComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private paypal: NgxPayPalModule,
     private orderService: OrderService,
+    private sharedService: SharedService,
     private clientService: ClientService,
   ) {
     this.client = new Client();
@@ -173,31 +175,17 @@ export class ProfileClientComponent implements OnInit {
     }
   }
 
-  paginatedOrders(pr) {
-    Number(this.order_pg.current_page)
-    if(pr==='Previous'){
-      pr--;
-    }else if(pr==='Next'){
-      pr = Number(this.order_pg.current_page)
-      if(pr === this.order_pg.last_page){
-        pr = Number(this.order_pg.current_page)
-      }else{
-        pr++;
-      }
-    }
-    this.order_pg.current_page=pr;
-
-    this.orderService.getOrderByClientPaginated(this.client.id,this.order_pg.current_page)
+  paginated(pr) {
+    this.order_pg.current_page=this.sharedService.paginated(pr, this.order_pg);
+    this.orderService.getOrderByClientPaginated(this.client.id, this.order_pg.current_page)
       .pipe(first())
       .subscribe(
         res => {
           this.orders = res.order_pg.data;
           this.order_pg = res.order_pg;
-          this.order_pg.current_page = this.order_pg.current_page+'';
+          this.order_pg.current_page = this.order_pg.current_page + '';
         },
         error => {
         });
-
   }
-
 }

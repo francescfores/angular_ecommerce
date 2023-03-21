@@ -17,59 +17,26 @@ export class OrderService {
 
   get() {
     return this.http.get<any>(`${environment.apiUrl}api/order`, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
   }
-  getOrdersPaginated(page) {
+  getPaginated(page) {
     return this.http.get<any>(`${environment.apiUrl}api/order_paginated?page=`+page, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
   }
   getOrderById(id) {
-    console.log('getorderById');
     return this.http.get<any>(`${environment.apiUrl}api/order/${id}`, { params: id })
-      .pipe(map(respons => {
-        // store order details and jwt token in local storage to keep order logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
   }
   getOrderByClient(id) {
-    console.log('getorderById');
     return this.http.get<any>(`${environment.apiUrl}api/order/client/${id}`, { params: id })
-      .pipe(map(respons => {
-        // store order details and jwt token in local storage to keep order logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
   }
   getOrderByClientPaginated(id, page) {
-    console.log('getorderById');
-    return this.http.get<any>(`${environment.apiUrl}api/client/`+id+`/order_paginated?page=`+page, {  })
-      .pipe(map(respons => {
-        // store order details and jwt token in local storage to keep order logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/client/${id}/order_paginated?page=${page}`)
   }
 
-
   createOrder2(cart:any) {
-    console.log('createorder');
     let params = new HttpParams();
     Object.keys(cart).forEach(key => {
       params = params.append(key, cart[key]);
     });
     return this.http.post<any>(`${environment.apiUrl}api/order`, params)
-      .pipe(map(respons => {
-        // store order respons and jwt token in local storage to keep order logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
   }
 
   createOrder(cart: any, clientId:any) {
@@ -78,17 +45,14 @@ export class OrderService {
     };
     return this.http.post(`${environment.apiUrl}api/order`, {cart:cart,client_id:clientId}, httpOptions);
   }
+
   paymentIntent(data: any) {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     return this.http.post<any>(`${environment.apiUrl}/payment-intent`, data, httpOptions)
-      .pipe(map(respons => {
-        // store order respons and jwt token in local storage to keep order logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
   }
+
   updateOrder(id, order: Order) {
     let params = new HttpParams();
     Object.keys(order).forEach(key => {
@@ -99,14 +63,12 @@ export class OrderService {
 
   updateStatus(id, status) {
     let params = new HttpParams();
-    console.log(status)
     params = params.append('status', status);
     return this.http.put<any>(`${environment.apiUrl}api/order_update_status/${id}`, status, { params } );
   }
 
 
   deleteOrder(id) {
-    console.log('destroyorder');
     return this.http.delete<any>(`${environment.apiUrl}api/order/${id}`, { params: id });
   }
 

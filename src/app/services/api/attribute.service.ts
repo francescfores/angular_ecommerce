@@ -16,21 +16,12 @@ export class AttributeService {
   constructor(private http: HttpClient) {
   }
 
-  getAttributesPaginated(page) {
-    return this.http.get<any>(`${environment.apiUrl}api/attribute_paginated?page=`+page, {  })
-      .pipe(map(respons => {
-        // store product details and jwt token in local storage to keep product logged in between page refreshes
-        return respons;
-      }));
+  getPaginated(page) {
+    return this.http.get<any>(`${environment.apiUrl}api/attribute_paginated?page=`+page, {  });
   }
   getAttributeById(id) {
     console.log('getclientById');
-    return this.http.get<any>(`${environment.apiUrl}api/attribute/${id}`, { params: id })
-      .pipe(map(respons => {
-        // store client details and jwt token in local storage to keep client logged in between page refreshes
-        console.log(respons);
-        return respons;
-      }));
+    return this.http.get<any>(`${environment.apiUrl}api/attribute/${id}`, { params: id });
   }
 
   createAttribute(attribute: Attribute) {
@@ -43,12 +34,7 @@ export class AttributeService {
         params.append(key, attribute[key]);
       }
     });
-    return this.http.post<any>(`${environment.apiUrl}api/attribute`,  params )
-      .pipe(map(data => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        console.log(data);
-        return data;
-      }));
+    return this.http.post<any>(`${environment.apiUrl}api/attribute`,  params );
   }
   updateAttribute(id, attribute: Attribute) {
     let params = new HttpParams();

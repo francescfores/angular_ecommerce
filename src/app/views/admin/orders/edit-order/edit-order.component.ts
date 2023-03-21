@@ -73,17 +73,18 @@ export class EditOrderComponent implements OnInit{
   updateStatus($event: any) {
     this.orderService.updateStatus(this.id,$event.target.value)
       .pipe(first())
-      .subscribe(
-        data => {
+      .subscribe(  {
+        next: data => {
           console.log(data)
           this.order = data.data;
           this.order.total = Number(this.order.total);
-          this.sub_total = Number(this.order.total)+Number(this.order.sending.carrier.rate)
-          this.status=this.order.status;
-          this.loaded=true;
+          this.sub_total = Number(this.order.total) + Number(this.order.sending.carrier.rate)
+          this.status = this.order.status;
+          this.loaded = true;
         },
-        error => {
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
 
   editSending() {
