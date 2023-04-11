@@ -4,7 +4,7 @@ import {map} from 'rxjs/operators';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable, pipe} from 'rxjs';
 import { Order } from '../../models/order';
-import {Product} from "../../models/product";
+import {Product} from '../../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,13 @@ export class OrderService {
   getOrderByClientPaginated(id, page) {
     return this.http.get<any>(`${environment.apiUrl}api/client/${id}/order_paginated?page=${page}`)
   }
+  getBetweenDate(date_start,date_end) {
+    let params = new HttpParams();
+    params = params.append('date_start', date_start);
+    params = params.append('date_end', date_end);
 
+    return this.http.post<any>(`${environment.apiUrl}api/order_between_date`, params)
+  }
   createOrder2(cart:any) {
     let params = new HttpParams();
     Object.keys(cart).forEach(key => {
@@ -43,7 +49,7 @@ export class OrderService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.post(`${environment.apiUrl}api/order`, {cart:cart,client_id:clientId}, httpOptions);
+    return this.http.post(`${environment.apiUrl}api/order`, {cart,client_id:clientId}, httpOptions);
   }
 
   paymentIntent(data: any) {
@@ -72,4 +78,20 @@ export class OrderService {
     return this.http.delete<any>(`${environment.apiUrl}api/order/${id}`, { params: id });
   }
 
+
+  // TODO create service return
+  createReturn(returnOrder: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post(`${environment.apiUrl}api/return`, {returnOrder}, httpOptions);
+  }
+
+  getReturnByClientPaginated(id, page) {
+    return this.http.get<any>(`${environment.apiUrl}api/client/${id}/return_paginated?page=${page}`)
+  }
+
+  getReturnPaginated( page) {
+    return this.http.get<any>(`${environment.apiUrl}api/return_paginated?page=${page}`)
+  }
 }

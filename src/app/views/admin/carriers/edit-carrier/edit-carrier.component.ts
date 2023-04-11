@@ -7,6 +7,7 @@ import {SubCategory} from "../../../../models/subcategory";
 import {CarrierService} from "../../../../services/api/carrier.service";
 import {Carrier} from "../../../../models/carrier";
 import {first} from "rxjs/operators";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-edit-carrier',
@@ -29,7 +30,7 @@ export class EditCarrierComponent implements OnInit{
     private carrierService: CarrierService,
     private route: ActivatedRoute,
     private formBuilder: UntypedFormBuilder,
-
+    private toastr: ToastrService
   ) {
     this.route.params.subscribe((params: Params) => this.id = params.id);
     this.carrier = new Carrier();
@@ -61,40 +62,33 @@ export class EditCarrierComponent implements OnInit{
   }
   get(){
     this.carrierService.getCarrierById(this.id)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.carrier = data.data;
-          console.error(this.carrier)
-          console.log(this.carrier)
-          if (this.carrier) {
-            this.form= this.formBuilder.group({
-              carrier_id: [this.carrier.carrier_id, Validators.required],
-              service: [this.carrier.service, Validators.required],
-              carrier: [this.carrier.carrier, Validators.required],
-              rate_id: [this.carrier.rate_id, Validators.required],
-              rate: [this.carrier.rate, Validators.required],
-              delivery_days: [this.carrier.delivery_days, Validators.required],
-            });
-          }
+      .subscribe({
+        next: res => {
+          this.carrier = res.data;
+          this.form= this.formBuilder.group({
+            carrier_id: [this.carrier.carrier_id, Validators.required],
+            service: [this.carrier.service, Validators.required],
+            carrier: [this.carrier.carrier, Validators.required],
+            rate_id: [this.carrier.rate_id, Validators.required],
+            rate: [this.carrier.rate, Validators.required],
+            delivery_days: [this.carrier.delivery_days, Validators.required],
+          });
         },
-        error => {
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     this.carrierService.uploadImage(this.carrier.id,this.selectedFile)
-      .pipe(first())
-      .subscribe(
-        res => {
-          this.text='imagen creado'
-          this.color='success'
-          this.submitted = false;
+      .subscribe({
+        next: res => {
+          this.toastr.info(res.message);
         },
-        error => {
-          // this.loading = false;
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
 
   updateCarrier() {
@@ -112,25 +106,18 @@ export class EditCarrierComponent implements OnInit{
       this.carrier.delivery_days = this.f.delivery_days.value;
 
       this.carrierService.updateCarrier(this.carrier.id, this.carrier)
-        .pipe(first())
-        .subscribe(
-          res => {
-            this.show=true;
-            this.text='Atributo actualizado'
-            this.color='success'
-
-            this.submitted = false;
-            this.loading=false;
-            console.log(res.data);
+        .subscribe({
+          next: res => {
+            this.toastr.info(res.message);
           },
-          error => {
+          error: (err: any) => {
             this.loading = false;
-          });
+          },
+          complete: () => { }
+        });
     } else {
-      this.show=true;
-      this.text='error'
-      this.color='danger'
       this.loading=false;
+      this.toastr.info('Invalid form');
     }
   }
 

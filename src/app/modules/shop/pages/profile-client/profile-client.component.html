@@ -1,0 +1,1077 @@
+<div *ngIf="create_address" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex  items-center justify-center p-4 text-center sm:items-center sm:p-0">
+      <div class="mt-20  w-10/12 relative transform overflow-hidden rounded-lg bg-blueGray-100 text-left transition-all ">
+        <div class="flex flex-col">
+          <div class="">
+            <div class="rounded-t bg-white mb-0 px-6 py-6 flex flex-row justify-between items-center space-x-2">
+              <h6 class="text-blueGray-700 text-xl font-bold">Shipping address</h6>
+              <button (click)="create_address=false">
+                <svg class="h-8 w-8 text-gray-500"  width="10" height="10" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="flex-auto p-10">
+            <form [formGroup]="addressForm">
+              <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                Personal information
+              </h6>
+              <div class="flex flex-wrap">
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Name
+                    </label>
+                    <input formControlName="name"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.name.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="lucky.jesse"
+                    />
+                    <div *ngIf="submitted && fa.name.errors" class="invalid-feedback">
+                      <div *ngIf="fa.name.errors.required">name is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Surnames
+                    </label>
+                    <input formControlName="surnames"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.surnames.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="Lucky"
+                    /><div *ngIf="submitted && fa.surnames.errors" class="invalid-feedback">
+                    <div *ngIf="fa.surnames.errors.required">surnames is required</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      DNI/CIF/NIF
+                    </label>
+                    <input formControlName="dni"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.dni.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="Jesse"
+                    /><div *ngIf="submitted && fa.dni.errors" class="invalid-feedback">
+                    <div *ngIf="fa.dni.errors.required">dni is required</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Phone
+                    </label>
+                    <input formControlName="phone"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.phone.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="Jesse"
+                    /><div *ngIf="submitted && fa.phone.errors" class="invalid-feedback">
+                    <div *ngIf="fa.phone.errors.required">phone is required</div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                Shipping Address
+              </h6>
+              <div class="flex flex-wrap">
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password">
+                      Address
+                    </label>
+                    <input formControlName="address"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.address.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded
+                           text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                    <div *ngIf="submitted && fa.address.errors" class="invalid-feedback">
+                      <div *ngIf="fa.address.errors.required">address is required</div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password">
+                      Optional
+                    </label>
+                    <input formControlName="address_detail"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.address_detail.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600
+                           bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                    <div *ngIf="submitted && fa.address_detail.errors" class="invalid-feedback">
+                      <div *ngIf="fa.address_detail.errors.required">address_detail is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-12/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password">
+                      Notes
+                    </label>
+                    <input formControlName="notes"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.notes.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow
+                           focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                    <div *ngIf="submitted && fa.notes.errors" class="invalid-feedback">
+                      <div *ngIf="fa.notes.errors.required">notes is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Country
+                    </label>
+                    <input formControlName="country"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.country.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="United States"
+                    /><div *ngIf="submitted && fa.country.errors" class="invalid-feedback">
+                    <div *ngIf="fa.country.errors.required">country is required</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Province
+                    </label>
+                    <input formControlName="province"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.province.errors }"
+                           type="email"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="New York"
+                    /><div *ngIf="submitted && fa.province.errors" class="invalid-feedback">
+                    <div *ngIf="fa.province.errors.required">province is required</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      City
+                    </label>
+                    <input formControlName="city"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.city.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="Postal Code"
+                    /><div *ngIf="submitted && fa.city.errors" class="invalid-feedback">
+                    <div *ngIf="fa.city.errors.required">city is required</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      ZIP
+                    </label>
+                    <input formControlName="zip"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.zip.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="Postal Code"
+                    /><div *ngIf="submitted && fa.zip.errors" class="invalid-feedback">
+                    <div *ngIf="fa.zip.errors.required">zip is required</div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="mt-6 border-b-1 border-blueGray-300" />
+            </form>
+
+          </div>
+        </div>
+        <div class="p-4 flex justify-between items-center">
+          <button (click)="create_address=false" class="self-end inline-flex justify-center rounded-full text-gray-700
+           border border-gray-300 bg-white
+           py-2 px-4 text-sm
+          font-medium  shadow-sm
+          hover:bg-gray-50 ">
+            Close</button>
+          <button [disabled]="loading" (click)="createAddress()" type="submit" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-primary py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-secondary ">
+            <div *ngIf="loading" class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+            Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="edit_address" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex  items-center justify-center p-4 text-center sm:items-center sm:p-0">
+      <div class="mt-20  w-10/12 relative transform overflow-hidden rounded-lg bg-blueGray-100 text-left transition-all ">
+        <div class="flex flex-col">
+          <div class="">
+            <div class="rounded-t bg-white mb-0 px-6 py-6 flex flex-row justify-between items-center space-x-2">
+              <h6 class="text-blueGray-700 text-xl font-bold">Shipping address</h6>
+              <button (click)="edit_address=false">
+                <svg class="h-8 w-8 text-gray-500"  width="10" height="10" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="flex-auto p-10">
+            <form [formGroup]="editAddressForm">
+              <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                Personal information
+              </h6>
+              <div class="flex flex-wrap">
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Name
+                    </label>
+                    <input formControlName="id"
+                           type="text"
+                           class="hidden"
+                    />
+                    <input formControlName="name"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.name.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="lucky.jesse"
+                    />
+                    <div *ngIf="submitted && fea.name.errors" class="invalid-feedback">
+                      <div *ngIf="fea.name.errors.required">name is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Surnames
+                    </label>
+                    <input formControlName="surnames"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.surnames.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="Lucky"
+                    /><div *ngIf="submitted && fea.surnames.errors" class="invalid-feedback">
+                    <div *ngIf="fea.surnames.errors.required">surnames is required</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      DNI/CIF/NIF
+                    </label>
+                    <input formControlName="dni"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.dni.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="Jesse"
+                    /><div *ngIf="submitted && fea.dni.errors" class="invalid-feedback">
+                    <div *ngIf="fea.dni.errors.required">dni is required</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Phone
+                    </label>
+                    <input formControlName="phone"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.phone.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="Jesse"
+                    /><div *ngIf="submitted && fea.phone.errors" class="invalid-feedback">
+                    <div *ngIf="fea.phone.errors.required">phone is required</div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                Shipping Address
+              </h6>
+              <div class="flex flex-wrap">
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password">
+                      Address
+                    </label>
+                    <input formControlName="address"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.address.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded
+                           text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                    <div *ngIf="submitted && fea.address.errors" class="invalid-feedback">
+                      <div *ngIf="fea.address.errors.required">address is required</div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password">
+                      Optional
+                    </label>
+                    <input formControlName="address_detail"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.address_detail.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600
+                           bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                    <div *ngIf="submitted && fea.address_detail.errors" class="invalid-feedback">
+                      <div *ngIf="fea.address_detail.errors.required">address_detail is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-12/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password">
+                      Notes
+                    </label>
+                    <input formControlName="notes"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.notes.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow
+                           focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                    <div *ngIf="submitted && fea.notes.errors" class="invalid-feedback">
+                      <div *ngIf="fea.notes.errors.required">notes is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Country
+                    </label>
+                    <input formControlName="country"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.country.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="United States"
+                    /><div *ngIf="submitted && fea.country.errors" class="invalid-feedback">
+                    <div *ngIf="fea.country.errors.required">country is required</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Province
+                    </label>
+                    <input formControlName="province"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.province.errors }"
+                           type="email"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="New York"
+                    /><div *ngIf="submitted && fea.province.errors" class="invalid-feedback">
+                    <div *ngIf="fea.province.errors.required">province is required</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      City
+                    </label>
+                    <input formControlName="city"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.city.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="Postal Code"
+                    /><div *ngIf="submitted && fea.city.errors" class="invalid-feedback">
+                    <div *ngIf="fea.city.errors.required">city is required</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      ZIP
+                    </label>
+                    <input formControlName="zip"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.zip.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                           value="Postal Code"
+                    /><div *ngIf="submitted && fea.zip.errors" class="invalid-feedback">
+                    <div *ngIf="fea.zip.errors.required">zip is required</div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="mt-6 border-b-1 border-blueGray-300" />
+            </form>
+          </div>
+        </div>
+        <div class="p-4 flex justify-between items-center">
+          <button (click)="edit_address=false" class="self-end inline-flex justify-center rounded-full text-gray-700
+           border border-gray-300 bg-white
+           py-2 px-4 text-sm
+          font-medium  shadow-sm
+          hover:bg-gray-50 ">
+            Close</button>
+          <button [disabled]="loading" (click)="editAddress()" type="submit" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-primary py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-secondary ">
+            <div *ngIf="loading" class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+            Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-cols-12 gap-4 -mb-20 h-auto">
+  <ul
+    class="h-full bg-white shadow-xl col-span-2  flex list-none flex-col pl-0"
+    role="tablist"
+    data-te-nav-ref>
+    <li (click)="toggleTabs(1)"  role="presentation" class="flex text-center hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate
+          focus:border-transparent ">
+      <a
+        class="w-full block border-x-0 p-6  text-xs font-medium uppercase
+          leading-tight text-neutral-500 "
+        role="tab"
+        aria-controls="tabs-home03"
+        aria-selected="true">
+        Orders
+      </a>
+      <div [ngClass]="{ 'border-primary translate-x-full opacity-100': openTab === 1,'translate-x-4 opacity-0': openTab !== 1}"
+           class="border-transparent border-r-4 ease-in-out duration-500 transition-all"></div>    </li>
+    <li (click)="toggleTabs(2)"  role="presentation" class="flex text-center hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate
+          focus:border-transparent ">
+      <a
+        class="w-full block border-x-0 p-6  text-xs font-medium uppercase
+          leading-tight text-neutral-500 "
+        role="tab"
+        aria-controls="tabs-home03"
+        aria-selected="true">
+        Personal data</a>
+      <div [ngClass]="{ 'border-primary translate-x-full opacity-100': openTab === 2,'translate-x-4 opacity-0': openTab !== 2}"
+           class="border-transparent border-r-4 ease-in-out duration-500 transition-all"></div>
+    </li>
+
+
+    <li (click)="toggleTabs(3)"  role="presentation" class="flex text-center hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate
+          focus:border-transparent ">
+      <a
+        [ngClass]="{ 'border-primary': openTab === 3}"
+        class="w-full block border-x-0 p-6  text-xs font-medium uppercase
+          leading-tight text-neutral-500 "
+        role="tab"
+        aria-controls="tabs-home03"
+        aria-selected="true">
+        Returns</a>
+      <div [ngClass]="{ 'border-primary translate-x-full opacity-100': openTab === 3,'translate-x-4 opacity-0': openTab !== 3}"
+           class="border-transparent border-r-4 ease-in-out duration-500 transition-all"></div>
+    </li>
+  </ul>
+  <div class="col-span-10 flex flex-col px-12 pt-6 pb-32" *ngIf="openTab===1">
+    <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0" >
+      <div class="rounded-t bg-white mb-0 px-6 py-6 border-b-2 border-gray-200">
+        <div class="text-center flex justify-between">
+          <h6 class="text-blueGray-700 text-xl font-bold">Orders history</h6>
+        </div>
+      </div>
+      <div class="flex-auto pt-0">
+        <div *ngFor="let order of orders" class="border-b-2 border-gray-200 p-10 w-full" [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': openTab === 1}" >
+          <div class="flex flex-col items-center" >
+            <div class="w-full" >
+              <div class="-my-3 flow-root">
+                <!-- Expand/collapse section button -->
+                <button (click)="showOrderSelected(order)" type="button" class="flex w-full items-center justify-between  py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
+                  <div class="flex flex-col items-start justify-start">
+                    <p>Num: {{order.id}}</p>
+                    <p>Date: {{order.created_at}} </p>
+                    <p>Total: {{ order.total/100 | number:'1.2-2' }}€</p>
+                    <p>Status: {{order.status}}</p>
+                  </div>
+                  <span class="ml-6 flex items-center"  >
+                    <svg *ngIf="showOrder===order.id" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                    </svg>
+                    <svg *ngIf="showOrder!==order.id" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div class="pt-6" id="filter-section-0" *ngIf="showOrder===order.id">
+                <div *ngFor="let detail of order.details;" class="w-full flex flex-col sm:flex-row items-start gap-6 py-3">
+                  <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
+                    <img class="object-cover" alt="" src="http://ctrl-api.test/storage/images/{{detail?.variation?.img}}">
+                  </a>
+                  <div class="flex-1 flex flex-col justify-between">
+                    <div class="flex justify-between mb-6">
+                      <h3>{{detail?.variation?.product.name}}</h3>
+                      <span class="text-lg font-semibold">
+                          <span>{{detail?.variation?.price/100 | number:'1.2-2'}}€</span>
+                        </span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <div *ngIf="create_return!==order.id" class="flex items-center">
+                        Qty: {{detail?.quantity}}
+                      </div>
+                      <div *ngIf="create_return===order.id" class="flex items-center">
+                        Qty:
+                        <input min="1" max="{{detail?.quantity}}" (change)="selectQuantityProduct($event, detail)" value="{{detail?.quantity}}"  type="number" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16">
+                      </div>
+                      <div class="flex items-center">
+                        Total: {{ detail?.sub_total/100 | number:'1.2-2'}}€
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="w-36 flex flex-col justify-between items-center">
+                   <div class="w-full">
+                     <label class="text-sm text-gray-600 mt-4 mr-4 ">Return product</label>
+                     <input (change)="selectReturn(detail)" name="rate"  type="checkbox"
+                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                   </div>
+                    <div class="w-full mt-4">
+                      <button class="w-full text-white bg-text-primary
+                        hover:border-2 hover:border-primary
+                        hover:text-primary hover:bg-transparent
+                        rounded-md py-1 text-lg">
+                        Rate
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full justify-end" *ngIf="create_return===order.id">
+              <button (click)="createReturn()" class="w-36 text-white bg-text-primary
+                        hover:border-2 hover:border-primary
+                        hover:text-primary hover:bg-transparent
+                        rounded-md py-1 text-lg">
+                Return
+              </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="order_pg" class="flex justify-center p-4">
+      <nav aria-label="Page navigation example">
+        <ul class="flex list-style-none">
+          <li class="page-item" *ngFor="let pr of order_pg.links">
+            <a (click)="paginated(pr.label)" [ngClass]="{
+              'bg-primary text-white': order_pg.current_page === pr.label,
+              'bg-transparent text-gray-800': order_pg.current_page !== pr.label
+              }"
+               class="page-link relative block py-1.5 px-3 rounded border-0
+              outline-none transition-all
+              duration-300 rounded  hover:text-gray-800 focus:shadow-none"
+            >{{pr.label}}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="col-span-10 flex flex-col px-12 pt-6 pb-32" *ngIf="openTab===2">
+    <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+      <div class="rounded-t bg-white mb-0 px-6 py-6">
+        <div class="text-center flex justify-between">
+          <h6 class="text-blueGray-700 text-xl font-bold">Personal data</h6>
+        </div>
+      </div>
+      <div class="flex-auto p-10">
+        <form [formGroup]="form">
+<!--          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">-->
+<!--            Informacion del usuario-->
+<!--          </h6>-->
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Nick</label>
+                <input formControlName="nick" type="text"
+                       [ngClass]="{ 'is-invalid': submitted && fc.nick.errors }"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                <div *ngIf="submitted && fc.nick.errors" class="invalid-feedback">
+                  <div *ngIf="fc.nick.errors.required">nick is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Email
+                </label>
+                <input  formControlName="email"
+                        [ngClass]="{ 'is-invalid': submitted && fc.email.errors }"
+                        type="email"
+                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                />
+                <div *ngIf="submitted && fc.email.errors" class="invalid-feedback">
+                  <div *ngIf="fc.email.errors.required">email is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="mt-6 border-b-1 border-blueGray-300" />
+
+          <div class="flex flex-wrap justify-between mt-8">
+            <div class="w-full lg:w-12/12 px-4">
+              <div class="relative w-full mb-3 flex flex-wrap justify-between">
+                <button  class="self-end inline-flex justify-center rounded-full text-gray-700
+           border border-gray-300 bg-white
+           py-2 px-4 text-sm
+          font-medium  shadow-sm
+          hover:bg-gray-50 ">
+                  Close</button>
+                <button (click)="udpate()" [disabled]="loading"  class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-primary py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-secondary ">
+                  <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+                  Update</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+      <div class="rounded-t bg-white mb-0 px-6 py-6 flex flex-row justify-between items-center space-x-2">
+        <h6 class="text-blueGray-700 text-xl font-bold">Shipping address</h6>
+        <button (click)="create_address=true" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-primary py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-secondary focus:outline-none ">
+          Create</button>
+      </div>
+      <div class="flex-auto pt-0">
+        <div *ngFor="let address of client.addresses" class=" border-b-2 border-gray-200 p-10 w-full"
+             [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': openTab === 1}" >
+          <div class="flex flex-col items-center" >
+            <div class="w-full" >
+              <div class="-my-3 flow-root">
+                <!-- Expand/collapse section button -->
+                <div
+                        class="flex w-full items-center justify-between  py-3 text-sm text-gray-400 hover:text-gray-500"
+                        aria-controls="filter-section-0" aria-expanded="false">
+                  <div class="flex flex-col items-start justify-start">
+                    <h3>{{address.name}}</h3>
+                    <h3>{{address.address}}</h3>
+                  </div>
+                  <div class="group inline-block relative">
+                    <button class=" text-gray-700  ">
+                      <svg class="h-5 w-5 text-gray-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="1" />  <circle cx="12" cy="19" r="1" />  <circle cx="12" cy="5" r="1" /></svg>
+                    </button>
+                    <ul class="absolute hidden text-gray-700 pt-1 group-hover:block">
+                      <li class="" (click)="openEditAddress(address)">
+                        <a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                          Edit
+                        </a>
+                      </li>
+                      <li class="" (click)="deleteAddress(address)">
+                        <a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                          Delete
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+<!--                  <span (click)="showAddressSelected(address)" class="ml-6 flex items-center"  >-->
+<!--                    <svg *ngIf="showAddress===address.id" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
+<!--                      <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />-->
+<!--                    </svg>-->
+<!--                    <svg *ngIf="showAddress!==address.id" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
+<!--                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />-->
+<!--                    </svg>-->
+<!--                  </span>-->
+                </div>
+              </div>
+<!--              <div class="pt-6" id="filter-section-0" *ngIf="showAddress===address.id">-->
+<!--                <div class="flex-auto p-10">-->
+<!--                  <form [formGroup]="addressForm">-->
+<!--                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">-->
+<!--                      Personal information-->
+<!--                    </h6>-->
+<!--                    <div class="flex flex-wrap">-->
+<!--                      <div class="w-full lg:w-6/12 px-4">-->
+<!--                        <div class="relative w-full mb-3">-->
+<!--                          <label-->
+<!--                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"-->
+<!--                            htmlFor="grid-password"-->
+<!--                          >-->
+<!--                            Nombre-->
+<!--                          </label>-->
+<!--                          <input formControlName="name"-->
+<!--                                 [ngClass]="{ 'is-invalid': submitted && fa.name.errors }"-->
+<!--                                 type="text"-->
+<!--                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"-->
+<!--                                 value="lucky.jesse"-->
+<!--                          />-->
+<!--                          <div *ngIf="submitted && fa.name.errors" class="invalid-feedback">-->
+<!--                            <div *ngIf="fa.name.errors.required">name is required</div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="w-full lg:w-6/12 px-4">-->
+<!--                        <div class="relative w-full mb-3">-->
+<!--                          <label-->
+<!--                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"-->
+<!--                            htmlFor="grid-password"-->
+<!--                          >-->
+<!--                            Apellidos-->
+<!--                          </label>-->
+<!--                          <input formControlName="surnames"-->
+<!--                                 [ngClass]="{ 'is-invalid': submitted && fa.surnames.errors }"-->
+<!--                                 type="text"-->
+<!--                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"-->
+<!--                                 value="Lucky"-->
+<!--                          /><div *ngIf="submitted && fa.surnames.errors" class="invalid-feedback">-->
+<!--                          <div *ngIf="fa.surnames.errors.required">surnames is required</div>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="w-full lg:w-6/12 px-4">-->
+<!--                        <div class="relative w-full mb-3">-->
+<!--                          <label-->
+<!--                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"-->
+<!--                            htmlFor="grid-password"-->
+<!--                          >-->
+<!--                            DNI/CIF/NIF-->
+<!--                          </label>-->
+<!--                          <input formControlName="dni"-->
+<!--                                 [ngClass]="{ 'is-invalid': submitted && fa.dni.errors }"-->
+<!--                                 type="text"-->
+<!--                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"-->
+<!--                                 value="Jesse"-->
+<!--                          /><div *ngIf="submitted && fa.dni.errors" class="invalid-feedback">-->
+<!--                          <div *ngIf="fa.dni.errors.required">dni is required</div>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="w-full lg:w-6/12 px-4">-->
+<!--                        <div class="relative w-full mb-3">-->
+<!--                          <label-->
+<!--                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"-->
+<!--                            htmlFor="grid-password"-->
+<!--                          >-->
+<!--                            Móvil-->
+<!--                          </label>-->
+<!--                          <input formControlName="phone"-->
+<!--                                 [ngClass]="{ 'is-invalid': submitted && fa.phone.errors }"-->
+<!--                                 type="text"-->
+<!--                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"-->
+<!--                                 value="Jesse"-->
+<!--                          /><div *ngIf="submitted && fa.phone.errors" class="invalid-feedback">-->
+<!--                          <div *ngIf="fa.phone.errors.required">phone is required</div>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="flex flex-wrap">-->
+<!--                      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">-->
+<!--                        Shipping Address-->
+<!--                      </h6>-->
+<!--                      <div class="w-full lg:w-12/12 px-4">-->
+<!--                        <div class="relative w-full mb-3">-->
+<!--                          <label-->
+<!--                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"-->
+<!--                            htmlFor="grid-password"-->
+<!--                          >-->
+<!--                            Dirección de envío-->
+<!--                          </label>-->
+<!--                          <input formControlName="address"-->
+<!--                                 [ngClass]="{ 'is-invalid': submitted && fa.address.errors }"-->
+<!--                                 type="text"-->
+<!--                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"-->
+<!--                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"-->
+<!--                          /><div *ngIf="submitted && fa.address.errors" class="invalid-feedback">-->
+<!--                          <div *ngIf="fa.address.errors.required">address is required</div>-->
+<!--                        </div>-->
+<!--                          <input formControlName="address_detail"-->
+<!--                                 [ngClass]="{ 'is-invalid': submitted && fa.address_detail.errors }"-->
+<!--                                 type="text"-->
+<!--                                 class="mt-4 border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"-->
+<!--                                 value="Piso,escalera,etc"-->
+<!--                          /><div *ngIf="submitted && fa.address_detail.errors" class="invalid-feedback">-->
+<!--                          <div *ngIf="fa.address_detail.errors.required">address_detail is required</div>-->
+<!--                        </div>-->
+<!--                          <input formControlName="notes"-->
+<!--                                 [ngClass]="{ 'is-invalid': submitted && fa.notes.errors }"-->
+<!--                                 type="text"-->
+<!--                                 class="mt-4 border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"-->
+<!--                                 value="Notas"-->
+<!--                          /><div *ngIf="submitted && fa.notes.errors" class="invalid-feedback">-->
+<!--                          <div *ngIf="fa.notes.errors.required">notes is required</div>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="w-full lg:w-6/12 px-4">-->
+<!--                        <div class="relative w-full mb-3">-->
+<!--                          <label-->
+<!--                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"-->
+<!--                            htmlFor="grid-password"-->
+<!--                          >-->
+<!--                            País-->
+<!--                          </label>-->
+<!--                          <input formControlName="country"-->
+<!--                                 [ngClass]="{ 'is-invalid': submitted && fa.country.errors }"-->
+<!--                                 type="text"-->
+<!--                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"-->
+<!--                                 value="United States"-->
+<!--                          /><div *ngIf="submitted && fa.country.errors" class="invalid-feedback">-->
+<!--                          <div *ngIf="fa.country.errors.required">country is required</div>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="w-full lg:w-6/12 px-4">-->
+<!--                        <div class="relative w-full mb-3">-->
+<!--                          <label-->
+<!--                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"-->
+<!--                            htmlFor="grid-password"-->
+<!--                          >-->
+<!--                            Província-->
+<!--                          </label>-->
+<!--                          <input formControlName="province"-->
+<!--                                 [ngClass]="{ 'is-invalid': submitted && fa.province.errors }"-->
+<!--                                 type="email"-->
+<!--                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"-->
+<!--                                 value="New York"-->
+<!--                          /><div *ngIf="submitted && fa.province.errors" class="invalid-feedback">-->
+<!--                          <div *ngIf="fa.province.errors.required">province is required</div>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="w-full lg:w-6/12 px-4">-->
+<!--                        <div class="relative w-full mb-3">-->
+<!--                          <label-->
+<!--                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"-->
+<!--                            htmlFor="grid-password"-->
+<!--                          >-->
+<!--                            Población-->
+<!--                          </label>-->
+<!--                          <input formControlName="city"-->
+<!--                                 [ngClass]="{ 'is-invalid': submitted && fa.city.errors }"-->
+<!--                                 type="text"-->
+<!--                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"-->
+<!--                                 value="Postal Code"-->
+<!--                          /><div *ngIf="submitted && fa.city.errors" class="invalid-feedback">-->
+<!--                          <div *ngIf="fa.city.errors.required">city is required</div>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="w-full lg:w-6/12 px-4">-->
+<!--                        <div class="relative w-full mb-3">-->
+<!--                          <label-->
+<!--                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"-->
+<!--                            htmlFor="grid-password"-->
+<!--                          >-->
+<!--                            Codigo postal-->
+<!--                          </label>-->
+<!--                          <input formControlName="zip"-->
+<!--                                 [ngClass]="{ 'is-invalid': submitted && fa.zip.errors }"-->
+<!--                                 type="text"-->
+<!--                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"-->
+<!--                                 value="Postal Code"-->
+<!--                          /><div *ngIf="submitted && fa.zip.errors" class="invalid-feedback">-->
+<!--                          <div *ngIf="fa.zip.errors.required">zip is required</div>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <hr class="mt-6 border-b-1 border-blueGray-300" />-->
+<!--                  </form>-->
+<!--                </div>-->
+<!--              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-span-10 flex flex-col px-12 pt-6 pb-32" *ngIf="openTab===3">
+    <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0" >
+      <div class="rounded-t bg-white mb-0 px-6 py-6 border-b-2 border-gray-200">
+        <div class="text-center flex justify-between">
+          <h6 class="text-blueGray-700 text-xl font-bold">Orders history</h6>
+        </div>
+      </div>
+      <div class="flex-auto pt-0">
+        <div *ngFor="let return of returns" class="border-b-2 border-gray-200 p-10 w-full" [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': openTab === 1}" >
+          <div class="flex flex-col items-center" >
+            <div class="w-full" >
+              <div class="-my-3 flow-root">
+                <!-- Expand/collapse section button -->
+                <button (click)="showOrderSelected(return)" type="button" class="flex w-full items-center justify-between  py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
+                  <div class="flex flex-col items-start justify-start">
+                    <p>Order: {{return.order.id}}</p>
+                    <p>Num: {{return.id}}</p>
+                    <p>Date: {{return.created_at}} </p>
+                    <p>Total: {{ return.total/100 | number:'1.2-2' }}€</p>
+                    <p>Status: {{return.status}}</p>
+                  </div>
+                  <span class="ml-6 flex items-center"  >
+                    <svg *ngIf="showOrder===return.id" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                    </svg>
+                    <svg *ngIf="showOrder!==return.id" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div class="pt-6" id="filter-section-0" *ngIf="showOrder===return.id">
+                <div *ngFor="let detail of return.details;" class="w-full flex flex-col sm:flex-row items-start gap-6 py-3">
+                  <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
+                    <img class="object-cover" alt="" src="http://ctrl-api.test/storage/images/{{detail?.variation?.img}}">
+                  </a>
+                  <div class="flex-1 flex flex-col justify-between">
+                    <div class="flex justify-between mb-6">
+                      <h3>{{detail?.variation?.product.name}}</h3>
+                      <span class="text-lg font-semibold">
+                          <span>{{detail?.variation?.price/100 | number:'1.2-2'}}€</span>
+                        </span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <div class="flex items-center">
+                        Qty: {{detail?.quantity}}
+                      </div>
+                      <div class="flex items-center">
+                        Total: {{ detail?.sub_total/100 | number:'1.2-2'}}€
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="w-36 flex flex-col justify-between items-center">
+                    <div class="w-full">
+                      <label class="text-sm text-gray-600 mt-4 mr-4 ">Return product</label>
+                      <input (change)="selectReturn(detail)" name="rate"  type="checkbox"
+                             class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                    </div>
+                    <div class="w-full mt-4">
+                      <button class="w-full text-white bg-text-primary
+                        hover:border-2 hover:border-primary
+                        hover:text-primary hover:bg-transparent
+                        rounded-md py-1 text-lg">
+                        Rate
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full justify-end" *ngIf="create_return===return.id">
+            <button (click)="createReturn()" class="w-36 text-white bg-text-primary
+                        hover:border-2 hover:border-primary
+                        hover:text-primary hover:bg-transparent
+                        rounded-md py-1 text-lg">
+              Return
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="return_pg" class="flex justify-center p-4">
+      <nav aria-label="Page navigation example">
+        <ul class="flex list-style-none">
+          <li class="page-item" *ngFor="let pr of return_pg.links">
+            <a (click)="paginatedReturn(pr.label)" [ngClass]="{
+              'bg-primary text-white': return_pg.current_page === pr.label,
+              'bg-transparent text-gray-800': return_pg.current_page !== pr.label
+              }"
+               class="page-link relative block py-1.5 px-3 rounded border-0
+              outline-none transition-all
+              duration-300 rounded  hover:text-gray-800 focus:shadow-none"
+            >{{pr.label}}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+</div>
+<!--<app-alert class="z-50 fixed" (showChange)="show=!show"  [show]="show" [text]="text" [color]="color"></app-alert>-->
+
+

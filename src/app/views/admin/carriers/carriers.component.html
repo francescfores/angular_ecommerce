@@ -193,7 +193,7 @@
         <nav aria-label="Page navigation example">
           <ul class="flex list-style-none">
             <li class="page-item" *ngFor="let pr of carriers_pg.links">
-              <a (click)="paginatedCarriers(pr.label)" [ngClass]="{
+              <a (click)="paginated(pr.label)" [ngClass]="{
               'bg-primary text-white': carriers_pg.current_page === pr.label,
               'bg-transparent text-gray-800': carriers_pg.current_page !== pr.label
               }"
@@ -208,4 +208,3 @@
     </div>
   </div>
 </div>
-<app-alert class="z-50 fixed" (showChange)="show=!show"  [autocloseTime]="autocloseTime" [show]="show" [text]="text" [color]="color"></app-alert>

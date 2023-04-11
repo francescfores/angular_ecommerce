@@ -1,0 +1,102 @@
+<div class="h-screen flex justify-center sm:p-0 p-4 text-center items-start ">
+  <div class="w-auto relative transform overflow-hidden text-left transition-all">
+    <div class="p-4">
+      <h3 class="text-lg font-medium leading-6 text-gray-900">Update user</h3>
+    </div>
+    <div class="shadow-md rounded bg-white">
+      <div class="sm:flex sm:items-start">
+        <div class="mt-10 sm:mt-0 w-full">
+          <form [formGroup]="form">
+            <div class="overflow-hidden">
+              <div class="bg-white px-4 py-5">
+                <div class="grid grid-cols-6 gap-6">
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputName" class="block text-sm font-medium text-gray-700">Name</label>
+
+                    <input id="inputName" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" formControlName="name" type="text"   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.name.errors.required">name is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputLastName" class="block text-sm font-medium text-gray-700">Last name</label>
+
+                    <input id="inputLastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" formControlName="lastName" type="text"
+                           class="mt-1 block w-full rounded-md border-gray-300  sm:text-sm">
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                      <div *ngIf="f.lastName.errors.required">Last name is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input id="inputEmail" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" type="text"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required">email is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputPhone" class="block text-sm font-medium text-gray-700">Phone</label>
+                    <input id="inputPhone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" formControlName="phone" type="text"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                      <div *ngIf="f.phone.errors.required">phone is required</div>
+                    </div>
+                  </div>
+<!--                  <div class="col-span-6 sm:col-span-3">-->
+<!--                    <label for="inputPassword" class="block text-sm font-medium text-gray-700">Password</label>-->
+<!--                    <input type="password" id="inputPassword" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" formControlName="password"-->
+<!--                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:texct-sm">-->
+<!--                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">-->
+<!--                      <div *ngIf="f.password.errors.required">password is required</div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col-span-6 sm:col-span-3">-->
+<!--                    <label for="inputRepeatPassword" class="block text-sm font-medium text-gray-700">Repeat password</label>-->
+<!--                    <input type="password" id="inputRepeatPassword" [ngClass]="{ 'is-invalid': submitted && f.repeat_password.errors }"-->
+<!--                           formControlName="repeat_password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:texct-sm">-->
+<!--                    <div *ngIf="submitted && f.repeat_password.errors" class="invalid-feedback">-->
+<!--                      <div *ngIf="f.repeat_password.errors.required">repeat password is required</div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputAddress" class="block text-sm font-medium text-gray-700">Address</label>
+                    <input id="inputAddress" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" formControlName="address" type="text"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                      <div *ngIf="f.address.errors.required">address is required</div>
+                    </div>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="inputName" class="block text-sm font-medium text-gray-700">Rol</label>
+                    <select id="inputCountry" formControlName="rol"  (change)="selectRole($event)" [ngClass]="{ 'is-invalid': submitted && f.rol.errors }"
+                            autocomplete="rol-name"
+                            class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                      <option [value]="null">Selecciona un rol</option>
+                      <option *ngFor="let value of roles"
+                              [value]="value.id">
+                        {{value.name}}
+                      </option>
+                    </select>
+                    <div *ngIf="submitted && f.rol.errors" class="invalid-feedback">
+                      <div *ngIf="f.rol.errors.required">rol is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="p-4 flex justify-end items-center space-x-2">
+
+      <button [disabled]="loading" (click)="update()" class="self-end inline-flex justify-center rounded-full
+          border border-transparent
+          bg-primary py-2 px-4 text-sm
+          font-medium text-white shadow-sm
+          hover:bg-secondary focus:outline-none ">
+        <div *ngIf="loading"  class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
+        Update</button>
+    </div>
+  </div>
+</div>
+<app-alert class="z-50 fixed" (showChange)="show=!show"  [show]="show" [text]="text" [color]="color"></app-alert>
+

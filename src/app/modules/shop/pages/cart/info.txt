@@ -1,0 +1,45 @@
+En PCComponents, al elegir un método de pago como tarjeta de crédito o PayPal, se solicita al
+usuario que introduzca los detalles del método de pago en un formulario seguro. Una vez que el
+usuario ha introducido los detalles y ha aceptado las condiciones, los detalles del método de pago se
+ almacenan en un lugar seguro y se utilizan para ejecutar la transacción en el resumen.
+ La transacción se realiza en el resumen después de que el usuario haya revisado y aceptado
+ su pedido y sus detalles de envío. Esto se puede implementar mediante el uso de una API de pagos
+ seguros y la integración con un gateway de pago como PayPal o una pasarela de pago segura.
+
+
+
+
+francesc fores
+se puedo omitir esto?
+Sí, en la implementación se pueden omitir ciertos pasos o detalles dependiendo de las necesidades y requerimientos de la aplicación. La implementación de la pasarela de pago
+puede variar en función de los requerimientos y restricciones de la empresa o la aplicación.
+
+
+Para detectar si una transacción se ha completado con éxito, se puede usar el evento "onApprove" en la variable de configuración de PayPal.
+
+Ejemplo:
+
+javascript
+Copy code
+const payPalConfig = {
+   onApprove: (data, actions) => {
+      console.log('Transaction approved by ' + data.payer.name.given_name);
+      // Aquí puede agregar código adicional para procesar la transacción.
+   }
+};
+El evento "onApprove" se ejecutará cuando el usuario haya aprobado la transacción. El objeto "data" incluye
+información sobre la transacción, como el nombre del pagador. El objeto "actions" incluye métodos para ejecutar
+acciones en la transacción, como capturar el pago.
+
+y de que sirve capturar el apgo?
+
+const payPalConfig = {
+   onApprove: (data, actions) => {
+      console.log('Transaction approved by ' + data.payer.name.given_name);
+      // Aquí puede agregar código adicional para procesar la transacción.
+   }
+};
+
+Capturar el pago te permite verificar que el pago se ha realizado de manera exitosa y
+recibir los detalles de la transacción, como la cantidad pagada, la moneda, el estado del pago, entre otros. Con esta información, puedes tomar acciones adicionales, como enviar una confirmación al usuario, actualizar la base de datos, enviar una factura, etc. Es un paso importante para
+garantizar que el proceso de pago se haya realizado de manera correcta y para manejar situaciones de fallos en el pago.

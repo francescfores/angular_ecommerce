@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit , AfterViewInit {
   private startDate:any;
   private orders: any;
 
-  config = {
+  configLineChart = {
     type: "line",
     data: {
       labels: [],
@@ -93,20 +93,11 @@ export class DashboardComponent implements OnInit , AfterViewInit {
       },
     },
   };
-  config2 = {
+  configBarChart = {
     type: "bar",
     data: {
-      labels: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-      ],
-      datasets: [
-      ],
+      labels: [],
+      datasets: [ ],
     },
     options: {
       maintainAspectRatio: false,
@@ -169,6 +160,13 @@ export class DashboardComponent implements OnInit , AfterViewInit {
       },
     },
   };
+  configDonut = {
+    type: 'doughnut',
+    data: {
+      labels: [],
+      datasets: []
+    },
+  };
 
   constructor(
     private orderService: OrderService,
@@ -178,17 +176,16 @@ export class DashboardComponent implements OnInit , AfterViewInit {
   ngOnInit() {
   }
   getOrders(){
-    this.orderService.get()
+    let startDate=moment(this.selectedDateStart).format('YYYY-MM-DD');
+    let endDate=moment(this.selectedDateEnd).format('YYYY-MM-DD');
+
+    this.orderService.getBetweenDate(startDate,endDate)
       .pipe(first())
       .subscribe(
-        data => {
-          console.log(data);
-          this.orders= data;
-          console.log(data);
-
-
+        res => {
+          this.orders= res.data;
+          console.log(this.orders);
           this.loadChars();
-
         },
         error => {
           //this.toastr.error('Invalid request', 'Toastr fun!');
@@ -197,8 +194,8 @@ export class DashboardComponent implements OnInit , AfterViewInit {
   }
 
   loadCharData(){
-    this.config.data.labels=[];
-    this.config.data.datasets=[
+    this.configLineChart.data.labels=[];
+    this.configLineChart.data.datasets=[
       {
         label: 'Ventas',
         fill: false,
@@ -207,8 +204,8 @@ export class DashboardComponent implements OnInit , AfterViewInit {
         data: [],
       }
     ];
-    this.config2.data.labels=[];
-    this.config2.data.datasets=[
+    this.configBarChart.data.labels=[];
+    this.configBarChart.data.datasets=[
       {
         label: 'Pedidos',
         backgroundColor: "#ed64a6",
@@ -218,9 +215,21 @@ export class DashboardComponent implements OnInit , AfterViewInit {
         data: [],
       }
     ];
+    this.configDonut.data.datasets=[
+      {
+        label: 'My First Dataset',
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+          'rgb(40, 100, 70)',
+          'rgb(54, 50, 200)'
+        ],
+        hoverOffset: 4
+      }
+    ];
   }
   loadChars(){
-    console.log(this.orders[0].created_at); // 14
     this.startDate = new Date(this.selectedDateStart);
     this.endDate = new Date(this.selectedDateEnd);
     let startDate;
@@ -232,13 +241,14 @@ export class DashboardComponent implements OnInit , AfterViewInit {
         startDate = moment(this.startDate);
         endDate = moment(this.endDate);
         difference = endDate.diff(startDate, 'days');
+        //pintamos los pedidos/dias
         for(let i = 0; i <= difference; i++) {
           let datasets = this.orders.filter(x => moment(x.created_at).format('YYYY-MM-DD') === startDate.format('YYYY-MM-DD'))
-          this.config.data.labels.push(startDate.format('DD'));
-          this.config2.data.labels.push(startDate.format('DD'));
+          this.configLineChart.data.labels.push(startDate.format('DD'));
+          this.configBarChart.data.labels.push(startDate.format('DD'));
           if(datasets){
-            this.config.data.datasets[0].data.push(datasets.reduce((acc, {total}) => acc + Number(total)/100, 0));
-            this.config2.data.datasets[0].data.push(datasets.length);
+            this.configLineChart.data.datasets[0].data.push(datasets.reduce((acc, {total}) => acc + Number(total)/100, 0));
+            this.configBarChart.data.datasets[0].data.push(datasets.length);
           }
           startDate.add(1, 'days');
         }
@@ -248,21 +258,19 @@ export class DashboardComponent implements OnInit , AfterViewInit {
         startDate = moment(this.startDate).subtract(1, 'months');
         endDate = moment(this.endDate);
         difference = endDate.diff(startDate, 'months');
+        //pintamos los pedidos/meses
         for(let i = 0; i <= difference; i++) {
           let datasets = this.orders.filter(x => moment(x.created_at).format('YYYY-MM') === startDate.format('YYYY-MM'));
-          this.config.data.labels.push(startDate.format('MMMM'));
-          this.config2.data.labels.push(startDate.format('MMMM'));
-
+          this.configLineChart.data.labels.push(startDate.format('MMMM'));
+          this.configBarChart.data.labels.push(startDate.format('MMMM'));
           if(datasets){
-            this.config.data.datasets[0].data.push(datasets.reduce((acc, {total}) => acc + Number(total)/100, 0));
-            this.config2.data.datasets[0].data.push(datasets.length);
+            this.configLineChart.data.datasets[0].data.push(datasets.reduce((acc, {total}) => acc + Number(total)/100, 0));
+            this.configBarChart.data.datasets[0].data.push(datasets.length);
           }
-
           startDate.add(1, 'months');
         }
         break;
       case 'years':
-
         break;
     }
     this.loadConfigChar();
@@ -276,23 +284,23 @@ export class DashboardComponent implements OnInit , AfterViewInit {
   loadConfigChar(){
     let ctx: any = document.getElementById("line-chart") as HTMLCanvasElement;
     ctx = ctx.getContext("2d");
-    let chart = new Chart(ctx, this.config); // Crea una instancia del gráfico
+    let chart = new Chart(ctx, this.configLineChart); // Crea una instancia del gráfico
     chart.update({ // Actualiza el gráfico con los nuevos datos
       type: "bar",
       data: {
-        labels: this.config.data.labels,
-        datasets: this.config.data.datasets
+        labels: this.configLineChart.data.labels,
+        datasets: this.configLineChart.data.datasets
       }
     });
   }
   loadConfigCharBar(){
     let ctx: any = document.getElementById("bar-chart");
     ctx = ctx.getContext("2d");
-    let chart = new Chart(ctx, this.config2);
+    let chart = new Chart(ctx, this.configBarChart);
     chart.update({ // Actualiza el gráfico con los nuevos datos
       data: {
-        labels: this.config2.data.labels,
-        datasets: this.config2.data.datasets
+        labels: this.configBarChart.data.labels,
+        datasets: this.configBarChart.data.datasets
       }
     });
   }
@@ -334,42 +342,26 @@ export class DashboardComponent implements OnInit , AfterViewInit {
       console.log(`Producto: ${product.producto}, Cantidad: ${product.cantidad}, Rango: ${product.rank}`);
     });
     console.log(topFive);
-    const config = {
-      type: 'doughnut',
-      data: {
-        labels,
-        datasets: [{
-          label: 'My First Dataset',
-          data,
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
-            'rgb(40, 100, 70)',
-            'rgb(54, 50, 200)'
-          ],
-          hoverOffset: 4
-        }]
-      },
-    };
     let ctx: any = document.getElementById("donut-chart");
     ctx = ctx.getContext("2d");
-    let chart = new Chart(ctx, config);
+    this.configDonut.data.labels=labels;
+    this.configDonut.data.datasets[0].data=data;
+    let chart = new Chart(ctx, this.configDonut);
   }
   onDateChangeStart(event: any) {
     this.selectedDateStart = event.target.value;
     console.log(this.selectedDateStart);
-    this.loadChars();
+    this.getOrders();
   }
   onDateChangeEnd(event: any) {
     this.selectedDateEnd = event.target.value;
     console.log(this.selectedDateEnd);
-    this.loadChars();
+    this.getOrders();
   }
 
   onTypeFilter(event: any) {
     this.selectedTypeFilter = event.target.value;
     console.log(this.selectedTypeFilter);
-    this.loadChars();
+    this.getOrders();
   }
 }

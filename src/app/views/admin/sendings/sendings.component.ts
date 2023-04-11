@@ -5,6 +5,7 @@ import {first} from "rxjs/operators";
 import {SendingService} from "../../../services/api/sending.service";
 import {UntypedFormGroup} from "@angular/forms";
 import {SharedService} from "../../../services/api/shared.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-sendings',
@@ -23,6 +24,7 @@ export class SendingsComponent  implements OnInit {
     private router: Router,
     private sendingService: SendingService,
     private sharedService: SharedService,
+    private toastr: ToastrService
 
   ) {
   }
@@ -32,8 +34,6 @@ export class SendingsComponent  implements OnInit {
   }
 
   editProduct(id) {
-    console.log(id)
-    //this.router.navigate(['/admin/edit-product'],id);
     this.router.navigate(
       ['/admin/edit-sendings'],
       { queryParams: { id } }
@@ -44,9 +44,8 @@ export class SendingsComponent  implements OnInit {
     this.sendingService.deleteSending(id)
       .pipe(first())
       .subscribe(
-        data => {
-          this.text='Producto creado'
-          this.color='success'
+        res => {
+          this.toastr.info(res.message);
         },
         error => {
         });

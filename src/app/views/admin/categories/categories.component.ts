@@ -5,6 +5,7 @@ import {first} from "rxjs/operators";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Category} from "../../../models/category";
 import {SharedService} from "../../../services/api/shared.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-categories',
@@ -35,7 +36,7 @@ export class CategoriesComponent implements OnInit{
     private categoryService: CategoryService,
     private formBuilder: UntypedFormBuilder,
     private sharedService: SharedService,
-
+    private toastr: ToastrService
   ) {
     this.formCategory = this.formBuilder.group({
       name: ['', Validators.required],
@@ -63,81 +64,74 @@ export class CategoriesComponent implements OnInit{
   }
   deleteCategory(id) {
     this.categoryService.deleteCategory(id)
-      .pipe(first())
-      .subscribe(
-        res => {
-          this.text='Producto eliminado'
-          this.color='success'
+      .subscribe({
+        next: res => {
+          this.toastr.info(res.message);
           this.submitted = false;
           this.paginatedCategories(this.categories.current_page)
         },
-        error => {
-          // this.loading = false;
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
 
   getCategorysPaginated(page){
     this.categoryService.getCategorysPaginated(page)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.categories= data.categories;
-          this.categories.current_page =data.categories.current_page+'';
+      .subscribe({
+        next: res => {
+          this.categories= res.categories;
+          this.categories.current_page =res.categories.current_page+'';
         },
-        error => {
-          // this.loading = false;
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
   getSubCategorysPaginated(page){
     this.categoryService.getSubCategorysPaginated(page)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.subcategories= data.subcategories;
-          this.subcategories.current_page =data.subcategories.current_page+'';
+      .subscribe({
+        next: res => {
+          this.subcategories= res.subcategories;
+          this.subcategories.current_page =res.subcategories.current_page+'';
         },
-        error => {
-          // this.loading = false;
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
   getSuperCategorysPaginated(page){
     this.categoryService.getSuperCategorysPaginated(page)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.supercategories= data.supercategories;
-          this.supercategories.current_page =data.supercategories.current_page+'';
+      .subscribe({
+        next: res => {
+          this.supercategories= res.supercategories;
+          this.supercategories.current_page =res.supercategories.current_page+'';
         },
-        error => {
-          // this.loading = false;
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
 
   getSubCategorysByCategoryPaginated(page, id){
     this.category_id =id;
     this.categoryService.getSubCategorysByCategoryPaginated(page, id)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.subcategories= data.subcategories;
-          this.subcategories.current_page =data.subcategories.current_page+'';
+      .subscribe({
+        next: res => {
+          this.subcategories= res.subcategories;
+          this.subcategories.current_page =res.subcategories.current_page+'';
         },
-        error => {
-          // this.loading = false;
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
   getSuperCategorysBySubCategoryPaginated(page, id){
     this.subcategory_id =id;
     this.categoryService.getSuperCategorysBySubCategoryPaginated(page, id)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.supercategories= data.supercategories;
-          this.supercategories.current_page =data.supercategories.current_page+'';
+      .subscribe({
+        next: res => {
+          this.supercategories= res.supercategories;
+          this.supercategories.current_page =res.supercategories.current_page+'';
         },
-        error => {
-          // this.loading = false;
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
 
   paginatedCategories(pr) {
@@ -164,9 +158,6 @@ export class CategoriesComponent implements OnInit{
 
   createCategory() {
     this.submitted = true;
-    this.text='esperando el servior creado'
-    this.color='info'
-    this.show=true;
       if (this.formCategory.valid){
         this.loading = true;
         this.category.name = this.fc.name.value;
@@ -174,21 +165,21 @@ export class CategoriesComponent implements OnInit{
         this.category.img = this.selectedFile;
 
         this.categoryService.createCategory(this.category)
-          .pipe(first())
-          .subscribe(
-            res => {
-              this.text='Producto creado'
-              this.color='success'
+          .subscribe({
+            next: res => {
+              this.toastr.info(res.message);
               this.submitted = false;
               this.loading = false;
+              this.paginatedCategories(this.categories.current_page)
             },
-            error => {
+            error: (err: any) => {
               this.loading = false;
-            });
+            },
+            complete: () => { }
+          });
       } else {
-        this.show=true;
-        this.text='Formulario invalido'
-        this.color='danger'
+        this.loading = false;
+        this.toastr.info('Invalid form');
       }
   }
 
@@ -202,14 +193,12 @@ export class CategoriesComponent implements OnInit{
       { queryParams: { id } }
     );
   }
-
-  deleteSubcategory(id) {}
-
   editSupercategory(id) {
     this.router.navigate(
       ['/admin/edit-supercategory'],
       { queryParams: { id } }
     );
   }
+  deleteSubcategory(id) {}
   deleteSupercategory(id) {}
 }

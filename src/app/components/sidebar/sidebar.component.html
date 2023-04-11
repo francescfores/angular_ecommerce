@@ -69,9 +69,9 @@
       <!-- Divider -->
       <hr class="my-2 md:min-w-full" />
       <!-- Heading -->
-      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-        Panel de Control
-      </h6>
+<!--      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">-->
+<!--        Panel de Control-->
+<!--      </h6>-->
       <!-- Navigation -->
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
@@ -95,27 +95,6 @@
             Dashboard
           </a>
         </li>
-        <li class="items-center">
-          <a
-            [routerLink]="['/admin/settings']"
-            class="text-xs uppercase py-3 font-bold block"
-            routerLinkActive
-            #adminSettings="routerLinkActive"
-            [ngClass]="
-              adminSettings.isActive
-                ? 'text-red-600 hover:text-red-700'
-                : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-tools mr-2 text-sm"
-              [ngClass]="
-                adminSettings.isActive ? 'opacity-75' : 'text-blueGray-300'
-              "
-            ></i>
-            Settings
-          </a>
-        </li>
       </ul>
 
       <!-- Heading -->
@@ -126,7 +105,7 @@
       </h6>-->
       <hr class="my-2 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-        Gestión de Productos
+        Product management
       </h6>
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
@@ -189,14 +168,14 @@
                 adminAtributos.isActive ? 'opacity-75' : 'text-blueGray-300'
               "
             ></i>
-            Atributos
+            Attributes
           </a>
         </li>
       </ul>
 
       <hr class="my-2 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-        Gestión de clientes
+        Clients management
       </h6>
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
@@ -226,7 +205,7 @@
 
       <hr class="my-2 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-        Gestión de pedidos
+        Orders management
       </h6>
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
@@ -247,14 +226,14 @@
                 adminOrders.isActive ? 'opacity-75' : 'text-blueGray-300'
               "
             ></i>
-            Pedidos
+            Orders
           </a>
         </li>
       </ul>
 
       <hr class="my-2 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-        Gestión de envío
+        Shipping management
       </h6>
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
@@ -275,7 +254,7 @@
                 adminEnvios.isActive ? 'opacity-75' : 'text-blueGray-300'
               "
             ></i>
-            Envios
+            Sendings
           </a>
         </li>
         <li class="items-center">
@@ -296,19 +275,13 @@
                 adminCarrier.isActive ? 'opacity-75' : 'text-blueGray-300'
               "
             ></i>
-            Carrier
+            Carriers
           </a>
         </li>
       </ul>
-
-      <!--<hr class="my-2 md:min-w-full" />
-      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-        Estadísticas
-      </h6>-->
-
       <hr class="my-2 md:min-w-full" />
       <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-        Configuración de pagos
+        Settings
       </h6>
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
@@ -329,18 +302,9 @@
                 adminPayments.isActive ? 'opacity-75' : 'text-blueGray-300'
               "
             ></i>
-            Pagos
+            Payments
           </a>
         </li>
-
-      </ul>
-
-
-      <hr class="my-2 md:min-w-full" />
-      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-        Configuración de impuestos
-      </h6>
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
             [routerLink]="['/admin/taxes']"
@@ -359,13 +323,53 @@
                 adminTaxes.isActive ? 'opacity-75' : 'text-blueGray-300'
               "
             ></i>
-            Impuestos
+            Taxes
+          </a>
+        </li>
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/users']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminUsers="routerLinkActive"
+            [ngClass]="
+              adminUsers.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tv mr-2 text-sm"
+              [ngClass]="
+                adminUsers.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Users
+          </a>
+        </li>
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/settings']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminSettings="routerLinkActive"
+            [ngClass]="
+              adminSettings.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-tools mr-2 text-sm"
+              [ngClass]="
+                adminSettings.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Account
           </a>
         </li>
 
       </ul>
-
-
 
       <!-- Divider -->
       <hr class="my-2 md:min-w-full" />

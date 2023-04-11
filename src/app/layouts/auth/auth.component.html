@@ -2,10 +2,8 @@
   <app-ecommerce-navbar  [isDarkEnable]="isDarkEnable" [transparent]="false" (onClick)='changeTheme($event)'></app-ecommerce-navbar>
   <main>
     <section class="w-full  min-h-screen flex justify-center items-center bg-white mt-14">
-      <!--<div
-        class="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
-        style="background-image: url('assets/img/register_bg_2.png')"
-      ></div>-->
+      <!--<div class="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
+        style="background-image: url('assets/img/register_bg_2.png')"></div>-->
       <app-login (onClick)='register()'
         [ngClass]="{ '-translate-x-0 ': !registerOpen, '-translate-x-full': registerOpen  }"
         class="w-full transition ease-in-out duration-1000 fixed"></app-login>
@@ -13,9 +11,7 @@
                  [ngClass]="{ 'translate-x-0 ': registerOpen, 'translate-x-full': !registerOpen  }"
                     class="w-full transition ease-in-out duration-1000 fixed"></app-register>
       <!--<router-outlet></router-outlet>-->
-      <!--
-   <app-footer-small [absolute]="true"></app-footer-small>
-    -->
+      <!--<app-footer-small [absolute]="true"></app-footer-small>-->
 
     </section>
   </main>

@@ -7,6 +7,7 @@ import {CarrierService} from "../../../services/api/carrier.service";
 import {Carrier} from "../../../models/carrier";
 import {Category} from "../../../models/category";
 import {SharedService} from "../../../services/api/shared.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-carriers',
@@ -32,6 +33,7 @@ export class CarriersComponent implements OnInit {
     private carrierService: CarrierService,
     private formBuilder: UntypedFormBuilder,
     private sharedService: SharedService,
+    private toastr: ToastrService
   ){
     this.carrier = new Carrier();
     this.registerForm = this.formBuilder.group({
@@ -52,14 +54,14 @@ export class CarriersComponent implements OnInit {
   }
   getPaginated(page){
     this.carrierService.getCarriersPaginated(page)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.carriers_pg = data.carriers_pg;
-          this.carriers_pg.current_page =data.carriers_pg.current_page+'';
+      .subscribe({
+        next: res => {
+          this.carriers_pg = res.carriers_pg;
+          this.carriers_pg.current_page =res.carriers_pg.current_page+'';
         },
-        error => {
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
 
   paginated(pr) {
@@ -69,9 +71,6 @@ export class CarriersComponent implements OnInit {
 
   create() {
     this.submitted = true;
-    this.text='esperando el servior creado'
-    this.color='info'
-    this.show=true;
     //this.loading = true;
     if (this.registerForm.valid){
       this.loading = true;
@@ -81,30 +80,26 @@ export class CarriersComponent implements OnInit {
       this.carrier.rate_id = this.f.rate_id.value;
       this.carrier.rate = this.f.rate.value;
       this.carrier.delivery_days = this.f.delivery_days.value;
-      console.log('valid');
 
       this.carrierService.createCarrier(this.carrier)
-        .pipe(first())
-        .subscribe(
-          res => {
-            this.text='Atributo creado'
-            this.color='success'
+        .subscribe({
+          next: res => {
+            this.toastr.info(res.message);
+            this.carriers_pg = res.carriers_pg;
+            this.carriers_pg.current_page =res.carriers_pg.current_page+'';
             this.submitted = false;
             this.loading = false;
-            console.log(res.data);
           },
-          error => {
+          error: (err: any) => {
             this.loading = false;
-          });
+          },
+          complete: () => { }
+        });
     } else {
-      console.log('invalid');
-      this.show=true;
-      this.text='Formulario invalido'
-      this.color='danger'
+      this.toastr.info('Invalid form');
     }
   }
   editCarrier(id) {
-    console.log(id)
     //this.router.navigate(['/admin/edit-category'],id);
     this.router.navigate(
       ['/admin/edit-carrier'],

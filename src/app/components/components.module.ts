@@ -7,6 +7,7 @@ import {RouterModule} from "@angular/router";
 import { CategoryFiltersComponent } from './category-filters/category-filters.component';
 import { SliderComponent } from './slider/slider.component';
 import { AlertComponent } from './alert/alert.component';
+import { GooglePlacesComponent } from './google-places/google-places.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { AlertComponent } from './alert/alert.component';
     EcommerceNavbarComponent,
     CategoryFiltersComponent,
     SliderComponent,
-    AlertComponent
+    AlertComponent,
+    GooglePlacesComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,9 @@ import { AlertComponent } from './alert/alert.component';
         FooterComponent,
         EcommerceNavbarComponent,
         SliderComponent,
-        AlertComponent
+        AlertComponent,
+      GooglePlacesComponent
+
     ]
 })
 export class ComponentsModule { }

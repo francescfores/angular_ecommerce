@@ -3,13 +3,21 @@
 @import './assets/styles/slider.css';
 @import '~animate.css/animate.min.css';
 /*@import "./assets/styles/tailwind.css";*/
-
+@import 'ngx-toastr/toastr';
 .duration-2000{
   transition-duration: 2000ms;
 }
 
-
-
+input:focus {
+  border: 2px solid #363638!important;
+  outline: none!important;
+  box-shadow: none!important;
+}
+select:focus {
+  border: 2px solid #363638!important;
+  outline: none!important;
+  box-shadow: none!important;
+}
 @font-face {
   font-family: 'Montserrat', sans-serif;
   font-weight: normal;
@@ -20,6 +28,6 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 */
 
-select:focus{
-  border: none;
-}
+/*select:focus{*/
+/*  border: none;*/
+/*}*/

@@ -1,4 +1,5 @@
 import {Product, Variation} from "./product";
+import {Payment} from "./payment";
 
 export class Cart {
   id: number;
@@ -9,7 +10,8 @@ export class Cart {
   status: any;
   total: any;
   products: Variation[]=[];
-  payment:any;
+  payment:Payment;
   shipping:any;
+  sub_total:any;
 }
 

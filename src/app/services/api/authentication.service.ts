@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 import { Client } from '../../models/client';
 import {Router} from '@angular/router';
 import {SocialAuthService} from "@abacritt/angularx-social-login";
+import {Category} from "../../models/category";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -38,6 +39,8 @@ export class AuthenticationService {
         this.user = data.client;
         this.user.token = data.token;
         localStorage.setItem('currentClient', JSON.stringify(this.user));
+        const cartJson = localStorage.getItem('cart');
+        console.log('cartJson',cartJson);
         this.currentClientSubject.next(this.user);
         return this.user;
       }));
@@ -94,6 +97,7 @@ export class AuthenticationService {
     console.log('logout');
     // remove user from local storage and set current user to null
     localStorage.removeItem('currentClient');
+    localStorage.removeItem('cart');
     localStorage.clear();
     // if ( this.currentClientSubject.value.businesses.length > 0 ) {
     //   localStorage.removeItem('business');
@@ -102,7 +106,7 @@ export class AuthenticationService {
     // }
     this.currentClientSubject.next(null);
     this.socialAuthService.signOut();
-    this.router.navigate(['/auth/login'], { queryParams: { returnUrl: '' }});
+    this.router.navigate(['/auth2/login'], { queryParams: { returnUrl: '' }});
   }
 
   checkRoles(expectedRoles: string[]): boolean {
@@ -123,5 +127,15 @@ export class AuthenticationService {
     // Obtiene los roles del usuario desde el objeto currentClientValue
     const userRoles = this.currentClientValue.roles;
     return userRoles ? userRoles.map(role => role.name) : [];
+  }
+
+  register(data: any) {
+    const params = new FormData();
+    Object.keys(data).forEach(key => {
+        params.append(key, data[key]);
+    });
+    console.log('params');
+    console.log(params);
+    return this.http.post<any>(`${environment.apiUrl}api/register_client`,  params );
   }
 }

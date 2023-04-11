@@ -4,6 +4,7 @@ import {ClientService} from "../../../services/api/client.service";
 import {first} from "rxjs/operators";
 import {OrderService} from "../../../services/api/order.service";
 import {SharedService} from "../../../services/api/shared.service";
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-orders',
@@ -12,10 +13,13 @@ import {SharedService} from "../../../services/api/shared.service";
 })
 export class OrdersComponent implements OnInit{
   orders=null;
+  private returns: any;
+  private return_pg: any;
   constructor(
     private router: Router,
     private orderService: OrderService,
     private sharedService: SharedService,
+    private toastr: ToastrService
   ) {
   }
 
@@ -31,34 +35,36 @@ export class OrdersComponent implements OnInit{
     );
   }
   deleteOrder(id) {
-    /*
-    this.orderService.deleteProduct(id)
-      .pipe(first())
-      .subscribe(
-        res => {
-
-          this.text='Producto creado'
-          this.color='success'
-          this.submitted = false;
-          console.log(res);
+    this.orderService.deleteOrder(id)
+      .subscribe({
+        next: res => {
+          this.toastr.info(res.message);
+          this.getPaginated(this.orders.current_page)
         },
-        error => {
-          // this.loading = false;
-        });
-    */
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
 
   getPaginated(page){
     this.orderService.getPaginated(page)
-      .pipe(first())
-      .subscribe(
-        data => {
+      .subscribe({
+        next: data => {
           this.orders= data.orders;
           this.orders.current_page =data.orders.current_page+'';
         },
+        error: (err: any) => { },
+        complete: () => { }
+      });
+
+    this.orderService.getReturnPaginated(page)
+      .pipe(first())
+      .subscribe(
+        res => {
+          this.returns= res.return_pg;
+          this.returns.current_page =res.return_pg.current_page+'';
+        },
         error => {
-          //this.toastr.error('Invalid request', 'Toastr fun!');
-          // this.loading = false;
         });
   }
 

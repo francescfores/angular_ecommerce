@@ -1,3 +1,4 @@
+import {Address} from "./address";
 
 export class Client {
   id: number;
@@ -10,4 +11,5 @@ export class Client {
   roles: [];
   token: string;
   points: string;
+  addresses: Address[];
 }

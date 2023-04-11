@@ -18,7 +18,6 @@ import { RegisterComponent } from "./views/auth/register/register.component";
 // no layouts views
 import { IndexComponent } from "./views/index/index.component";
 import { LandingComponent } from "./views/landing/landing.component";
-import { ProfileComponent } from "./views/pages/profile/profile.component";
 import {EcommerceComponent} from "./components/ecommerce/ecommerce.component";
 import {ProductListComponent} from "./components/ecommerce/products/product-list/product-list.component";
 import {ContactComponent} from "./views/contact/contact.component";
@@ -49,12 +48,24 @@ import {EditPaymentComponent} from "./views/admin/payments/edit-payment/edit-pay
 import {EditSendingComponent} from "./views/admin/sendings/edit-sending/edit-sending.component";
 import {CarriersComponent} from "./views/admin/carriers/carriers.component";
 import {EditCarrierComponent} from "./views/admin/carriers/edit-carrier/edit-carrier.component";
+import {UsersComponent} from "./views/admin/users/users.component";
+import {EditUserComponent} from "./views/admin/users/edit-user/edit-user.component";
 
 const routes: Routes = [
   { canActivate: [NonAuthGuard],
     canActivateChild: [NonAuthGuard],
     path: 'shop',
-    loadChildren: () => import('./layouts/shop/shop.module').then(m => m.ShopModule)
+    loadChildren: () => import('./modules/shop/shop.module').then(m => m.ShopModule)
+  },
+  { canActivate: [NonAuthGuard],
+    canActivateChild: [NonAuthGuard],
+    path: 'cart',
+    loadChildren: () => import('./modules/cart/cart.module').then(m => m.CartModule)
+  },
+  { canActivate: [NonAuthGuard],
+    canActivateChild: [NonAuthGuard],
+    path: 'auth2',
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   // admin views
   {
@@ -79,7 +90,6 @@ const routes: Routes = [
       { path: "categories", component: CategoriesComponent },
       { path: "attributes", component: AttributesComponent },
       { path: "edit-attribute", component: EditAttributeComponent },
-
       { path: "clients", component: ClientsComponent },
       { path: "orders", component: OrdersComponent },
       { path: "edit-order", component: EditOrderComponent },
@@ -91,6 +101,8 @@ const routes: Routes = [
       { path: "edit-sendings", component: EditSendingComponent },
       { path: "carriers", component: CarriersComponent },
       { path: "edit-carrier", component: EditCarrierComponent },
+      { path: "users", component: UsersComponent },
+      { path: "edit-user", component: EditUserComponent },
 
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
@@ -129,7 +141,6 @@ const routes: Routes = [
   { path: "projects", component: ProjectsComponent },
   { path: "contact", component: ContactComponent },
   { path: "", component: HomeComponent },
-  { path: "profile", component: ProfileComponent },
   { path: "landing", component: LandingComponent },
   //{ path: "home", component: IndexComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },

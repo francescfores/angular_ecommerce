@@ -1,0 +1,79 @@
+<form [formGroup]="loginForm">
+  <div class="w-full  min-h-screen flex justify-center items-center bg-white">
+    <div class="p-10 border-[1px]  border-slate-200 rounded-md flex flex-col items-center space-y-3">
+      <div class="py-4">
+        <img width="80" class="-mt-10" src="assets/icons/romero_logo.png" />
+      </div>
+      <input value=""
+             type="email" formControlName="email" [ngClass]="{ 'border-solid border-b-2 border-b-red-500': submited && f.email.errors }"
+             class="p-3 border-2 focus:border-red-500 focus:ring-red-500 rounded-full" placeholder="E-Mail" />
+<!--      <div *ngIf="submited && f.email.errors" >-->
+<!--        <div *ngIf="f.email.errors.required">Correo electronico requerido</div>-->
+<!--      </div>-->
+      <div class="flex flex-col space-y-1">
+        <input type="password" value="" formControlName="password" [ngClass]="{ 'border-solid border-b-2 border-b-red-500': submited && f.password.errors }"
+               class="p-3 border-[1px] border-slate-500 rounded-full" placeholder="Password" />
+        <p class="font-bold text-[#0070ba]">Forgot password?</p>
+<!--        <div *ngIf="submited && f.password.errors">-->
+<!--          <div *ngIf="f.password.errors.required">¿Se te olvidó tu contraseña?</div>-->
+<!--        </div>-->
+      </div>
+      <div class="flex flex-col space-y-5 w-full">
+        <button [disabled]="loading" id="loginButton"
+                (click)="logIn()" class="w-full bg-primary rounded-3xl p-3 text-white font-bold transition duration-200 hover:bg-secondary">Log in</button>
+        <button [routerLink]="['/auth2/register']" class="w-full border-slate-300 border-[1px]
+           rounded-3xl p-3 text-[#0070ba] font-bold transition duration-200">Registrarse</button>
+        <a [routerLink]="['/auth2/admin/login']" class="w-full border-slate-300 text-center
+      border-[1px] rounded-3xl p-3 text-[#0070ba] font-bold transition duration-200">Admin</a>
+        <div class="flex items-center justify-center border-t-[1px] border-t-slate-300 w-full relative">
+          <div class="-mt-1 font-bod bg-white px-5 absolute">O</div>
+        </div>
+        <div *ngIf="isLoggedin === false">
+          <div>
+            <asl-google-signin-button class="g_id_signin flex justify-center items-center"
+                                      logo_alignment="center"
+                                      type='standard'
+                                      shape="circle"
+                                      size="large"
+                                      id="test"></asl-google-signin-button>
+          </div>
+        </div>
+      </div>
+      <!--        <div class="container" style="max-width: 550px">-->
+      <!--     <h2 class="text-center mb-5">Angular Login with Google</h2>-->
+      <!--          <div *ngIf="isLoggedin === false">-->
+      <!--            <div>-->
+      <!--              <asl-google-signin-button class="g_id_signin flex justify-center items-center"-->
+      <!--                                        logo_alignment="center"-->
+      <!--                                        type='standard'-->
+      <!--                                        shape="circle"-->
+      <!--                                        size="large"-->
+      <!--                                        id="test"></asl-google-signin-button>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--     <div *ngIf="isLoggedin === true">-->
+      <!--       <div class="form-group">-->
+      <!--         <label>First Name</label>-->
+      <!--         <input type="text" class="form-control" [value]="socialUser.firstName" id="firstname" readonly>-->
+      <!--       </div>-->
+      <!--       <div class="form-group">-->
+      <!--         <label>Last Name</label>-->
+      <!--         <input type="text" class="form-control" [value]="socialUser.lastName" id="lastname" readonly>-->
+      <!--       </div>-->
+      <!--       <div class="form-group">-->
+      <!--         <label>Email</label>-->
+      <!--         <input type="text" class="form-control" [value]="socialUser.email" id="email" readonly>-->
+      <!--       </div>-->
+      <!--       <button type="button" (click)="logOut()" class="btn btn-primary">Log Out</button>-->
+      <!--     </div>-->
+      <!--        </div>-->
+      <!--
+         <div class="flex space-x-1 p-10 text-sm">
+           <p class="hover:underline cursor-pointer">German</p>
+           <div class="border-r-[1px] border-r-slate-300"></div>
+           <p class="font-bold hover:underline cursor-pointer">English</p>
+         </div>
+        -->
+    </div>
+  </div>
+</form>

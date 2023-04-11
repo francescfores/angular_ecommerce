@@ -7,6 +7,7 @@ import {AttributeService} from "../../../services/api/attribute.service";
 import {Attribute} from "../../../models/attribute";
 import {Category} from "../../../models/category";
 import {SharedService} from "../../../services/api/shared.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-attributes',
@@ -32,6 +33,7 @@ export class AttributesComponent implements OnInit {
     private attributeService: AttributeService,
     private formBuilder: UntypedFormBuilder,
     private sharedService: SharedService,
+    private toastr: ToastrService
   ){
     this.attribute = new Attribute();
     this.registerForm = this.formBuilder.group({
@@ -40,25 +42,28 @@ export class AttributesComponent implements OnInit {
       desc: ['', Validators.required],
       img: ['', Validators.required],
     });
-
   }
+
   ngOnInit() {
     this.getPaginated(1)
   }
+
   get f() {
     return this.registerForm.controls;
   }
+
   getPaginated(page){
     this.attributeService.getPaginated(page)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.attributes_pg = data.attributes_pg;
-          this.attributes_pg.current_page =data.attributes_pg.current_page+'';
+      .subscribe({
+        next: res => {
+          this.attributes_pg = res.attributes_pg;
+          this.attributes_pg.current_page =res.attributes_pg.current_page+'';
         },
-        error => {
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
+
   paginated(pr) {
     this.attributes_pg.current_page=this.sharedService.paginated(pr, this.attributes_pg);
     this.getPaginated(pr)
@@ -77,39 +82,36 @@ export class AttributesComponent implements OnInit {
       this.attribute.img = this.selectedFile;
 
       this.attributeService.createAttribute(this.attribute)
-        .pipe(first())
-        .subscribe(
-          res => {
-            this.text='Atributo creado'
-            this.color='success'
-            this.submitted = false;
-            this.loading = false;
+        .subscribe({
+          next: res => {
+            this.toastr.info(res.message);
+            this.getPaginated(this.attributes_pg.current_page)
           },
-          error => {
-            this.loading = false;
-          });
+          error: (err: any) => { },
+          complete: () => { }
+        });
     } else {
-      this.show=true;
-      this.text='Formulario invalido'
-      this.color='danger'
+      this.toastr.info('Invalid form');
     }
   }
+
   editAttribute(id) {
     this.router.navigate(
       ['/admin/edit-attribute'],
       { queryParams: { id } }
     );
   }
+
   deleteAttribute(id) {
     this.attributeService.deleteAttribute(id)
-      .pipe(first())
-      .subscribe(
-        res => {
+      .subscribe({
+        next: res => {
+          this.toastr.info(res.message);
           this.getPaginated(this.attributes_pg.current_pager)
         },
-        error => {
-          // this.loading = false;
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
 
   onFileChanged(event) {

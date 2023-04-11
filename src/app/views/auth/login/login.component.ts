@@ -10,10 +10,12 @@ import {
   SocialUser,
 } from '@abacritt/angularx-social-login';
 import {of} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, AfterViewInit {
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
@@ -30,8 +32,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   constructor(
     public router: Router,
     public authenticationService: AuthenticationService,
-    public socialAuthService: SocialAuthService
-
+    public socialAuthService: SocialAuthService,
+    private toastr: ToastrService
   ) {
   }
 
@@ -46,7 +48,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
       email: new UntypedFormControl('', [Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
       password: new UntypedFormControl('', Validators.required)
     });
-
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = user != null;
@@ -68,9 +69,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   }
 
-  loginWithGoogle(): void {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
+  // loginWithGoogle(): void {
+  //   this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  // }
   logOut(): void {
     this.socialAuthService.signOut();
   }
@@ -80,22 +81,22 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.submited = true;
     if (this.loginForm.valid) {
       this.loading = true;
-      //this.authenticationService.login(this.f.email.value, this.f.password.value)
       this.authenticationService.login('client_ecommerce@gmail.com', '123456')
         .pipe(first())
         .subscribe(
           data => {
-            console.log(data);
             this.loading = false;
             this.router.navigate(['/shop/products']);
           },
           error => {
             this.loading = false;
             this.errorMessage = 'Invalid username or password';
-            //this.router.navigate(['/shop/products']);
+            this.toastr.error(this.errorMessage);
           });
     } else {
       this.errorMessage = 'Email and password are required!';
+      this.loading=false;
+      this.toastr.error(this.errorMessage);
     }
   }
 }

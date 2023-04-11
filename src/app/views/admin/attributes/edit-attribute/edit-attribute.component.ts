@@ -7,6 +7,7 @@ import {SubCategory} from "../../../../models/subcategory";
 import {AttributeService} from "../../../../services/api/attribute.service";
 import {Attribute} from "../../../../models/attribute";
 import {first} from "rxjs/operators";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-edit-attribute',
@@ -29,7 +30,7 @@ export class EditAttributeComponent implements OnInit{
     private attributeService: AttributeService,
     private route: ActivatedRoute,
     private formBuilder: UntypedFormBuilder,
-
+    private toastr: ToastrService
   ) {
     this.route.params.subscribe((params: Params) => this.id = params.id);
     this.attribute = new Attribute();
@@ -41,7 +42,6 @@ export class EditAttributeComponent implements OnInit{
     });
   }
 
-
   ngOnInit() {
     this.getParams();
   }
@@ -50,55 +50,44 @@ export class EditAttributeComponent implements OnInit{
       .subscribe((params) => {
           this.queryObj = { ...params.keys, ...params };
           this.id =this.queryObj.params.id;
-          this.getCategory();
+          this.get();
         }
       );
   }
   get fc() {
     return this.form.controls;
   }
-  getCategory(){
+  get(){
     this.attributeService.getAttributeById(this.id)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.attribute = data.data;
-          console.log(this.attribute)
-          if (this.attribute) {
-            //this.subcategories= this.category.subcategories;
-            //init forms
-            this.form= this.formBuilder.group({
-              name: [this.attribute.name, Validators.required],
-              value: [this.attribute.value, Validators.required],
-              desc: [this.attribute.desc, Validators.required],
-              img: ['', []],
-            });
-          }
+      .subscribe({
+        next: res => {
+          this.attribute = res.data;
+          this.form= this.formBuilder.group({
+            name: [this.attribute.name, Validators.required],
+            value: [this.attribute.value, Validators.required],
+            desc: [this.attribute.desc, Validators.required],
+            img: ['', []],
+          });
         },
-        error => {
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     this.attributeService.uploadImage(this.attribute.id,this.selectedFile)
-      .pipe(first())
-      .subscribe(
-        res => {
-          this.text='imagen creado'
-          this.color='success'
-          this.submitted = false;
+      .subscribe({
+        next: res => {
+          this.toastr.info(res.message);
         },
-        error => {
-          // this.loading = false;
-        });
+        error: (err: any) => { },
+        complete: () => { }
+      });
   }
 
   updateAttribute() {
     this.submitted = true;
-    this.text='esperando el servior creado'
-    this.color='info'
-    this.show=true;
     this.loading=true;
     if (this.form.valid) {
       this.attribute.name = this.fc.name.value;
@@ -107,25 +96,20 @@ export class EditAttributeComponent implements OnInit{
       this.attribute.img = this.selectedFile;
 
       this.attributeService.updateAttribute(this.attribute.id, this.attribute)
-        .pipe(first())
-        .subscribe(
-          res => {
-            this.show=true;
-            this.text='Atributo actualizado'
-            this.color='success'
-
+        .subscribe({
+          next: res => {
+            this.toastr.info(res.message);
             this.submitted = false;
             this.loading=false;
-            console.log(res.data);
           },
-          error => {
+          error: (err: any) => {
             this.loading = false;
-          });
+          },
+          complete: () => { }
+        });
     } else {
-      this.show=true;
-      this.text='error'
-      this.color='danger'
       this.loading=false;
+      this.toastr.info('Invalid form');
     }
   }
 

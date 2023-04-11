@@ -5,4 +5,5 @@ export class Payment {
   currency: string;
   status: string;
   payment_method: string;
+  token: any;
 }

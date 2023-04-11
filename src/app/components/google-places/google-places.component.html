@@ -1,0 +1,121 @@
+
+<div
+  [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': step === 2}"
+  class="p-10 container lg:w-2/3 xl:w-2/3 mx-auto">
+  <h1 class="text-3xl font-bold mb-6">Datos personales</h1>
+  <div x-data="" class="bg-white p-4 rounded-lg shadow">
+    <div class="my-auto ml-5 h-full flex-col space-y-12 text-left text-neutral-700">
+      <form [formGroup]="formPersonalData" id="formPersonalData">
+        <div class="flex flex-col space-y-4">
+          <div class="flex flex-row space-x-2">
+            <div class="w-1/2">
+              <label for="inputName" class="block text-sm font-medium text-gray-700">Nombre</label>
+              <input id="inputName" [ngClass]="{ 'is-invalid': submitted && fpd.name.errors }" formControlName="name" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fpd.name.errors" class="invalid-feedback">
+                <div *ngIf="fpd.name.errors.required">name is required</div>
+              </div>
+            </div>
+            <div class="w-1/2">
+              <label for="inputSurnames" class="block text-sm font-medium text-gray-700">Apellidos</label>
+              <input id="inputSurnames" [ngClass]="{ 'is-invalid': submitted && fpd.surnames.errors }" formControlName="surnames" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fpd.surnames.errors" class="invalid-feedback">
+                <div *ngIf="fpd.surnames.errors.required">surnames is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-row space-x-2">
+            <div class="w-1/2">
+              <label for="inputDni" class="block text-sm font-medium text-gray-700">DNI/CIF/NIF</label>
+              <input id="inputDni" [ngClass]="{ 'is-invalid': submitted && fpd.dni.errors }" formControlName="dni" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fpd.dni.errors" class="invalid-feedback">
+                <div *ngIf="fpd.dni.errors.required">dni is required</div>
+              </div>
+            </div>
+            <div class="w-1/2">
+              <label for="inputPhone" class="block text-sm font-medium text-gray-700">Móvil</label>
+              <input id="inputPhone" [ngClass]="{ 'is-invalid': submitted && fpd.dni.errors }" formControlName="phone" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fpd.phone.errors" class="invalid-feedback">
+                <div *ngIf="fpd.phone.errors.required">phone is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <label for="inputAddress" class="block text-sm font-medium text-gray-700">Dirección de envío</label>
+            <input type="text" #search placeholder="Ingresa un lugar" >
+            <input id="inputAddress" [ngClass]="{ 'is-invalid': submitted && fpd.address.errors }" formControlName="address" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                   placeholder="Dirección">
+            <div *ngIf="submitted && fpd.address.errors" class="invalid-feedback">
+              <div *ngIf="fpd.address.errors.required">address is required</div>
+            </div>
+            <input value="Carre illa de genova n8" [ngClass]="{ 'is-invalid': submitted && fpd.address_detail.errors }" formControlName="address_detail" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                   placeholder="Piso, escalera, puerta, etc.">
+            <div *ngIf="submitted && fpd.address_detail.errors" class="invalid-feedback">
+              <div *ngIf="fpd.address_detail.errors.required">address_detail is required</div>
+            </div>
+            <input [ngClass]="{ 'is-invalid': submitted && fpd.notes.errors }" formControlName="notes" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                   placeholder="Escribe aquí tus observaciones para la agencia...">
+            <div *ngIf="submitted && fpd.notes.errors" class="invalid-feedback">
+              <div *ngIf="fpd.notes.errors.required">notes is required</div>
+            </div>
+          </div>
+          <div class="flex flex-row space-x-2">
+            <div class="w-1/2">
+              <label for="inputCountry" class="block text-sm font-medium text-gray-700">País</label>
+              <select id="inputCountry" formControlName="country"  (change)="selectCountry($event)" [ngClass]="{ 'is-invalid': submitted && fpd.country.errors }"
+                      autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                <option [value]="null">Selecciona un país</option>
+                <option *ngFor="let value of countries"
+                        [value]="value.id">
+                  {{value.name}}
+                </option>
+              </select>
+              <div *ngIf="submitted && fpd.country.errors" class="invalid-feedback">
+                <div *ngIf="fpd.country.errors.required">country is required</div>
+              </div>
+            </div>
+            <div class="w-1/2">
+              <label for="inputProvince" class="block text-sm font-medium text-gray-700">Provincia</label>
+              <select id="inputProvince" formControlName="province"  (change)="selectProvince($event)" [ngClass]="{ 'is-invalid': submitted && fpd.province.errors }"
+                      autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                <option [value]="null">Selecciona una provincia</option>
+                <option *ngFor="let value of provinces"
+                        [value]="value.id">
+                  {{value.name}}
+                </option>
+              </select>
+              <div *ngIf="submitted && fpd.province.errors" class="invalid-feedback">
+                <div *ngIf="fpd.province.errors.required">province is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-row space-x-2">
+            <div class="w-1/2">
+              <label for="inputPopulation" class="block text-sm font-medium text-gray-700">Población</label>
+              <input id="inputPopulation" [ngClass]="{ 'is-invalid': submitted && fpd.postal_code.errors }" formControlName="population" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fpd.population.errors" class="invalid-feedback">
+                <div *ngIf="fpd.population.errors.required">population is required</div>
+              </div>
+            </div>
+            <div class="w-1/2">
+              <label for="inputPostalCode" class="block text-sm font-medium text-gray-700">Código postal</label>
+              <input id="inputPostalCode" [ngClass]="{ 'is-invalid': submitted && fpd.postal_code.errors }" formControlName="postal_code" type="text" name="first-name"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <div *ngIf="submitted && fpd.postal_code.errors" class="invalid-feedback">
+                <div *ngIf="fpd.postal_code.errors.required">postal code is required</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="pt-4">
+      <button id="step-2" (click)="goStep(3)" type="submit" class="
+        text-white bg-text-primary
+        hover:border-2 hover:border-primary
+        hover:text-primary hover:bg-transparent
+        rounded-md w-full py-3 text-lg">
+        Continuar
+      </button>
+    </div>
+  </div>
+</div>
