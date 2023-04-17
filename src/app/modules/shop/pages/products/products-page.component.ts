@@ -57,8 +57,8 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   ) {
     this.cart = new Cart();
     this.sortfilters=[
-      {id:1,key:'Precio ascendente'},
-      {id:2,key:'Precio desscendente'},
+      {id:1,key:'Rising price'},
+      {id:2,key:'Falling price'},
     ]
     this.getCartFromLocalStorage();
   }

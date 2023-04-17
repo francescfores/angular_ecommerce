@@ -1,9 +1,9 @@
-<div class="mx-auto w-full p-20 bg-white">
+<div class="mx-auto w-full lg:p-12 bg-white p-4">
   <div class="grid gap-6 grid-cols-1 lg:grid-cols-5">
     <div class="lg:col-span-2">
       <div *ngIf="loaded">
         <div class="relative" >
-          <div class="aspect-w-3 aspect-h-4" >
+          <div class="aspect-w-3 aspect-h-4 md:aspect-h-2 " >
             <div *ngFor="let image of images; let i = index" class="flex items-center">
               <img  alt="" class="w-auto mx-auto" src="http://ctrl-api.test/storage/images/{{image.path}}" [ngClass]="{'hidden display': i!==selectedImage}" >
             </div>
@@ -39,7 +39,7 @@
         -->
        </div>
      </div>
-     <div class="lg:col-span-3 pl-20">
+     <div class="lg:col-span-3 lg:pl-12 p-4">
        <h1 class="text-lg font-semibold" *ngIf="product">
          {{product?.name}}
        </h1>

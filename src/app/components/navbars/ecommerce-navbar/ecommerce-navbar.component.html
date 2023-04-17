@@ -2,39 +2,38 @@
      class=" font-px bg-primary text-white transition-colors duration-1000 top-0 fixed z-20 w-full flex flex-wrap items-center justify-between navbar-expand-lg  "
 >
 
-  <div class="z-40 flex justify-between w-screen z-3">
-    <div class="px-5 xl:px-12 py-2 flex w-full items-center">
+  <div class="z-40 flex justify-between w-screen z-3 h-14">
+    <div class="px-5 xl:px-14 py-2 flex w-full items-center">
       <button class='md:hidden flex flex-col h-10 w-10  rounded justify-center items-center group ' (click)="setNavbarOpen()">
         <div [ngClass]="{
-        'h-1 w-6 mb-1 bg-primary-bg transition ease transform duration-300':true,
+        'h-1 w-6 mb-1 bg-white transition ease transform duration-300':true,
         'rotate-45 translate-y-2 opacity-50 group-hover:opacity-100' : navbarOpen,
         'opacity-50 group-hover:opacity-100': !navbarOpen}"> </div>
         <div [ngClass]="{
-        'h-1 w-6 mb-1 bg-primary-bg transition ease transform duration-300':true,
+        'h-1 w-6 mb-1 bg-white transition ease transform duration-300':true,
         'opacity-0' : navbarOpen,
         'opacity-50 group-hover:opacity-100': !navbarOpen}">        </div>
         <div [ngClass]="{
-        'h-1 w-6  mb-1 bg-primary-bg transition ease transform duration-300':true,
+        'h-1 w-6  mb-1 bg-white transition ease transform duration-300':true,
         '-rotate-45 -translate-y-2 opacity-50 group-hover:opacity-100' : navbarOpen,
         'opacity-50 group-hover:opacity-100': !navbarOpen}">
         </div>
       </button>
 
-      <a class="text-2xl font-bold font-heading items-start" href="#">
+      <a class="text-2xl font-bold font-heading items-start md:ml-6" href="#">
         <!-- <img class="h-9" src="logo.png" alt="logo"> -->
-        <img *ngIf="isDarkEnable" class="w-10 logo logo-black" src="assets/icons/romero_logo.png" alt="PULL&amp;BEAR">
-        <img *ngIf="!isDarkEnable" class="w-10 logo logo-black" src="assets/icons/romero_logo.png" alt="PULL&amp;BEAR">
+        <img *ngIf="isDarkEnable" class="w-8 logo logo-black" src="assets/icons/logo.png" >
+        <img *ngIf="!isDarkEnable" class="w-8 logo logo-black" src="assets/icons/logo.png" >
       </a>
       <!-- Nav Links -->
       <ul class="hidden md:flex px-4 mx-auto  items-center space-x-12">
-        <li><a class="hover:text-gray-200" [routerLink]="['/home']">Home</a></li>
-        <li><a class="hover:text-gray-200" [routerLink]="['/projects']">Proyectos</a></li>
-        <li><a class="hover:text-gray-200" [routerLink]="['/contact']">Contacto</a></li>
-        <li><a class="hover:text-gray-200" [routerLink]="['/shop/products']">Tienda</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/shop/products']">Home</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/shop/products']">Contact</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/shop/products']">Shop</a></li>
       </ul>
-      <div class="md:hidden space-x-5 flex items-end">
+      <div class="md:hidden space-x-5 flex ml-auto">
         <a class="flex items-center hover:text-gray-200" [routerLink]="['/cart/shopping-basket']">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
           <span class="flex absolute -mt-2 ">
@@ -44,7 +43,7 @@
               </span>
         </a>
         <a class="flex items-center hover:text-gray-200" (click)="setLoginOpen()">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </a>
@@ -74,7 +73,7 @@
   </div>
   <div
     [ngClass]="{ 'translate-x-0 ': loginOpen, 'translate-x-full': !loginOpen, 'opacity-100': loginOpen, 'opacity-0': !loginOpen}"
-    class="top-0 right-0 w-1/6 divide-neutral-700 text-neutral-700
+    class="top-0 right-0 w-auto divide-neutral-700 text-neutral-700
        px-5 mt-14 fixed z-0 bg-white
        ease-in-out duration-300
       ">
@@ -88,7 +87,7 @@
         <a [routerLink]="['/shop/profile']"
           class=" w-full text-sm leading-relaxed inline-block mr-4 py-2 whitespace-nowrap"
         >
-          Mi cuenta
+          Account
         </a>
 
       </div>
@@ -105,15 +104,15 @@
   </div>
   <div
     [ngClass]="{ '-translate-x-0 ': navbarOpen, '-translate-x-full': !navbarOpen  }"
-    class="top-0 left-0 w-[35vw] bg-primary text-text-primary
-       px-5 pt-12   fixed z-2
+    class="top-14 left-0 w-[35vw] bg-white text-slate-800
+       px-5 pt-0   fixed z-2
        ease-in-out duration-300
        h-full
       ">
-    <div class="divide-y divide-solid justify-end">
+    <div class="justify-end">
       <div>
         <a
-          [routerLink]="['/home']"
+          [routerLink]="['/shop/products']"
           class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
         >
           Home
@@ -121,26 +120,18 @@
       </div>
       <div>
         <a
-          [routerLink]="['/']"
+          [routerLink]="['/shop/products']"
           class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
         >
-          Proyectos
+          Contact
         </a>
       </div>
       <div>
         <a
-          [routerLink]="['/']"
-          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-        >
-          Contacto
-        </a>
-      </div>
-      <div>
-        <a
-          [routerLink]="['/ecommerce/products']"
+          [routerLink]="['/shop/products']"
           class="link-color text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
         >
-          Tienda
+          Shop
         </a>
       </div>
       <div>

@@ -27,7 +27,7 @@ export class AddressComponent implements OnInit, AfterViewInit{
   country: any;
   provinces: any;
   province: any;
-  private client: any;
+  client: any;
   loading=true;
   submitted=false;
 
@@ -37,7 +37,7 @@ export class AddressComponent implements OnInit, AfterViewInit{
   create_address: boolean;
   private address: Address;
   edit_address: boolean;
-  private selected_address: any;
+  selected_address: any;
   constructor(
     private fb: FormBuilder,
     private addressService: AddressService,
@@ -83,6 +83,8 @@ export class AddressComponent implements OnInit, AfterViewInit{
         this.country = this.countries.find(x=>x.id===this.countries[0].id);
         this.provinces= this.country.provinces;
         this.province= this.country.provinces[0];
+        this.getClientById();
+
         // this.fpd.country.setValue(this.country.id);
         // this.fpd.province.setValue(this.provinces[0].id);
       },
@@ -97,7 +99,6 @@ export class AddressComponent implements OnInit, AfterViewInit{
 
     });
     this.client =this.authenticationService.currentClientValue;
-    this.getClientById();
 
   }
 
@@ -233,6 +234,8 @@ export class AddressComponent implements OnInit, AfterViewInit{
         data => {
           this.client = data.data;
           this.selected_address = this.client.addresses[0];
+          console.log(this.client.addresses[0]);
+          this.selectAddress(this.selected_address);
           console.log(data);
           this.loading = false;
         },

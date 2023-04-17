@@ -501,14 +501,13 @@
 </div>
 
 <div class="grid grid-cols-12 gap-4 -mb-20 h-auto">
-  <ul
-    class="h-full bg-white shadow-xl col-span-2  flex list-none flex-col pl-0"
+  <ul class="h-full bg-white shadow-xl col-span-4 lg:col-span-2 list-none flex  flex-col pl-0"
     role="tablist"
     data-te-nav-ref>
     <li (click)="toggleTabs(1)"  role="presentation" class="flex text-center hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate
           focus:border-transparent ">
       <a
-        class="w-full block border-x-0 p-6  text-xs font-medium uppercase
+        class="w-full block border-x-0 px-2 py-6 lg:p-6  text-xs font-medium uppercase
           leading-tight text-neutral-500 "
         role="tab"
         aria-controls="tabs-home03"
@@ -520,7 +519,7 @@
     <li (click)="toggleTabs(2)"  role="presentation" class="flex text-center hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate
           focus:border-transparent ">
       <a
-        class="w-full block border-x-0 p-6  text-xs font-medium uppercase
+        class="w-full block border-x-0 px-2 py-6 lg:p-6  text-xs font-medium uppercase
           leading-tight text-neutral-500 "
         role="tab"
         aria-controls="tabs-home03"
@@ -535,7 +534,7 @@
           focus:border-transparent ">
       <a
         [ngClass]="{ 'border-primary': openTab === 3}"
-        class="w-full block border-x-0 p-6  text-xs font-medium uppercase
+        class="w-full block border-x-0 px-2 py-6 lg:p-6  text-xs font-medium uppercase
           leading-tight text-neutral-500 "
         role="tab"
         aria-controls="tabs-home03"
@@ -545,7 +544,7 @@
            class="border-transparent border-r-4 ease-in-out duration-500 transition-all"></div>
     </li>
   </ul>
-  <div class="col-span-10 flex flex-col px-12 pt-6 pb-32" *ngIf="openTab===1">
+  <div class="col-span-8 lg:col-span-10 flex flex-col px-2 lg:px-12 pt-6 pb-32" *ngIf="openTab===1">
     <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0" >
       <div class="rounded-t bg-white mb-0 px-6 py-6 border-b-2 border-gray-200">
         <div class="text-center flex justify-between">
@@ -553,7 +552,7 @@
         </div>
       </div>
       <div class="flex-auto pt-0">
-        <div *ngFor="let order of orders" class="border-b-2 border-gray-200 p-10 w-full" [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': openTab === 1}" >
+        <div *ngFor="let order of orders" class="border-b-2 border-gray-200 p-2 lg:p-10 w-full" [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': openTab === 1}" >
           <div class="flex flex-col items-center" >
             <div class="w-full" >
               <div class="-my-3 flow-root">
@@ -561,7 +560,7 @@
                 <button (click)="showOrderSelected(order)" type="button" class="flex w-full items-center justify-between  py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
                   <div class="flex flex-col items-start justify-start">
                     <p>Num: {{order.id}}</p>
-                    <p>Date: {{order.created_at}} </p>
+                    <p>Date: {{order.created_at | date:'yyyy-MM-dd'}} </p>
                     <p>Total: {{ order.total/100 | number:'1.2-2' }}€</p>
                     <p>Status: {{order.status}}</p>
                   </div>
@@ -635,7 +634,7 @@
     </div>
     <div *ngIf="order_pg" class="flex justify-center p-4">
       <nav aria-label="Page navigation example">
-        <ul class="flex list-style-none">
+        <ul class="flex flex-wrap list-style-none">
           <li class="page-item" *ngFor="let pr of order_pg.links">
             <a (click)="paginated(pr.label)" [ngClass]="{
               'bg-primary text-white': order_pg.current_page === pr.label,
@@ -650,14 +649,14 @@
       </nav>
     </div>
   </div>
-  <div class="col-span-10 flex flex-col px-12 pt-6 pb-32" *ngIf="openTab===2">
+  <div class="col-span-8 lg:col-span-10 flex flex-col px-2 lg:px-12 pt-6 pb-32" *ngIf="openTab===2">
     <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
       <div class="rounded-t bg-white mb-0 px-6 py-6">
         <div class="text-center flex justify-between">
           <h6 class="text-blueGray-700 text-xl font-bold">Personal data</h6>
         </div>
       </div>
-      <div class="flex-auto p-10">
+      <div class="flex-auto p-2 lg:p-10">
         <form [formGroup]="form">
 <!--          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">-->
 <!--            Informacion del usuario-->
@@ -726,7 +725,7 @@
           Create</button>
       </div>
       <div class="flex-auto pt-0">
-        <div *ngFor="let address of client.addresses" class=" border-b-2 border-gray-200 p-10 w-full"
+        <div *ngFor="let address of client.addresses" class=" border-b-2 border-gray-200 p-2 lg:p-10 w-full"
              [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': openTab === 1}" >
           <div class="flex flex-col items-center" >
             <div class="w-full" >
@@ -743,7 +742,7 @@
                     <button class=" text-gray-700  ">
                       <svg class="h-5 w-5 text-gray-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="1" />  <circle cx="12" cy="19" r="1" />  <circle cx="12" cy="5" r="1" /></svg>
                     </button>
-                    <ul class="absolute hidden text-gray-700 pt-1 group-hover:block">
+                    <ul class="absolute hidden text-gray-700 pt-1 -ml-12 group-hover:block">
                       <li class="" (click)="openEditAddress(address)">
                         <a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
                           Edit
@@ -968,7 +967,7 @@
       </div>
     </div>
   </div>
-  <div class="col-span-10 flex flex-col px-12 pt-6 pb-32" *ngIf="openTab===3">
+  <div class="col-span-8 lg:col-span-10 flex flex-col flex-wrap px-2 lg:px-12 pt-6 pb-32" *ngIf="openTab===3">
     <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0" >
       <div class="rounded-t bg-white mb-0 px-6 py-6 border-b-2 border-gray-200">
         <div class="text-center flex justify-between">
@@ -976,7 +975,7 @@
         </div>
       </div>
       <div class="flex-auto pt-0">
-        <div *ngFor="let return of returns" class="border-b-2 border-gray-200 p-10 w-full" [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': openTab === 1}" >
+        <div *ngFor="let return of returns" class="border-b-2 border-gray-200 p-2 lg:p-10 w-full" [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': openTab === 1}" >
           <div class="flex flex-col items-center" >
             <div class="w-full" >
               <div class="-my-3 flow-root">
@@ -985,7 +984,7 @@
                   <div class="flex flex-col items-start justify-start">
                     <p>Order: {{return.order.id}}</p>
                     <p>Num: {{return.id}}</p>
-                    <p>Date: {{return.created_at}} </p>
+                    <p>Date: {{return.created_at | date:'yyyy-MM-dd'}} </p>
                     <p>Total: {{ return.total/100 | number:'1.2-2' }}€</p>
                     <p>Status: {{return.status}}</p>
                   </div>
@@ -1022,11 +1021,11 @@
 
                   </div>
                   <div class="w-36 flex flex-col justify-between items-center">
-                    <div class="w-full">
-                      <label class="text-sm text-gray-600 mt-4 mr-4 ">Return product</label>
-                      <input (change)="selectReturn(detail)" name="rate"  type="checkbox"
-                             class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                    </div>
+<!--                    <div class="w-full">-->
+<!--                      <label class="text-sm text-gray-600 mt-4 mr-4 ">Return product</label>-->
+<!--                      <input (change)="selectReturn(detail)" name="rate"  type="checkbox"-->
+<!--                             class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">-->
+<!--                    </div>-->
                     <div class="w-full mt-4">
                       <button class="w-full text-white bg-text-primary
                         hover:border-2 hover:border-primary
@@ -1053,9 +1052,9 @@
       </div>
 
     </div>
-    <div *ngIf="return_pg" class="flex justify-center p-4">
+    <div *ngIf="return_pg" class="flex justify-center p-4 flex-wrap">
       <nav aria-label="Page navigation example">
-        <ul class="flex list-style-none">
+        <ul class="flex flex-wrap list-style-none">
           <li class="page-item" *ngFor="let pr of return_pg.links">
             <a (click)="paginatedReturn(pr.label)" [ngClass]="{
               'bg-primary text-white': return_pg.current_page === pr.label,
@@ -1070,7 +1069,6 @@
       </nav>
     </div>
   </div>
-
 </div>
 <!--<app-alert class="z-50 fixed" (showChange)="show=!show"  [show]="show" [text]="text" [color]="color"></app-alert>-->
 

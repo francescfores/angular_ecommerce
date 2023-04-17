@@ -45,8 +45,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loginForm = new UntypedFormGroup({
-      email: new UntypedFormControl('', [Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
-      password: new UntypedFormControl('', Validators.required)
+      email: new UntypedFormControl('client_ecommerce@gmail.com',
+        [Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
+      password: new UntypedFormControl('123456', Validators.required)
     });
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;

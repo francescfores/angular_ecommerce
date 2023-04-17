@@ -197,7 +197,7 @@ export class DashboardComponent implements OnInit , AfterViewInit {
     this.configLineChart.data.labels=[];
     this.configLineChart.data.datasets=[
       {
-        label: 'Ventas',
+        label: 'Sales',
         fill: false,
         backgroundColor: "#fff",
         borderColor: "#fff",
@@ -207,7 +207,7 @@ export class DashboardComponent implements OnInit , AfterViewInit {
     this.configBarChart.data.labels=[];
     this.configBarChart.data.datasets=[
       {
-        label: 'Pedidos',
+        label: 'Orders',
         backgroundColor: "#ed64a6",
         borderColor: "#ed64a6",
         fill: false,
