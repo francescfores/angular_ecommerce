@@ -46,9 +46,8 @@ import { NotificationDropdownComponent } from './components/dropdowns/notificati
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserDropdownComponent } from './components/dropdowns/user-dropdown/user-dropdown.component';
 import {EcommerceNavbarComponent} from './components/navbars/ecommerce-navbar/ecommerce-navbar.component';
-import {DefaultNavbarComponent} from './components/navbars/default-navbar/default-navbar.component';
+// import {DefaultNavbarComponent} from './components/navbars/default-navbar/default-navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ProductListComponent} from './components/ecommerce/products/product-list/product-list.component';
 import {EcommerceComponent} from './components/ecommerce/ecommerce.component';
 import {ComponentsModule} from './components/components.module';
 import { ProjectsComponent } from './views/projects/projects.component';
@@ -134,7 +133,7 @@ import { EditUserComponent } from './views/admin/users/edit-user/edit-user.compo
     RegisterAdminComponent,
     IndexComponent,
     LandingComponent,
-    DefaultNavbarComponent,
+    // DefaultNavbarComponent,
     EcommerceComponent,
     ProjectsComponent,
     ContactComponent,

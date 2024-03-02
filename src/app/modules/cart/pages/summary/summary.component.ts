@@ -21,6 +21,8 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./summary.component.css']
 })
 export class SummaryComponent implements OnInit{
+  imgUrl=environment.apiUrl;
+
   loading=false;
   groupedProducts = [];
   cart: Cart;

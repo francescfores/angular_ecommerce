@@ -1,188 +1,82 @@
-<nav id="navbar" (scroll)="onScroll($event)"
-  class=" transition-colors duration-1000 top-0 fixed z-20 w-full flex flex-wrap items-center justify-between navbar-expand-lg  text-text-primary"
->
-
-  <div class="z-40 flex justify-between w-screen">
-    <div class="px-5 xl:px-12 py-2 flex w-full items-center">
-      <a class="text-2xl font-bold font-heading" href="#">
-        <!-- <img class="h-9" src="logo.png" alt="logo"> -->
-        Logo
-      </a>
-      <!-- Nav Links -->
-      <ul class="hidden md:flex px-4 ml-auto  items-center  font-semibold font-heading space-x-12">
-        <li><a class="hover:text-gray-200" [routerLink]="['/']">Home</a></li>
-        <li><a class="hover:text-gray-200" [routerLink]="['/projects']">Proyectos</a></li>
-        <li><a class="hover:text-gray-200" [routerLink]="['/contact']">Contacto</a></li>
-        <li><a class="hover:text-gray-200" [routerLink]="['/shop/products']">Tienda</a></li>
-
-      </ul>
-      <div class="hidden space-x-5 md:flex items-end">
-        <a *ngIf="isDarkEnable" (click)="onClick.emit(changeTheme)" mode-button style="font-size:16px"><i class="fa-solid fa-moon"></i></a>
-        <a *ngIf="!isDarkEnable" (click)="onClick.emit(changeTheme)" mode-button style="font-size:16px"><i class="fa-solid fa-sun"></i></a>
-      </div>
-    </div>
-    <!-- Responsive navbar -->
-      <button class='md:hidden flex flex-col h-12 w-12  rounded justify-center items-center group ' (click)="setNavbarOpen()">
+<nav id="navbar"
+     class="bg-bgPrim text-textPrimary transition-all duration-300 ease-in-out top-0 fixed z-50 w-full justify-center items-center">
+  <div class="flex flex-col">
+    <div class="px-10 flex-grow  flex h-[62px]">
+      <button
+        class='flex md:hidden z-50 flex-grow-0 flex-shrink-0 my-auto
+                 items-start flex flex-col rounded justify-start group
+                 transition-all duration-500' (click)="toggleSidebar()">
         <div [ngClass]="{
-        'h-1 w-6 mb-1 bg-lightBlue-500 transition ease transform duration-300':true,
-        'rotate-45 translate-y-2 opacity-50 group-hover:opacity-100' : navbarOpen,
-        'opacity-50 group-hover:opacity-100': !navbarOpen}"> </div>
-          <div [ngClass]="{
-        'h-1 w-6 mb-1 bg-lightBlue-500 transition ease transform duration-300':true,
-        'opacity-0' : navbarOpen,
-        'opacity-50 group-hover:opacity-100': !navbarOpen}">        </div>
-          <div [ngClass]="{
-        'h-1 w-6  mb-1 bg-lightBlue-500 transition ease transform duration-300':true,
-        '-rotate-45 -translate-y-2 opacity-50 group-hover:opacity-100' : navbarOpen,
-        'opacity-50 group-hover:opacity-100': !navbarOpen}">
+        'h-0.5 w-4 mb-1 bg-primary transition ease transform duration-300':true,
+        'rotate-45 translate-y-1.5 opacity-50 group-hover:opacity-100' : sidebarOpen,
+        'opacity-50 group-hover:opacity-100': !sidebarOpen}"> </div>
+        <div [ngClass]="{
+        'h-0.5 w-4 mb-1 bg-primary transition ease transform duration-300':true,
+        'opacity-0' : sidebarOpen,
+        'opacity-50 group-hover:opacity-100': !sidebarOpen}">        </div>
+        <div [ngClass]="{
+        'h-0.5 w-4  mb-1 bg-primary transition ease transform duration-300':true,
+        '-rotate-45 -translate-y-1.5 opacity-50 group-hover:opacity-100' : sidebarOpen,
+        'opacity-50 group-hover:opacity-100': !sidebarOpen}">
         </div>
       </button>
+      <div [ngClass]="{'opacity-0':sidebarOpen}" class="flex m-auto md:ml-0 md:mr-auto md:my-auto justify-center items-center transition-all duration-500 ease-in-out">
+        <div>
+          <a [routerLink]="['/blog']">
+            <img *ngIf="!isDarkEnable" class="w-20" src="./assets/img/logo/image_black.png" >
+            <img *ngIf="isDarkEnable" class="w-20" src="./assets/img/logo/image_yellow.png" >
+            <!--              <svg class="w-10" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 100 100" ><path d="M95,51.2l-7.8-13.4c-1.2-2.1-3.5-3.4-6-3.4c-0.4,0-0.8,0-1.2,0.1l2-5.8c0.7-2.1,0.4-4.5-0.9-6.3c-1.2-1.7-3.2-2.8-5.3-2.9 l-1.6-2.8c-0.1-0.2-0.2-0.3-0.3-0.5c-2.3-3.4-5.7-5.6-9.8-6.3c-0.4-0.1-0.9-0.1-1.4-0.1l-0.1,0L40.2,10c-4.9,0-9.3,2.7-11.6,7 l-7.3,13.7c-0.8,1.6-1,3.5-0.5,5.3c0.1,0.4,0.2,0.7,0.4,1c-1.3,0.2-2.8,0.4-4.5,0.7c-2.9,0.4-5.2,2.7-5.7,5.5 c-0.3,1.5-0.1,2.9,0.5,4.2l-2.2,3.2c-0.1,0.2-0.3,0.4-0.4,0.6C7,54.8,6.7,58.8,8,62.8c0.2,0.4,0.3,0.9,0.6,1.3l10.5,19.8 c2.3,4.3,6.7,7,11.6,7h15.5c2.6,0,4.9-1.5,6.1-3.6l3.4,4.2c1.3,1.6,3.3,2.6,5.4,2.6c2.5,0,4.6-1.3,5.9-3.2l4.2,0 c4.2-0.2,7.8-1.9,10.5-5c0.3-0.4,0.7-0.8,0.9-1.2l12.3-19.8C97.4,60.6,97.5,55.4,95,51.2z" opacity=".35"/><path fill="#f2f2f2" d="M93,49.2l-7.8-13.4c-1.2-2.1-3.5-3.4-6-3.4c-0.4,0-0.8,0-1.2,0.1l2-5.8c0.7-2.1,0.4-4.5-0.9-6.3 c-1.2-1.7-3.2-2.8-5.3-2.9l-1.6-2.8c-0.1-0.2-0.2-0.3-0.3-0.5c-2.3-3.4-5.7-5.6-9.8-6.3c-0.5-0.1-1-0.1-1.4-0.1L38.2,8 c-4.9,0-9.3,2.7-11.6,7l-7.3,13.7c-0.8,1.6-1,3.5-0.5,5.3c0.1,0.4,0.2,0.7,0.4,1c-1.3,0.2-2.8,0.4-4.5,0.7 c-2.9,0.4-5.2,2.7-5.7,5.5c-0.3,1.5-0.1,2.9,0.5,4.2l-2.2,3.2c-0.1,0.2-0.3,0.4-0.4,0.6C5,52.8,4.7,56.8,6,60.8 c0,0.1,0.4,1.3,0.6,1.3l10.5,19.8c2.3,4.3,6.7,7,11.6,7h15.5c2.6,0,4.9-1.5,6.1-3.6l3.4,4.2c1.3,1.6,3.3,2.6,5.4,2.6 c2.5,0,4.6-1.3,5.9-3.2l4.2,0c4.2-0.2,7.8-1.9,10.5-5c0.3-0.4,0.7-0.8,0.9-1.2l12.3-19.8C95.4,58.6,95.5,53.4,93,49.2z"/><path fill="#739f4d" d="M12.3,59.1l-0.2-0.4c-0.8-2.3-0.6-4.4,0.5-6.5l5.4-7.8l-2.4-1.5c-0.2-0.1-0.2-0.3-0.2-0.4 c0-0.1,0.1-0.3,0.4-0.3c0,0,13.7-2.1,13.7-2.1c0.2,0,0.4,0.1,0.5,0.3l5.4,13.9c0.1,0.1,0,0.3,0,0.4c-0.1,0.1-0.2,0.2-0.4,0.2l0,0 c-0.1,0-0.1,0-0.2-0.1l-2.5-1.5l-8.7,14.1L16.1,66L12.3,59.1z"/><path fill="#96c362" d="M28.7,82.4c-2.5,0-4.7-1.3-5.8-3.5L14,63.8c2.1,1.3,4.4,2.1,7.6,2.1h22.5c0.2,0,0.4,0.2,0.4,0.4V82 c0,0.2-0.2,0.4-0.4,0.4H28.7z"/><path fill="#739f4d" d="M59.1,85.6c-0.1,0-0.2-0.1-0.3-0.2l-8.6-10.7c-0.1-0.2-0.1-0.4,0-0.5l9.5-11.9c0.1-0.1,0.2-0.2,0.3-0.2 c0.1,0,0.4,0.1,0.4,0.4l0,3.5l15.9-0.9l2.8,7.2L75,79.2l-0.3,0.4c-1.5,1.8-3.5,2.7-5.8,2.8l-9.4,0l0,2.8 C59.5,85.5,59.2,85.6,59.1,85.6z"/><path fill="#96c362" d="M78.3,74.3c0-2.4-0.4-4.9-2-7.7L65,47c-0.1-0.1-0.1-0.3,0-0.3c0-0.1,0.1-0.2,0.2-0.3L79,39.2 c0.1,0,0.1-0.1,0.2-0.1c0.2,0,0.3,0.1,0.4,0.2l7.8,13.4c1.2,2.1,1.2,4.7-0.1,6.8L78.3,74.3z"/><path fill="#739f4d" d="M54.1,36.2c-0.3,0-0.3-0.2-0.4-0.3c0-0.1,0-0.3,0.2-0.5l2.5-1.5l-8.3-12.1l4.6-7.3l7.9-0.1l0.5,0 c2.3,0.4,4.1,1.5,5.5,3.5l4.2,7.6l2.5-1.4c0.1,0,0.1-0.1,0.2-0.1c0.1,0,0.3,0.1,0.4,0.2c0.1,0.1,0.1,0.2,0,0.4l-4.5,13 C69.3,37.9,69.1,38,69,38L54.1,36.2z"/><path fill="#96c362" d="M39.2,39.8c-0.1,0-0.1,0-0.2-0.1l-13.7-7.5c-0.1-0.1-0.2-0.2-0.2-0.3c0-0.1,0-0.2,0-0.3L32.3,18 c1.1-2.2,3.4-3.5,5.8-3.5L55.6,14c-2.1,1.3-3.9,2.9-5.5,5.7L39.6,39.6C39.5,39.8,39.3,39.8,39.2,39.8z"/><path fill="#40396e" d="M44.2,83.9H28.7c-3,0-5.8-1.7-7.2-4.3L11,59.8c0,0,0-0.1-0.1-0.1l-0.2-0.4c0,0,0-0.1,0-0.1 c-0.9-2.7-0.7-5.3,0.6-7.7c0,0,0.1-0.1,0.1-0.1l4.5-6.5l-1.1-0.7c-0.7-0.4-1-1.2-0.9-2c0.2-0.8,0.8-1.4,1.6-1.5 c13.8-2.1,13.8-2.1,13.9-2.1c0.8,0,1.6,0.5,1.8,1.2l5.4,13.9c0.2,0.6,0.2,1.2-0.2,1.8c-0.6,0.8-1.7,1.1-2.6,0.6l-1.2-0.8l-5.2,7.7 h16.8c1.1,0,1.9,0.9,1.9,1.9V82C46.1,83,45.3,83.9,44.2,83.9z M13.7,58.4l1.8,3.3l8.7,16.5c0.9,1.7,2.6,2.7,4.5,2.7h14.4V65.9 H24.6c-0.6,0-1.1-0.3-1.3-0.8c-0.3-0.5-0.2-1.1,0.1-1.5l7.5-11.2c0.4-0.6,1.2-0.8,1.8-0.6l-3.9-10.2c-2,0.3-6.8,1-10,1.5 c0.3,0.2,0.6,0.6,0.7,1c0.1,0.4,0,0.8-0.2,1.2L14,53c-0.9,1.7-1,3.3-0.4,5.2L13.7,58.4z M44.2,65.9L44.2,65.9L44.2,65.9z M33.8,54.7C33.8,54.7,33.8,54.7,33.8,54.7L33.8,54.7z"/><path fill="#40396e" d="M59.1,87.1c-0.6,0-1.1-0.3-1.5-0.7L49,75.7c-0.6-0.7-0.6-1.7,0-2.4l9.5-11.9c0.4-0.5,0.9-0.7,1.5-0.7 c0.9,0,1.9,0.7,1.9,1.9l0,2l9.8-0.1l-9-15.5c-0.3-0.4-0.3-1-0.2-1.5c0.2-0.5,0.5-0.9,0.9-1.2l14.9-8.7c0.9-0.5,2.1-0.2,2.6,0.7 l7.8,13.4c0,0,0,0,0,0c1.5,2.6,1.5,5.8-0.1,8.4L76.3,79.9c0,0,0,0.1-0.1,0.1L76,80.4c0,0-0.1,0.1-0.1,0.1 c-1.8,2.1-4.1,3.2-6.9,3.3l-7.9,0l0,1.3C61,86.4,60,87.1,59.1,87.1z M51.8,74.5l6.2,7.7c0.1-0.7,0.7-1.3,1.5-1.3l9.4,0 c1.9-0.1,3.4-0.8,4.7-2.3l0.2-0.3l2.3-3.8l9.9-16c1-1.6,1-3.6,0.1-5.3l-7.3-12.4l-13,7.6l9.8,16.9c0.3,0.5,0.3,1,0,1.5 c-0.3,0.5-0.8,0.8-1.3,0.8l-13.9,0.1c-0.8,0-1.5-0.7-1.5-1.5l0-0.5L51.8,74.5z M51.3,75.2L51.3,75.2 C51.3,75.2,51.3,75.2,51.3,75.2z M65.3,47.5L65.3,47.5C65.3,47.5,65.3,47.5,65.3,47.5z"/><path fill="#40396e" d="M40.7,41.9c-0.3,0-0.6-0.1-0.9-0.2l-15.2-8.1c0,0,0,0,0,0c-0.4-0.2-0.8-0.6-0.9-1.1c-0.2-0.5-0.1-1,0.1-1.5 L31,17.3c1.4-2.7,4.2-4.3,7.2-4.3l14.3,0c0.1,0,0.1,0,0.2,0l7.9-0.1c0,0,0.1,0,0.1,0l0.5,0c0,0,0.1,0,0.1,0 c2.8,0.4,4.9,1.8,6.5,4.1c0,0,0,0.1,0.1,0.1l3.5,6.3l1.1-0.7c0.9-0.5,2-0.2,2.5,0.6c0.4,0.5,0.5,1.1,0.2,1.7l-4.5,13.1 c-0.3,0.8-1.1,1.4-2,1.3l-14.9-1.8c-0.8-0.1-1.5-0.7-1.7-1.5c-0.2-0.8,0.2-1.6,0.9-2.1l1.2-0.7l-4.1-7.5l-7.9,14.9 C42,41.5,41.4,41.9,40.7,41.9z M39.7,39.4C39.7,39.4,39.7,39.4,39.7,39.4L39.7,39.4z M26.9,31.4l13.3,7.1L48.9,22 c0.3-0.5,0.8-0.8,1.3-0.8c0.5,0,1.1,0.3,1.3,0.8l6.2,11.2c0.4,0.6,0.2,1.4-0.4,1.9l10.8,1.3l3.3-9.5c-0.3,0.2-0.7,0.2-1.1,0.1 c-0.4-0.1-0.7-0.4-0.9-0.7l-4.2-7.6c-1.1-1.6-2.5-2.5-4.4-2.8l-0.3,0L53,16c-0.1,0-0.1,0-0.2,0l-14.6,0c-1.9,0-3.6,1-4.5,2.7 L26.9,31.4z M54.7,36.7L54.7,36.7C54.7,36.7,54.7,36.7,54.7,36.7z M54.3,34.7L54.3,34.7C54.3,34.7,54.3,34.7,54.3,34.7z"/></svg>-->
+          </a>
 
+        </div>
+        <div class="text-xl  tracking-wide ml-2 font-semibold mr-16"></div>
+        <div class="text-sm hidden md:flex font-bold flex flex-grow  justify-center items-center gap-10 py-2">
+          <a [routerLink]="['/home']"><p>Home</p></a>
+          <!--          <a [routerLink]="['/posts']"><p>Qui som</p></a>-->
+          <a [routerLink]="['/bonus']"><p>Productos</p></a>
+          <a [routerLink]="['/contact']"><p>Contacto</p></a>
+        </div>
+      </div>
+      <div class="flex  items-center space-x-5">
+        <!--        <svg *ngIf="isDarkEnable" (click)="changeTheme()" width="18" height="18" viewBox="0 0 18 18" style="transform: rotate(90deg);" class="sc-a794b73f-1 cfurEx"><mask id="moon-mask-main-nav"><rect x="0" y="0" width="18" height="18" fill="#FFF"></rect><circle cx="25" cy="0" r="8" fill="black"></circle></mask><circle cx="9" cy="9" fill="var(&#45;&#45;color-text)" mask="url(#moon-mask-main-nav)" r="5"></circle><g><circle cx="17" cy="9" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle><circle cx="13" cy="15.928203" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle><circle cx="5" cy="15.928203" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle><circle cx="1" cy="9" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle><circle cx="5" cy="2.071797" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle><circle cx="13" cy="2.071797" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle></g></svg>-->
+        <!--        <svg *ngIf="!isDarkEnable" (click)="changeTheme()"  width="18" height="18" viewBox="0 0 18 18" style="transform: rotate(90deg);" class="sc-a794b73f-1 cfurEx"><mask id="moon-mask-main-nav"><rect x="0" y="0" width="18" height="18" fill="#FFF"></rect><circle cx="25" cy="0" r="8" fill="black"></circle></mask><circle cx="9" cy="9" fill="var(&#45;&#45;color-text)" mask="url(#moon-mask-main-nav)" r="5"></circle><g><circle cx="17" cy="9" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle><circle cx="13" cy="15.928203" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle><circle cx="5" cy="15.928203" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle><circle cx="1" cy="9" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle><circle cx="5" cy="2.071797" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle><circle cx="13" cy="2.071797" r="1.5" fill="var(&#45;&#45;color-text)" style="transform-origin: center center 0px; transform: scale(1);"></circle></g></svg>-->
+
+
+        <svg (click)="changeTheme()" _ngcontent-mfi-c41="" width="24" height="24" viewBox="0 0 18 18" class="moon_sun" style="transform: rotate(50deg); fill: white;"><mask _ngcontent-mfi-c41="" id="moon-mask-main-nav"><rect _ngcontent-mfi-c41="" x="0" y="0" width="18" height="18" fill="#FFF"></rect><circle _ngcontent-mfi-c41="" cx="10" cy="2" r="7" fill="black" style="background: green;"></circle></mask><circle _ngcontent-mfi-c41="" id="circle" cx="9" cy="9" fill="var(--color-text)" mask="url(#moon-mask-main-nav)" r="8" style="background: green;"></circle><g _ngcontent-mfi-c41=""><circle _ngcontent-mfi-c41="" cx="17" cy="9" r="1.5" fill="var(--color-text)" style="transform-origin: center center 0px; transform: scale(0); background: green;"></circle><circle _ngcontent-mfi-c41="" cx="13" cy="15.928203" r="1.5" fill="var(--color-text)" style="transform-origin: center center 0px; transform: scale(0); background: green;"></circle><circle _ngcontent-mfi-c41="" cx="5" cy="15.928203" r="1.5" fill="var(--color-text)" style="transform-origin: center center 0px; transform: scale(0); background: green;"></circle><circle _ngcontent-mfi-c41="" cx="1" cy="9" r="1.5" fill="var(--color-text)" style="transform-origin: center center 0px; transform: scale(0); background: green;"></circle><circle _ngcontent-mfi-c41="" cx="5" cy="2.071797" r="1.5" fill="var(--color-text)" style="transform-origin: center center 0px; transform: scale(0); background: green;"></circle><circle _ngcontent-mfi-c41="" cx="13" cy="2.071797" r="1.5" fill="var(--color-text)" style="transform-origin: center center 0px; transform: scale(0); background: green;"></circle></g></svg>
+        <!--        <a class="flex items-center hover:text-gray-200" *ngIf="!isDarkEnable" (click)="changeTheme()" mode-button style="font-size:18px">-->
+        <!--          <i class="fa-solid fa-moon"></i></a>-->
+        <!--        <a class="flex items-center hover:text-gray-200" *ngIf="isDarkEnable" (click)="changeTheme()" mode-button style="font-size:16px">-->
+        <!--          <i class="fa-solid fa-sun"></i></a>-->
+        <a class="flex items-center hover:text-gray-200" style="font-size:16px"><i class="fa-solid fa-search"></i></a>
+      </div>
+    </div>
   </div>
   <div
-        [ngClass]="{ 'translate-x-0 ': navbarOpen, 'translate-x-full': !navbarOpen  }"
-         class="top-0 right-0 w-[35vw] bg-neutral-800
-       px-5 pt-12   fixed z-2
+    [ngClass]="{ 'translate-x-0 ': loginOpen, 'translate-x-full': !loginOpen, 'opacity-100': loginOpen, 'opacity-0': !loginOpen}"
+    class="top-0 right-0 w-auto divide-neutral-700 text-neutral-700
+       px-5 mt-16 fixed z-0 bg-white
        ease-in-out duration-300
-       h-full
       ">
-    <div class="divide-y divide-solid justify-end">
-      <div>
+    <div class="divide-y divide-solid divide-neutral-700 w-1/4 ">
+      <!--      <div *ngIf="client">-->
+      <!--        <a  (click)="logOut()"-->
+      <!--            class=" w-full text-sm leading-relaxed inline-block mr-4 py-2 whitespace-nowrap"-->
+      <!--        > Logout </a>-->
+      <!--        <a [routerLink]="['/shop/profile']"-->
+      <!--          class=" w-full text-sm leading-relaxed inline-block mr-4 py-2 whitespace-nowrap"-->
+      <!--        > Account </a>-->
+
+      <!--      </div>-->
+      <!--      <div *ngIf="!client">-->
+      <div >
         <a
-          [routerLink]="['/']"
-          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+          [routerLink]="['/auth/login']"
+          class=" text-sm leading-relaxed inline-block mr-4 py-2 whitespace-nowrap"
         >
-          Home
+          Login
         </a>
       </div>
-      <div>
-        <a
-          [routerLink]="['/projects']"
-          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-        >
-          Proyectos
-        </a>
-      </div>
-      <div>
-        <a
-          [routerLink]="['/contact']"
-          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-        >
-          Contacto
-        </a>
-      </div>
-      <div>
-        <a
-          [routerLink]="['/shop/products']"
-          class="link-color text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-        >
-          Tienda
-        </a>
-      </div>
-      <div>
-      </div>
+
     </div>
   </div>
 </nav>
-<!--
-<nav id="navbar" (scroll)="onScroll($event)"
-  class=" transition-colors duration-1000 top-0 fixed z-20 w-full flex flex-wrap items-center justify-between navbar-expand-lg  text-text-primary"
->
-
-  <div class="z-40 flex justify-between w-screen">
-    <div class="px-5 xl:px-12 py-2 flex w-full items-center">
-      <a class="text-2xl font-bold font-heading" href="#">
-         <img class="h-9" src="logo.png" alt="logo">
-Logo
-</a>
-<ul class="hidden md:flex px-4 mx-auto  items-center  font-semibold font-heading space-x-12">
-  <li><a class="hover:text-gray-200" [routerLink]="['/']">Home</a></li>
-  <li><a class="hover:text-gray-200" [routerLink]="['/projects']">Proyectos</a></li>
-  <li><a class="hover:text-gray-200" [routerLink]="['/contact']">Contacto</a></li>
-  <li><a class="hover:text-gray-200" [routerLink]="['/shop/products']">Tienda</a></li>
-
-</ul>
-<div class="hidden space-x-5 md:flex items-end">
-  <a *ngIf="isDarkEnable" (click)="onClick.emit(changeTheme)" mode-button style="font-size:16px"><i class="fa-solid fa-moon"></i></a>
-  <a *ngIf="!isDarkEnable" (click)="onClick.emit(changeTheme)" mode-button style="font-size:16px"><i class="fa-solid fa-sun"></i></a>
-  <a class="flex items-center hover:text-gray-200" href="#">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-    </svg>
-    <span class="flex absolute -mt-5 ml-4">
-              <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
-                </span>
-              </span>
-  </a>
-  <a class="flex items-center hover:text-gray-200" [routerLink]="['/auth/login']">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-  </a>
-
-</div>
-</div>
-<button class='md:hidden flex flex-col h-12 w-12  rounded justify-center items-center group ' (click)="setNavbarOpen()">
-  <div [ngClass]="{
-        'h-1 w-6 mb-1 bg-lightBlue-500 transition ease transform duration-300':true,
-        'rotate-45 translate-y-2 opacity-50 group-hover:opacity-100' : navbarOpen,
-        'opacity-50 group-hover:opacity-100': !navbarOpen}"> </div>
-  <div [ngClass]="{
-        'h-1 w-6 mb-1 bg-lightBlue-500 transition ease transform duration-300':true,
-        'opacity-0' : navbarOpen,
-        'opacity-50 group-hover:opacity-100': !navbarOpen}">        </div>
-  <div [ngClass]="{
-        'h-1 w-6  mb-1 bg-lightBlue-500 transition ease transform duration-300':true,
-        '-rotate-45 -translate-y-2 opacity-50 group-hover:opacity-100' : navbarOpen,
-        'opacity-50 group-hover:opacity-100': !navbarOpen}">
-  </div>
-</button>
-
-</div>
-<div
-  [ngClass]="{ 'translate-x-0 ': navbarOpen, 'translate-x-full': !navbarOpen  }"
-  class="top-0 right-0 w-[35vw] bg-primary
-       px-5 pt-12   fixed z-2
-       ease-in-out duration-300
-       h-full
-      ">
-  <div class="divide-y divide-solid justify-end">
-    <div>
-      <a
-        [routerLink]="['/']"
-        class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-      >
-        Home
-      </a>
-    </div>
-    <div>
-      <a
-        [routerLink]="['/projects']"
-        class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-      >
-        Proyectos
-      </a>
-    </div>
-    <div>
-      <a
-        [routerLink]="['/contact']"
-        class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-      >
-        Contacto
-      </a>
-    </div>
-    <div>
-      <a
-        [routerLink]="['/shop/products']"
-        class="link-color text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-      >
-        Tienda
-      </a>
-    </div>
-    <div>
-    </div>
-  </div>
-</div>
-</nav>
--->

@@ -8,6 +8,7 @@ import {SubCategory} from "../../../../models/subcategory";
 import {SuperCategory} from "../../../../models/supercategory";
 import {first} from "rxjs/operators";
 import {OrderService} from "../../../../services/api/order.service";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-edit-order',
@@ -15,6 +16,7 @@ import {OrderService} from "../../../../services/api/order.service";
   styleUrls: ['./edit-order.component.css']
 })
 export class EditOrderComponent implements OnInit{
+  imgUrl=environment.apiUrl;
   id: number;
   queryObj: any;
   private loaded: boolean;

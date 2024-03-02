@@ -38,7 +38,7 @@
             "scripts" :[
               "./node_modules/jquery/dist/jquery.min.js",
               "src/assets/js/swiper.js",
-              "src/assets/js/slider.js",
+              "src/assets/js/slider.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,

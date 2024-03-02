@@ -19,7 +19,6 @@ import { RegisterComponent } from "./views/auth/register/register.component";
 import { IndexComponent } from "./views/index/index.component";
 import { LandingComponent } from "./views/landing/landing.component";
 import {EcommerceComponent} from "./components/ecommerce/ecommerce.component";
-import {ProductListComponent} from "./components/ecommerce/products/product-list/product-list.component";
 import {ContactComponent} from "./views/contact/contact.component";
 import {ProjectsComponent} from "./views/projects/projects.component";
 
@@ -54,7 +53,7 @@ import {EditUserComponent} from "./views/admin/users/edit-user/edit-user.compone
 const routes: Routes = [
   { canActivate: [NonAuthGuard],
     canActivateChild: [NonAuthGuard],
-    path: 'shop',
+    path: '',
     loadChildren: () => import('./modules/shop/shop.module').then(m => m.ShopModule)
   },
   { canActivate: [NonAuthGuard],
@@ -130,17 +129,23 @@ const routes: Routes = [
       { path: "", redirectTo: "login", pathMatch: "full" },
     ],
   },
-  {
-    path: "ecommerce",
-    component: EcommerceComponent,
-    children: [
-      { path: "products", component: ProductListComponent },
-    ],
-  },
+  // {
+  //   path: "ecommerce",
+  //   component: EcommerceComponent,
+  //   children: [
+  //     { path: "products", component: ProductListComponent },
+  //   ],
+  // },
   // no layout viewsv
   { path: "projects", component: ProjectsComponent },
   { path: "contact", component: ContactComponent },
-  { path: "", component: HomeComponent },
+  // { path: "", component: HomeComponent },
+  {
+    canActivate: [NonAuthGuard],
+    canActivateChild: [NonAuthGuard],
+    path: '',
+    loadChildren: () => import('./modules/shop/shop.module').then(m => m.ShopModule)
+  },
   { path: "landing", component: LandingComponent },
   //{ path: "home", component: IndexComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },

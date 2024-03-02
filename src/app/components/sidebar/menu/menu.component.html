@@ -1,0 +1,27 @@
+<ul class="{{menuItem.style}}"  *ngFor="let menuItem of menuItems">
+  <li>
+    <!--  [ngClass]="{'mb-2 opacity-100 h-auto':sidebarOpen && menuItem.group,'opacity-0 h-0 overflow-hidden mb-0':!sidebarOpen && menuItem.group }">-->
+
+    <div class="mx-1 mb-1  whitespace-nowrap flex items-center justify-between duration-1000 transition-all ease-in-out"
+  [ngClass]="{'opacity-100':sidebarOpen && menuItem.group,'opacity-0 overflow-hidden':!sidebarOpen && menuItem.group }">
+    <small class="text-xs font-semibold text-textPrimary"> {{menuItem.group}} </small>
+  </div>
+    <!--       class=" text-xs font-bold inline-block flex items-center  justify-center py-2 whitespace-nowrap uppercase  rounded pr-12 -mr-10 "-->
+    <a *ngIf="menuItem.children===null"
+       [routerLink]="[menuItem.route]" routerLinkActive  #routeActive="routerLinkActive"
+       class=" text-xs font-bold inline-block flex items-center  justify-center px-4 py-2 whitespace-nowrap uppercase  rounded "
+       [ngClass]="{ 'justify-start ': sidebarOpen, 'justify-center ': !sidebarOpen ,
+            'bg-bgSeco': routeActive.isActive, 'hover:bg-bgSeco': !routeActive.isActive}">
+      <i *ngIf="menuItem.icon"
+         [ngClass]="{ 'mr-4 w-3': sidebarOpen, '': !sidebarOpen, 'text-primary': routeActive.isActive, 'text-textTertiary': !routeActive.isActive}"
+         class="{{menuItem.icon}} text-sm">
+      </i>
+      <p *ngIf="sidebarOpen"
+         [ngClass]="{ 'text-primary hover:text-primary-200': routeActive.isActive, 'text-textSecondary': !routeActive.isActive }"
+         class="">{{menuItem.label}}</p>
+    </a>
+      <app-submenu-blog *ngIf="menuItem?.children?.length!==undefined && menuItem.children!==null "
+        [menuItem]="menuItem"
+      ></app-submenu-blog>
+  </li>
+</ul>

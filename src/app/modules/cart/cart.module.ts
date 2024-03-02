@@ -31,7 +31,7 @@ import { SummaryComponent } from './pages/summary/summary.component';
         ),
         FormsModule,
     ],
-  exports: [IndexComponent],
+    exports: [IndexComponent, ShoppingBasketComponent],
   providers: [CartService
   ]
 })

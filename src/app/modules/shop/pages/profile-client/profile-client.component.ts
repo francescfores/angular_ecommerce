@@ -13,6 +13,7 @@ import {Address} from "../../../../models/address";
 import {Variation} from "../../../../models/product";
 import {Return} from "../../../../models/return";
 import {ReturnDetail} from "../../../../models/returnDetail";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-profile-client',
@@ -20,6 +21,8 @@ import {ReturnDetail} from "../../../../models/returnDetail";
   styleUrls: ['./profile-client.component.css']
 })
 export class ProfileClientComponent implements OnInit {
+  imgUrl=environment.apiUrl;
+
   openTab = 1;
   private client: any;
   orders: any;

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {ThemeService} from "../../../services/theme.service";
 import {BehaviorSubject} from "rxjs";
+import {SidebarService} from "../../../components/sidebar/services/sidebar.service";
 
 @Component({
   selector: 'app-index',
@@ -9,35 +10,21 @@ import {BehaviorSubject} from "rxjs";
   encapsulation: ViewEncapsulation.None
 })
 export class IndexComponent implements OnInit {
-  constructor(public themeService: ThemeService) {}
-  isDarkEnable = true;
-  presentTheme$ = new BehaviorSubject<string>('theme-light');
+  isDarkEnable = false;
+  sidebarOpen= false;
+
+  constructor(
+    public themeService: ThemeService,
+    public sidebarService: SidebarService
+  ) {}
 
   ngOnInit(): void {
-    const savedTheme = localStorage.getItem('theme');
-    console.log(savedTheme);
-    console.log(savedTheme);
-    if (savedTheme) {
-      this.presentTheme$.next(savedTheme);
-      if(savedTheme==='theme-light') this.isDarkEnable = true;
-      else this.isDarkEnable = false;
-    }
+    this.themeService.getCurrentTheme().subscribe(theme => {
+      console.log('init this.isDarkEnable')
+      this.isDarkEnable = theme === 'theme-dark';
+    });
+    this.sidebarService.getSidebarState().subscribe(sidebarOpen => {
+      this.sidebarOpen = sidebarOpen;
+    });
   }
-  toggleTheme() {
-    this.isDarkEnable = !this.isDarkEnable;
-  }
-  changeTheme(changeTheme: any) {
-    const result = changeTheme(this.isDarkEnable);
-    console.log('and result is',result);
-    this.presentTheme$.value === 'theme-light'
-      ? this.presentTheme$.next('theme-dark')
-      : this.presentTheme$.next('theme-light');
-    console.log('savedTheme');
-    console.log(this.presentTheme$.value);
-    localStorage.setItem('theme', this.presentTheme$.value);
-    const savedTheme = localStorage.getItem('theme');
-    console.log(savedTheme);
-    this.isDarkEnable = !this.isDarkEnable;
-  }
-
 }

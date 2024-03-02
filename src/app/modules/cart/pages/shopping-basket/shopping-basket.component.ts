@@ -20,6 +20,7 @@ import {CartService} from "../../services/shared/cart.service";
   styleUrls: ['./shopping-basket.component.css']
 })
 export class ShoppingBasketComponent implements OnInit, AfterViewInit {
+  imgUrl=environment.apiUrl;
 
   // Refactor
   //newCart$ = this.cartService.cart$;

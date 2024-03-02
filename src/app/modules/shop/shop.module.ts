@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProductsPageComponent } from './pages/products/products-page.component';
 import {ShopRoutingModule} from './shop-routing.module';
-import {ProductListComponent} from '../../components/ecommerce/products/product-list/product-list.component';
+// import {ProductListComponent} from '../../components/ecommerce/products/product-list/product-list.component';
 import {ComponentsModule} from '../../components/components.module';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import {CartComponent} from './pages/cart/cart.component';
@@ -16,17 +16,21 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { AddressComponent } from './pages/cart/address/address.component';
 import {IndexComponent} from './index/index.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 
 @NgModule({
   declarations: [
     IndexComponent,
     ProductsPageComponent,
-    ProductListComponent,
+    // ProductListComponent,
     ProductDetailComponent,
     ProfileClientComponent,
     CartComponent,
     AddressComponent,
+    HomeComponent,
+    ContactComponent,
   ],
     imports: [
         CommonModule,

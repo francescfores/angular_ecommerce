@@ -577,7 +577,7 @@
               <div class="pt-6" id="filter-section-0" *ngIf="showOrder===order.id">
                 <div *ngFor="let detail of order.details;" class="w-full flex flex-col sm:flex-row items-start gap-6 py-3">
                   <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
-                    <img class="object-cover" alt="" src="http://ctrl-api.test/storage/images/{{detail?.variation?.img}}">
+                    <img class="object-cover" alt="" src="{{ imgUrl }}storage/images/{{detail?.variation?.img}}">
                   </a>
                   <div class="flex-1 flex flex-col justify-between">
                     <div class="flex justify-between mb-6">
@@ -1001,7 +1001,8 @@
               <div class="pt-6" id="filter-section-0" *ngIf="showOrder===return.id">
                 <div *ngFor="let detail of return.details;" class="w-full flex flex-col sm:flex-row items-start gap-6 py-3">
                   <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
-                    <img class="object-cover" alt="" src="http://ctrl-api.test/storage/images/{{detail?.variation?.img}}">
+                    <img class="object-cover" alt="" src="{{ imgUrl }}storage/images/{{detail?.variation?.img}}">
+
                   </a>
                   <div class="flex-1 flex flex-col justify-between">
                     <div class="flex justify-between mb-6">

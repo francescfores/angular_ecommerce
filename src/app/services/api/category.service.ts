@@ -70,7 +70,6 @@ export class CategoryService {
         params.append('img', category[key], name.name);
       }else {
         params.append(key, category[key]);
-
       }
     });
     return this.http.post<any>(`${environment.apiUrl}api/product_category`,  params );

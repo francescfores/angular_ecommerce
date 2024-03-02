@@ -54,14 +54,14 @@
                   <div *ngIf="f.stock.errors.required">stock is required</div>
                 </div>
               </div>
-              <div class="col-span-6 sm:col-span-3">
-                  <img *ngIf="product"
-                    src="http://ctrl-api.test/storage/images/{{product.img}}"
-                    class="h-12 w-12 bg-white rounded-full border"
-                    alt="..."
-                  />
-              </div>
-              <div class="col-span-6 sm:col-span-3">
+<!--              <div class="col-span-6 sm:col-span-3">-->
+<!--                  <img *ngIf="product"-->
+<!--                    src="http://ctrl-api.test/storage/images/{{product.img}}"-->
+<!--                    class="h-12 w-12 bg-white rounded-full border"-->
+<!--                    alt="..."-->
+<!--                  />-->
+<!--              </div>-->
+              <div class="col-span-6 sm:col-span-6">
                 <input id="inputImg" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all" (change)="onFileChanged($event)"/>
                 <label
                   [ngClass]="{'bg-blue-500':!submitted && this.selectedFile === null,
@@ -219,7 +219,7 @@
                         </div>
                         <div class="col-span-6 sm:col-span-4 flex justify-between flex-wrap">
                           <img
-                            src="http://ctrl-api.test/storage/images/{{variation.img}}"
+                            src="{{ imgUrl }}storage/images/{{variation.img}}"
                             class="h-12 w-12 bg-white rounded-full border"
                             alt="..."
                           />
@@ -234,10 +234,7 @@
                                       submitted && this.selectedFileVariations[variation.id] !== null,
                                      'bg-red-500':submitted && this.selectedFileVariations[variation.id] === null}"
                               class=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="inputImg2">Imagen</label>
-                            <label class="ml-4 text-xs" for="inputImg2">
-                              selectedFileVariations:{{this.selectedFileVariations[variation.id]?.name}}
-                              <br> selectedFile:{{this.selectedFile?.name}}
-                              <br> selectedFile:{{fv(variation.id) .img.value}}</label>
+                            <label class="ml-4 text-xs" for="inputImg2">{{fv(variation.id) .img.value}}</label>
                             <div *ngIf="submitted && fv(variation.id) .img.errors" class="invalid-feedback">
                               <div *ngIf="fv(variation.id) .img.errors.required">img is required</div>
                             </div>

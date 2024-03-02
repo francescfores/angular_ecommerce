@@ -224,14 +224,14 @@
                                     <div *ngIf="fv(i).stock.errors.required">stock is required</div>
                                   </div>
                                 </div>
-                                <div class="col-span-6 sm:col-span-4 flex justify-between flex-wrap">
-                                  <img
-                                    src="http://ctrl-api.test/storage/images/{{variation.img}}"
-                                    class="h-12 w-12 bg-white rounded-full border"
-                                    alt="..."
-                                  />
-                                </div>
-                                <div class="col-span-6 sm:col-span-4 flex justify-between flex-wrap">
+<!--                                <div class="col-span-6 sm:col-span-4 flex justify-between flex-wrap">-->
+<!--                                  <img-->
+<!--                                    src="{{ imgUrl }}storage/images/{{variation.img}}"-->
+<!--                                    class="h-12 w-12 bg-white rounded-full border"-->
+<!--                                    alt="..."-->
+<!--                                  />-->
+<!--                                </div>-->
+                                <div class="col-span-6 sm:col-span-6 flex justify-between flex-wrap">
                                   <div class="col-span-6 sm:col-span-3">
                                     <input id="inputImg2" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all"
                                            (change)="onFileChangedVariation($event,variation.id)"/>
@@ -241,9 +241,7 @@
                                       submitted && this.selectedFileVariations[variation.id] !== null,
                                      'bg-red-500':submitted && this.selectedFileVariations[variation.id] === null}"
                                       class=" hover:bg-primary text-white font-bold py-2 px-4 rounded" for="inputImg2">Imagen</label>
-                                    <label class="ml-4 text-xs" for="inputImg2">
-                                      selectedFileVariations:{{this.selectedFileVariations[variation.id]?.name}}
-                                      <br> selectedFile:{{this.selectedFile?.name}}</label>
+                                    <label class="ml-4 text-xs" for="inputImg2">{{this.selectedFile?.name}}</label>
                                     <div *ngIf="submitted && fv(i).img.errors" class="invalid-feedback">
                                       <div *ngIf="fv(i).img.errors.required">img is required</div>
                                     </div>
@@ -348,7 +346,7 @@
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
               >
                 <img
-                  src="http://ctrl-api.test/storage/images/{{pr.img}}"
+                  src="{{ imgUrl }}storage/images/{{pr.img}}"
                   class="h-16 w-16 bg-white rounded-full border"
                   alt="..."
                 />
@@ -599,7 +597,7 @@
                         </div>
                         <div class="col-span-6 sm:col-span-4 flex justify-between flex-wrap">
                           <img
-                            src="http://ctrl-api.test/storage/images/{{variation.img}}"
+                            src="{{ imgUrl }}storage/images/{{variation.img}}"
                             class="h-12 w-12 bg-white rounded-full border"
                             alt="..."
                           />

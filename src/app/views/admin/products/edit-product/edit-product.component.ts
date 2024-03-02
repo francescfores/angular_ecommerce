@@ -7,6 +7,7 @@ import {SubCategory} from "../../../../models/subcategory";
 import {SuperCategory} from "../../../../models/supercategory";
 import {FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Product, Variation} from "../../../../models/product";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-edit-product',
@@ -14,6 +15,7 @@ import {Product, Variation} from "../../../../models/product";
   styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
+  imgUrl=environment.apiUrl;
   id: number;
   queryObj: any;
 
@@ -103,13 +105,16 @@ export class EditProductComponent implements OnInit {
           this.product.variations = data.data.variations;
           this.variations = this.product.variations;
           this.selectedFileVariations[this.variations.length]=this.selectedFile;
-          this.category = this.categories.find(x=>x.id===Number(this.product.category.id ));
-          if (this.category) {
-            // La propiedad category no está definida
+          if (this.product.category) {
+            this.category = this.categories.find(x=>x.id===Number(this.product.category.id ));
+          }
+          if (this.product.category) {
             this.subcategories= this.category.subcategories;
-            this.subcategory = this.subcategories.find(x=>x.id===Number(this.product.subcategory.id ));
-            this.supercategories= this.subcategory.supercategories;
-            this.supercategory = this.supercategories.find(x=>x.id===Number(this.product.supercategory.id ));
+            this.subcategory = this.subcategories.find(x=>x.id===Number(this.product?.subcategory?.id ));
+          }
+          if (this.product.supercategory) {
+            this.supercategories= this.subcategory?.supercategories;
+            this.supercategory = this.supercategories.find(x=>x.id===Number(this.product?.supercategory?.id ));
           }
           //init forms
           this.setFormProduct();

@@ -5,6 +5,8 @@ import {Cart} from "../../../../models/cart";
 import {first} from "rxjs/operators";
 import {Product, Variation} from "../../../../models/product";
 import {CartService} from "../../../../services/api/cart.service";
+import {environment} from "../../../../../environments/environment";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-product-detail',
@@ -12,6 +14,8 @@ import {CartService} from "../../../../services/api/cart.service";
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
+  imgUrl=environment.apiUrl;
+
   selectAttributes=[];
   private valid: boolean;
   private addedCart=false;
@@ -23,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute,
     private cartService: CartService,
+    private toastr: ToastrService
   ) {
     this.cart = new Cart();
   }
@@ -144,7 +149,6 @@ export class ProductDetailComponent implements OnInit {
       this.selectAttributes[attribute.name]=attribute;
       Object.keys(this.attributes_group).forEach(attName =>{
         this.attributes_group[attName].forEach(item2 =>{
-          console.log()
           if(item2.name!==attribute.name){
             item2.disabled =true;
           }
@@ -168,6 +172,11 @@ export class ProductDetailComponent implements OnInit {
             this.selectedVariation=variation;
             this.selectedVariation.count=1;
             this.selectedVariation.total=variation.price;
+            this.images=[
+              {id:1, path:this.selectedVariation?.img},
+              {id:2, path:this.selectedVariation?.img},
+              {id:3, path:this.selectedVariation?.img},
+              {id:4, path:this.selectedVariation?.img}]
           }
         }
     });
@@ -210,6 +219,7 @@ export class ProductDetailComponent implements OnInit {
   addToCart() {
     console.log('addToCart')
     console.log(this.cart.products)
+    this.toastr.info('Added to cart');
 
     this.getVariaitonById();
 

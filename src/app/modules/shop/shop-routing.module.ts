@@ -8,6 +8,8 @@ import {CartComponent} from './pages/cart/cart.component';
 import {CardComponent} from './pages/card/card.component';
 import {IndexComponent} from './index/index.component';
 import {NonAuthGuard} from '../../services/guards/non-auth.guard';
+import {HomeComponent} from './pages/home/home.component';
+import {ContactComponent} from './pages/contact/contact.component';
 
 const routes: Routes = [
 
@@ -18,8 +20,16 @@ const routes: Routes = [
     canActivateChild: [NonAuthGuard],
     children: [
       {
-        path: 'products',
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: '',
         component: ProductsPageComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
       },
       {
         path: 'product-detail',

@@ -5,6 +5,7 @@ import {first} from "rxjs/operators";
 import {OrderService} from "../../../services/api/order.service";
 import {SharedService} from "../../../services/api/shared.service";
 import {ToastrService} from 'ngx-toastr';
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-orders',
@@ -12,6 +13,7 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit{
+  imgUrl=environment.apiUrl;
   orders=null;
   private returns: any;
   private return_pg: any;

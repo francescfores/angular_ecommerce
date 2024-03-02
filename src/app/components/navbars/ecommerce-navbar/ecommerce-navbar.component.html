@@ -2,7 +2,7 @@
      class=" font-px bg-primary text-white transition-colors duration-1000 top-0 fixed z-20 w-full flex flex-wrap items-center justify-between navbar-expand-lg  "
 >
 
-  <div class="z-40 flex justify-between w-screen z-3 h-14">
+  <div class="z-40 flex justify-between w-screen z-3 h-14 ">
     <div class="px-5 xl:px-14 py-2 flex w-full items-center">
       <button class='md:hidden flex flex-col h-10 w-10  rounded justify-center items-center group ' (click)="setNavbarOpen()">
         <div [ngClass]="{
@@ -10,7 +10,7 @@
         'rotate-45 translate-y-2 opacity-50 group-hover:opacity-100' : navbarOpen,
         'opacity-50 group-hover:opacity-100': !navbarOpen}"> </div>
         <div [ngClass]="{
-        'h-1 w-6 mb-1 bg-white transition ease transform duration-300':true,
+        'h-1 w-6 mb-1 w-4 bg-white transition ease transform duration-300':true,
         'opacity-0' : navbarOpen,
         'opacity-50 group-hover:opacity-100': !navbarOpen}">        </div>
         <div [ngClass]="{
@@ -22,17 +22,18 @@
 
       <a class="text-2xl font-bold font-heading items-start md:ml-6" href="#">
         <!-- <img class="h-9" src="logo.png" alt="logo"> -->
-        <img *ngIf="isDarkEnable" class="w-8 logo logo-black" src="assets/icons/logo.png" >
-        <img *ngIf="!isDarkEnable" class="w-8 logo logo-black" src="assets/icons/logo.png" >
+        <img *ngIf="isDarkEnable" class="w-8 logo logo-black" src="./assets/img/logo.png" >
+        <img *ngIf="!isDarkEnable" class="w-8 logo logo-black" src="./assets/img/logo.png" >
       </a>
       <!-- Nav Links -->
       <ul class="hidden md:flex px-4 mx-auto  items-center space-x-12">
-        <li><a class="hover:text-gray-200" [routerLink]="['/shop/products']">Home</a></li>
-        <li><a class="hover:text-gray-200" [routerLink]="['/shop/products']">Contact</a></li>
-        <li><a class="hover:text-gray-200" [routerLink]="['/shop/products']">Shop</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/home']">Home</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/contact']">Contsact</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/shop']">Shop</a></li>
       </ul>
       <div class="md:hidden space-x-5 flex ml-auto">
-        <a class="flex items-center hover:text-gray-200" [routerLink]="['/cart/shopping-basket']">
+        <a class="flex items-center hover:text-gray-200" (click)="setCartOpen()">
+<!--        <a class="flex items-center hover:text-gray-200" [routerLink]="['/cart/shopping-basket']">-->
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
@@ -104,24 +105,24 @@
   </div>
   <div
     [ngClass]="{ '-translate-x-0 ': navbarOpen, '-translate-x-full': !navbarOpen  }"
-    class="top-14 left-0 w-[35vw] bg-white text-slate-800
-       px-5 pt-0   fixed z-2
+    class="top-14 left-0 w-[40vw] text-white bg-neutral-800
+       px-6 pt-0   fixed z-2
        ease-in-out duration-300
-       h-full
+       h-full gap-12
       ">
     <div class="justify-end">
       <div>
         <a
           [routerLink]="['/shop/products']"
-          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-6 whitespace-nowrap uppercase"
         >
-          Home
+          Homee
         </a>
       </div>
       <div>
         <a
           [routerLink]="['/shop/products']"
-          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-6 whitespace-nowrap uppercase"
         >
           Contact
         </a>
@@ -129,10 +130,33 @@
       <div>
         <a
           [routerLink]="['/shop/products']"
-          class="link-color text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+          class="link-color text-sm font-bold leading-relaxed inline-block mr-4 py-6 whitespace-nowrap uppercase"
         >
           Shop
         </a>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+  <div
+    [ngClass]="{ 'translate-x-0 ': cartOpen, 'translate-x-full': !cartOpen  }"
+    class="top-14 right-0 w-[40vw] text-neutral-700 bg-white
+       px-6 pt-0   fixed z-2
+       ease-in-out duration-300
+       h-full gap-12
+      ">
+    <div class="justify-end">
+      <div>
+        <a
+          [routerLink]="['/cart/shopping-basket']"
+          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-6 whitespace-nowrap uppercase"
+        >
+          Cart
+        </a>
+      </div>
+      <div>
+<!--        <app-shopping-basket-->
       </div>
       <div>
       </div>

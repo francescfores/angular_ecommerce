@@ -22,6 +22,8 @@ import {first} from "rxjs/operators";
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit, AfterViewInit{
+  imgUrl=environment.apiUrl;
+
   @ViewChild(StripeCardComponent, { static: false}) card: StripeCardComponent;
   cardOptions: StripeCardElementOptions = {
     hidePostalCode: true,

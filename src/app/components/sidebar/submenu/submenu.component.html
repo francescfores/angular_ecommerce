@@ -1,0 +1,39 @@
+<!--class=" text-xs font-bold inline-block flex items-center  justify-center py-2 whitespace-nowrap uppercase  rounded pr-12 -mr-10  "-->
+<a  (click)="toggleDropdown()"
+    class=" text-xs font-bold inline-block flex items-center  justify-center py-2 px-4  whitespace-nowrap uppercase  rounded  "
+    [ngClass]="{ 'justify-start ': sidebarOpen, 'justify-center duration-500 transition-all ease-in-out': !sidebarOpen ,
+            'bg-bgSeco': activeRoute, 'hover:bg-bgSeco': !activeRoute}">
+  <i *ngIf="menuItem.icon"
+     [ngClass]="{ 'mr-4   w-3': sidebarOpen, '': !sidebarOpen, 'text-primary': activeRoute, 'text-textTertiary': !activeRoute}"
+     class="{{menuItem.icon}} text-sm">
+  </i>
+  <p *ngIf="sidebarOpen"
+     [ngClass]="{ 'text-primary hover:text-primary-200': activeRoute, 'text-textSecondary': !activeRoute }"
+     class="">{{menuItem.label}}</p>
+  <button *ngIf="sidebarOpen" class="pointer-events-none  flex w-full items-end justify-end ">
+    <i [ngClass]="{  'rotate-90': dropdownPopoverShow,'text-primary': activeRoute ,
+    'text-textTertiary': !activeRoute  }" class="right-0 fas fa-solid fa-chevron-right transition-all duration-700 text-sm text-textTertiary"></i>
+  </button>
+</a>
+
+
+<div *ngIf="sidebarOpen"
+     class=" pl-4  list-none text-left text-textTertiary transition-all duration-500 ease-in-out "
+     [ngClass]="dropdownPopoverShow ? 'max-h-screen opacity-100 pt-1' : 'max-h-0 overflow-hidden opacity-0 pt-0'"
+>
+<!--  <ul class="pl-4 border-l border-dashed border-textTertiary -mr-10 ">-->
+  <ul class="pl-4 border-l border-dashed border-textTertiary ">
+    <li *ngFor="let item of menuItem.children" >
+<!--      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap rounded pr-10 -mr-10 transition-all duration-500 ease-in-out">-->
+      <a [routerLink]="[item.route]"
+         routerLinkActive
+         #routeActive="routerLinkActive"
+         [ngClass]="{
+            'bg-bgSeco text-primary': routeActive.isActive, 'hover:bg-bgSeco': !routeActive.isActive}"
+         class="text-sm py-2 px-2 font-normal block w-full whitespace-nowrap rounded  transition-all duration-500 ease-in-out">
+        {{item.label}}
+      </a>
+    </li>
+  </ul>
+
+</div>

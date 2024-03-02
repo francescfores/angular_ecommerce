@@ -26,6 +26,7 @@ export class EcommerceNavbarComponent implements OnInit {
   genericHamburgerLine = 'h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300 lg:hidden';
   // @ts-ignore
   client :Client;
+  private cartOpen=false ;
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
@@ -72,7 +73,9 @@ export class EcommerceNavbarComponent implements OnInit {
   setLoginOpen() {
     this.loginOpen = !this.loginOpen;
   }
-
+  setCartOpen() {
+    this.cartOpen = !this.cartOpen;
+  }
   logOut(){
     this.authenticationService.logout();
   }

@@ -10,6 +10,7 @@ import {SubCategory} from "../../../models/subcategory";
 import {SuperCategory} from "../../../models/supercategory";
 import {Product} from "../../../models/product";
 import {SharedService} from "../../../services/api/shared.service";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-products',
@@ -17,6 +18,8 @@ import {SharedService} from "../../../services/api/shared.service";
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  imgUrl=environment.apiUrl;
+
   categories: Category[]= [];
   subcategories: SubCategory[] = [];
   supercategories: SuperCategory[]= [];
@@ -263,7 +266,6 @@ export class ProductsComponent implements OnInit {
     this.show=true;
     //this.loading = true;
       if (this.registerForm.valid) {
-
         if(this.type===1){
           console.log(this.variations);
           console.log(this.variations[0]);

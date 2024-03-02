@@ -1,6 +1,10 @@
-<div [ngClass]="{'theme-light': isDarkEnable, 'theme-dark': !isDarkEnable}" class="transition-colors duration-1000 bg-blueGray-100">
-<app-ecommerce-navbar [isDarkEnable]="isDarkEnable" [transparent]="false" (onClick)='changeTheme($event)'></app-ecommerce-navbar>
-  <div class="py-14">
+<div [ngClass]="{'theme-light': !isDarkEnable, 'theme-dark': isDarkEnable}"
+     class="transition-colors duration-500 landing_page1">
+<app-default-navbar
+    [transparent]="true"
+  ></app-default-navbar>
+<!--  <app-ecommerce-navbar class="z-50" [isDarkEnable]="isDarkEnable" [transparent]="false" (onClick)='changeTheme($event)'></app-ecommerce-navbar>-->
+  <div >
     <router-outlet></router-outlet>
   </div>
 </div>

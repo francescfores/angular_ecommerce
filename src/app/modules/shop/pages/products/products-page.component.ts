@@ -5,13 +5,14 @@ import {ProductService} from "../../../../services/api/product.service";
 import {Product, Variation} from "../../../../models/product";
 import {Cart} from "../../../../models/cart";
 import {CartService} from "../../../../services/api/cart.service";
-
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-products-page',
   templateUrl: './products-page.component.html',
   styles: []
 })
 export class ProductsPageComponent implements OnInit, OnDestroy {
+  imgUrl=environment.apiUrl;
   /*category filters*/
   categories2:any;
   filtersOpen = false;
