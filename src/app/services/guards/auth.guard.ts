@@ -86,26 +86,27 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     console.log('canActivateChild');
     const currentUser = this.authenticationService.currentClientValue;
     console.log(currentUser);
-    if (currentUser) {
-      console.log('if (currentUser)');
-      // check if route is restricted by role
-      if (route.data.roles && route.data.roles.indexOf(currentUser.roles[0].name) === -1) {
-        console.log('if (route.data.roles && route.data.roles.indexOf(currentUser.roles[0].name)');
-        // role not authorised so redirect to home page
-        this.router.navigate(['/']);
-        return false;
-      }
-
-      // console.log(currentUser);
-      // authorised so return true
-      console.log('true');
-      return true;
-    }
-
-    // not logged in so redirect to login page with the return url
-    this.router.navigate(['/auth/sign-in'], { queryParams: { returnUrl: state.url }});
-    console.log('false');
-    return false;
+    return true;
+    // if (currentUser) {
+    //   console.log('if (currentUser)');
+    //   // check if route is restricted by role
+    //   if (route.data.roles && route.data.roles.indexOf(currentUser.roles[0].name) === -1) {
+    //     console.log('if (route.data.roles && route.data.roles.indexOf(currentUser.roles[0].name)');
+    //     // role not authorised so redirect to home page
+    //     this.router.navigate(['/']);
+    //     return false;
+    //   }
+    //
+    //   // console.log(currentUser);
+    //   // authorised so return true
+    //   console.log('true');
+    //   return true;
+    // }
+    //
+    // // not logged in so redirect to login page with the return url
+    // this.router.navigate(['/auth/sign-in'], { queryParams: { returnUrl: state.url }});
+    // console.log('false');
+    // return false;
   }
 
   // canActivate(
