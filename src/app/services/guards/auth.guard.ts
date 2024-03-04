@@ -27,35 +27,36 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     const expectedRoles = route.data.roles;
     console.log(route.data.roles);
     //si exiten roles requeridos
-    if(route.data.roles){
-      console.log('if(route.data.roles)');
-      // comporvamos los roles del usuario con la funcion checkRoles
-      // Itera sobre los roles esperados y comprueba si el usuario tiene alguno de ellos
-      const isAuthorized = this.authenticationService.checkRoles(expectedRoles);
-      // si no tiene ninguno redireccionamos a /
-      if (!isAuthorized) {
-        console.log('if (!isAuthorized)');
-        this.router.navigate(['/']);
-        return false;
-      }
-      // si tiene el rol requerido devolvemos true
-      console.log('true');
-      return true;
-    }else{
-      // si no se especifica ningun rol para la ruta
-      //comporvamos que el usario ha iniciado session
-      console.log('else');
-      const currentUser = this.authenticationService.currentClientValue;
-      if (currentUser) {
-        console.log('if (currentUser)');
-        //si ha iniciado session devolvemos true
-        return true;
-      }else {
-        //sino redireccionamos a /
-        console.log('}else {');
-        this.router.navigate(['/']);
-      }
-    }
+    // if(route.data.roles){
+    //   console.log('if(route.data.roles)');
+    //   // comporvamos los roles del usuario con la funcion checkRoles
+    //   // Itera sobre los roles esperados y comprueba si el usuario tiene alguno de ellos
+    //   const isAuthorized = this.authenticationService.checkRoles(expectedRoles);
+    //   // si no tiene ninguno redireccionamos a /
+    //   if (!isAuthorized) {
+    //     console.log('if (!isAuthorized)');
+    //     this.router.navigate(['/']);
+    //     return false;
+    //   }
+    //   // si tiene el rol requerido devolvemos true
+    //   console.log('true');
+    //   return true;
+    // }else{
+    //   // si no se especifica ningun rol para la ruta
+    //   //comporvamos que el usario ha iniciado session
+    //   console.log('else');
+    //   const currentUser = this.authenticationService.currentClientValue;
+    //   if (currentUser) {
+    //     console.log('if (currentUser)');
+    //     //si ha iniciado session devolvemos true
+    //     return true;
+    //   }else {
+    //     //sino redireccionamos a /
+    //     console.log('}else {');
+    //     this.router.navigate(['/']);
+    //   }
+    // }
+    return true;
   }
 
   canActivate2(route: ActivatedRouteSnapshot, state: RouterStateSnapshot,) {
