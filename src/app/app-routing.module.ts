@@ -51,18 +51,21 @@ import {UsersComponent} from "./views/admin/users/users.component";
 import {EditUserComponent} from "./views/admin/users/edit-user/edit-user.component";
 
 const routes: Routes = [
-  { canActivate: [NonAuthGuard],
-    canActivateChild: [NonAuthGuard],
+  {
+    // canActivate: [NonAuthGuard],
+    // canActivateChild: [NonAuthGuard],
     path: '',
     loadChildren: () => import('./modules/shop/shop.module').then(m => m.ShopModule)
   },
-  { canActivate: [NonAuthGuard],
-    canActivateChild: [NonAuthGuard],
+  {
+    // canActivate: [NonAuthGuard],
+    // canActivateChild: [NonAuthGuard],
     path: 'cart',
     loadChildren: () => import('./modules/cart/cart.module').then(m => m.CartModule)
   },
-  { canActivate: [NonAuthGuard],
-    canActivateChild: [NonAuthGuard],
+  {
+    // canActivate: [NonAuthGuard],
+    // canActivateChild: [NonAuthGuard],
     path: 'auth2',
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
@@ -70,8 +73,8 @@ const routes: Routes = [
   {
     path: "admin",
     component: AdminComponent,
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    // canActivate: [AuthGuard],
+    // canActivateChild: [AuthGuard],
     data: {
       roles: ['superadmin','admin']
     },
