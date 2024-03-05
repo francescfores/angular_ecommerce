@@ -388,7 +388,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     console.log(id_variation)
     //this.router.navigate(['/admin/edit-product'],id);
     this.router.navigate(
-      ['/shop/product-detail'],
+      ['/product-detail'],
       { queryParams: { id_product,id_variation } }
     );
   }
