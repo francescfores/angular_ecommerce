@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://laravel-cfaefcwi4-test-symfony.vercel.app/',
+  apiUrl: 'https://laravel-api-black.vercel.app/',
   // apiUrl: 'https://laravelapi-production.up.railway.app/',
   // apiEndpoint: 'http://localhost:40151',
   // mapbox: {
