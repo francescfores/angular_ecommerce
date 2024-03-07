@@ -16,6 +16,10 @@ export class MenuComponent implements OnInit {
     public sidebarService: SidebarService
   ) {
     this.menuItems=[
+      new MenuItem('Home', 'fas fa-light fa-users','/home','', 'pt-1',false, null),
+      new MenuItem('Productos', 'fas fa-light fa-users','/products','', 'pt-1',false, null),
+      new MenuItem('Contacto', 'fas fa-light fa-users','/contact','', 'pt-1',false, null),
+
       new MenuItem('Dashboard', 'fas fa-light fa-chart-pie','/admin/dashboard','Admin Layouts','pt-2 border-t border-dashed border-bgTern',false,[
         new MenuItem('Dashboard', null,'/admin/dashboard','Base','pt-0',false,null),
         new MenuItem('Analytics', null,'/admin/charts','Base','pt-0',false,null),

@@ -46,8 +46,8 @@ export class EcommerceNavbarComponent implements OnInit {
     console.log('this.transparent');
     console.log('this.transparent');
     console.log(this.transparent);
-    $('#navbar').removeClass('bg-transparent');
-    $('#navbar').addClass('bg-primary');
+    // $('#navbar').removeClass('bg-transparent');
+    // $('#navbar').addClass('bg-primary');
 
     if(this.transparent){
       console.log('this.transparent');

@@ -3,7 +3,8 @@ import {BehaviorSubject} from "rxjs";
 import * as $ from "jquery";
 import {Router} from "@angular/router";
 import {ThemeService} from "../../../services/theme.service";
-import {SidebarService} from "../../sidebar/services/sidebar.service";
+import {SidebarService} from "../../sidebars/sidebar/services/sidebar.service";
+import {AuthenticationService} from "../../../services/api/authentication.service";
 // import {AuthenticationService} from "../../../services/api/authentication.service";
 // import {Cart} from "../../../models/cart";
 // import {Client} from "../../../models/client";
@@ -27,33 +28,38 @@ export class DefaultNavbarComponent implements OnInit {
   // client :Client;
 
   lastScrollPosition = 0;
+  private cartOpen: boolean;
+  private navbarOpen: boolean;
+  protected client: any;
 
   constructor(
     private router: Router,
     public themeService: ThemeService,
-    public sidebarService: SidebarService
+    public sidebarService: SidebarService,
+    public authenticationService: AuthenticationService
   ) {
   }
 
   ngOnInit(): void {
+    this.client = this.authenticationService.currentClientValue
+    if (!this.client) {
+      //this.router.navigate(['/auth/login']);
+    }
     this.themeService.getCurrentTheme().subscribe(theme => {
       this.isDarkEnable = theme === 'theme-dark';
     });
-    // this.sidebarService.getSidebarState().subscribe(sidebarOpen => {
-    //   this.sidebarOpen = sidebarOpen;
-    //   if(this.transparent && !this.sidebarOpen){
-    //     $('#navbar').addClass('bg-transparent');
-    //     $('#navbar').removeClass('bg-bgPrim');
-    //     window.addEventListener('scroll', this.scroll, true)
-    //   }else {
-    //     $('#navbar').removeClass('bg-transparent');
-    //     $('#navbar').addClass('bg-bgPrim');
-    //   }
-    // });
-    // this.client = this.authenticationService.currentClientValue
-    // if (!this.client) {
-    //   //this.router.navigate(['/auth/login']);
-    // }
+    this.sidebarService.getSidebarState().subscribe(sidebarOpen => {
+      this.sidebarOpen = sidebarOpen;
+      if(this.transparent && !this.sidebarOpen){
+        $('#navbar').addClass('bg-transparent');
+        $('#navbar').removeClass('bg-bgPrim');
+        window.addEventListener('scroll', this.scroll, true)
+      }else {
+        $('#navbar').removeClass('bg-transparent');
+        $('#navbar').addClass('bg-bgPrim');
+      }
+    });
+
 
     // if(this.transparent && !this.sidebarOpen){
     //   $('#navbar').addClass('bg-transparent');
@@ -119,7 +125,7 @@ export class DefaultNavbarComponent implements OnInit {
     //   $('#navbar').removeClass('bg-transparent');
     //   $('#navbar').addClass('bg-bgPrim');
     // }
-    this.detectScrollDirection()
+    // this.detectScrollDirection()
   }
 
   setLoginOpen() {
@@ -127,7 +133,7 @@ export class DefaultNavbarComponent implements OnInit {
   }
 
   logOut(){
-    // this.authenticationService.logout();
+    this.authenticationService.logout();
   }
   detectScrollDirection() {
     var currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
@@ -187,6 +193,13 @@ export class DefaultNavbarComponent implements OnInit {
     }
 
     this.lastScrollPosition = currentScrollPosition;
+  }
+  setNavbarOpen() {
+    this.navbarOpen = !this.navbarOpen;
+  }
+
+  setCartOpen() {
+    this.cartOpen = !this.cartOpen;
   }
 
 }

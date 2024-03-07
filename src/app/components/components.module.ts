@@ -11,8 +11,12 @@ import { GooglePlacesComponent } from './google-places/google-places.component';
 import {ProductListComponent} from "./product-list/product-list.component";
 import {Slider3Component} from "./slider-3/slider-3.component";
 import {DefaultNavbarComponent} from "./navbars/default-navbar/default-navbar.component";
-import { Sidebar2Component } from './sidebar2/sidebar2.component';
+import { Sidebar2Component } from './sidebars/sidebar2/sidebar2.component';
 import {FormsModule} from "@angular/forms";
+import {SidebarComponent} from "./sidebars/sidebar/sidebar.component";
+import { SidebarV2Component } from './sidebars/sidebar-v2/sidebar-v2.component';
+import {MenuComponent} from "./sidebars/sidebar/menu/menu.component";
+import {SubmenuComponent} from "./sidebars/sidebar/submenu/submenu.component";
 
 @NgModule({
   declarations: [
@@ -26,22 +30,27 @@ import {FormsModule} from "@angular/forms";
     ProductListComponent,
     Slider3Component,
     Sidebar2Component,
+    SidebarComponent,
+    SidebarV2Component,
+    MenuComponent,
+    SubmenuComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
   ],
-    exports: [
-        FooterComponent,
-        EcommerceNavbarComponent,
-      DefaultNavbarComponent,
-        SliderComponent,
-        AlertComponent,
-      GooglePlacesComponent,
-      Slider3Component,
+  exports: [
+    FooterComponent,
+    EcommerceNavbarComponent,
+    DefaultNavbarComponent,
+    SliderComponent,
+    AlertComponent,
+    GooglePlacesComponent,
+    Slider3Component,
+    Sidebar2Component,
+    SidebarComponent,
 
-
-    ]
+  ]
 })
 export class ComponentsModule { }

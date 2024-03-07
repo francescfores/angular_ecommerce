@@ -1,0 +1,20 @@
+<div
+  [ngClass]="{ 'w-64 px-5': sidebarOpen, 'w-0': !sidebarOpen  }"
+  class=" flex-grow-0 flex-shrink-0 left-0  bg-bgPrim
+       px-0 z-50 mt-[62px]
+        duration-500 transition-all
+       h-full gap-12  fixed overflow-y-auto scrollbar-corner-bgPrim overflow-hidden sm:overflow-x-hidden pb-2
+      ">
+  <div class="flex  items-center">
+    <div class="flex  px-8 justify-center items-center flex-grow-0 flex-shrink-0 ">
+      <div>
+
+        <!--        <img *ngIf="!isDarkEnable" class="w-6" src="./assets/img/logo/thunder_logo_dark.png" >-->
+        <!--        <img *ngIf="isDarkEnable" class="w-6" src="./assets/img/logo/thunder_logo.png" >-->
+      </div>
+      <!--      <div class="text-xl text-textSecondary tracking-wide ml-2 font-semibold">Thunder2</div>-->
+    </div>
+  </div>
+  <app-menu-blog ></app-menu-blog>
+
+</div>

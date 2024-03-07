@@ -20,11 +20,15 @@ const routes: Routes = [
     canActivateChild: [NonAuthGuard],
     children: [
       {
+        path: '',
+        component: ProductsPageComponent
+      },
+      {
         path: 'home',
         component: HomeComponent
       },
       {
-        path: '',
+        path: 'products',
         component: ProductsPageComponent
       },
       {

@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {ShippingComponent} from "../pages/shipping/shipping.component";
 import {AddressComponent} from "../pages/address/address.component";
 import {CartService} from "../services/shared/cart.service";
+import {SidebarService} from "../../../components/sidebars/sidebar/services/sidebar.service";
 
 @Component({
   selector: 'app-index',
@@ -14,8 +15,10 @@ import {CartService} from "../services/shared/cart.service";
   encapsulation: ViewEncapsulation.None
 })
 export class IndexComponent implements OnInit, AfterViewInit {
+  private sidebarOpen: boolean;
   constructor(
     public themeService: ThemeService,
+    public sidebarService: SidebarService,
     public router: Router,
     public cartService: CartService,
   ) {}
@@ -26,12 +29,13 @@ export class IndexComponent implements OnInit, AfterViewInit {
   @ViewChild(AddressComponent) address;
 
   ngOnInit(): void {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      this.presentTheme$.next(savedTheme);
-      if(savedTheme==='theme-light') this.isDarkEnable = true;
-      else this.isDarkEnable = false;
-    }
+    this.themeService.getCurrentTheme().subscribe(theme => {
+      console.log('init this.isDarkEnable')
+      this.isDarkEnable = theme === 'theme-dark';
+    });
+    this.sidebarService.getSidebarState().subscribe(sidebarOpen => {
+      this.sidebarOpen = sidebarOpen;
+    });
     this.cartService.currentStep.subscribe((step) => {
         console.log(step);
         this.step = step;
@@ -42,16 +46,6 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
 
   toggleTheme() {
-    this.isDarkEnable = !this.isDarkEnable;
-  }
-  changeTheme(changeTheme: any) {
-    const result = changeTheme(this.isDarkEnable);
-    console.log('and result is',result);
-    this.presentTheme$.value === 'theme-light'
-      ? this.presentTheme$.next('theme-dark')
-      : this.presentTheme$.next('theme-light');
-    localStorage.setItem('theme', this.presentTheme$.value);
-    const savedTheme = localStorage.getItem('theme');
     this.isDarkEnable = !this.isDarkEnable;
   }
 

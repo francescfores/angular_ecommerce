@@ -1,15 +1,28 @@
-<div [ngClass]="{'theme-light': !isDarkEnable, 'theme-dark': isDarkEnable}"
-     class="transition-colors duration-500 landing_page1">
-<app-default-navbar
-    [transparent]="true"
+<div [ngClass]="{'theme-light': !isDarkEnable, 'theme-dark': isDarkEnable}" class="transition-colors duration-500 landing_page1">
+  <app-default-navbar
+    [transparent]="false"
   ></app-default-navbar>
-<!--  <app-ecommerce-navbar class="z-50" [isDarkEnable]="isDarkEnable" [transparent]="false" (onClick)='changeTheme($event)'></app-ecommerce-navbar>-->
-  <div >
-    <router-outlet></router-outlet>
+<!--  <app-ecommerce-navbar class="top-[150px] z-50"-->
+<!--                        [isDarkEnable]="isDarkEnable"-->
+<!--                        [transparent]="false"-->
+<!--  ></app-ecommerce-navbar>-->
+  <div [ngClass]="{'theme-light': !isDarkEnable, 'theme-dark': isDarkEnable }" class="relative top-14">
+    <!--<app-admin-navbar></app-admin-navbar>
+    <app-header-stats></app-header-stats>
+    <div class="px-4 md:px-10 mx-auto w-full -m-24">-->
+    <div class="flex flex-col">
+      <!-- Sidebar TODO change to componente -->
+      <app-sidebar class="bg-bgPrim"></app-sidebar>
+
+      <!-- Main -->
+      <!--      <div class="flex-grow py-16 bg-[conic-gradient(at_bottom_right,_var(&#45;&#45;tw-gradient-stops))] from-bgPrim via-bgTern to-bgPrim duration-500 transition-all ease-in-out"-->
+      <div class="flex-grow bg-bgPrim  duration-500 transition-all ease-in-out ">
+        <router-outlet></router-outlet>
+      </div>
+      <app-footer
+        class="w-full z-20
+                        bg-bgPrim bottom-0
+                        overflow-hidden duration-500 transition-all ease-in-out"></app-footer>
+    </div>
   </div>
 </div>
-<app-footer></app-footer>
-
-
-
-

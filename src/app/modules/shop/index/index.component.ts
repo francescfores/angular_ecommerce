@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {ThemeService} from "../../../services/theme.service";
 import {BehaviorSubject} from "rxjs";
-import {SidebarService} from "../../../components/sidebar/services/sidebar.service";
+import {SidebarService} from "../../../components/sidebars/sidebar/services/sidebar.service";
 
 @Component({
   selector: 'app-index',

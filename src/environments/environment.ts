@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://laravel-api-black.vercel.app/',
+  // apiUrl: 'http://ctrl-api.test/',
   // apiUrl: 'https://laravelapi-production.up.railway.app/',
   // apiEndpoint: 'http://localhost:40151',
   // mapbox: {
