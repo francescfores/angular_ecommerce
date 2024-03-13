@@ -1660,6 +1660,10 @@ html {
   gap: 0.5rem;
 }
 
+.gap-20 {
+  gap: 5rem;
+}
+
 .gap-3 {
   gap: 0.75rem;
 }
@@ -4025,6 +4029,10 @@ html {
 
   .md\:p-16 {
     padding: 4rem;
+  }
+
+  .md\:p-20 {
+    padding: 5rem;
   }
 
   .md\:px-10 {

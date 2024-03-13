@@ -1,12 +1,12 @@
-<section class="">
+<section class="overflow-hidden">
   <app-slider-blog></app-slider-blog>
 </section>
-<main class="relative bg-bgPrim  z-40">
+<main class="relative bg-bgPrim  z-40 overflow-hidden">
   <div class=" mx-auto py-20  ">
     <!--    <section class="py-10  flex  w-full">-->
     <!--      <app-breadcrumbs></app-breadcrumbs>-->
     <!--    </section>-->
-    <section class="flex  w-full justify-center items-center gap-10 p-4 md:p-10 ">
+    <section class="flex  w-full justify-center items-center gap-10 p-4 md:p-20 ">
       <div class="flex flex-col gap-10 justify-center items-center  max-w-4xl text-center">
         <p class="  text-textPrimary text-5xl font-extralight">
           ¡Bienvenidos a Paletudo!</p>
@@ -89,163 +89,220 @@
     </section>
     <section class=" flex flex-col mx-auto justify-center items-center text-center gap-10 pt-24">
 
-      <div class="flex flex-col max-w-6xl gap-5">
-        <div class="my-20 on_view opacity-0 transition-all duration-300 ease-in-out flex pb-0 gap-10 flex-col lg:flex-row w-full ">
-          <div class="flex w-full xs:w-3/6 p-5 pt-0 lg:pt-10 flex-col justify-center items-center ">
-            <img  class="w-auto" src="./assets/img/sofal.png" >
+    <div class="my-20 on_view opacity-0 transition-all duration-300 ease-in-out flex pb-0 gap-10 flex-col lg:flex-row w-full">
+      <div class="flex w-full flex-col lg:flex-row gap-10 p-4 sm:p-10">
+        <div class=" w-full xs:w-3/6 swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"> <img  class="" src="./assets/img/sofal.png" ></div>
+            <div class="swiper-slide"> <img  class="" src="./assets/img/sofal.png" ></div>
+            <div class="swiper-slide"> <img  class="" src="./assets/img/sofal.png" ></div>
           </div>
-          <div class="flex w-full xs:w-3/6  p-4 md:p-10 pt-0 lg:pt-10 flex-col ">
-            <p class="text-textPrimary text-3xl font-md">
-              ¡Descubre nuestro sofá en forma de "L"</p>
-            <p class="my-4 text-textPrimary text-lg font-normal mt-10">
-              ¡Descubre nuestro sofá en forma de "L" hecho con palets reciclados en Paletudo.com!
-              Con un acabado profesional de primera calidad, estos sofás son robustos, cómodos e ideales tanto para interior como para exterior.
-            </p>
-<!--            <p class="my-4 text-textPrimary text-lg font-normal ">-->
-<!--              Además, ofrecemos una amplia variedad de acabados y colores para que puedas personalizarlo según tus-->
-<!--              gustos y necesidades. ¡Hazlo tuyo y dale un toque único a tu espacio con nuestro sofá 100% personalizable!-->
-<!--            </p>-->
-            <a class="text-primary">Más información</a>
-          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
         </div>
-        <div class="my-20 on_view transition-all duration-300 ease-in-out  flex pb-0  gap-10 flex-col-reverse lg:flex-row  w-full  ">
-          <div class=" w-full xs:w-3/6 flex p-4 md:p-10 pt-0 lg:pt-10 flex-col ">
-            <p class="text-textPrimary text-3xl font-md  "> Sofá Palet de Una Plaza</p>
-            <p class="my-4 text-textPrimary text-lg font-normal mt-10">
-              Este sofá palet de una plaza combina funcionalidad, estilo y comodidad en un diseño único y versátil.
-              Fabricado con madera reciclada de alta calidad, cada detalle ha sido cuidadosamente elaborado para brindar
-              un toqu e rústico y moderno a cualquier espacio.
-            </p>
-            <a class="text-primary">Más i nformación</a>
-          </div>
-            <div class="flex w-full xs:w-3/6 swiper-container main-slider loading">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <figure class="slide-bgimg" style="background-image:url(./assets/img/SOFAPALET.png)">
-                    <img src="./assets/img/SOFAPALET.png" class="entity-img" />
-                  </figure>
-                  <div class="hidden content">
-                    <p class="title text-primary">Shaun Matthews</p>
-                    <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <figure class="slide-bgimg" style="background-image:url(./assets/img/SOFAPALET.png)">
-                    <img src="https://images.unsplash.com/photo-1500643752441-4dc90cda350a?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />
-                  </figure>
-                  <div class="hidden content">
-                    <p class="title">Alexis Berry</p>
-                    <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <figure class="slide-bgimg" style="background-image:url(./assets/img/SOFAPALET.png)">
-                    <img src="https://images.unsplash.com/photo-1465408953385-7c4627c29435?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />
-                  </figure>
-                  <div class="hidden content">
-                    <p class="title">Billie	Pierce</p>
-                    <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <figure class="slide-bgimg" style="background-image:url(./assets/img/SOFAPALET.png)">
-                    <img src="https://images.unsplash.com/photo-1538329972958-465d6d2144ed?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTkzNg&ixlib=rb-1.2.1&q=85" class="entity-img" />
-                  </figure>
-                  <div class="hidden content">
-                    <p class="title">Trevor	Copeland</p>
-                    <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
-                  </div>
-                </div>
-              </div>
-              <!-- If we need navigation buttons -->
-              <div class="swiper-button-prev swiper-button-white"></div>
-              <div class="swiper-button-next swiper-button-white"></div>
-            </div>
-            <!-- Thumbnail navigation -->
-            <div class="hidden swiper-container nav-slider loading">
-              <div class="swiper-wrapper" role="navigation">
-                <div class="swiper-slide">
-                  <figure class="slide-bgimg" style="background-image:url(./assets/img/SOFAPALET.png)">
-                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />
-                  </figure>
-                  <div class="content">
-                    <p class="text-textPrimary">Shaun Matthews</p>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1500643752441-4dc90cda350a?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85)">
-                    <img src="https://images.unsplash.com/photo-1500643752441-4dc90cda350a?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />
-                  </figure>
-                  <div class="content">
-<!--                    <p class="title">Alexis Berry</p>-->
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1465408953385-7c4627c29435?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85)">
-                    <img src="https://images.unsplash.com/photo-1465408953385-7c4627c29435?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />
-                  </figure>
-                  <div class="content">
-                    <p class="title">Billie	Pierce</p>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1538329972958-465d6d2144ed?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTkzNg&ixlib=rb-1.2.1&q=85)">
-                    <img src="https://images.unsplash.com/photo-1538329972958-465d6d2144ed?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTkzNg&ixlib=rb-1.2.1&q=85" class="entity-img" />
-                  </figure>
-                  <div class="content">
-                    <p class="title">Trevor	Copeland</p>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTk1OQ&ixlib=rb-1.2.1&q=85)">
-                    <img src="https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTk1OQ&ixlib=rb-1.2.1&q=85" class="entity-img" />
-                  </figure>
-                  <div class="content">
-                    <p class="title">Bernadette	Newman</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--             <video class="hidden sm:flex" data-js-id="flexibility" title="Un usuario está iniciando una junta y grabando un clip de vídeo en la aplicación de Paletudo" role="img" loop="" muted="" playsinline=""><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/webm/flexibility.es-ES.webm" type="video/webm"><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/mp4/flexibility.es-ES.mp4" type="video/mp4"></video>-->
-        </div>
-        <div class="my-20 on_view opacity-0 transition-all duration-300 ease-in-out flex pb-0 gap-10 flex-col lg:flex-row w-full ">
-          <div class="w-full xs:w-3/6 flex p-10 pt-0 lg:pt-10 flex-col justify-center items-center ">
-            <img  class="w-auto" src="./assets/img/CAMAPALET.png" >
-            <!--            <video class="hidden sm:flex"  data-js-id="speed" title="Cómo utilizar la integración de Workday para archivar un informe de gastos en la aplicación de Paletudo de manera más rápida" role="img" loop="" muted="" playsinline=""><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/webm/speed.es-ES.webm" type="video/webm"><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/mp4/speed.es-ES.mp4" type="video/mp4"></video>-->
-            <!--          -->
-          </div>
-          <div class="w-full xs:w-3/6 flex  p-4 md:p-10 pt-0 lg:pt-10 flex-col ">
-            <p class="text-textPrimary text-3xl font-md  ">Cama de Palets</p>
-            <p class="my-4 text-textPrimary text-lg font-normal mt-10">
-              Esta cama de palets es una pieza excepcional que fusiona el encanto rústico con la elegancia moderna,
-              ofreciendo un oasis de confort y estilo en cualquier dormitorio. Fabricada con madera reciclada de alta calidad, cada detalle de
-              esta cama ha sido cuidadosamente diseñado para proporcionar una experiencia de descanso única y duradera.
-            </p>
-            <a class="text-primary">Más información</a>
-
-          </div>
-        </div>
-        <div class="my-20 on_view transition-all duration-300 ease-in-out  flex pb-0  gap-10 flex-col-reverse lg:flex-row  w-full  ">
-          <div class=" w-full xs:w-3/6 flex  p-4 md:p-10 pt-0 lg:pt-10 flex-col ">
-            <p class="text-textPrimary text-3xl font-md  "> Estantería de Palets</p>
-            <p class="my-4 text-textPrimary text-lg font-normal mt-10">
-              Esta estantería de palets es una obra maestra de funcionalidad y estilo, diseñada
-              para ofrecer una solución de almacenamiento única y ecoamigable en cualquier hogar u oficina.
-            </p>
-            <p class="my-4 text-textPrimary text-lg font-normal mt-10">
-              Construida con madera reciclada de alta calidad, cada detalle de esta estantería ha sido
-              cuidadosamente elaborado para combinar la robustez con la estética rústica.
-            </p>
-            <a class="text-primary">Más información</a>
-          </div>
-          <div class="w-full xs:w-3/6 flex p-10 pt-0 lg:pt-10 flex-col justify-center items-center ">
-            <img  class="w-auto" src="./assets/img/ESTANETERIAPALET.png" >
-            <!--            <video class="hidden sm:flex" data-js-id="flexibility" title="Un usuario está iniciando una junta y grabando un clip de vídeo en la aplicación de Paletudo" role="img" loop="" muted="" playsinline=""><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/webm/flexibility.es-ES.webm" type="video/webm"><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/mp4/flexibility.es-ES.mp4" type="video/mp4"></video>-->
-          </div>
+        <div class="flex w-full xs:w-3/6  pt-0 lg:pt-10 flex-col ">
+          <p class="text-textPrimary text-3xl font-md">
+            ¡Descubre nuestro sofá en forma de "L"</p>
+          <p class="my-4 text-textPrimary text-lg font-normal mt-10">
+            ¡Descubre nuestro sofá en forma de "L" hecho con palets reciclados en Paletudo.com!
+            Con un acabado profesional de primera calidad, estos sofás son robustos, cómodos e ideales tanto para interior como para exterior.
+          </p>
+          <!--            <p class="my-4 text-textPrimary text-lg font-normal ">-->
+          <!--              Además, ofrecemos una amplia variedad de acabados y colores para que puedas personalizarlo según tus-->
+          <!--              gustos y necesidades. ¡Hazlo tuyo y dale un toque único a tu espacio con nuestro sofá 100% personalizable!-->
+          <!--            </p>-->
+          <a class="text-primary">Más información</a>
         </div>
       </div>
+    </div>
+    <div class="my-20 on_view opacity-0 transition-all duration-300 ease-in-out flex pb-0 gap-10 flex-col lg:flex-row w-full">
+      <div class="flex w-full flex-col lg:flex-row gap-10 p-4 sm:p-10">
+        <div class="flex w-full xs:w-3/6  pt-0 lg:pt-10 flex-col ">
+          <p class="text-textPrimary text-3xl font-md">
+            Sofá Palet de Una Plaza</p>
+          <p class="my-4 text-textPrimary text-lg font-normal mt-10">
+            Este sofá palet de una plaza combina funcionalidad, estilo y comodidad en un diseño único y versátil. Fabricado con madera reciclada de alta calidad, cada detalle ha sido cuidadosamente elaborado para brindar un toqu e rústico y moderno a cualquier espacio.
+          </p>
+          <!--            <p class="my-4 text-textPrimary text-lg font-normal ">-->
+          <!--              Además, ofrecemos una amplia variedad de acabados y colores para que puedas personalizarlo según tus-->
+          <!--              gustos y necesidades. ¡Hazlo tuyo y dale un toque único a tu espacio con nuestro sofá 100% personalizable!-->
+          <!--            </p>-->
+          <a class="text-primary">Más información</a>
+        </div>
+        <div class="w-full xs:w-3/6 swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"> <img  class="" src="./assets/img/SOFAPALET.png" ></div>
+            <div class="swiper-slide"> <img  class="" src="./assets/img/SOFAPALET.png" ></div>
+            <div class="swiper-slide"> <img  class="" src="./assets/img/SOFAPALET.png" ></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+    <div class="my-20 on_view opacity-0 transition-all duration-300 ease-in-out flex pb-0 gap-10 flex-col lg:flex-row w-full">
+      <div class="flex w-full flex-col lg:flex-row gap-10 p-4 sm:p-10">
+        <div class="w-full xs:w-3/6 swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"> <img  class="" src="./assets/img/CAMAPALET.png" ></div>
+            <div class="swiper-slide"> <img  class="" src="./assets/img/CAMAPALET.png" ></div>
+            <div class="swiper-slide"> <img  class="" src="./assets/img/CAMAPALET.png" ></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <div class="flex w-full xs:w-3/6  pt-0 lg:pt-10 flex-col ">
+          <p class="text-textPrimary text-3xl font-md">
+            Cama de Palets
+          </p>
+          <p class="my-4 text-textPrimary text-lg font-normal mt-10">
+            Esta cama de palets es una pieza excepcional que fusiona el encanto rústico con la elegancia moderna, ofreciendo un oasis de confort y estilo en cualquier dormitorio. Fabricada con madera reciclada de alta calidad, cada detalle de esta cama ha sido cuidadosamente diseñado para proporcionar una experiencia de descanso única y duradera.
+
+          <!--            <p class="my-4 text-textPrimary text-lg font-normal ">-->
+          <!--              Además, ofrecemos una amplia variedad de acabados y colores para que puedas personalizarlo según tus-->
+          <!--              gustos y necesidades. ¡Hazlo tuyo y dale un toque único a tu espacio con nuestro sofá 100% personalizable!-->
+          <!--            </p>-->
+          <a class="text-primary">Más información</a>
+        </div>
+      </div>
+    </div>
+    <div class="my-20 on_view opacity-0 transition-all duration-300 ease-in-out flex pb-0 gap-10 flex-col lg:flex-row w-full">
+      <div class="flex w-full flex-col lg:flex-row gap-10 p-4 sm:p-10">
+        <div class="flex w-full xs:w-3/6  pt-0 lg:pt-10 flex-col ">
+          <p class="text-textPrimary text-3xl font-md">
+            Estantería de Palets
+          </p>
+          <p class="my-4 text-textPrimary text-lg font-normal mt-10">
+            ¡Descubre nuestro sofá en forma de "L" hecho con palets reciclados en Paletudo.com! Con un acabado profesional de primera calidad, estos sofás son robustos, cómodos e ideales tanto para interior como para exterior.
+          </p>
+          <!--            <p class="my-4 text-textPrimary text-lg font-normal ">-->
+          <!--              Además, ofrecemos una amplia variedad de acabados y colores para que puedas personalizarlo según tus-->
+          <!--              gustos y necesidades. ¡Hazlo tuyo y dale un toque único a tu espacio con nuestro sofá 100% personalizable!-->
+          <!--            </p>-->
+          <a class="text-primary">Más información</a>
+        </div>
+        <div class="w-full xs:w-3/6 swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"> <img  class="" src="./assets/img/ESTANETERIAPALET.png" ></div>
+            <div class="swiper-slide"> <img  class="" src="./assets/img/ESTANETERIAPALET.png" ></div>
+            <div class="swiper-slide"> <img  class="" src="./assets/img/ESTANETERIAPALET.png" ></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+<!--    <div class="flex max-w-6xl pt-24 justify-center mx-auto">-->
+<!--      <div class="flex w-full flex-col lg:flex-row gap-10 p-4 sm:p-10">-->
+<!--        <div class="flex w-full xs:w-3/6  pt-0 lg:pt-10 flex-col ">-->
+<!--          <p class="text-textPrimary text-3xl font-md">-->
+<!--            Estantería de Palets-->
+<!--          </p>-->
+<!--          <p class="my-4 text-textPrimary text-lg font-normal mt-10">-->
+<!--            ¡Descubre nuestro sofá en forma de "L" hecho con palets reciclados en Paletudo.com! Con un acabado profesional de primera calidad, estos sofás son robustos, cómodos e ideales tanto para interior como para exterior.-->
+<!--          </p>-->
+<!--          &lt;!&ndash;            <p class="my-4 text-textPrimary text-lg font-normal ">&ndash;&gt;-->
+<!--          &lt;!&ndash;              Además, ofrecemos una amplia variedad de acabados y colores para que puedas personalizarlo según tus&ndash;&gt;-->
+<!--          &lt;!&ndash;              gustos y necesidades. ¡Hazlo tuyo y dale un toque único a tu espacio con nuestro sofá 100% personalizable!&ndash;&gt;-->
+<!--          &lt;!&ndash;            </p>&ndash;&gt;-->
+<!--          <a class="text-primary">Más información</a>-->
+<!--        </div>-->
+<!--        <div class="w-full xs:w-3/6 swiper mySwiper">-->
+<!--          <div class="swiper-wrapper">-->
+<!--            <div class="swiper-slide"> <img  class="" src="./assets/img/ESTANETERIAPALET.png" ></div>-->
+<!--            <div class="swiper-slide"> <img  class="" src="./assets/img/ESTANETERIAPALET.png" ></div>-->
+<!--            <div class="swiper-slide"> <img  class="" src="./assets/img/ESTANETERIAPALET.png" ></div>-->
+<!--          </div>-->
+<!--          <div class="swiper-button-next"></div>-->
+<!--          <div class="swiper-button-prev"></div>-->
+<!--          <div class="swiper-pagination"></div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
     </section>
-    <section class="flex flex-col p-5 py-16 justify-center items-center text-center gap-10  transition-all duration-300 ease-in-out   ">
+
+<!--    <section class=" flex flex-col mx-auto justify-center items-center text-center gap-10 pt-24">-->
+
+<!--      <div class="flex flex-col max-w-6xl gap-5">-->
+<!--        <div class="my-20 on_view opacity-0 transition-all duration-300 ease-in-out flex pb-0 gap-10 flex-col lg:flex-row w-full ">-->
+<!--          <div class=" swiper mySwiper">-->
+<!--            <div class="swiper-wrapper">-->
+<!--              <div class="swiper-slide"> <img  class="" src="./assets/img/sofal.png" ></div>-->
+<!--              <div class="swiper-slide"> <img  class="" src="./assets/img/sofal.png" ></div>-->
+<!--              <div class="swiper-slide"> <img  class="" src="./assets/img/sofal.png" ></div>-->
+<!--            </div>-->
+<!--            <div class="swiper-button-next"></div>-->
+<!--            <div class="swiper-button-prev"></div>-->
+<!--            <div class="swiper-pagination"></div>-->
+<!--          </div>-->
+<!--          <div class="flex w-full xs:w-3/6   pt-0 lg:pt-10 flex-col ">-->
+<!--            <p class="text-textPrimary text-3xl font-md">-->
+<!--              ¡Descubre nuestro sofá en forma de "L"</p>-->
+<!--            <p class="my-4 text-textPrimary text-lg font-normal mt-10">-->
+<!--              ¡Descubre nuestro sofá en forma de "L" hecho con palets reciclados en Paletudo.com!-->
+<!--              Con un acabado profesional de primera calidad, estos sofás son robustos, cómodos e ideales tanto para interior como para exterior.-->
+<!--            </p>-->
+<!--&lt;!&ndash;            <p class="my-4 text-textPrimary text-lg font-normal ">&ndash;&gt;-->
+<!--&lt;!&ndash;              Además, ofrecemos una amplia variedad de acabados y colores para que puedas personalizarlo según tus&ndash;&gt;-->
+<!--&lt;!&ndash;              gustos y necesidades. ¡Hazlo tuyo y dale un toque único a tu espacio con nuestro sofá 100% personalizable!&ndash;&gt;-->
+<!--&lt;!&ndash;            </p>&ndash;&gt;-->
+<!--            <a class="text-primary">Más información</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="my-20 on_view transition-all duration-300 ease-in-out  flex pb-0   flex-col-reverse lg:flex-row  w-full  ">-->
+<!--          <div class=" w-full xs:w-3/6 flex p-4 md:p-10 pt-0 lg:pt-10 flex-col ">-->
+<!--            <p class="text-textPrimary text-3xl font-md  "> Sofá Palet de Una Plaza</p>-->
+<!--            <p class="my-4 text-textPrimary text-lg font-normal mt-10">-->
+<!--              Este sofá palet de una plaza combina funcionalidad, estilo y comodidad en un diseño único y versátil.-->
+<!--              Fabricado con madera reciclada de alta calidad, cada detalle ha sido cuidadosamente elaborado para brindar-->
+<!--              un toqu e rústico y moderno a cualquier espacio.-->
+<!--            </p>-->
+<!--            <a class="text-primary">Más i nformación</a>-->
+<!--          </div>-->
+<!--            &lt;!&ndash;             <video class="hidden sm:flex" data-js-id="flexibility" title="Un usuario está iniciando una junta y grabando un clip de vídeo en la aplicación de Paletudo" role="img" loop="" muted="" playsinline=""><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/webm/flexibility.es-ES.webm" type="video/webm"><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/mp4/flexibility.es-ES.mp4" type="video/mp4"></video>&ndash;&gt;-->
+<!--        </div>-->
+<!--        <div class="my-20 on_view opacity-0 transition-all duration-300 ease-in-out flex pb-0 gap-10 flex-col lg:flex-row w-full ">-->
+<!--          <div class="w-full xs:w-3/6 flex p-10 pt-0 lg:pt-10 flex-col justify-center items-center ">-->
+<!--            <img  class="w-auto" src="./assets/img/CAMAPALET.png" >-->
+<!--            &lt;!&ndash;            <video class="hidden sm:flex"  data-js-id="speed" title="Cómo utilizar la integración de Workday para archivar un informe de gastos en la aplicación de Paletudo de manera más rápida" role="img" loop="" muted="" playsinline=""><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/webm/speed.es-ES.webm" type="video/webm"><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/mp4/speed.es-ES.mp4" type="video/mp4"></video>&ndash;&gt;-->
+<!--            &lt;!&ndash;          &ndash;&gt;-->
+<!--          </div>-->
+<!--          <div class="w-full xs:w-3/6 flex  p-4 md:p-10 pt-0 lg:pt-10 flex-col ">-->
+<!--            <p class="text-textPrimary text-3xl font-md  ">Cama de Palets</p>-->
+<!--            <p class="my-4 text-textPrimary text-lg font-normal mt-10">-->
+<!--              Esta cama de palets es una pieza excepcional que fusiona el encanto rústico con la elegancia moderna,-->
+<!--              ofreciendo un oasis de confort y estilo en cualquier dormitorio. Fabricada con madera reciclada de alta calidad, cada detalle de-->
+<!--              esta cama ha sido cuidadosamente diseñado para proporcionar una experiencia de descanso única y duradera.-->
+<!--            </p>-->
+<!--            <a class="text-primary">Más información</a>-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="my-20 on_view transition-all duration-300 ease-in-out  flex pb-0  gap-10 flex-col-reverse lg:flex-row  w-full  ">-->
+<!--          <div class=" w-full xs:w-3/6 flex  p-4 md:p-10 pt-0 lg:pt-10 flex-col ">-->
+<!--            <p class="text-textPrimary text-3xl font-md  "> Estantería de Palets</p>-->
+<!--            <p class="my-4 text-textPrimary text-lg font-normal mt-10">-->
+<!--              Esta estantería de palets es una obra maestra de funcionalidad y estilo, diseñada-->
+<!--              para ofrecer una solución de almacenamiento única y ecoamigable en cualquier hogar u oficina.-->
+<!--            </p>-->
+<!--            <p class="my-4 text-textPrimary text-lg font-normal mt-10">-->
+<!--              Construida con madera reciclada de alta calidad, cada detalle de esta estantería ha sido-->
+<!--              cuidadosamente elaborado para combinar la robustez con la estética rústica.-->
+<!--            </p>-->
+<!--            <a class="text-primary">Más información</a>-->
+<!--          </div>-->
+<!--          <div class="w-full xs:w-3/6 flex p-10 pt-0 lg:pt-10 flex-col justify-center items-center ">-->
+<!--            <img  class="w-auto" src="./assets/img/ESTANETERIAPALET.png" >-->
+<!--            &lt;!&ndash;            <video class="hidden sm:flex" data-js-id="flexibility" title="Un usuario está iniciando una junta y grabando un clip de vídeo en la aplicación de Paletudo" role="img" loop="" muted="" playsinline=""><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/webm/flexibility.es-ES.webm" type="video/webm"><source src="https://a.slack-edge.com/445abcc/marketing/img/homepage/e2e-prospects/animations/mp4/flexibility.es-ES.mp4" type="video/mp4"></video>&ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+    <section class="flex flex-col p-5 py-16 justify-center items-center text-center gap-20  transition-all duration-300 ease-in-out   ">
       <div class="text-5xl text-textPrimary font-extralight"><p>Equipos grandes y pequeños</p>  <p>confían en Paletudo</p></div>
       <div class="text-textPrimary text-xl font-normal"><p>Paletudo se adapta de forma segura para garantizar la colaboración</p>  <p>en las empresas más importantes del mundo.</p></div>
       <div class="w-full md:w-auto flex gap-4 w-2/3">
@@ -393,34 +450,34 @@
 
 
     </section>
-    <section class="flex flex-col w-full justify-center items-center gap-10 p-4 md:p-10 bg-bgSeco py-16 my-24">
-      <p class="text-textPrimary text-2xl font-lg  font-semibold">Empresas de todo el mundo ya confían en Paletudo</p>
-      <div class="flex flex-wrap flex-row w-full justify-center gap-10 p-10">
-        <div>
-          <img style="" alt="Airbnb" loading="lazy" class="lazyload"
-               data-src="https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/airbnb-logo.png"
-               data-srcset="https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/airbnb-logo.png 1x,
-               https://a.slack-edge.com/80588/marketing/img/logos/company/_color/airbnb-logo@2x.png 2x"
-               src="https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/airbnb-logo.png"
-               srcset="https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/airbnb-logo.png 1x,
-                https://a.slack-edge.com/80588/marketing/img/logos/company/_color/airbnb-logo@2x.png 2x" width="112" height="35">
-        </div>
-        <div>
-          <img style="" alt="Uber" loading="lazy" class="lazyload" data-src="https://a.slack-edge.com/ce67d/marketing/img/logos/company/_color/uber.png" data-srcset="https://a.slack-edge.com/ce67d/marketing/img/logos/company/_color/uber.png 1x, https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/uber@2x.png 2x" src="https://a.slack-edge.com/ce67d/marketing/img/logos/company/_color/uber.png" srcset="https://a.slack-edge.com/ce67d/marketing/img/logos/company/_color/uber.png 1x, https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/uber@2x.png 2x" width="75" height="35">
-        </div>
-        <div>
-          <img style="" alt="NASA" loading="lazy" class="lazyload" data-src="https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa.png" data-srcset="https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa.png 1x, https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa@2x.png 2x" src="https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa.png" srcset="https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa.png 1x, https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa@2x.png 2x" width="67" height="35">
-        </div>
-        <div>
-          <img style="" alt="Target" loading="lazy" class="lazyload" data-src="https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo.png" data-srcset="https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo.png 1x, https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo@2x.png 2x" src="https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo.png" srcset="https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo.png 1x, https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo@2x.png 2x" width="48" height="35">
-        </div>
-        <div>
-          <img style="" alt="New York Times" loading="lazy" class="lazyload" data-src="https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/nyt.png" data-srcset="https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/nyt.png 1x, https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-nyt.png 2x" src="https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/nyt.png" srcset="https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/nyt.png 1x, https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-nyt.png 2x" width="230" height="35"></div>
-        <div>
-          <img style="" alt="Etsy" loading="lazy" class="lazyload" data-src="https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-etsy.png" data-srcset="https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-etsy.png 1x, https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/etsy@2x.png 2x" src="https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-etsy.png" srcset="https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-etsy.png 1x, https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/etsy@2x.png 2x" width="74" height="35">
-        </div>
-      </div>
-    </section>
+<!--    <section class="flex flex-col w-full justify-center items-center gap-10 p-4 md:p-10 bg-bgSeco py-16 my-24">-->
+<!--      <p class="text-textPrimary text-2xl font-lg  font-semibold">Empresas de todo el mundo ya confían en Paletudo</p>-->
+<!--      <div class="flex flex-wrap flex-row w-full justify-center gap-10 p-10">-->
+<!--        <div>-->
+<!--          <img style="" alt="Airbnb" loading="lazy" class="lazyload"-->
+<!--               data-src="https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/airbnb-logo.png"-->
+<!--               data-srcset="https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/airbnb-logo.png 1x,-->
+<!--               https://a.slack-edge.com/80588/marketing/img/logos/company/_color/airbnb-logo@2x.png 2x"-->
+<!--               src="https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/airbnb-logo.png"-->
+<!--               srcset="https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/airbnb-logo.png 1x,-->
+<!--                https://a.slack-edge.com/80588/marketing/img/logos/company/_color/airbnb-logo@2x.png 2x" width="112" height="35">-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <img style="" alt="Uber" loading="lazy" class="lazyload" data-src="https://a.slack-edge.com/ce67d/marketing/img/logos/company/_color/uber.png" data-srcset="https://a.slack-edge.com/ce67d/marketing/img/logos/company/_color/uber.png 1x, https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/uber@2x.png 2x" src="https://a.slack-edge.com/ce67d/marketing/img/logos/company/_color/uber.png" srcset="https://a.slack-edge.com/ce67d/marketing/img/logos/company/_color/uber.png 1x, https://a.slack-edge.com/e2fa17/marketing/img/logos/company/_color/uber@2x.png 2x" width="75" height="35">-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <img style="" alt="NASA" loading="lazy" class="lazyload" data-src="https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa.png" data-srcset="https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa.png 1x, https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa@2x.png 2x" src="https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa.png" srcset="https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa.png 1x, https://a.slack-edge.com/5ae14bf/marketing/img/logos/company/_color/logo-nasa@2x.png 2x" width="67" height="35">-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <img style="" alt="Target" loading="lazy" class="lazyload" data-src="https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo.png" data-srcset="https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo.png 1x, https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo@2x.png 2x" src="https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo.png" srcset="https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo.png 1x, https://a.slack-edge.com/80588/marketing/img/logos/company/_color/target-logo@2x.png 2x" width="48" height="35">-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <img style="" alt="New York Times" loading="lazy" class="lazyload" data-src="https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/nyt.png" data-srcset="https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/nyt.png 1x, https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-nyt.png 2x" src="https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/nyt.png" srcset="https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/nyt.png 1x, https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-nyt.png 2x" width="230" height="35"></div>-->
+<!--        <div>-->
+<!--          <img style="" alt="Etsy" loading="lazy" class="lazyload" data-src="https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-etsy.png" data-srcset="https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-etsy.png 1x, https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/etsy@2x.png 2x" src="https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-etsy.png" srcset="https://a.slack-edge.com/1e38e34/marketing/img/logos/company/logo-etsy.png 1x, https://a.slack-edge.com/044f5db/marketing/img/logos/company/_color/etsy@2x.png 2x" width="74" height="35">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
 
   </div>
 </main>
