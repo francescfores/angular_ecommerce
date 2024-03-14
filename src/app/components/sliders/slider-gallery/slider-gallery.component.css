@@ -1,0 +1,62 @@
+.slider {
+  /*display: flex;*/
+  /*position: relative;*/
+  /*height: 100%; !* Altura fija del contenedor del slider, ajusta según lo deseado *!*/
+  /*overflow: hidden;*/
+  @apply relative h-[400px]  w-full flex flex-col justify-center items-center overflow-hidden;
+}
+
+.slides {
+  @apply  flex  h-full overflow-hidden;
+  overflow: hidden; /* Ocultar las imágenes que no están en la vista */
+}
+
+.slide {
+  /*position: absolute;*/
+  height: 100%;
+  /*display: none; !* Ocultar todas las imágenes por defecto *!*/
+  opacity: 0;
+  visibility: hidden;
+  /*transition: opacity 0.3s ease-in-out;*/
+  @apply transition-all ease-in-out duration-1000;
+
+}
+
+.slide.active {
+  /*display: block; !* Mostrar solo la imagen actual *!*/
+  opacity: 1;
+  height: 100%;
+  visibility: visible;
+  @apply w-full;
+}
+
+
+
+
+/* Opcional: Estilos adicionales para las imágenes, como transiciones */
+.slide img {
+  width: 100%;
+  transition: opacity 0.3s ease-in-out;
+  height: 100%;
+}
+
+.slider_buttons {
+  height: inherit;
+  @apply absolute w-full h-auto z-50   mt-auto ;
+}
+
+.navigation-dots {
+  @apply  flex justify-center items-center  bottom-0 pt-6;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.dot.active {
+  @apply bg-primary;
+}

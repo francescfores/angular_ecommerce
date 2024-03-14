@@ -17,40 +17,45 @@ import {SidebarComponent} from "./sidebars/sidebar/sidebar.component";
 import { SidebarV2Component } from './sidebars/sidebar-v2/sidebar-v2.component';
 import {MenuComponent} from "./sidebars/sidebar/menu/menu.component";
 import {SubmenuComponent} from "./sidebars/sidebar/submenu/submenu.component";
+import {Button3dComponent} from "./buttons/button3d/button3d.component";
+import { SliderGalleryComponent } from './sliders/slider-gallery/slider-gallery.component';
 
 @NgModule({
-  declarations: [
-    FooterComponent,
-    EcommerceNavbarComponent,
-    DefaultNavbarComponent,
-    CategoryFiltersComponent,
-    SliderComponent,
-    AlertComponent,
-    GooglePlacesComponent,
-    ProductListComponent,
-    Slider3Component,
-    Sidebar2Component,
-    SidebarComponent,
-    SidebarV2Component,
-    MenuComponent,
-    SubmenuComponent,
-  ],
+    declarations: [
+        FooterComponent,
+        EcommerceNavbarComponent,
+        DefaultNavbarComponent,
+        CategoryFiltersComponent,
+        SliderComponent,
+        AlertComponent,
+        GooglePlacesComponent,
+        ProductListComponent,
+        Slider3Component,
+        Sidebar2Component,
+        SidebarComponent,
+        SidebarV2Component,
+        MenuComponent,
+        SubmenuComponent,
+        Button3dComponent,
+        SliderGalleryComponent,
+    ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
   ],
-  exports: [
-    FooterComponent,
-    EcommerceNavbarComponent,
-    DefaultNavbarComponent,
-    SliderComponent,
-    AlertComponent,
-    GooglePlacesComponent,
-    Slider3Component,
-    Sidebar2Component,
-    SidebarComponent,
+    exports: [
+        FooterComponent,
+        EcommerceNavbarComponent,
+        DefaultNavbarComponent,
+        SliderComponent,
+        AlertComponent,
+        GooglePlacesComponent,
+        Slider3Component,
+        Sidebar2Component,
+        SidebarComponent,
+        SliderGalleryComponent,
 
-  ]
+    ]
 })
 export class ComponentsModule { }

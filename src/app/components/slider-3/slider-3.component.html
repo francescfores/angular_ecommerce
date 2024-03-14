@@ -7,9 +7,9 @@
     <input name="input-slider" id='input-slide-5' type="radio" class='input-slide input-slide-num' >
     <input name="input-slider" id='input-slide-autoplay' type="radio" class='input-slide' checked>
     <ul class="">
-      <li class='slide-0 '>
-        <div class="max-w-6xl mx-auto relative h-[800px]  lg:px-10 pb-10 pt-0 md:pt-20 text-textPrimary">
-          <div class="sticky top-[150px] w-1/2 p-4 flex flex-col animation_div_right">
+      <li class='slide-0'>
+        <div class="max-w-6xl mx-auto relative  lg:px-10 pb-10 pt-0 md:pt-20 text-textPrimary">
+          <div class="sticky top-[150px] w-full md:w-1/2 p-4 flex flex-col animation_div_right">
 <!--            <img class="w-3/4 md:w-1/3 " src="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png"-->
 <!--                 srcset="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png" alt="MSM2">-->
           <p class="text-xl lg:text-3xl font-bold  ">¡Dale vida a tu espacio!</p>
@@ -23,7 +23,7 @@
                           [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
                           [border]="'2px'"
                           [border_style]="'solid transparent var(--border)'"
-                          [width]="''" [raise]="0">
+                          [width]="''" [raise]="4">
               <div class="w-full h-full gap-3 text-textPrimary flex flex-nowrap justify-start items-center uppercase">
                 <p>ver mas </p>
                 <i class="fas fa-light fa-arrow-right  text-xs "></i>
@@ -35,9 +35,9 @@
           </div>
         </div>
       </li>
-      <li class='slide-1 '>
-        <div class="max-w-6xl mx-auto relative h-[800px]  lg:px-10 pb-10 pt-0 md:pt-20 text-textPrimary ">
-          <div class="ml-auto sticky top-[150px] w-1/2 p-4 flex flex-col animation_div_left">
+      <li class='slide-1'>
+        <div class="max-w-6xl mx-auto relative  lg:px-10 pb-10 pt-0 md:pt-20 text-textPrimary ">
+          <div class="ml-auto sticky top-[150px] w-full md:w-1/2 p-4 flex flex-col animation_div_left">
 <!--            <img class="w-3/4 md:w-1/3 "  src="https://cdn.marvel.com/content/1x/ironman_lob_log_eye_01_0.png" srcset="https://cdn.marvel.com/content/1x/ironman_lob_log_eye_01_0.png" alt="Iron Man 1">-->
             <p class="text-xl lg:text-3xl font-bold  ">Estilo y sustentabilidad en cada pieza.</p>
             <p class=" text-md md:text-xl my-6">
@@ -45,43 +45,60 @@
             </p>
             <app-button3d class="w-full lg:w-1/2 "
                           [rounded]="'5px'" [title]="''"
-                          [type]="'btn_secondary'"
-                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
-                          [width]="'200px'" [raise]="4">
-              <div class="w-full h-full gap-3  flex flex-nowrap justify-center items-center uppercase">
+                          [bg_front_color]="'transparent'"
+                          [bg_shadow_color]="'transparent'"
+                          [bg_back_color]="'transparent'"
+                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
+                          [border]="'2px'"
+                          [border_style]="'solid transparent var(--border)'"
+                          [width]="''" [raise]="4">
+              <div class="w-full h-full gap-3 text-textPrimary flex flex-nowrap justify-start items-center uppercase">
                 <p>ver mas </p>
                 <i class="fas fa-light fa-arrow-right  text-xs "></i>
               </div>
             </app-button3d>
+
+<!--            <app-button3d class="w-full lg:w-1/2 "-->
+<!--                          [rounded]="'5px'" [title]="''"-->
+<!--                          [type]="'btn_primary'"-->
+<!--                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"-->
+<!--                          [width]="'200px'" [raise]="4">-->
+<!--              <div class="w-full h-full gap-3  flex flex-nowrap justify-center items-center uppercase">-->
+<!--                <p>ver mas </p>-->
+<!--                <i class="fas fa-light fa-arrow-right  text-xs "></i>-->
+<!--              </div>-->
+<!--            </app-button3d>-->
           </div>
         </div>
       </li>
       <li class='slide-2'>
-        <div class="max-w-6xl mx-auto relative h-[800px]  lg:px-10 pb-10 pt-0 md:pt-20 text-warmGray-200">
-          <div class="sticky top-[150px] w-1/2 p-4 flex flex-col animation_div_right">
-            <!--            <img class="w-3/4 md:w-1/3 " src="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png"-->
-            <!--                 srcset="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png" alt="MSM2">-->
+        <div class="max-w-6xl mx-auto relative  lg:px-10 pb-10 pt-0 md:pt-20 text-textPrimary">
+          <div class="sticky top-[150px] w-full md:w-1/2 p-4 flex flex-col animation_div_right">
             <p class="text-xl lg:text-3xl font-bold">Innovación en diseño para tu hogar.</p>
             <p class=" text-md md:text-xl my-6">
               ¿Buscas muebles que se adapten a tu espacio y estilo de vida? Nuestras estructuras con palets son la solución perfecta. Desde soluciones de almacenamiento hasta muebles multifuncionales, cada pieza está diseñada para brindarte comodidad, practicidad y un toque de originalidad.
             </p>
             <app-button3d class="w-full lg:w-1/2 "
                           [rounded]="'5px'" [title]="''"
-                          [type]="'btn_secondary'"
-                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
-                          [width]="'200px'" [raise]="4">
-              <div class="w-full h-full gap-3  flex flex-nowrap justify-center items-center uppercase">
+                          [bg_front_color]="'transparent'"
+                          [bg_shadow_color]="'transparent'"
+                          [bg_back_color]="'transparent'"
+                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
+                          [border]="'2px'"
+                          [border_style]="'solid transparent var(--border)'"
+                          [width]="''" [raise]="4">
+              <div class="w-full h-full gap-3 text-textPrimary flex flex-nowrap justify-start items-center uppercase">
                 <p>ver mas </p>
+                <i class="fas fa-light fa-arrow-right  text-xs "></i>
               </div>
             </app-button3d>
           </div>
         </div>
       </li>
       <li class='slide-3'>
-        <div class="max-w-6xl mx-auto relative h-[800px]  lg:px-10 pb-10 pt-0 md:pt-20 text-warmGray-200 ">
-          <div class="ml-auto sticky top-[150px] w-1/2 p-4 pl-20 flex flex-col animation_div_left">
-            <!--            <img class="w-3/4 md:w-1/3 "  src="https://cdn.marvel.com/content/1x/ironman_lob_log_eye_01_0.png" srcset="https://cdn.marvel.com/content/1x/ironman_lob_log_eye_01_0.png" alt="Iron Man 1">-->
-            <p class="text-xl lg:text-3xl font-bold text-white">
+        <div class="max-w-6xl mx-auto relative  lg:px-10 pb-10 pt-0 md:pt-20 text-textPrimary ">
+          <div class="ml-auto sticky top-[150px] w-full md:w-1/2 p-4 flex flex-col animation_div_left">
+            <p class="text-xl lg:text-3xl font-bold ">
               Creando ambientes únicos.
             </p>
             <p class=" text-md md:text-xl my-6">
@@ -90,63 +107,19 @@
             </p>
             <app-button3d class="w-full lg:w-1/2 "
                           [rounded]="'5px'" [title]="''"
-                          [type]="'btn_anchor'"
-                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
-                          [width]="'200px'" [raise]="0">
-              <div class="w-full h-full gap-3 text-warmGray-200 flex flex-nowrap justify-start items-center uppercase">
+                          [bg_front_color]="'transparent'"
+                          [bg_shadow_color]="'transparent'"
+                          [bg_back_color]="'transparent'"
+                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
+                          [border]="'2px'"
+                          [border_style]="'solid transparent var(--border)'"
+                          [width]="''" [raise]="4">
+              <div class="w-full h-full gap-3 text-textPrimary flex flex-nowrap justify-start items-center uppercase">
                 <p>ver mas </p>
                 <i class="fas fa-light fa-arrow-right  text-xs "></i>
               </div>
             </app-button3d>
-          </div>
-        </div>
-      </li>
-      <li class='slide-4'>
-        <div class="max-w-6xl mx-auto relative h-[800px]  lg:px-10 pb-10 pt-0 md:pt-20 text-warmGray-200">
-          <div class="sticky top-[150px] w-1/2 p-4 flex flex-col animation_div_right">
-            <!--            <img class="w-3/4 md:w-1/3 " src="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png"-->
-            <!--                 srcset="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png" alt="MSM2">-->
-            <p class="text-xl lg:text-3xl font-bold">Innovación en diseño para tu hogar.</p>
-            <p class=" text-md md:text-xl my-6">
-              ¿Buscas muebles que se adapten a tu espacio y estilo de vida? Nuestras estructuras con palets son la solución perfecta. Desde soluciones de almacenamiento hasta muebles multifuncionales, cada pieza está diseñada para brindarte comodidad, practicidad y un toque de originalidad.
-            </p>
-            <app-button3d class="w-full lg:w-1/2 "
-                          [rounded]="'5px'" [title]="''"
-                          [type]="'btn_anchor'"
-                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
-                          [width]="'200px'" [raise]="0">
-              <div class="w-full h-full gap-3 text-warmGray-200 flex flex-nowrap justify-start items-center uppercase">
-                <p>ver mas </p>
-              </div>
-            </app-button3d>
-          </div>
-        </div>
-      </li>
-      <li class='slide-5'>
-        <div class="max-w-6xl mx-auto relative h-[800px]  lg:px-10 pb-10 pt-0 md:pt-20 text-white ">
-          <div class="ml-auto sticky top-[150px] w-1/2 p-4 flex flex-col animation_div_left">
-            <!--            <img class="w-3/4 md:w-1/3 "  src="https://cdn.marvel.com/content/1x/ironman_lob_log_eye_01_0.png" srcset="https://cdn.marvel.com/content/1x/ironman_lob_log_eye_01_0.png" alt="Iron Man 1">-->
-            <p class="text-xl lg:text-3xl font-bold text-white">
-              Creando ambientes únicos.
-            </p>
-            <p class=" text-md md:text-xl my-6">
-              Deja volar tu creatividad y transforma tu hogar en un oasis de confort y estilo con nuestras estructuras
-              de palets.
-            </p>
-            <app-button3d class="w-full lg:w-1/2 "
-                          [rounded]="'5px'" [title]="''"
-                          [bg_front_color]="'linear-gradient(rgb(50 50 50 / 20%),rgb(50 50 50 / 60%)), ' +
-                     ' url(https://img.freepik.com/premium-photo/panorama-old-wood-texture-pallets-background-vintage-wooden-boards_35956-3288.jpg)' +
-                      ' center/cover'"
-                          font_size="22" [font_body_weight]="'900'" [height]="'55px'"
-                          [bg_back_color]="'#181818'"
-                          [border_style]="'solid #1e1e1e var(--border)'"
-                          [width]="'100%'" [raise]="6">
-              <div class="w-full h-full gap-3  flex flex-nowrap justify-center items-center uppercase">
-                <p>ver mas </p>
-                <i class="fas fa-light fa-arrow-right  text-xs "></i>
-              </div>
-            </app-button3d>
+
           </div>
         </div>
       </li>
@@ -177,8 +150,8 @@
         <label class='slide-1' for='input-slide-1'></label>
         <label class='slide-2' for='input-slide-2'></label>
         <label class='slide-3' for='input-slide-3'></label>
-        <label class='slide-4' for='input-slide-4'></label>
-        <label class='slide-5' for='input-slide-5'></label>
+<!--        <label class='slide-4' for='input-slide-4'></label>-->
+<!--        <label class='slide-5' for='input-slide-5'></label>-->
       </div>
     </div>
 

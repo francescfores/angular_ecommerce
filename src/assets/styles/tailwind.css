@@ -1204,10 +1204,6 @@ html {
   height: 60px;
 }
 
-.h-\[800px\] {
-  height: 800px;
-}
-
 .h-auto {
   height: auto;
 }
@@ -1550,6 +1546,10 @@ html {
 
 .animate-spin {
   animation: spin 1s linear infinite;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
 }
 
 .cursor-pointer {
@@ -2624,10 +2624,6 @@ html {
   padding-left: 2.5rem;
 }
 
-.pl-20 {
-  padding-left: 5rem;
-}
-
 .pl-3 {
   padding-left: 0.75rem;
 }
@@ -3059,11 +3055,6 @@ html {
 .text-textTertiary {
   --tw-text-opacity: 1;
   color: hsl(var(--twc-textTertiary) / var(--tw-text-opacity));
-}
-
-.text-warmGray-200 {
-  --tw-text-opacity: 1;
-  color: rgb(231 229 228 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -3937,6 +3928,10 @@ html {
 
   .md\:min-h-full {
     min-height: 100%;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
   }
 
   .md\:w-1\/3 {

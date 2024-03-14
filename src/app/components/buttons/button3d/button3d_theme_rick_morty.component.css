@@ -1,0 +1,35 @@
+/*.btn_primary{*/
+/*  --border_style:solid #69b5e0 var(--border);*/
+/*  --bg_front_color: #AAD3EA;*/
+/*  --bg_shadow_color: #4B4B4B20;*/
+/*  --bg_back_color: #57A9D4;*/
+/*  --font_color: #2875A0;*/
+/*}*/
+/*.btn_secondary{*/
+/*  --border_style:solid #b3e5e1 var(--border);*/
+/*  --bg_front_color: #FAFAFA;*/
+/*  --bg_shadow_color: #4B4B4B84;*/
+/*  --bg_back_color: #349890;*/
+/*  --font_color: #1A4C48;*/
+/*}*/
+/*.btn_anchor{*/
+/*  --border_style:solid #5bbd3a var(--border);*/
+/*  --bg_front_color: #95D44A;*/
+/*  --bg_shadow_color: #4B4B4B84;*/
+/*  --bg_back_color: #52A934;*/
+/*  --font_color: #3F8228;*/
+/*}*/
+/*.btn_danger{*/
+/*  --border_style:solid #531849 var(--border);*/
+/*  --bg_front_color: #8B3357;*/
+/*  --bg_shadow_color: #4B4B4B84;*/
+/*  --bg_back_color: #531849;*/
+/*  --font_color: #fff;*/
+/*}*/
+/*.btn_disabled{*/
+/*  --border_style:solid #838383 var(--border);*/
+/*  --bg_front_color: #C1C1C1;*/
+/*  --bg_shadow_color: #4B4B4B84;*/
+/*  --bg_back_color: #838383;*/
+/*  --font_color: #555753;*/
+/*}*/

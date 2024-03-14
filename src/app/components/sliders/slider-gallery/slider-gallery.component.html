@@ -1,0 +1,28 @@
+<div class="slider p-10">
+  <div class="slides ">
+    <div *ngFor="let image of images; let i = index" class="slide flex justify-center items-center " [class.active]="isCurrentSlide(i)">
+      <img [src]="image" alt="Image" *ngIf="isCurrentSlide(i)">
+    </div>
+  </div>
+    <div class="slider_buttons ">
+      <div class="flex w-full p-4">
+        <button class="mr-auto" (click)="prev()">
+          <i class="text-2xl fas fa-solid fa-chevron-left transition-all duration-700  text-textPrimary">
+          </i>
+        </button>
+        <button class="ml-auto" (click)="next()">
+          <i class="text-2xl fas fa-solid fa-chevron-right transition-all duration-700  text-textPrimary">
+          </i>
+        </button>
+      </div>
+    </div>
+
+    <div class="navigation-dots">
+    <span *ngFor="let image of images; let i = index"
+          class="dot"
+          [class.active]="isCurrentSlide(i)"
+          (click)="goToSlide(i)">
+    </span>
+  </div>
+
+</div>
