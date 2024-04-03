@@ -59,7 +59,7 @@ export class AddressComponent implements OnInit, AfterViewInit{
     return this.editAddressForm.controls;
   }
   ngOnInit(): void {
-    this.cartService.setAddressValid(false);
+    //this.cartService.setAddressValid(false);
     this.loading=true;
     this.formPersonalData = this.fb.group({
       name: ['f', [Validators.required]],
@@ -232,6 +232,11 @@ export class AddressComponent implements OnInit, AfterViewInit{
       .pipe(first())
       .subscribe(
         data => {
+          if (this.cart.shipping!=null){
+            console.log('!null')
+          }else {
+            console.log('null')
+          }
           this.client = data.data;
           this.selected_address = this.client.addresses[0];
           console.log(this.client.addresses[0]);
@@ -387,14 +392,13 @@ export class AddressComponent implements OnInit, AfterViewInit{
   }
 
   selectAddress(address: any) {
-    this.selected_address = address;
-    console.log(this.selected_address)
-    console.log(address.country)
-    console.log(address.province)
-    this.selected_address.country= this.countries.find(x=>x.id===Number(address.country));
-    this.selected_address.province= this.provinces.find(x=>x.id===Number(address.province));
-    console.log(this.selected_address)
-
+    console.log(address);
+    if(address){
+      this.selected_address = address;
+      this.selected_address.country= this.countries.find(x=>x.id===Number(address.country));
+      this.selected_address.province= this.provinces.find(x=>x.id===Number(address.province));
+      console.log(this.selected_address)
+    }
   }
 
   selectCountry($event: any) {

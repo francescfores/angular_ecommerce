@@ -12,7 +12,7 @@ import { environment } from '../../../../../environments/environment';
   styles: []
 })
 export class ProductsPageComponent implements OnInit, OnDestroy {
-  imgUrl=environment.apiUrl;
+  imgUrl='';//environment.apiUrl;
   /*category filters*/
   categories2:any;
   filtersOpen = false;
@@ -28,7 +28,6 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   titleFilter;
   products:any;
   selectFilter=null;
-  /*category end*/
   private filters = {
     searchFilters: [
       { category: null },
@@ -64,24 +63,6 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     this.getCartFromLocalStorage();
   }
 
-  addProductToCart(product: Variation) {
-    this.cart.products.push(product);
-    this.saveCartToLocalStorage();
-    console.log(this.cart)
-  }
-
-  saveCartToLocalStorage() {
-    localStorage.setItem('cart', JSON.stringify(this.cart));
-  }
-
-  getCartFromLocalStorage() {
-    const cart = localStorage.getItem('cart');
-    if (cart) {
-      this.cart = JSON.parse(cart);
-    }
-    console.log(this.cart)
-  }
-
   ngOnInit() {
     this.loading=true;
     this.productService.getProducts()
@@ -111,6 +92,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
           this.attributes = res.data.attributes;
           this.attributes_group = res.data.attributes_group;
           this.attributes_group = res.data.attributes_group;
+
           console.log('this.attributes_group');
           console.log(this.attributes_group);
 //          this.router.navigate(['/shop/products']);
@@ -121,7 +103,22 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
         });
   }
   ngOnDestroy() {
-  //  slider.resetSlider();
+    //  slider.resetSlider();
+  }
+  addProductToCart(product: Variation) {
+    this.cart.products.push(product);
+    this.saveCartToLocalStorage();
+    console.log(this.cart)
+  }
+  saveCartToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+  getCartFromLocalStorage() {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      this.cart = JSON.parse(cart);
+    }
+    console.log(this.cart)
   }
   /*category filters*/
   showFilter(attr){
@@ -356,7 +353,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
       this.filters.searchFilters[5].attributes.splice(index, 1);
       el.checked = false;
     } else {
-      this.filters.searchFilters[5].attributes.push({ id: color.id, value:color.value });
+      this.filters.searchFilters[5].attributes.push({ id: color.id, name:color.name,value:color.value ,desc:color.desc });
       el.checked = true;
     }
     console.log(this.filters.searchFilters[5].attributes);
@@ -411,4 +408,32 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     this.filters.searchFilters[7].sort=event.target.value;
     this.filterProducts();
     }
+
+  uniqueVariations(variations) {
+    const uniqueVariations = {};
+    variations.forEach(variation => {
+      const colorAttribute = variation.attributes.find(attr => attr.name === 'color');
+      if (colorAttribute) {
+        const color = colorAttribute.desc;
+        if (!uniqueVariations[color]) {
+          uniqueVariations[color] = variation;
+        }
+      }
+    });
+    return Object.values(uniqueVariations);
+  }
+  uniqueVariationsSize(variations) {
+    const uniqueVariations = {};
+    variations.forEach(variation => {
+      const colorAttribute = variation.attributes.find(attr => attr.name === 'size');
+      if (colorAttribute) {
+        const size = colorAttribute.desc;
+        if (!uniqueVariations[size]) {
+          uniqueVariations[size] = variation;
+        }
+      }
+    });
+    console.log(Object.values(uniqueVariations))
+    return Object.values(uniqueVariations);
+  }
 }

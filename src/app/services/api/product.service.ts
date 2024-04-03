@@ -123,29 +123,43 @@ export class ProductService {
   }
   addProduct2(product: Product) {
     let formData = new FormData();
+
     Object.keys(product).forEach(key => {
-      const name = product[key] as File;
-      if(key ==='img') {
-        console.log(key);
-        console.log(product[key]);
-        formData.append('img', product[key], name.name);
-      }else {
+      if (key === 'img') {
+        const images = product[key];
+        if (Object.prototype.toString.call(images) === '[object FileList]') {
+          for (let i = 0; i < images.length; i++) {
+            formData.append('img[]', images[i]);
+          }
+        } else if (typeof images === 'string') {
+          // Si es una cadena, asumimos que es una URL o un solo archivo, no una lista de archivos
+          // En este caso, puedes agregar un solo archivo al FormData
+          formData.append('img[]', images);
+        }
+      } else {
         formData.append(key, product[key]);
       }
     });
+
     formData.append('variations', JSON.stringify(product.variations));
     console.log(product.variations);
     product.variations.forEach((variation, index) => {
       const name = variation.img as File;
 
-      console.log(index);
-      console.log(variation.id);
-      console.log(variation.img);
-      console.log(variation.img.name);
+      console.log(variation.imgs);
+      console.log(variation.imgs[0]);
       formData.append(`variation[${index}][id]`, variation.id);
       formData.append(`variation[${index}][price]`, variation.price);
       formData.append(`variation[${index}][stock]`, variation.stock);
-      formData.append(`variation[${index}][img]`, variation.img, name.name);
+      //formData.append(`variation[${index}][img]`, variation.img, name.name);
+      for (const [key, value] of Object.entries(variation.imgs)) {
+        console.log(`${key}: ${value}`);
+        const name = value as File;
+        console.log(name)
+        formData.append(`variation[${index}][img][]`, name);
+
+      }
+
       formData.append(`variation[${index}][attributes]`, JSON.stringify(variation.attributes));
     });
     console.log(formData);
@@ -194,19 +208,55 @@ export class ProductService {
 
   uploadImage(id,img) {
     let formData = new FormData();
-    const name = img as File;
+    const imgs = img as File;
+    Object.keys(imgs).forEach(key => {
+      if (key === 'img') {
+
+      } else {
+        formData.append('img[]', imgs[key]);
+      }
+    });
+
     formData.append(id,id);
-    formData.append('img',img, name.name);
     return this.http.post<any>(`${environment.apiUrl}api/product_image/${id}`, formData );
   }
 
   uploadImageVariation(id,img) {
     let formData = new FormData();
-    const name = img as File;
     formData.append(id,id);
-    formData.append('img',img, name.name);
+    const imgs = img as File;
+    Object.keys(imgs).forEach(key => {
+      if (key === 'img') {
+
+      } else {
+        formData.append('img[]', imgs[key]);
+      }
+    });
+
     return this.http.post<any>(`${environment.apiUrl}api/product_image_variaiton/${id}`, formData );
   }
+
+  deleteImage(id,img) {
+    let formData = new FormData();
+    const imgs = img as File;
+    Object.keys(imgs).forEach(key => {
+      if (key === 'img') {
+
+      } else {
+        formData.append('img[]', imgs[key]);
+      }
+    });
+
+    formData.append(id,id);
+    return this.http.post<any>(`${environment.apiUrl}api/product_image/${id}`, formData );
+  }
+
+  deleteImageProduct(id,imgId) {
+    console.log('destroyproduct');
+    console.log(id, imgId);
+    return this.http.delete<any>(`${environment.apiUrl}api/product_image/${id}/${imgId}`, { params: imgId });
+  }
+
   deleteProduct(id) {
     console.log('destroyproduct');
     return this.http.delete<any>(`${environment.apiUrl}api/product/${id}`, { params: id });

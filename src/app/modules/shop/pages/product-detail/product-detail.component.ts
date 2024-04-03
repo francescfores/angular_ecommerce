@@ -44,28 +44,22 @@ export class ProductDetailComponent implements OnInit {
   selectedOptions: any = {};
   selectedAttributes: any;
   selected_attributes = {}; // Objeto para almacenar los atributos seleccionados por el usuario
-  selectedVariation=null;
-  images:any;
+  selectedVariation:Variation=new Variation();
+  images=[]
   selectedImage=0;
+  ngOnInit() {
+    this.selectedVariation=new Variation();
+    console.log(this.selectedVariation);
+    this.getParams();
+  }
   getCartFromLocalStorage() {
-
     const cart = localStorage.getItem('cart');
     if (cart) {
       this.cart = JSON.parse(cart);
     }
-    console.log('getCartFromLocalStorage')
-    console.log(this.cart)
   }
-
-
   saveCartToLocalStorage() {
-    console.log('saveCartToLocalStorage')
-    console.log(this.cart)
     localStorage.setItem('cart', JSON.stringify(this.cart));
-  }
-
-  ngOnInit() {
-    this.getParams();
   }
   getParams(){
     this.route.queryParamMap
@@ -78,35 +72,69 @@ export class ProductDetailComponent implements OnInit {
       );
   }
   getProductById(){
+    this.loaded=false;
     this.productService.getProductById(this.id_product)
       .pipe(first())
       .subscribe(
         data => {
           this.product = data.data;
           this.getCartFromLocalStorage();
+          console.log('--------this.cart----------');
+          console.log(this.cart);
+
           //listamos las variaciones
-          Object.entries(this.product.variations).forEach(([key, value], index) => {
-            //listamos los atributos de las variaciones
-            value.attributes.forEach(atributo => {
-              //agregamos el atributo de la variacion
-              this.attributes.push(atributo);
+          if(this.product.type===2){
+            Object.entries(this.product.variations).forEach(([key, value], index) => {
+              //listamos los atributos de las variaciones
+              value.attributes.forEach(atributo => {
+                //agregamos el atributo de la variacion
+                this.attributes.push(atributo);
+              });
+              Object.entries(value.imgs).forEach(([key, value2], index) => {
+                this.images.push(value2.path)
+                console.log(value2);
+              });
+              console.log(value);
+              console.log(this.images);
+
             });
-          });
+            this.groupAttributes();
+            this.selectedVariation.count=1;
+            this.selectedVariation.total=this.selectedVariation.price;
+            this.selectedVariation = this.product.variations[0];
+            console.log(this.product);
+            console.log(this.id_variation);
+            console.log(this.selectedVariation);
+
+            this.selectedVariation.attributes.forEach(atributo => {
+              this.selectedOptions[atributo.name]=this.attributes_group[atributo.name].find(x=>x.id===atributo.id).id;
+              this.selectAttribute(atributo.id);
+            });
+          }else {
+            this.selectedVariation.count=1;
+            this.selectedVariation.total=this.product.price;
+            this.selectedVariation.price=this.product.price;
+            this.valid=true;
+            Object.entries(this.product.imgs).forEach(([key, value], index) => {
+              this.images.push(value.path)
+            });
+
+          }
+          this.loaded=true;
+
+
           //agrupamos los atributos
-          this.groupAttributes();
-          this.selectedVariation = this.product.variations.find(x=>x.id ===Number(this.id_variation));
-          this.selectedVariation.count=1;
-          this.selectedVariation.total=this.selectedVariation.price;
-          this.selectedVariation.attributes.forEach(atributo => {
-            this.selectedOptions[atributo.name]=this.attributes_group[atributo.name].find(x=>x.id===atributo.id).id;
-            this.selectAttribute(atributo.id);
-          });
+
+          /*
+
           this.images=[
             {id:1, path:this.selectedVariation?.img},
             {id:2, path:this.selectedVariation?.img},
             {id:3, path:this.selectedVariation?.img},
             {id:4, path:this.selectedVariation?.img}
           ]
+
+          */
           this.loaded=true;
         },
         error => {
@@ -117,7 +145,6 @@ export class ProductDetailComponent implements OnInit {
 
     this.checkAttributes(this.selected_attributes[attribute.name]);
   }
-
   selectAttribute(attribute){
     this.checkAttributes(attribute)
   }
@@ -139,8 +166,8 @@ export class ProductDetailComponent implements OnInit {
         }
     });
   }
-
   checkAttributes(attribute){
+    this.loaded=false;
     if(isNaN(Number(attribute))){
       delete this.selectAttributes[attribute];
     }else {
@@ -157,6 +184,7 @@ export class ProductDetailComponent implements OnInit {
     }
     const selectedAttributesIds = Object.values(this.selectAttributes).map(att => att.id);
     this.valid = false;
+
     this.product.variations.forEach(variation => {
       const variationAttributesIds = variation.attributes.map(x => x.id);
       if(variationAttributesIds.includes(attribute.id)){
@@ -172,68 +200,91 @@ export class ProductDetailComponent implements OnInit {
             this.selectedVariation=variation;
             this.selectedVariation.count=1;
             this.selectedVariation.total=variation.price;
+
+           /*
             this.images=[
               {id:1, path:this.selectedVariation?.img},
               {id:2, path:this.selectedVariation?.img},
               {id:3, path:this.selectedVariation?.img},
               {id:4, path:this.selectedVariation?.img}]
+            */
           }
         }
     });
+    this.images=[];
+    Object.entries(this.selectedVariation.imgs).forEach(([key, value2], index) => {
+      this.images.push(value2.path)
+      console.log(value2);
+    });
+    console.log(this.selectedVariation);
+    console.log(this.images);
+
     if(!this.valid){
       this.selectedVariation=null;
     }
-  }
+    this.loaded=true;
 
+  }
   updateCount(event, product: Product) {
-    console.log('---------------update----------------')
     let count = this.selectedVariation.count =  Number(event.target.value);
     let total=parseFloat(this.selectedVariation.price);
     this.selectedVariation.total = (count*total).toFixed(2);
-    this.selectedVariation.count=count;
-
+    this.selectedVariation.count=this.selectedVariation.total;
+    console.log(count)
+    console.log(total)
+    console.log(this.selectedVariation.total)
+    console.log(this.selectedVariation.count)
   }
-
-  getVariaitonById(){
-    this.productService.getVariationById(this.id_variation)
+  addVariaitonToCart(){
+    this.productService.getVariationById(this.selectedVariation.id)
       .pipe(first())
       .subscribe(
         res => {
           this.variation = res.data;
           let count = Number(this.selectedVariation.count);
-          console.log(this.selectedVariation.count)
           this.selectedVariation.product = this.product;
-          console.log(this.selectedVariation);
           for (let i = count;i!==0;i--){
             this.cart.products.push(this.variation)
             this.cartService.addProduct(this.variation)
           }
-          console.log(this.cart.products)
+          this.saveCartToLocalStorage();
+        },
+        error => {
+        });
+  }
+  addProductToCart(){
+    this.productService.getProductsById(this.product.id)
+      .pipe(first())
+      .subscribe(
+        res => {
+          this.variation = res.data;
+          let count = Number(this.selectedVariation.count);
+          this.selectedVariation.product = this.product;
+          for (let i = count;i!==0;i--){
+            this.cart.products.push(this.product)
+            this.cartService.addProduct(this.product)
+          }
           this.saveCartToLocalStorage();
         },
         error => {
         });
   }
 
-
   addToCart() {
-    console.log('addToCart')
-    console.log(this.cart.products)
     this.toastr.info('Added to cart');
-
-    this.getVariaitonById();
+    if(this.product.type===2){
+      this.addVariaitonToCart();
+    }else{
+      this.addProductToCart();
+    }
 
   }
-
   selectetNextImage() {
-    console.log(this.selectedImage)
     if(this.images.length-1>this.selectedImage){
       this.selectedImage++;
     }
   }
-
   selectetPreviousImage() {
-    console.log(this.selectedImage)
     if(0<this.selectedImage){
       this.selectedImage--;
     }

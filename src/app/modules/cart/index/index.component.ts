@@ -22,7 +22,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
     public router: Router,
     public cartService: CartService,
   ) {}
-  isDarkEnable = true;
+  isDarkEnable = false;
   presentTheme$ = new BehaviorSubject<string>('theme-light');
   step=1;
   validAddress;

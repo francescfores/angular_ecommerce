@@ -30,7 +30,6 @@ export class SliderGalleryComponent implements OnInit, OnDestroy {
   }
 
   isCurrentSlide(index: number): boolean {
-    console.log('isCurrentSlide')
     return this.currentSlideIndex === index;
   }
   goToSlide(index: number) {

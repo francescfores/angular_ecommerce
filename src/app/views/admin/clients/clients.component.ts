@@ -44,6 +44,7 @@ export class ClientsComponent  implements OnInit {
         data => {
           this.clients = data.clients;
           this.clients.current_page = data.clients.current_page+'';
+          console.log(this.clients)
         },
         error => {
         });

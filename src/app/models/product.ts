@@ -13,6 +13,7 @@ export class Product {
   inventory: any;
   sizes: any[];
   variations: Variation[];
+  imgs: any[];
   type: any;
 }
 
@@ -22,9 +23,11 @@ export class Variation {
   stock :any;
   img: any;
   attributes: Attribute[];
-  product:Product=undefined;
-  total:number;
+  product:Product;
+  total:any;
   new:boolean;
+  count:any;
+  imgs: any[];
 }
 
 export class Attribute {

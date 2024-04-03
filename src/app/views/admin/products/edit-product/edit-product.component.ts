@@ -53,7 +53,7 @@ export class EditProductComponent implements OnInit {
   public registerForm: FormGroup;
   public variationsForm: FormGroup[]=[];
   loading = false;
-  product:Product;
+  public product:Product;
 
   //alert
   text: any;
@@ -119,7 +119,7 @@ export class EditProductComponent implements OnInit {
           //init forms
           this.setFormProduct();
           this.setFormVariations();
-          if(this.product.type===1){
+          if(this.variations.length>0){
             console.log('this.variations[0]')
             console.log(this.variations[0])
             console.log(this.selectedOptions)
@@ -179,8 +179,8 @@ export class EditProductComponent implements OnInit {
       img: [this.product.img, []],
       stock: [this.product.stock, Validators.required],
       category: [this.product.category ? this.product.category.id : null, Validators.required],
-      subcategory: [this.product.subcategory ? this.product.subcategory.id : null, Validators.required],
-      supercat: [this.product.supercategory ? this.product.supercategory.id : null, Validators.required],
+      subcategory: [this.product.subcategory ? this.product.subcategory.id : null],
+      supercat: [this.product.supercategory ? this.product.supercategory.id : null],
       attributes: [null],
     });
   }
@@ -262,7 +262,9 @@ export class EditProductComponent implements OnInit {
           stock:this.f.stock.value,
           img:this.selectedFile,
           attributes:this.variationsSelected,
-          total:0
+          total:0,
+          count:0,
+          imgs:[],
         });
 
         this.variationsForm[id]= this.formBuilder.group({
@@ -322,15 +324,16 @@ export class EditProductComponent implements OnInit {
   }
 
 
-  passBack() {
+  update() {
     this.submitted = true;
     this.text='esperando el servior creado'
     this.color='info'
     this.show=true;
     //this.loading = true;
+    console.log(this.registerForm.controls)
       if (this.registerForm.valid) {
         //validation variations
-        if(this.product.type===1){
+        if(this.product.type===2){
           this.variations[0].attributes=this.variationsSelected;
         }
         Object.entries(this.variationsForm).forEach(([key, value], index) => {
@@ -351,8 +354,8 @@ export class EditProductComponent implements OnInit {
         this.product.price = this.f.price.value;
         this.product.stock = this.f.stock.value;
         this.product.category = this.category.id;
-        this.product.subcategory = this.subcategory.id;
-        this.product.supercategory = this.supercategory.id;
+        this.product.subcategory = this.subcategory?.id;
+        this.product.supercategory = this.supercategory?.id;
 
         this.product.variations = this.variations;
         this.productService.updateProduct2(this.product.id,this.product)
@@ -400,7 +403,7 @@ export class EditProductComponent implements OnInit {
   }
 
   onFileChanged(event) {
-    this.selectedFile = event.target.files[0];
+    this.selectedFile = event.target.files;
     console.log('update image')
     console.log(this.selectedFile )
     this.productService.uploadImage(this.product.id,this.selectedFile)
@@ -420,7 +423,7 @@ export class EditProductComponent implements OnInit {
     //this.registerForm.controls.img.setValue(this.selectedFile);
   }
   onFileChangedVariation(event,id) {
-    this.selectedFileVariations[id] = event.target.files[0];
+    this.selectedFileVariations[id] = event.target.files;
     this.productService.uploadImageVariation(id,this.selectedFileVariations[id])
       .pipe(first())
       .subscribe(
@@ -441,4 +444,25 @@ export class EditProductComponent implements OnInit {
     //this.registerForm.controls['img'].setValue(this.selectedFile);
   }
 
+  deleteImageProduct(id,imgId) {
+    console.log('update image')
+    console.log(this.selectedFile )
+    this.productService.deleteImageProduct(id,imgId)
+      .pipe(first())
+      .subscribe(
+        res => {
+          this.product.img = res.data.img;
+
+          this.text='imagen eliminada'
+          this.color='success'
+          this.submitted = false;
+          console.log(res);
+        },
+        error => {
+          // this.loading = false;
+        });
+  }
+  removeImageVariation(img:any) {
+
+  }
 }

@@ -23,10 +23,11 @@ export class CartService {
   constructor(public router: Router) {
     this.loadCartFromLocalStorage();
     this.loadStepFromLocalStorage();
+
   }
   private loadCartFromLocalStorage() {
     const cartJson = localStorage.getItem('cart');
-    console.log('cartJson',cartJson)
+    //console.log('cartJson',cartJson)
     if (cartJson) {
       const cart = JSON.parse(cartJson);
       this.cartSubject.next(cart);
@@ -35,7 +36,6 @@ export class CartService {
 
   loadStepFromLocalStorage(){
     const stepJson = localStorage.getItem('step');
-    console.log('step',stepJson)
     if (stepJson) {
       const step = JSON.parse(stepJson);
       this.currentStep$.next(step)
@@ -96,26 +96,41 @@ export class CartService {
     this.loadCartFromLocalStorage();
     const cart = this.cartSubject.getValue();
     const groupedProducts = [];
-
+    console.log('----------groupProducts-----------')
+    console.log(cart.products)
     cart.products.forEach(product => {
       const existingProduct = groupedProducts.find(item => item.id === product.id);
-
+      console.log(product.type)
       if (existingProduct) {
         existingProduct.count++;
         existingProduct.total += Number(product.price);
       } else {
-        groupedProducts.push({
-          product: product.product,
-          id: product.id,
-          img: product.img,
-          count: 1,
-          price: Number(product.price),
-          total: Number(product.price)
-        });
+        if(product.type===undefined){
+          groupedProducts.push({
+            product: product.product,
+            variation: product,
+            id: product.id,
+            img: product.img,
+            count: 1,
+            price: Number(product.price),
+            total: Number(product.price)
+          });
+        }else {
+          groupedProducts.push({
+            product,
+            id: product.id,
+            img: product.img,
+            count: 1,
+            price: Number(product.price),
+            total: Number(product.price),
+          });
+        }
+
       }
     });
     cart.total = groupedProducts.reduce((acc, curr) => acc + curr.total, 0);
     console.log('cart.total',cart.total)
+    console.log(groupedProducts);
     this.updateCart(cart);
     return groupedProducts.sort((a, b) => {
       if (a.name < b.name) {
@@ -143,12 +158,13 @@ export class CartService {
   }
 
   //nav
-  goStep(step) {
+  goStep(step:any) {
     console.log('this.basketValid',this.basketValid)
     console.log('this.addressValid',this.addressValid)
     console.log('this.shippingValid',this.shippingValid)
     console.log('this.paymentValid',this.paymentValid)
-    //const step = this.currentStep$.getValue();
+    console.log('this.step',this.step)
+    //step = this.currentStep$.getValue();
     if (step === 1) {
       this.step = step
       this.updateStep(this.step)
@@ -188,4 +204,13 @@ export class CartService {
     this.paymentValid = valid;
   }
 
+  destroyCart() {
+    this.currentStep$.next(1)
+    const newCart = new Cart(); // Crear un nuevo carrito vacío
+    this.updateCart(newCart); // Actualizar el carrito con el nuevo carrito vacío
+    this.setBasketValid(false);
+    this.setAddressValid(false);
+    this.setShippingValid(false);
+    this.setPaymentValid(false);
+  }
 }

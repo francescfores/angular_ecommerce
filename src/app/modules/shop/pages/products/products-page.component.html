@@ -1,18 +1,16 @@
 <div class="min-h-screen">
   <!-- <app-slider class="opacity-75 hover:opacity-100 "></app-slider> -->
-  <div class="">
-    <div class="flex w-full rounded-lg">
-      <img src="assets/img/banners/skate_banner.png" alt="" class="w-full ">
-    </div>
-  </div>
+  <section class="overflow-hidden">
+    <!--<app-slider-blog></app-slider-blog> -->
+  </section>
   <div [ngClass]="{ 'translate-x-0 ': filtersOpen, 'translate-x-full': !filtersOpen, 'opacity-100': filtersOpen, 'opacity-0': !filtersOpen}"
          class="top-0 right-0  h-full
        fixed z-30
        ease-in-out duration-300 w-3/4 ">
     <div class="relative ml-auto flex h-full w-full flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl scrollbar-thin scrollbar-thumb-blueGray-500 scrollbar-track-blueGray-200 h-32 overflow-y-scroll">
       <div class="flex items-center justify-between px-4">
-        <!--            <h2 class="text-lg font-medium text-gray-900">Filters</h2>-->
-        <button (click)="setFiltersOpen()" type="button" class="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400">
+        <!--            <h2 class="text-lg font-medium ">Filters</h2>-->
+        <button (click)="setFiltersOpen()" type="button" class="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 ">
           <span  class="sr-only">Close menu</span>
           <!-- Heroicon name: outline/x-mark -->
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -24,13 +22,13 @@
       <!-- Filters -->
       <form class="lg:hidden px-4 py-4">
         <h3 class="sr-only">Categories</h3>
-        <ul role="list" class=" space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
+        <ul role="list" class=" space-y-4 border-b border-gray-200 pb-6 text-sm font-medium ">
           <li *ngFor="let category of categories2;">
             <a  [ngClass]="{'text-header-color': openProductType === category.id}" (click)="showProductType(category)">{{category.name}}</a>
-            <ul *ngIf="openProductType === category.id" role="list" class="ml-2 text-sm font-medium text-gray-900">
+            <ul *ngIf="openProductType === category.id" role="list" class="ml-2 text-sm font-medium ">
               <li *ngFor="let subcategory of category.subcategories;" >
                 <a (click)="showproductTypeCat(category, subcategory)" [ngClass]="{'text-header-color': openProductTypeCat === subcategory.id}">{{subcategory.name}}</a>
-                <ul *ngIf="openProductTypeCat === subcategory.id" role="list" class="ml-2 text-sm font-medium text-gray-900">
+                <ul *ngIf="openProductTypeCat === subcategory.id" role="list" class="ml-2 text-sm font-medium ">
                   <li *ngFor="let supercategory of subcategory.supercategories;" >
                     <a (click)="showproductTypeSubCat(category, subcategory,supercategory)" [ngClass]="{'text-header-color': openProductTypeSubCat === supercategory.id}">{{supercategory.name}}</a>
                   </li>
@@ -40,12 +38,13 @@
           </li>
         </ul>
 
-        <div class="border-b border-gray-200 py-6" *ngFor="let attr of attributes_group | keyvalue">
+        <div class="border-b border-gray-200 py-6" *ngFor="let attr of attributes_group | keyvalue" (click)="showFilter(attr)">
           <h3 class="-my-3 flow-root">
             <!-- Expand/collapse section button -->
-            <button type="button" class="flex w-full items-center justify-between  py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
-              <span class="font-medium text-gray-900">{{attr.key}}</span>
-              <span class="ml-6 flex items-center" (click)="showFilter(attr)" >
+            <button type="button" class="flex w-full items-center justify-between  py-3 text-sm  hover:" aria-controls="filter-section-0" aria-expanded="false">
+              <span class="font-medium ">{{attr.key}}</span>
+              <span class="ml-6 flex items-center"  >
+
                     <svg *ngIf="this.selectFilter != attr.key" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                     </svg>
@@ -60,8 +59,14 @@
                [ngClass]="{ 'max-h-screen ': this.selectFilter === attr.key, 'max-h-0 ': this.selectFilter != attr.key}">
             <div class="space-y-4 pt-6">
               <div class="flex items-center" >
+                <div *ngIf="attr.key==='color'">
+                  <div class="h-10 w-10 bg-[#{{value.desc}}]" [style.background-color]="'#'+value.desc">
+
+                  </div>
+                </div>
+
                 <input (change)="onAttributeSelected(value)" id="filter-color-0" name="{{value.id}}" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-primary ring-0">
-                <label for="filter-color-0" class="ml-3 text-sm text-gray-600">{{value.value}}</label>
+                <label for="filter-color-0" class="ml-3 text-sm ">{{value.value}}</label>
               </div>
             </div>
           </div>
@@ -69,23 +74,23 @@
       </form>
     </div>
   </div>
-  <div class="mx-auto w-full px-2 sm:px-6 pb-60 -mb-20 pt-10">
+  <div class="mx-auto w-full px-2 sm:px-6 pb-60 -mb-20 pt-2 text-textPrimary">
 
-    <div class="bg-primary flex items-center p-1 rounded-md mb-6">
+    <div class="bg-bgTern flex items-center p-1 rounded-md mb-2">
       <input (keyup)="searchProduct($event)"
-             class="h-auto px-3 py-2 w-full  border-0  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm
-                  shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-500"/>
-      <button type="button" class="p-2 text-gray-400" (click)="searchOpen=!searchOpen">
-        <svg class="h-5 w-5 text-white"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="10" cy="10" r="7" />  <line x1="21" y1="21" x2="15" y2="15" /></svg>
+             class="bg-bgSeco h-auto px-3 py-2 w-full  border-0  placeholder-blueGray-300 text-blueGray-600 rounded text-sm
+                   focus:outline-none focus:ring  ease-linear transition-all duration-500"/>
+      <button type="button" class="p-2 " (click)="searchOpen=!searchOpen">
+        <svg class="h-5 w-5 text-textPrimary"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="10" cy="10" r="7" />  <line x1="21" y1="21" x2="15" y2="15" /></svg>
       </button>
     </div>
-    <div class="pb-5 w-full flex items-baseline justify-between border-b border-gray-200 h-auto flex-wrap">
+    <div class="py-5 w-full flex items-baseline justify-between border-b border-gray-200 h-auto flex-wrap">
       <div class="flex flex-wrap">
-        <h1 *ngIf="titleFilterCat!=null" class="text-xl font-bold tracking-tight text-gray-900">{{titleFilterCat}}</h1>
-        <h1 *ngIf="titleFilterSubCat!=null" class="text-md font-bold tracking-tight text-gray-900 mt-1 mx-2">></h1>
-        <h1 *ngIf="titleFilterSubCat!=null" class="text-xl font-bold tracking-tight text-gray-900">  {{titleFilterSubCat}}</h1>
-        <h1 *ngIf="titleFilterSuperCat!=null" class="text-md font-bold tracking-tight text-gray-900 mt-1 mx-2">></h1>
-        <h1 *ngIf="titleFilterSuperCat!=null" class="text-xl font-bold tracking-tight text-gray-900" > {{titleFilterSuperCat}}</h1>
+        <h1 *ngIf="titleFilterCat!=null" class="text-xl font-bold tracking-tight ">{{titleFilterCat}}</h1>
+        <h1 *ngIf="titleFilterSubCat!=null" class="text-md font-bold tracking-tight  mt-1 mx-2">/</h1>
+        <h1 *ngIf="titleFilterSubCat!=null" class="text-xl font-bold tracking-tight ">  {{titleFilterSubCat}}</h1>
+        <h1 *ngIf="titleFilterSuperCat!=null" class="text-md font-bold tracking-tight  mt-1 mx-2">/</h1>
+        <h1 *ngIf="titleFilterSuperCat!=null" class="text-xl font-bold tracking-tight " > {{titleFilterSuperCat}}</h1>
       </div>
       <div class="flex items-center ml-auto">
         <div class="relative inline-block text-left">
@@ -117,19 +122,21 @@
         </button>
 
       </div>
+
     </div>
 
     <section>
-      <div class="p-2 pt-4 grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-        <form class="hidden lg:block">
-          <h3 class="sr-only">Categories</h3>
-          <ul role="list" class=" space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
+      <div class="p-2 pt-4 grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-6">
+        <form class="lg:col-span-1 hidden lg:block">
+
+          <ul role="list" class=" space-y-4 border-b border-gray-200 pb-6 text-sm font-medium ">
             <li *ngFor="let category of categories2;">
-              <a  [ngClass]="{'text-header-color': openProductType === category.id}" (click)="showProductType(category)">{{category.name}}</a>
-              <ul *ngIf="openProductType === category.id" role="list" class="ml-2 text-sm font-medium text-gray-900">
+              <a class="font-semibold" [ngClass]="{'text-header-color': openProductType === category.id}"
+                  (click)="showProductType(category)">{{category.name}}</a>
+              <ul *ngIf="openProductType === category.id" role="list" class="flex flex-col mt-2 gap-2 ml-3 text-sm font-medium ">
                 <li *ngFor="let subcategory of category.subcategories;" >
                   <a (click)="showproductTypeCat(category, subcategory)" [ngClass]="{'text-header-color': openProductTypeCat === subcategory.id}">{{subcategory.name}}</a>
-                  <ul *ngIf="openProductTypeCat === subcategory.id" role="list" class="ml-2 text-sm font-medium text-gray-900">
+                  <ul *ngIf="openProductTypeCat === subcategory.id" role="list" class="flex flex-col mt-2 gap-2 ml-3 text-sm font-medium ">
                     <li *ngFor="let supercategory of subcategory.supercategories;" >
                       <a (click)="showproductTypeSubCat(category, subcategory,supercategory)" [ngClass]="{'text-header-color': openProductTypeSubCat === supercategory.id}">{{supercategory.name}}</a>
                     </li>
@@ -138,13 +145,37 @@
               </ul>
             </li>
           </ul>
+         <!--<div class="flex items-center ml-auto">
+            <div class="relative inline-block text-left">
+              <div class="flex justify-center">
+                <div>
+                  <div class="dropdown relative">
+                    <select (change)="onSortSelected($event)" class="text-sm bg-transparent  font-semibold py-1 px-8 border  rounded-full  w-auto focus:border-0" >
+                      <option *ngFor="let value of sortfilters"
+                              [value]="value.id">
+                        {{value.key}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
 
+
+            <button type="button" class="-m-2 ml-4 p-2  hover: sm:ml-6 lg:hidden" (click)="setFiltersOpen()">
+              <span class="sr-only">Filters</span>
+              <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z" clip-rule="evenodd" />
+              </svg>
+            </button>
+
+          </div>-->
           <div class="border-b border-gray-200 py-6" *ngFor="let attr of attributes_group | keyvalue">
             <h3 class="-my-3 flow-root">
               <!-- Expand/collapse section button -->
-              <button type="button" class="flex w-full items-center justify-between  py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
-                <span class="font-medium text-gray-900">{{attr.key}}</span>
-                <span class="ml-6 flex items-center" (click)="showFilter(attr)" >
+              <button (click)="showFilter(attr)" type="button" class="flex w-full items-center justify-between  py-3 text-sm  hover:" aria-controls="filter-section-0" aria-expanded="false">
+                <span class="font-medium ">{{attr.key}}</span>
+                <span class="ml-6 flex items-center"  >
                     <svg *ngIf="this.selectFilter != attr.key" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                     </svg>
@@ -154,49 +185,97 @@
                   </span>
               </button>
             </h3>
+
             <div *ngFor="let value of attr.value" class="transform
               transition-all duration-150 ease-in-out origin-top overflow-hidden"
                  [ngClass]="{ 'max-h-screen ': this.selectFilter === attr.key, 'max-h-0 ': this.selectFilter != attr.key}">
               <div class="space-y-4 pt-6">
-                <div class="flex items-center" >
+                <div class="flex items-center" *ngIf="attr.key==='color'" >
+                    <input  (change)="onAttributeSelected(value)" id="filter-color-0" name="{{value.id}}"
+                           value="white" type="checkbox" class="h-4 w-4 rounded
+                           text-primary ring-0">
+                    <label for="filter-color-0" class="ml-3 text-sm ">{{value.value}}</label>
+                  <div class="h-6 w-6 ml-3 border-2 border-gray-300" [style.background]="'#'+value.desc"></div>
+                </div>
+                <div *ngIf="attr.key!=='color'" class="flex items-center" >
                   <input (change)="onAttributeSelected(value)" id="filter-color-0" name="{{value.id}}" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-primary ring-0">
-                  <label for="filter-color-0" class="ml-3 text-sm text-gray-600">{{value.value}}</label>
+                  <label for="filter-color-0" class="ml-3 text-sm ">{{value.value}}</label>
                 </div>
               </div>
             </div>
           </div>
         </form>
-        <div class="lg:col-span-3">
+        <div class="lg:col-span-5">
           <!-- Replace with your content -->
           <div class="rounded-lg lg:h-full">
             <div class="flex items-center pr-2 pb-2 ">
-              <div class="mx-2 bg-gray-200 hover:bg-gray-300 text-grey-darkest font-bold py-2 px-4 rounded inline-flex
+              <div class="mx-2 bg-gray-200 hover:bg-gray-300 font-bold py-2 px-4 rounded inline-flex
                 items-center border rounded-full" *ngFor="let attr of filters.searchFilters[5]?.attributes">
                 <p class="text-sm">{{attr.value}}</p>
                 <button (click)="onAttributeSelected(attr)">
-                  <svg  class="ml-2 h-3 w-3 text-gray-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>
+                  <svg  class="ml-2 h-3 w-3 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>
                 </button>
               </div>
             </div>
             <div *ngIf="products?.length > 0" class="grid gap-2 sm:gap-8 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               <!-- Product Item -->
-              <div *ngFor="let variation of products;"  class="overflow-hidden rounded-lg text-sm border border-1
+              <div *ngFor="let product of products;"  class="overflow-hidden  text-sm border border-0
                 border-gray-200 hover:border-gray-400 transition-colors bg-white">
-                <div (click)="detail(variation.product.id,variation.id)">
+                <div >
                   <div class="flex flex-wrap">
-                    <div class="w-full h-auto bg-gray-300 h-96 overflow-hidden">
-                      <img src="{{ imgUrl }}storage/images/{{ variation.img }}"
-                           class="rounded-lg w-full hover:scale-105 hover:rotate-1 transition-transform w-full h-64 sm:h-80 object-cover" alt="Imagen 1">
+                    <div class="relative w-full h-auto bg-gray-300 h-96 overflow-hidden">
+<!--                      <img src="{{ imgUrl }}storage/images/{{ product.img }}"-->
+
+                      <img (click)="detail(product.id,product.id)" *ngIf="product.type===1" src="{{product?.imgs[0]?.path}}"
+                           class=" w-full hover:scale-105 hover:rotate-1
+                           transition-transform w-full h-64 sm:h-80 object-cover" alt="Imagen 1">
+                      <img (click)="detail(product.id,product.id)" *ngIf="product.type===2" src="{{ product?.imgs[0]?.path }}"
+                      class=" w-full hover:scale-105 hover:rotate-1
+                      transition-transform w-full h-64 sm:h-80 object-cover" alt="Imagen 1">
                     </div>
                   </div>
-                  <div class="p-4">
-                    <h3 class="">
+                  <div class="flex flex-col gap-2 px-2 py-6">
+                    <div class=" grid grid-cols-2">
                       <a href="assets/img/products/1_1.jpg">
-                        {{variation?.product?.name}}
+                        {{ product?.name }}
                       </a>
-                    </h3>
-                    <h5 class="font-bold">{{variation?.price/100 | number:'1.2-2'}}€</h5>
+                      <div class="ml-auto w-7 h-7 z-50 flex items-center justify-center"> <!-- Establecer un tamaño fijo para el contenedor del icono -->
+                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="1.008" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                      </div>
+                    </div>
+                    <h5 class="font-bold">{{product?.price/100 | number:'1.2-2'}}€</h5>
+                    <div class="w-full flex justify-center items-center">
+                      <select *ngIf="uniqueVariationsSize(product.variations).length > 0"
+                              class="w-20
+                              flex justify-center items-center text-sm bg-transparent
+                              font-semibold py-1 px-8 border w-auto focus:border-0"
+                              >
+                        <ng-container *ngFor="let variation of uniqueVariationsSize(product.variations)">
+                          <ng-container *ngFor="let attr of variation.attributes">
+                            <ng-container *ngIf="attr.name === 'size'">
+                              <option [value]="attr.id">{{ attr.value }}</option>
+                            </ng-container>
+                          </ng-container>
+                        </ng-container>
+                      </select>
+                    </div>
+
+                    <div class="flex justify-center items-center">
+                      <div *ngFor="let variation of uniqueVariations(product.variations)">
+                        <div *ngFor="let attr of variation.attributes;">
+                          <label *ngIf="attr.name==='color'" class="relative flex cursor-pointer items-center p-1">
+                            <input [style.background-color]="'#'+attr.desc" type="checkbox" class="focus:accent-pink-500 peer cursor-pointer appearance-none relative h-5 w-5 border border-gray-900 transition-all checked:border-blue-500 checked:bg-blue-500" />
+                            <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 opacity-0 transition-opacity peer-checked:opacity-100">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                              </svg>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
                 </div>
               </div>
 
@@ -212,12 +291,12 @@
               <ul class="flex list-style-none">
                 <li class="page-item" *ngFor="let pr of product_pg.links">
                   <a (click)="paginatedProducts(pr.label)" [ngClass]="{
-              'bg-primary text-white': product_pg.current_page === pr.label,
-              'bg-transparent text-gray-800': product_pg.current_page !== pr.label
+              'bg-primary text-textPrimary': product_pg.current_page === pr.label,
+              'bg-transparent ': product_pg.current_page !== pr.label
               }"
                      class="page-link relative block py-1.5 px-3 rounded border-0
               outline-none transition-all
-              duration-300 rounded  hover:text-gray-800 focus:shadow-none"
+              duration-300 rounded  hover: focus:shadow-none"
                   >{{pr.label}}</a>
                 </li>
               </ul>

@@ -3,7 +3,7 @@ import {Category} from "../../../../models/category";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {SubCategory} from "../../../../models/subcategory";
 import {CategoryService} from "../../../../services/api/category.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {first} from "rxjs/operators";
 import {SuperCategory} from "../../../../models/supercategory";
 
@@ -38,6 +38,7 @@ export class EditSubcategoryComponent implements OnInit{
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private formBuilder: UntypedFormBuilder,
+    private router: Router,
 
   ) {
     this.route.params.subscribe((params: Params) => this.id = params.id);
@@ -90,7 +91,7 @@ export class EditSubcategoryComponent implements OnInit{
               img: ['', []],
             });
 
-            this.getSubCategorysByCategoryPaginated(1,this.id)
+            this.getSuperCategorysBySubCategoryPaginated(1,this.id)
           }
         },
         error => {
@@ -149,7 +150,7 @@ export class EditSubcategoryComponent implements OnInit{
     }
   }
 
-  getSubCategorysByCategoryPaginated(page, id){
+  getSuperCategorysBySubCategoryPaginated(page, id){
     this.subcategory_id =id;
     this.categoryService.getSuperCategorysBySubCategoryPaginated(page, id)
       .pipe(first())
@@ -220,6 +221,15 @@ export class EditSubcategoryComponent implements OnInit{
         pr++;
       }
     }
-    this.getSubCategorysByCategoryPaginated(pr, this.subcategory_id);
+    this.getSuperCategorysBySubCategoryPaginated(pr, this.subcategory_id);
+  }
+
+  editSupercategory(id) {
+    console.log(id)
+    //this.router.navigate(['/admin/edit-category'],id);
+    this.router.navigate(
+      ['/admin/edit-supercategory'],
+      { queryParams: { id } }
+    );
   }
 }

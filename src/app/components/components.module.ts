@@ -55,6 +55,7 @@ import { SliderGalleryComponent } from './sliders/slider-gallery/slider-gallery.
         Sidebar2Component,
         SidebarComponent,
         SliderGalleryComponent,
+        Button3dComponent,
 
     ]
 })

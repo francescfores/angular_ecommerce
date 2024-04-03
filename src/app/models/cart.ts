@@ -9,9 +9,10 @@ export class Cart {
   date: any;
   status: any;
   total: any;
-  products: Variation[]=[];
+  products: any[]=[];
   payment:Payment;
   shipping:any;
   sub_total:any;
+  card:any;
 }
 

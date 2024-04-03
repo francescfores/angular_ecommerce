@@ -48,7 +48,8 @@ export class CartService {
   groupProducts() {
     const cart = this.cartSubject.getValue();
     const groupedProducts = [];
-
+console.log('----------groupProducts-----------')
+console.log(cart.products)
     cart.products.forEach(product => {
       const existingProduct = groupedProducts.find(item => item.id === product.id);
 

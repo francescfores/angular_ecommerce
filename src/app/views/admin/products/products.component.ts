@@ -78,10 +78,10 @@ export class ProductsComponent implements OnInit {
     this.subcategory = new SubCategory();
     this.supercategory = new SuperCategory();
     this.registerForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      desc: ['', Validators.required],
-      price: ['', Validators.required],
-      stock: ['', Validators.required],
+      name: ['1', Validators.required],
+      desc: ['1', Validators.required],
+      price: ['1', Validators.required],
+      stock: ['1', Validators.required],
       img: ['', Validators.required],
       category: [null ],
       subcategory: [null ],
@@ -264,6 +264,7 @@ export class ProductsComponent implements OnInit {
     this.text='esperando el servior creado'
     this.color='info'
     this.show=true;
+    console.log(this.type);
     //this.loading = true;
       if (this.registerForm.valid) {
         if(this.type===1){
@@ -336,16 +337,18 @@ export class ProductsComponent implements OnInit {
     );
   }
   onFileChanged(event) {
-    this.selectedFile = event.target.files[0];
+    this.selectedFile = event.target.files;
     //this.registerForm.controls['img'].setValue(this.selectedFile);
   }
   onFileChangedVariation(event,id) {
-    this.selectedFileVariations[id] = event.target.files[0];
-    this.variations[id].img = event.target.files[0];
+   // this.selectedFileVariations[id] = event.target.files[0];
+    this.selectedFileVariations[id] = event.target.files;
+    //this.variations[id].img = event.target.files[0];
+    this.variations[id].imgs = event.target.files;
     console.log('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE');
-    console.log(event.target.files[0]);
+    console.log(event.target.files);
     console.log(this.selectedFileVariations[id]);
-    console.log(this.selectedFileVariations[id].name);
+    console.log(this.variations[id]);
     //this.registerForm.controls['img'].setValue(this.selectedFile);
   }
   saveVariation(variation: any) {

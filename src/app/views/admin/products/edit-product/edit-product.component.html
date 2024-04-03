@@ -62,7 +62,7 @@
 <!--                  />-->
 <!--              </div>-->
               <div class="col-span-6 sm:col-span-6">
-                <input id="inputImg" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all" (change)="onFileChanged($event)"/>
+                <input id="inputImg" #file type="file" multiple formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  class=" hidden word-wrap custom-file-input break-words break-all" (change)="onFileChanged($event)"/>
                 <label
                   [ngClass]="{'bg-blue-500':!submitted && this.selectedFile === null,
                                      'bg-green-500':!submitted && this.selectedFile !== null || submitted && this.selectedFile !== null,
@@ -72,6 +72,19 @@
                 <div *ngIf="submitted && f.img.errors" class="invalid-feedback">
                   <div *ngIf="f.img.errors.required">img is required</div>
                 </div>
+
+                <div class="flex flex-wrap ">
+                  <div class=" w-1/4 p-10" *ngFor="let img of this.product.imgs">
+                    <div class="flex flex-col relative">
+                      <button (click)="deleteImageProduct(this.product.id,img.id)"
+                      class="absolute top-1 right-1 bg-red-500 text-warmGray-50 px-2 py-1 rounded-sm"
+                      ><p>x</p></button>
+                      <img class="flex  w-full h-full" src="{{img.path}}" alt="">
+                      <p>{{img.name}}</p>
+                    </div>
+                  </div>
+                </div>
+
               </div>
               <div class="col-span-2 sm:col-span-2">
                 <label class="block text-sm font-medium text-gray-700">Categoria</label>
@@ -127,7 +140,7 @@
             </div>
           </div>
           <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-            <button [disabled]="loading" (click)="passBack()" type="submit" class="inline-flex justify-center rounded-md border border-transparent
+            <button [disabled]="loading" (click)="update()" type="submit" class="inline-flex justify-center rounded-md border border-transparent
             bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none
              focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
               <div *ngIf="loading" class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
@@ -226,7 +239,8 @@
                         </div>
                         <div class="col-span-6 sm:col-span-4 flex justify-between flex-wrap">
                           <div class="col-span-6 sm:col-span-3">
-                            <input id="inputImg2" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all"
+                            <input id="inputImg2" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file
+                                   multiple type="file" class=" hidden word-wrap custom-file-input break-words break-all"
                                    (change)="onFileChangedVariation($event,variation.id)"/>
                             <label
                               [ngClass]="{'bg-blue-500':!submitted && this.selectedFileVariations[variation.id] === null,
@@ -238,6 +252,18 @@
                             <div *ngIf="submitted && fv(variation.id) .img.errors" class="invalid-feedback">
                               <div *ngIf="fv(variation.id) .img.errors.required">img is required</div>
                             </div>
+
+                            <div class="flex flex-wrap ">
+                              <div class=" w-1/4 p-10" *ngFor="let img of this.variation.imgs">
+                                <div class="flex flex-col relative">
+                                  <button (click)="deleteImageProduct(this.variation.id,img.id)"
+                                          class="absolute top-1 right-1 bg-red-500 text-warmGray-50 px-2 py-1 rounded-sm"
+                                  ><p>x</p></button>
+                                  <img class="flex  w-full h-full" src="{{img.path}}" alt="">
+                                  <p>{{img.name}}</p>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -247,7 +273,7 @@
             bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none
              focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                         <div *ngIf="loading" class="mr-2 border-t-transparent border-solid animate-spin  rounded-full border-white border-2 h-4 w-4"></div>
-                        Save</button>
+                        Sassve</button>
 
                     </div>
                   </div>

@@ -19,12 +19,16 @@
           hover:bg-gray-50 ">
             Close</button>
 
-          <button (click)="goToShop()" class="self-end inline-flex justify-center rounded-full
-          border border-transparent
-          bg-orange-600 py-2 px-4 text-sm
-          font-medium text-white shadow-sm
-          hover:bg-orange-700 ">
-            Continue</button>
+
+          <app-button3d id="step-2"  (click)="goToShop()" class="w-auto flex justify-end items-end "
+                        [rounded]="'5px'" [title]="''"
+                        [type]="'btn_primary'"
+                        [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
+                        [raise]="2" [width]="'100%'">
+            <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+              <p>Continue</p>
+            </div>
+          </app-button3d>
         </div>
       </div>
     </div>
@@ -58,16 +62,24 @@
           <div id="card-element">
 
           </div>
-          <button id="comfirm_payment" (click)="createToken()"   type="submit" class="
-        text-white bg-text-primary
-        hover:border-2 hover:border-primary
-        hover:text-primary hover:bg-transparent
-        rounded-md w-full py-3 text-lg">
-            Continue
-          </button>
         </div>
 
       </form>
+      <div class="border-t border-gray-300 pt-4" >
+        <div class=" flex items-end justify-end">
+          <app-button3d  (click)="checkout()" class="w-1/4 flex justify-end items-end "
+                         [rounded]="'5px'" [title]="''"
+                         [type]="'btn_primary'"
+                         [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
+                         [raise]="2" [width]="'100%'">
+            <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+              <p>Continue</p>
+            </div>
+          </app-button3d>
+        </div>
+
+      </div>
+
     </div>
   </div>
   <div
@@ -77,10 +89,12 @@
       class="animate__animated animate__fadeIn animate__fadeIn--slow p-2 sm:10 w-auto mx-auto grid grid-cols-12 gap-6">
       <h1 class="text-3xl font-bold col-span-12">Summary</h1>
       <div x-data="" class="bg-white p-4 rounded-lg shadow col-span-12 lg:col-span-8">
-        <div>
+        <div *ngIf="groupedProducts.length>0">
           <div *ngFor="let product of this.groupedProducts;" class="w-full flex flex-col sm:flex-row items-center gap-4 py-2">
             <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
-              <img class="object-cover" alt="" src="{{ imgUrl }}storage/images/{{product.img}}">
+              <img *ngIf="product.variation===undefined" class="object-cover" alt="" src="{{product?.product.imgs[0]?.path}}">
+              <img *ngIf="product.variation!==undefined" class="object-cover" alt="" src="{{product?.variation.imgs[0]?.path}}">
+
             </a>
             <div class="flex-1 flex flex-col justify-between">
               <div class="flex justify-between mb-3">
@@ -123,16 +137,18 @@
           <p class="mr-16 text-sm">Total (Tax included)</p>
           <p class="text-sm font-bold" >{{cart.sub_total/100 | number:'1.2-2'}}€</p>
         </div>
-        <div class="pt-4">
+        <div class="pt-4 w-full">
           <!-- <button (click)="createOrder()" type="submit" class="-->
           <!-- <button *ngIf="!showPaypalButtons" (click)="pay()" type="submit" class="-->
-          <button  id="step-1" (click)="paymentIntent()" type="submit" class="
-        text-white bg-text-primary
-        hover:border-2 hover:border-primary
-        hover:text-primary hover:bg-transparent
-        rounded-md w-full py-3 text-lg">
-            Continue
-          </button>
+          <app-button3d id="step-2"  (click)="paymentIntent()" class="w-full flex justify-end items-end "
+                        [rounded]="'5px'" [title]="''"
+                        [type]="'btn_primary'"
+                        [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
+                        [raise]="2" [width]="'100%'">
+            <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+              <p>Continue</p>
+            </div>
+          </app-button3d>
         </div>
       </div>
     </div>

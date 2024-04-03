@@ -1,4 +1,4 @@
-<div class="slider p-10">
+<div class="slider p-">
   <div class="slides ">
     <div *ngFor="let image of images; let i = index" class="slide flex justify-center items-center " [class.active]="isCurrentSlide(i)">
       <img [src]="image" alt="Image" *ngIf="isCurrentSlide(i)">

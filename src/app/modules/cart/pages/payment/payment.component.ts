@@ -14,7 +14,7 @@ import {ToastrService} from "ngx-toastr";
 import {Cart} from "../../../../models/cart";
 import {Payment} from "../../../../models/payment";
 import {environment} from "../../../../../environments/environment";
-import {first} from "rxjs/operators";
+import {first, switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-payment',
@@ -81,7 +81,7 @@ export class PaymentComponent implements OnInit, AfterViewInit{
       console.log(this.cart)
     });
 
-    this.cartService.setPaymentValid(false);
+    //this.cartService.setPaymentValid(false);
     this.stripeTest = this.fb.group({
       name: ['', [Validators.required]]
     });
@@ -124,6 +124,7 @@ export class PaymentComponent implements OnInit, AfterViewInit{
             this.cart.payment=new Payment();
             this.cart.payment.token=this.token;
             this.cartService.updateCart(this.cart);
+            this.checkout();
             this.goToNextStep();
           } else if (result.error) {
             this.toastr.error(result.error.message);
@@ -133,6 +134,24 @@ export class PaymentComponent implements OnInit, AfterViewInit{
       this.loading=false;
       this.toastr.error('Formulario invalido');
     }
+  }
+
+  checkout() {
+  this.http.post<any>(`${environment.apiUrl}api/payment-intent2`, {})
+      .pipe(
+        switchMap(session => {
+          return this.stripeService.redirectToCheckout({ sessionId: session.id })
+        })
+      )
+      .subscribe(result => {
+        console.log(result);
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, you should display the localized error message to your
+        // customer using `error.message`.
+        if (result.error) {
+          alert(result.error.message);
+        }
+      });
   }
 
   async paymentIntent(){
@@ -151,7 +170,7 @@ export class PaymentComponent implements OnInit, AfterViewInit{
       }).toPromise();
       if (error) {
         this.toastr.error('error');
-        this.loading=false;
+console.log(error);        this.loading=false;
       }else{
         this.createOrder(paymentIntent);
       }
@@ -169,6 +188,7 @@ export class PaymentComponent implements OnInit, AfterViewInit{
         res => {
           this.loading=false;
           this.success=true;
+          this.cartService.destroyCart();
         },
         error => {
           this.loading=false;

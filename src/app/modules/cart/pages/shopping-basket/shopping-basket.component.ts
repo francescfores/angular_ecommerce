@@ -160,6 +160,7 @@ export class ShoppingBasketComponent implements OnInit, AfterViewInit {
   }
   groupProducts() {
     this.groupedProducts =this.cartService.groupProducts();
+    console.log(this.groupedProducts)
     // if(this.groupedProducts.length>0){
     //   //this.cartService.setBasketValid(true);
     // }

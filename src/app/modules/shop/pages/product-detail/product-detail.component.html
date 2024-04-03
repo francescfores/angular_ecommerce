@@ -3,9 +3,12 @@
     <div class="md:col-span-2">
       <div *ngIf="loaded">
         <div class="relative" >
+          <app-slider-gallery class="flex w-full xs:w-3/6" [images]="images"></app-slider-gallery>
+          <!--
           <div class="" >
-            <div *ngFor="let image of images; let i = index" class="flex items-center">
-              <img  alt="" class="w-auto mx-auto" src="{{ imgUrl }}storage/images/{{image.path}}" [ngClass]="{'hidden display': i!==selectedImage}" >
+
+            <div *ngFor="let image of product.imgs; let i = index" class="flex items-center">
+              <img  alt="" class="w-auto mx-auto" src="{{image.path}}" [ngClass]="{'hidden display': i!==selectedImage}" >
             </div>
           </div>
            <a (click)="selectetPreviousImage()" class="cursor-pointer bg-black/30 text-white absolute left-0 top-1/2 -translate-y-1/2">
@@ -18,7 +21,8 @@
                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
              </svg>
            </a>
-         </div>
+           -->
+        </div>
         <!--
          <div class="flex">
            <template x-for="image in images">
@@ -37,142 +41,57 @@
          </a>
          </div>
         -->
-       </div>
-     </div>
-     <div class="md:col-span-3 lg:pl-12 p-4">
-       <h1 class="text-lg font-semibold" *ngIf="product">
-         {{product?.name}}
-       </h1>
-       <div class="text-xl font-bold mb-6" *ngIf="selectedVariation">{{selectedVariation?.price/100 | number:'1.2-2'}}€</div>
-<!--       <div class="flex items-center mb-6">-->
-<!--         <div class="flex items-center text-orange-400">-->
-<!--           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">-->
-<!--             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>-->
-<!--           </svg>-->
-<!--           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">-->
-<!--             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>-->
-<!--           </svg>-->
-<!--           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">-->
-<!--             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>-->
-<!--           </svg>-->
-<!--           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">-->
-<!--             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>-->
-<!--           </svg>-->
-<!--           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
-<!--             <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>-->
-<!--           </svg>-->
-<!--         </div>-->
-<!--         <a href="#" class="ml-3 font-normal text-purple-600 hover:text-purple-500">-->
-<!--           67 reviews-->
-<!--         </a>-->
-<!--       </div>-->
-       <div class="flex items-center justify-between mb-5">
-         <label for="quantity" class="block font-bold mr-4">
-           Quantity
-         </label>
-         <input min="1" value="{{selectedVariation?.count}}" (change)="updateCount($event, product)" type="number" name="quantity" x-ref="quantityEl"  class="w-32 focus:border-purple-500 focus:outline-none rounded">
-       </div>
-       <div class="flex items-center justify-between mb-5" *ngFor="let attr of attributes_group | keyvalue">
-         <label for="country" class="block text-sm font-medium text-gray-700">{{ attr.key }}</label>
-<!--         <label for="country" class="block text-sm font-medium text-gray-700">{{ selectedOptions[attr.key] }}</label>-->
-         <select [(ngModel)]="selectedOptions[attr.key]" (ngModelChange)="selectAttribute($event)"
-                 [ngClass]="{'text-blueGray-700 bg-gray-500':selectAttributes[attr.key]?.disabled}"
-                 id="country" name="{{attr.key}}" autocomplete="country-name"
-                 class="mt-1 block w-2/3 rounded-md border border-gray-300 bg-transparent
-                 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-           <option [value]="[attr.key]">Selecciona un/a {{ attr.key }}</option>
-<!--           [ngClass]="{'text-blueGray-700 bg-blueGray-500':value?.disabled}"-->
-           <option *ngFor="let value of attr.value"
-                   [value]="value.id">
-             {{value.value}}
-<!--             {{value?.disabled}}-->
-           </option>
-         </select>
-       </div>
-       <div class="flex items-center justify-between mb-5">
-         <p class="font-bold">Total</p>
-         <p class="font-bold">{{this.selectedVariation?.total/100 | number:'1.2-2'}}€</p>
-       </div>
-         <button (click)="addToCart()"
-           [ngClass]="{'bg-primary':valid && !addedCart,'bg-gray-500':!valid,'bg-yellow-300':valid && addedCart}"
-           [disabled]="!valid" class=" btn-primary py-4 text-lg flex justify-center min-w-0 w-full mb-6 text-white rounded-md">
-           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-             <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-           </svg>
-           <p *ngIf="valid && !addedCart">Add to Cart</p>
-           <p *ngIf="valid && addedCart">Remove from cart</p>
-           <p *ngIf="!valid">No stock</p>
-         </button>
-<!--       <div class="mb-6" x-data="{expanded: false}">-->
-<!--         <div x-show="expanded" x-collapse.min.120px="" class="text-gray-500 wysiwyg-content" style="height: 120px; overflow: hidden;">-->
-<!--           <p>Desc:</p>-->
-<!--           <table>-->
-<!--             <tbody>-->
-<!--             <tr>-->
-<!--               <td>Connectivity Technology</td>-->
-<!--               <td>USB</td>-->
-<!--             </tr>-->
-<!--             <tr>-->
-<!--               <td>Recommended Uses For Product</td>-->
-<!--               <td>Gaming</td>-->
-<!--             </tr>-->
-<!--             <tr>-->
-<!--               <td>Brand</td>-->
-<!--               <td>Logitech G</td>-->
-<!--             </tr>-->
-<!--             <tr>-->
-<!--               <td>Compatible Devices</td>-->
-<!--               <td>Personal Computer</td>-->
-<!--             </tr>-->
-<!--             <tr>-->
-<!--               <td>Series</td>-->
-<!--               <td>Logitech G502 HERO High Performance Gaming Mouse</td>-->
-<!--             </tr>-->
-<!--             </tbody>-->
-<!--           </table>-->
+      </div>
+    </div>
+    <div class="flex flex-col md:col-span-3 lg:pl-12 p-4 gap-10">
+      <div class="flex justify-between">
+        <h1 class="text-textPrimary text-3xl font-md font-semibold" *ngIf="product">
+          {{product?.name}}
+        </h1>
+        <div class="text-xl font-bold mb-6" *ngIf="selectedVariation">{{selectedVariation?.price/100 | number:'1.2-2'}}€</div>
 
-<!--           <p class="">-->
-<!--             Lorem ipsum dolor, sit amet consectetur adipisicing elit.-->
-<!--             Deserunt suscipit natus quisquam optio voluptatem quo beatae-->
-<!--             ex similique, pariatur laborum asperiores explicabo delectus-->
-<!--             culpa cumque corrupti quasi incidunt at quos!-->
-<!--           </p>-->
-<!--           <h4>About the item</h4>-->
-<!--           <ul class="list-disc pl-6">-->
-<!--             <li>-->
-<!--               Hero 25K sensor through a software update from G HUB, this-->
-<!--               upgrade is free to all players: Our most advanced, with 1:1-->
-<!--               tracking, 400-plus ips, and 100 - 25,600 max dpi sensitivity-->
-<!--               plus zero smoothing, filtering, or acceleration-->
-<!--             </li>-->
-<!--             <li>-->
-<!--               11 customizable buttons and onboard memory: Assign custom-->
-<!--               commands to the buttons and save up to five ready to play-->
-<!--               profiles directly to the mouse-->
-<!--             </li>-->
-<!--             <li>-->
-<!--               Adjustable weight system: Arrange up to five removable 3.6-->
-<!--               grams weights inside the mouse for personalized weight and-->
-<!--               balance tuning-->
-<!--             </li>-->
-<!--             <li>-->
-<!--               Programmable RGB Lighting and Lightsync technology:-->
-<!--               Customize lighting from nearly 16.8 million colors to match-->
-<!--               your team's colors, sport your own or sync colors with other-->
-<!--               Logitech G gear-->
-<!--             </li>-->
-<!--             <li>-->
-<!--               Mechanical switch button tensioning: Metal spring tensioning-->
-<!--               system and pivot hinges are built into left and right gaming-->
-<!--               mouse buttons for a crisp, clean click feel with rapid click-->
-<!--               feedback-->
-<!--             </li>-->
-<!--           </ul>-->
-<!--         </div>-->
-<!--         <p class="text-right">-->
-<!--           <a href="javascript:void(0)" class="text-purple-500 hover:text-purple-700" x-text="expanded ? 'Read Less' : 'Read More'">Read More</a>-->
-<!--         </p>-->
-<!--       </div>-->
-     </div>
-   </div>
- </div>
+      </div>
+        <p class="text-textPrimary text-3xl text-base font-light">The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;. Need to add an extra pop of color to your outfit? Our white tee has you covered.</p>
+      <div class="flex items-center justify-between mb-5">
+        <p for="quantity" class="text-textPrimary text-3xl text-base ">
+          Quantity
+        </p>
+        <input min="1" value="1" (change)="updateCount($event, product)" type="number" name="quantity" x-ref="quantityEl"
+               class="w-32 focus:border-purple-500 focus:outline-none rounded text-right">
+      </div>
+      <div class="flex items-center justify-between mb-5" *ngFor="let attr of attributes_group | keyvalue">
+        <label for="country" class="block text-sm font-medium text-gray-700">{{ attr.key }}</label>
+        <!--         <label for="country" class="block text-sm font-medium text-gray-700">{{ selectedOptions[attr.key] }}</label>-->
+        <select [(ngModel)]="selectedOptions[attr.key]" (ngModelChange)="selectAttribute($event)"
+                [ngClass]="{'text-blueGray-700 bg-gray-500':selectAttributes[attr.key]?.disabled}"
+                id="country" name="{{attr.key}}" autocomplete="country-name"
+                class="mt-1 block w-2/3 rounded-md border border-gray-300 bg-transparent
+                 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+          <option [value]="[attr.key]">Selecciona un/a {{ attr.key }}</option>
+          <!--           [ngClass]="{'text-blueGray-700 bg-blueGray-500':value?.disabled}"-->
+          <option *ngFor="let value of attr.value"
+                  [value]="value.id">
+            {{value.value}}
+            <!--             {{value?.disabled}}-->
+          </option>
+        </select>
+      </div>
+      <div class="flex items-center justify-between mb-5">
+        <p class="font-bold">Total</p>
+        <p class="font-bold">{{this.selectedVariation?.total/100 | number:'1.2-2'}}€</p>
+      </div>
+      <button (click)="addToCart()"
+              [ngClass]="{'bg-primary':valid && !addedCart,'bg-gray-500':!valid,'bg-yellow-300':valid && addedCart}"
+              [disabled]="!valid" class=" btn-primary py-4 text-lg flex justify-center min-w-0 w-full mb-6 text-white rounded-md">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+        </svg>
+        <p *ngIf="valid && !addedCart">Add to Cart</p>
+        <p *ngIf="valid && addedCart">Remove from cart</p>
+        <p *ngIf="!valid">No stock</p>
+      </button>
+
+    </div>
+  </div>
+
+</div>

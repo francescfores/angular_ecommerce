@@ -52,13 +52,14 @@
       <img *ngIf="groupedProducts.length===0" src="./assets/img/empty-cart.png" alt="" class="w-full rounded-lg hover:scale-105 hover:rotate-1 transition-transform">
 
       <div *ngIf="groupedProducts.length>0">
-        <div *ngFor="let product of this.groupedProducts;" class="w-full flex flex-col sm:flex-row items-center gap-4 py-2 cart-product">
+          <div *ngFor="let product of this.groupedProducts;" class="w-full flex flex-col sm:flex-row items-center gap-4 py-2 cart-product">
           <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
-            <img class="object-cover" alt="" src="{{ imgUrl }}storage/images/{{product.img}}">
+            <img *ngIf="product.variation===undefined" class="object-cover" alt="" src="{{product?.product.imgs[0]?.path}}">
+            <img *ngIf="product.variation!==undefined" class="object-cover" alt="" src="{{product?.variation.imgs[0]?.path}}">
           </a>
           <div class="flex-1 flex flex-col justify-between">
             <div class="flex justify-between mb-3">
-              <h3 >{{product?.product.name}}</h3>
+              <h3 >{{product?.product?.name}}</h3>
               <svg id="remove-{{product.id}}" (click)="removeProduct(product)"  class="h-5 w-5 text-red-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"
                    stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />
                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
@@ -68,7 +69,8 @@
               <p>{{product.price/100 | number:'1.2-2'}}€</p>
               <div class="flex items-center">
                 Qty:
-                <input min="1" (change)="selectQuantityProduct($event, product)" value="{{product.count}}" type="number" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16">
+                <input min="1" *ngIf="product.variation===undefined"  (change)="selectQuantityProduct($event, product.product)" value="{{product.count}}" type="number" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16">
+                <input min="1" *ngIf="product.variation!==undefined"  (change)="selectQuantityProduct($event, product.variation)" value="{{product.count}}" type="number" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16">
               </div>
               <span class="text-lg font-semibold">
                           <span>{{product.total/100 | number:'1.2-2'}}€</span>
@@ -85,14 +87,18 @@
         <p class="text-gray-500 mb-6">
           Shipping and taxes calculated at checkout.
         </p>
+        <div class=" flex items-end justify-end">
+          <app-button3d  (click)="goToNextStep()" class="w-1/4 flex justify-end items-end "
+                        [rounded]="'5px'" [title]="''"
+                        [type]="'btn_primary'"
+                        [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
+                        [raise]="2" [width]="'100%'">
+            <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+              <p>Continue</p>
+            </div>
+          </app-button3d>
+        </div>
 
-        <button  id="step-1" (click)="goToNextStep()" type="submit" class="
-        text-white bg-text-primary
-        hover:border-2 hover:border-primary
-        hover:text-primary hover:bg-transparent
-        rounded-md w-full py-3 text-lg">
-          Continue
-        </button>
       </div>
     </div>
   </div>

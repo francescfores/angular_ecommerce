@@ -27,7 +27,7 @@ export class ShippingComponent implements OnInit{
       console.log('this.cart',this.cart)
 
     });
-    this.cartService.setShippingValid(false);
+    //this.cartService.setShippingValid(false);
     this.getCarriers();
   }
 

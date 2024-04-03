@@ -43,5 +43,10 @@ export class PaymentService {
     params = params.append('status', status);
     return this.http.put<any>(`${environment.apiUrl}api/`+this.entity+`_update_status/${id}`, status, { params } );
   }
-
+  payment(id, status) {
+    let params = new HttpParams();
+    console.log(status)
+    params = params.append('status', status);
+    return this.http.put<any>(`${environment.apiUrl}api/`+this.entity+`_update_status/${id}`, status, { params } );
+  }
 }

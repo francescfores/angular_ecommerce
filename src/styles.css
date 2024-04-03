@@ -31,3 +31,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /*select:focus{*/
 /*  border: none;*/
 /*}*/
+[type=checkbox]:checked {
+  background-image: none; /*to remove the tickmark when checked*/
+}

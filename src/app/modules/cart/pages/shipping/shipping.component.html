@@ -17,7 +17,7 @@
               <label class="ml-3 text-sm text-gray-600 mt-4">{{value.carrier}} {{value.detailed_pricing[0].price/100 | number:'1.2-2'}}€</label>
               <label class="ml-3 text-sm text-gray-600 mt-4">Fecha de entrega : {{value.delivery_days}} dias</label>
             </div>-->
-            <div *ngFor="let value of carriers" class="mt-4" id="delivery_options">
+            <div *ngFor="let value of carriers" class="p-10" id="delivery_options">
               <input (change)="selectRate(value)" name="rate" value="{{value.carrier_id}}" type="radio" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
               <label class="ml-3 text-sm text-gray-600 mt-4">{{value.carrier}} {{value.rate/100 | number:'1.2-2'}}€</label>
               <label class="ml-3 text-sm text-gray-600 mt-4">Delivery : {{value.delivery_days}} dias</label>
@@ -27,14 +27,19 @@
       </div>
     </div>
 
-    <div class="pt-4">
-      <button (click)="goToNextStep()" type="submit" class="
-        text-white bg-text-primary
-        hover:border-2 hover:border-primary
-        hover:text-primary hover:bg-transparent
-        rounded-md w-full py-3 text-lg">
-        Continue
-      </button>
+    <div class="border-t border-gray-300 pt-4" >
+      <div class=" flex items-end justify-end">
+        <app-button3d  (click)="goToNextStep()" class="w-1/4 flex justify-end items-end "
+                       [rounded]="'5px'" [title]="''"
+                       [type]="'btn_primary'"
+                       [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
+                       [raise]="2" [width]="'100%'">
+          <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+            <p>Continue</p>
+          </div>
+        </app-button3d>
+      </div>
+
     </div>
   </div>
 </div>

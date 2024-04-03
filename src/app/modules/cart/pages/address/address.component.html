@@ -537,17 +537,8 @@
       Create</button>
   </div>
   <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
-<!--    <div class="rounded-t bg-white mb-0 px-6 py-6 flex flex-row justify-between items-center space-x-2">-->
-<!--      <h6 class="text-blueGray-700 text-xl font-bold">Shipping address</h6>-->
-<!--      <button (click)="create_address=true" class="self-end inline-flex justify-center rounded-full-->
-<!--          border border-transparent-->
-<!--          bg-primary py-2 px-4 text-sm-->
-<!--          font-medium text-white shadow-sm-->
-<!--          hover:bg-secondary focus:outline-none ">-->
-<!--        Create</button>-->
-<!--    </div>-->
-    <div class="flex-auto pt-0">
-      <div *ngFor="let address of client.addresses" class=" border-b-2 border-gray-200 p-10 w-full
+    <div class="bg-white p-4 rounded-lg shadow">
+      <div *ngFor="let address of client.addresses" class="   p-10 w-full
           animate__animated animate__fadeIn animate__fadeIn--slow">
         <div class="flex flex-col items-center" >
           <div class="w-full" >
@@ -573,14 +564,14 @@
                   <button class=" text-gray-700  ">
                     <svg class="h-5 w-5 text-gray-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="1" />  <circle cx="12" cy="19" r="1" />  <circle cx="12" cy="5" r="1" /></svg>
                   </button>
-                  <ul class="absolute hidden text-gray-700 pt-1 group-hover:block">
+                  <ul class="absolute hidden text-gray-700 pt-1 group-hover:block z-50">
                     <li class="" (click)="openEditAddress(address)">
                       <a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
                         Edit
                       </a>
                     </li>
                     <li class="" (click)="deleteAddress(address)">
-                      <a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                      <a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
                         Delete
                       </a>
                     </li>
@@ -593,17 +584,20 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div x-data="" class="bg-white p-4 rounded-lg shadow">
-    <div class="">
-      <button id="step-2" (click)="goToNextStep()" type="submit" class="
-        text-white bg-text-primary
-        hover:border-2 hover:border-primary
-        hover:text-primary hover:bg-transparent
-        rounded-md w-full py-3 text-lg">
-        Continue
-      </button>
+      <div class="border-t border-gray-300 pt-4" >
+        <div class=" flex items-end justify-end">
+          <app-button3d  (click)="goToNextStep()" class="w-1/4 flex justify-end items-end "
+                         [rounded]="'5px'" [title]="''"
+                         [type]="'btn_primary'"
+                         [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
+                         [raise]="2" [width]="'100%'">
+            <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+              <p>Continue</p>
+            </div>
+          </app-button3d>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>

@@ -73,7 +73,7 @@
                     </div>
                   </div>
                   <div class="col-span-6">
-                    <input id="inputImg" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all" (change)="onFileChanged($event)"/>
+                    <input id="inputImg"  #file  type="file" multiple formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  class=" hidden word-wrap custom-file-input break-words break-all" (change)="onFileChanged($event)"/>
                     <label
                       [ngClass]="{'bg-gray-400':!submitted && this.selectedFile === null,
                                      'bg-primary':!submitted && this.selectedFile !== null || submitted && this.selectedFile !== null,
@@ -233,8 +233,10 @@
 <!--                                </div>-->
                                 <div class="col-span-6 sm:col-span-6 flex justify-between flex-wrap">
                                   <div class="col-span-6 sm:col-span-3">
-                                    <input id="inputImg2" formControlName="img" [ngClass]="{ 'is-invalid': submitted && f.img.errors }"  #file  type="file" class=" hidden word-wrap custom-file-input break-words break-all"
-                                           (change)="onFileChangedVariation($event,variation.id)"/>
+                                    <input id="inputImg2" formControlName="img"
+                                           [ngClass]="{ 'is-invalid': submitted && f.img.errors }"
+                                           #file  type="file" multiple class=" hidden word-wrap custom-file-input break-words break-all"
+                                            (change)="onFileChangedVariation($event,variation.id)"/>
                                     <label
                                       [ngClass]="{'bg-gray-400':!submitted && this.selectedFileVariations[variation.id] === null,
                                      'bg-primary':!submitted && this.selectedFileVariations[variation.id] !== null ||
@@ -320,11 +322,7 @@
               >
                 Nombre
               </th>
-              <th
-                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-              >
-                Desc
-              </th>
+
               <th
                 class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
               >
@@ -346,7 +344,7 @@
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
               >
                 <img
-                  src="{{ imgUrl }}storage/images/{{pr.img}}"
+                  src="{{pr?.imgs[0]?.path}}"
                   class="h-16 w-16 bg-white rounded-full border"
                   alt="..."
                 />
@@ -356,11 +354,7 @@
               >
                 {{pr.name}}
               </td>
-              <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-              >
-                {{pr.desc}}
-              </td>
+
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
               >
