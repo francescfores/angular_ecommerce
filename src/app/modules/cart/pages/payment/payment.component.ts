@@ -124,7 +124,6 @@ export class PaymentComponent implements OnInit, AfterViewInit{
             this.cart.payment=new Payment();
             this.cart.payment.token=this.token;
             this.cartService.updateCart(this.cart);
-            this.checkout();
             this.goToNextStep();
           } else if (result.error) {
             this.toastr.error(result.error.message);
