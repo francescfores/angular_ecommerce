@@ -56,6 +56,7 @@
         <p>Stripe checkout</p>
       </div>
     </app-button3d>
+
     <div x-data="" class="bg-white p-4 rounded-lg shadow">
       <form novalidate [formGroup]="stripeTest" id="payment_metod">
         <div class="flex flex-col space-y-6">
@@ -93,9 +94,8 @@
 
 
   </div>
-  <div
-    [ngClass]="{'hidden':step !==5}"
-    class="flex flex-wrap justify-between ">
+  <!--<div [ngClass]="{'hidden':step !==5}" class="flex flex-wrap justify-between ">-->
+  <div class="flex flex-wrap justify-between ">
     <div
       class="animate__animated animate__fadeIn animate__fadeIn--slow p-2 sm:10 w-auto mx-auto grid grid-cols-12 gap-6">
       <h1 class="text-3xl font-bold col-span-12">Summary</h1>
