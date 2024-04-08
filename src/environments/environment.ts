@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  //apiUrl: 'https://laravel-api-black.vercel.app/',
-  apiUrl: ' https://testapi-gl0qazzj6-test-symfony.vercel.app/',
+  apiUrl: 'https://laravel-api-black.vercel.app/',
   //apiUrl: 'http://ctrl-api.test/',
   amazons3: 'http://ctrl-api.test/',
   // apiUrl: 'https://laravelapi-production.up.railway.app/',
