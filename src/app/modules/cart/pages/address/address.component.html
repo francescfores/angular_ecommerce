@@ -537,7 +537,7 @@
       Create</button>
   </div>
   <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
-    <div class="bg-white p-4 rounded-lg shadow">
+    <div *ngIf="client.addresses.length>0" class="bg-white p-4 rounded-lg shadow">
       <div *ngFor="let address of client.addresses" class="   p-10 w-full
           animate__animated animate__fadeIn animate__fadeIn--slow">
         <div class="flex flex-col items-center" >
