@@ -26,13 +26,10 @@ export class AuthenticationService {
   }
 
   login(email, password) {
-    const headers = new HttpHeaders();
-    headers.append('Content-type', 'application/json');
-    headers.append('Access-Control-Allow-Headers','X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method');
-    const httpOptions = {
-      headers,
-    };
-    return this.http.post<any>(`${environment.apiUrl}api/login_client`, { email, password })
+    const params = new FormData();
+      params.append('email', email);
+      params.append('password', password);
+    return this.http.post<any>(`${environment.apiUrl}api/login_client`,  params )
       // return this.http.post<any>(`$/users/authenticate`, { username, password })
       .pipe(map(data => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
