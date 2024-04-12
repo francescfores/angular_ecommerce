@@ -90,10 +90,11 @@ export class ProductDetailComponent implements OnInit {
                 //agregamos el atributo de la variacion
                 this.attributes.push(atributo);
               });
-              Object.entries(value.imgs).forEach(([key, value2], index) => {
-                this.images.push(value2.path)
-                console.log(value2);
-              });
+
+              // Object.entries(value.imgs).forEach(([key, value2], index) => {
+              //   this.images.push(value2.path)
+              //   console.log(value2);
+              // });
               console.log(value);
               console.log(this.images);
 
@@ -101,7 +102,17 @@ export class ProductDetailComponent implements OnInit {
             this.groupAttributes();
             this.selectedVariation.count=1;
             this.selectedVariation.total=this.selectedVariation.price;
-            this.selectedVariation = this.product.variations[0];
+            //this.selectedVariation = this.product.variations[0];
+            this.selectedVariation = this.product.variations.find(x=>x.id=== +this.id_variation);
+              if(this.selectedVariation?.imgs?.length===0){
+                // product.selectedVariation.imgs= product.selectedVariation.attributes.find(x=>x.name==='color').imgs
+                this.selectedVariation.imgs= this.product.variations.find(variation => {
+                  return variation.attributes.some(attribute => {
+                    return attribute.name === 'color' && variation.imgs.length>0;
+                  });
+                }).imgs
+                console.log(this.selectedVariation);
+              }
             console.log(this.product);
             console.log(this.id_variation);
             console.log(this.selectedVariation);
@@ -212,6 +223,15 @@ export class ProductDetailComponent implements OnInit {
         }
     });
     this.images=[];
+    if(this.selectedVariation?.imgs?.length===0){
+      // product.selectedVariation.imgs= product.selectedVariation.attributes.find(x=>x.name==='color').imgs
+      this.selectedVariation.imgs= this.product.variations.find(variation => {
+        return variation.attributes.some(attribute => {
+          return attribute.name === 'color' && variation.imgs.length>0;
+        });
+      }).imgs
+      console.log(this.selectedVariation);
+    }
     Object.entries(this.selectedVariation.imgs).forEach(([key, value2], index) => {
       this.images.push(value2.path)
       console.log(value2);

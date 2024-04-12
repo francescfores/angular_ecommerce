@@ -1,5 +1,5 @@
 <form [formGroup]="loginForm">
-  <div class="w-full  min-h-screen flex justify-center items-center bg-white">
+  <div class="w-full  min-h-screen flex justify-center items-center ">
     <div class="p-10 border-[1px]  border-slate-200 rounded-md flex flex-col items-center space-y-3">
       <div class="py-4">
         <img width="80" class="-mt-10" src="./assets/img/logo.png" />
@@ -21,12 +21,12 @@
       <div class="flex flex-col space-y-5 w-full">
         <button [disabled]="loading" id="loginButton"
                 (click)="logIn()" class="w-full bg-primary rounded-3xl p-3 text-white font-bold transition duration-200 hover:bg-secondary">Log in</button>
-        <button [routerLink]="['/auth2/register']" class="w-full border-slate-300 border-[1px]
+        <button [routerLink]="['/auth/register']" class="w-full border-slate-300 border-[1px]
            rounded-3xl p-3 text-[#0070ba] font-bold transition duration-200">Registrarse</button>
-        <a [routerLink]="['/auth2/admin/login']" class="w-full border-slate-300 text-center
+        <a [routerLink]="['/auth/admin/login']" class="w-full border-slate-300 text-center
       border-[1px] rounded-3xl p-3 text-[#0070ba] font-bold transition duration-200">Admin</a>
         <div class="flex items-center justify-center border-t-[1px] border-t-slate-300 w-full relative">
-          <div class="-mt-1 font-bod bg-white px-5 absolute">O</div>
+          <div class="-mt-1 font-bod  px-5 absolute">O</div>
         </div>
         <div *ngIf="isLoggedin === false">
           <div>

@@ -1,96 +1,164 @@
-<nav
-  class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg"
+<nav id="navbar"
+     class=" font-px bg-bgPrim text-white transition-colors duration-1000 top-14 fixed z-20 w-full flex flex-wrap items-center justify-between navbar-expand-lg  "
 >
-  <div
-    class="container px-4 mx-auto flex flex-wrap items-center justify-between"
-  >
-    <div
-      class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
-    >
-      <a
-        [routerLink]="['/']"
-        class="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-      >
-        Notus Angular
-      </a>
-      <button
-        class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-        type="button"
-        (click)="setNavbarOpen()"
-      >
-        <i class="text-white fas fa-bars"></i>
+
+  <div class="z-40 flex justify-between w-screen z-3 h-14 ">
+    <div class="px-5 xl:px-14 py-2 flex w-full items-center">
+      <button class='md:hidden flex flex-col h-10 w-10  rounded justify-center items-center group ' (click)="setNavbarOpen()">
+        <div [ngClass]="{
+        'h-1 w-6 mb-1 bg-white transition ease transform duration-300':true,
+        'rotate-45 translate-y-2 opacity-50 group-hover:opacity-100' : navbarOpen,
+        'opacity-50 group-hover:opacity-100': !navbarOpen}"> </div>
+        <div [ngClass]="{
+        'h-1 w-6 mb-1 w-4 bg-white transition ease transform duration-300':true,
+        'opacity-0' : navbarOpen,
+        'opacity-50 group-hover:opacity-100': !navbarOpen}">        </div>
+        <div [ngClass]="{
+        'h-1 w-6  mb-1 bg-white transition ease transform duration-300':true,
+        '-rotate-45 -translate-y-2 opacity-50 group-hover:opacity-100' : navbarOpen,
+        'opacity-50 group-hover:opacity-100': !navbarOpen}">
+        </div>
       </button>
+
+      <a class="text-2xl font-bold font-heading items-start md:ml-6" href="#">
+        <!-- <img class="h-9" src="logo.png" alt="logo"> -->
+        <img *ngIf="isDarkEnable" class="w-8 logo logo-black" src="./assets/img/logo.png" >
+        <img *ngIf="!isDarkEnable" class="w-8 logo logo-black" src="./assets/img/logo.png" >
+      </a>
+      <!-- Nav Links -->
+      <ul class="hidden md:flex px-4 mx-auto  items-center space-x-12">
+        <li><a class="hover:text-gray-200" [routerLink]="['/home']">Home</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/contact']">Contsact</a></li>
+        <li><a class="hover:text-gray-200" [routerLink]="['/shop']">Shop</a></li>
+      </ul>
+      <div class="md:hidden space-x-5 flex ml-auto">
+        <a class="flex items-center hover:text-gray-200" (click)="setCartOpen()">
+          <!--        <a class="flex items-center hover:text-gray-200" [routerLink]="['/cart/shopping-basket']">-->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <span class="flex absolute -mt-2 ">
+              <span class="animate-ping absolute inline-flex h-1 w-1 rounded-full bg-pink-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-1 w-1 bg-pink-500">
+                </span>
+              </span>
+        </a>
+        <a class="flex items-center hover:text-gray-200" (click)="setLoginOpen()">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </a>
+      </div>
+      <div class="hidden space-x-5 md:flex items-end">
+        <a class="flex items-center hover:text-gray-200" *ngIf="isDarkEnable" (click)="onClick.emit(changeTheme)" mode-button style="font-size:18px"><i class="fa-solid fa-moon"></i></a>
+        <a class="flex items-center hover:text-gray-200" *ngIf="!isDarkEnable" (click)="onClick.emit(changeTheme)" mode-button style="font-size:16px"><i class="fa-solid fa-sun"></i></a>
+        <a class="flex items-center hover:text-gray-200" [routerLink]="['/cart/shopping-basket']">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <span class="flex absolute -mt-4 ml-4">
+              <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-pink-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-500">
+                </span>
+              </span>
+        </a>
+        <a class="flex items-center hover:text-gray-200" (click)="setLoginOpen()">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </a>
+      </div>
     </div>
-    <div
-      class="lg:flex flex-grow items-center bg-white lg:bg-opacity-0 lg:shadow-none"
-      [ngClass]="{ hidden: !navbarOpen, 'block rounded shadow-lg': navbarOpen }"
-      id="example-navbar-warning"
-    >
-      <ul class="flex flex-col lg:flex-row list-none mr-auto">
-        <li class="flex items-center">
-          <a
-            class="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-            href="https://www.creative-tim.com/learning-lab/tailwind/angular/overview/notus?ref=na-auth-navbar"
-          >
-            <i
-              class="lg:text-blueGray-200 text-blueGray-400 far fa-file-alt text-lg leading-lg mr-2"
-            ></i>
-            Docs
-          </a>
-        </li>
-      </ul>
-      <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
-        <li class="flex items-center">
-          <app-pages-dropdown class="block"></app-pages-dropdown>
-        </li>
-        <li class="flex items-center">
-          <a
-            class="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-angular%2F"
-            target="_blank"
-          >
-            <i
-              class="lg:text-blueGray-200 text-blueGray-400 fab fa-facebook text-lg leading-lg"
-            ></i>
-            <span class="lg:hidden inline-block ml-2">Share</span>
-          </a>
-        </li>
+    <!-- Responsive navbar -->
+  </div>
+  <div
+    [ngClass]="{ 'translate-x-0 ': loginOpen, 'translate-x-full': !loginOpen, 'opacity-100': loginOpen, 'opacity-0': !loginOpen}"
+    class="top-0 right-0 w-auto divide-neutral-700 text-neutral-700
+       px-5 mt-14 fixed z-0 bg-white
+       ease-in-out duration-300
+      ">
+    <div class="divide-y divide-solid divide-neutral-700 w-1/4 ">
+      <div *ngIf="client">
+        <a  (click)="logOut()"
+            class=" w-full text-sm leading-relaxed inline-block mr-4 py-2 whitespace-nowrap"
+        >
+          Logout
+        </a>
+        <a [routerLink]="['/shop/profile']"
+           class=" w-full text-sm leading-relaxed inline-block mr-4 py-2 whitespace-nowrap"
+        >
+          Account
+        </a>
 
-        <li class="flex items-center">
-          <a
-            class="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-            href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-angular%2F&text=Start%20your%20development%20with%20a%20Free%20Tailwind%20CSS%20and%20Angular%20UI%20Kit%20and%20Admin.%20Let%20Notus%20Angular%20amaze%20you%20with%20its%20cool%20features%20and%20build%20tools%20and%20get%20your%20project%20to%20a%20whole%20new%20level."
-            target="_blank"
-          >
-            <i
-              class="lg:text-blueGray-200 text-blueGray-400 fab fa-twitter text-lg leading-lg"
-            ></i>
-            <span class="lg:hidden inline-block ml-2">Tweet</span>
-          </a>
-        </li>
+      </div>
+      <div *ngIf="!client">
+        <a
+          [routerLink]="['/auth/login']"
+          class=" text-sm leading-relaxed inline-block mr-4 py-2 whitespace-nowrap"
+        >
+          Login
+        </a>
+      </div>
 
-        <li class="flex items-center">
-          <a
-            class="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-            href="https://github.com/creativetimofficial/notus-angular?ref=na-auth-navbar"
-            target="_blank"
-          >
-            <i
-              class="lg:text-blueGray-200 text-blueGray-400 fab fa-github text-lg leading-lg"
-            ></i>
-            <span class="lg:hidden inline-block ml-2">Star</span>
-          </a>
-        </li>
-
-        <li class="flex items-center">
-          <button
-            class="bg-white text-blueGray-700 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-            type="button"
-          >
-            <i class="fas fa-arrow-alt-circle-down"></i> Download
-          </button>
-        </li>
-      </ul>
+    </div>
+  </div>
+  <div
+    [ngClass]="{ '-translate-x-0 ': navbarOpen, '-translate-x-full': !navbarOpen  }"
+    class="top-14 left-0 w-[40vw] text-white bg-neutral-800
+       px-6 pt-0   fixed z-2
+       ease-in-out duration-300
+       h-full gap-12
+      ">
+    <div class="justify-end">
+      <div>
+        <a
+          [routerLink]="['/shop/products']"
+          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-6 whitespace-nowrap uppercase"
+        >
+          Homeess
+        </a>
+      </div>
+      <div>
+        <a
+          [routerLink]="['/shop/products']"
+          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-6 whitespace-nowrap uppercase"
+        >
+          Contact
+        </a>
+      </div>
+      <div>
+        <a
+          [routerLink]="['/shop/products']"
+          class="link-color text-sm font-bold leading-relaxed inline-block mr-4 py-6 whitespace-nowrap uppercase"
+        >
+          Shop
+        </a>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+  <div
+    [ngClass]="{ 'translate-x-0 ': cartOpen, 'translate-x-full': !cartOpen  }"
+    class="top-14 right-0 w-[40vw] text-neutral-700 bg-white
+       px-6 pt-0   fixed z-2
+       ease-in-out duration-300
+       h-full gap-12
+      ">
+    <div class="justify-end">
+      <div>
+        <a
+          [routerLink]="['/cart/shopping-basket']"
+          class=" text-sm font-bold leading-relaxed inline-block mr-4 py-6 whitespace-nowrap uppercase"
+        >
+          Cart
+        </a>
+      </div>
+      <div>
+        <!--        <app-shopping-basket-->
+      </div>
+      <div>
+      </div>
     </div>
   </div>
 </nav>

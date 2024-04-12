@@ -48,7 +48,7 @@
     [ngClass]="{'animate__animated animate__fadeIn animate__fadeIn--slow': step === 1}"
     class="p-10 container lg:w-2/3 xl:w-2/3 mx-auto">
     <h1 class="text-3xl font-bold mb-6">Items in your cart</h1>
-    <div x-data="" class="bg-white p-4 rounded-lg shadow">
+    <div x-data="" class="bg-bgPrim p-4 rounded-lg shadow">
       <img *ngIf="groupedProducts.length===0" src="./assets/img/empty-cart.png" alt="" class="w-full rounded-lg hover:scale-105 hover:rotate-1 transition-transform">
 
       <div *ngIf="groupedProducts.length>0">
@@ -69,8 +69,8 @@
               <p>{{product.price/100 | number:'1.2-2'}}€</p>
               <div class="flex items-center">
                 Qty:
-                <input min="1" *ngIf="product.variation===undefined"  (change)="selectQuantityProduct($event, product.product)" value="{{product.count}}" type="number" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16">
-                <input min="1" *ngIf="product.variation!==undefined"  (change)="selectQuantityProduct($event, product.variation)" value="{{product.count}}" type="number" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16">
+                <input min="1" *ngIf="product.variation===undefined"  (change)="selectQuantityProduct($event, product.product)" value="{{product.count}}" type="number" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16 bg-transparent">
+                <input min="1" *ngIf="product.variation!==undefined"  (change)="selectQuantityProduct($event, product.variation)" value="{{product.count}}" type="number" class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16 bg-transparent">
               </div>
               <span class="text-lg font-semibold">
                           <span>{{product.total/100 | number:'1.2-2'}}€</span>

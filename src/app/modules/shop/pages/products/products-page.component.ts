@@ -70,13 +70,19 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
       .subscribe(
         data => {
           console.log(data);
-          this.categories2 = data.data.category;
+          // this.categories2 = data.data.category;
           this.colors = data.data.color;
           this.sizes = data.data.size;
-          this.loading=false;
           this.product_pg = data.data.product_pg;
           this.product_pg.current_page = this.product_pg.current_page+'';
           this.products = this.product_pg.data;
+          this.products.forEach(product => {
+            product.selectedVariation=product.variations[0]
+            // product.variations.forEach(variation => {
+            //   console.log(variation);
+            // });
+          });
+          this.loading=false;
 
 //          this.router.navigate(['/shop/products']);
         },
@@ -85,6 +91,18 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
           // this.loading = false;
           this.loading=false;
         });
+    this.productService.getCategories()
+      .pipe(first())
+      .subscribe(
+        res => {
+          console.log(res);
+          this.categories2 = res.data.category;
+          console.log(this.categories2);
+        },
+        error => {
+          //this.toastr.error('Invalid request', 'Toastr fun!');
+          // this.loading = false;
+        });
     this.productService.getAttributes()
       .pipe(first())
       .subscribe(
@@ -92,10 +110,8 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
           this.attributes = res.data.attributes;
           this.attributes_group = res.data.attributes_group;
           this.attributes_group = res.data.attributes_group;
-
           console.log('this.attributes_group');
           console.log(this.attributes_group);
-//          this.router.navigate(['/shop/products']);
         },
         error => {
           //this.toastr.error('Invalid request', 'Toastr fun!');
@@ -190,7 +206,12 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
         console.log(this.products )
         this.products  = this.getObjectValues( this.products );
         console.log(this.products )
-
+        this.products.forEach(product => {
+          product.selectedVariation=product.variations[0]
+          // product.variations.forEach(variation => {
+          //   console.log(variation);
+          // });
+        });
         /*this.products  = data.data.product.flatMap(product => {
           if (product.type===2) {
             return product.variations.map(variation => ({
@@ -409,10 +430,10 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     this.filterProducts();
     }
 
-  uniqueVariations(variations) {
+  uniqueVariations(variations,attName) {
     const uniqueVariations = {};
     variations.forEach(variation => {
-      const colorAttribute = variation.attributes.find(attr => attr.name === 'color');
+      const colorAttribute = variation.attributes.find(attr => attr.name === attName);
       if (colorAttribute) {
         const color = colorAttribute.desc;
         if (!uniqueVariations[color]) {
@@ -433,7 +454,81 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
         }
       }
     });
-    console.log(Object.values(uniqueVariations))
     return Object.values(uniqueVariations);
   }
+
+  onSizeChange(event,product) {
+
+    let foundAttribute = null;
+    console.log(+event.target.value)
+    if(+event.target.value==-1){
+      product.selectedAttributes = [];
+    }
+    product.variations.some(variation => {
+      const att = variation.attributes.find(attr => attr.id === +event.target.value);
+      if (att) {
+        foundAttribute = att;
+        return true; // Detiene la iteración tan pronto como se encuentra el atributo
+      }
+    });
+    console.log(foundAttribute);
+    if (foundAttribute) {
+      this.onColorChange(foundAttribute, product);
+    }
+
+    //console.log(this.findVariationByAttribute(product,'size',event.target.value))
+    //product.imgs[0].path=this.findVariationByAttribute(product,'size',event.target.value)[0]?.imgs[0]?.path;
+  }
+  onColorChange(event,product) {
+
+    console.log('onColorChange')
+    if (!product.selectedAttributes) {
+      product.selectedAttributes = []; // Inicializar como un array vacío si es undefined
+    }
+    let existAtt = product.selectedAttributes.find(x => x.name === event.name);
+    if (existAtt) {
+      // Si se encuentra un atributo con el mismo nombre, se reemplaza
+      let index=product.selectedAttributes.indexOf(existAtt);
+      product.selectedAttributes[index]=event;
+    } else {
+      // Si no se encuentra un atributo con el mismo nombre, se agrega a la lista
+      product.selectedAttributes.push(event);
+    }
+    product.selectedVariation=this.findVariationByAttributes(product,event.name,product.selectedAttributes);
+    console.log(product.selectedVariation)
+    console.log(product.variations)
+
+    if(product.selectedVariation!==undefined){
+      if(product.selectedVariation?.imgs?.length===0){
+        // product.selectedVariation.imgs= product.selectedVariation.attributes.find(x=>x.name==='color').imgs
+        product.selectedVariation.imgs= product.variations.find(variation => {
+          return variation.attributes.some(attribute => {
+            return attribute.name === 'color' && variation.imgs.length>0;
+          });
+        }).imgs
+        console.log(product.selectedVariation);
+      }
+    }
+
+    //product.imgs[0]="https://laravel-api-ecommerce.s3.eu-west-3.amazonaws.com/products/cama_palet_1.jpg";
+  }
+   findVariationByAttribute(product, attributeName, attributeValue) {
+    return product.variations.find(variation => {
+      return variation.attributes.some(attribute => {
+        return attribute.name === attributeName && attribute.id === +attributeValue;
+      });
+    });
+   }
+  findVariationByAttributes(product, attributeName, attributeValues) {
+    return product.variations.find(variation => {
+      // Verifica si todas las atributos del objeto attributeValues coinciden con los atributos de la variación actual
+      return Object.keys(attributeValues).every(key => {
+        const value = attributeValues[key];
+        console.log(value);
+        const attribute = variation.attributes.find(attr => attr.name === value.name && attr.id === +value.id);
+        return attribute !== undefined; // Retorna true si se encuentra un atributo que coincide
+      });
+    });
+  }
+
 }

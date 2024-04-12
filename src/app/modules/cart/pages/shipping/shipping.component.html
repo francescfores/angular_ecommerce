@@ -5,12 +5,12 @@
 <div *ngIf="!loading"
   class="animate__animated animate__fadeIn animate__fadeIn--slow block p-10 container lg:w-2/3 xl:w-2/3 mx-auto">
   <h1 class="text-3xl font-bold mb-6">Delivery options</h1>
-  <div x-data="" class="bg-white p-4 rounded-lg shadow">
-    <div class="my-auto ml-5 h-full flex-col space-y-12 text-left text-neutral-700">
+  <div x-data="" class="bg-bgPrim p-4 rounded-lg shadow">
+    <div class="my-auto ml-5 h-full flex-col space-y-12 text-left text-textSecondary">
       <div class="flex flex-col space-y-4">
         <div class="flex flex-row space-x-2">
           <div class="w-full" *ngIf="carriers" >
-            <label class="block text-sm font-medium text-gray-700">Select an option</label>
+            <label class="block text-sm font-medium ">Select an option</label>
             <!--Enable shipypro-->
             <!--<div *ngFor="let value of rates" class="mt-4">
               <input (change)="selectRate(value)" name="rate" value="{{value.carrier_id}}" type="radio" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
@@ -19,8 +19,8 @@
             </div>-->
             <div *ngFor="let value of carriers" class="p-10" id="delivery_options">
               <input (change)="selectRate(value)" name="rate" value="{{value.carrier_id}}" type="radio" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-              <label class="ml-3 text-sm text-gray-600 mt-4">{{value.carrier}} {{value.rate/100 | number:'1.2-2'}}€</label>
-              <label class="ml-3 text-sm text-gray-600 mt-4">Delivery : {{value.delivery_days}} dias</label>
+              <label class="ml-3 text-sm  mt-4">{{value.carrier}} {{value.rate/100 | number:'1.2-2'}}€</label>
+              <label class="ml-3 text-sm  mt-4">Delivery : {{value.delivery_days}} dias</label>
             </div>
           </div>
         </div>

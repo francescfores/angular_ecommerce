@@ -63,7 +63,7 @@ const routes: Routes = [
   },
   { canActivate: [NonAuthGuard],
     canActivateChild: [NonAuthGuard],
-    path: 'auth2',
+    path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   // admin views
@@ -108,7 +108,7 @@ const routes: Routes = [
   },
   // auth views
   {
-    path: "auth",
+    path: "auth2",
     component: AuthComponent,
     canActivate: [NonAuthGuard],
     canActivateChild: [NonAuthGuard],

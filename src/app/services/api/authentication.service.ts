@@ -106,7 +106,7 @@ export class AuthenticationService {
     // }
     this.currentClientSubject.next(null);
     this.socialAuthService.signOut();
-    this.router.navigate(['/auth2/login'], { queryParams: { returnUrl: '' }});
+    this.router.navigate(['/auth/login'], { queryParams: { returnUrl: '' }});
   }
 
   checkRoles(expectedRoles: string[]): boolean {
@@ -136,6 +136,16 @@ export class AuthenticationService {
     });
     console.log('params');
     console.log(params);
-    return this.http.post<any>(`${environment.apiUrl}api/register_client`,  params );
+    return this.http.post<any>(`${environment.apiUrl}api/register_client`,  params )
+      .pipe(map(data => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        this.user = data.user;
+        this.user.token = data.token;
+        localStorage.setItem('currentClient', JSON.stringify(this.user));
+        const cartJson = localStorage.getItem('cart');
+        console.log('cartJson',cartJson);
+        this.currentClientSubject.next(this.user);
+        return this.user;
+      }));;
   }
 }

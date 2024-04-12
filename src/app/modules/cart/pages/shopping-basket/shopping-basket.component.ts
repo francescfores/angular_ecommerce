@@ -136,6 +136,7 @@ export class ShoppingBasketComponent implements OnInit, AfterViewInit {
       population: ['Tortosa', [Validators.required]],
       province: ['Tarragona', [Validators.required]],
     });
+    this.cartService.goStep(this.step);
 
     //this.initConfig();
   }

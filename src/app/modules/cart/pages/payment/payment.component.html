@@ -2,25 +2,37 @@
   <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
   <div class="fixed inset-0 z-10 overflow-y-auto">
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
-      <div class="w-auto relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+      <div class="w-auto relative transform overflow-hidden rounded-lg
+       bg-bgPrim text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
         <div class="p-5 flex justify-between">
-          <h3 class="text-lg font-medium leading-6 text-gray-900">Payment success</h3>
+          <h3 class="text-lg font-medium leading-6 text-textPrimary">Payment success</h3>
           <button (click)="goToShop()">
-            <svg class="h-8 w-8 text-gray-500"  width="10" height="10" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="h-4 w-4 text-gray-500"  width="10" height="10" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
         </div>
+        <svg class="mt-10 mx-auto fill-primary text-primary" width="50px" height="50px"
+             viewBox="0 0 52 52" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"><path d="M26,52A26,26,0,1,1,52,26,26,26,0,0,1,26,52ZM26,4A22,22,0,1,0,48,26,22,22,0,0,0,26,4Z"/><path d="M23,37.6A2,2,0,0,1,21.59,37l-9.2-9.19A2,2,0,0,1,15.22,25l9.19,9.19A2,2,0,0,1,23,37.6Z"/><path d="M23,37.6a2,2,0,0,1-1.41-3.42L36.78,19a2,2,0,0,1,2.83,2.83L24.41,37A2,2,0,0,1,23,37.6Z"/></svg>
+        <p class="p-4 mx-auto mt-4 mb-10 text-center">
+          "After completing the purchase, you will receive a confirmation email shortly. Thank you for your order!"
+        </p>
         <div class="p-4 flex justify-between items-center space-x-2">
-          <button  (click)="goToShop()" class="self-end inline-flex justify-center rounded-full text-gray-700
+          <button  (click)="goToShop()" class="self-end inline-flex
+          justify-center rounded-full text-gray-700
            border border-gray-300 bg-white
            py-2 px-4 text-sm
           font-medium  shadow-sm
           hover:bg-gray-50 ">
             Close</button>
-
-
-          <app-button3d id="step-2"  (click)="goToShop()" class="w-auto flex justify-end items-end "
+          <button  (click)="goToShop()" class="self-end
+            rounded-full text-warmGray-100
+           border border-gray-300 bg-primary
+           py-2 px-4 text-sm
+          font-medium  shadow-sm
+          hover:opacity-80  flex justify-end items-end">
+            Accept</button>
+          <!--<app-button3d  (click)="goToShop()" class="w-full flex justify-end items-end "
                         [rounded]="'5px'" [title]="''"
                         [type]="'btn_primary'"
                         [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
@@ -28,7 +40,7 @@
             <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
               <p>Continue</p>
             </div>
-          </app-button3d>
+          </app-button3d>-->
         </div>
       </div>
     </div>
@@ -47,7 +59,7 @@
     [ngClass]="{'hidden':step !==4}"
     class="animate__animated animate__fadeIn animate__fadeIn--slow block p-2 sm:10 container lg:w-2/3 xl:w-2/3 mx-auto">
     <h1 class="text-3xl font-bold mb-6">Payment method</h1>
-    <app-button3d  (click)="checkout()" class="my-5 w-full flex justify-end items-end "
+    <!--<app-button3d  (click)="checkout()" class="my-5 w-full flex justify-end items-end "
                    [rounded]="'5px'" [title]="''"
                    [type]="'btn_primary'"
                    [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
@@ -55,19 +67,20 @@
       <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
         <p>Stripe checkout</p>
       </div>
-    </app-button3d>
+    </app-button3d>-->
 
-    <div x-data="" class="bg-white p-4 rounded-lg shadow">
+    <div x-data="" class="bg-bgPrim p-4 rounded-lg shadow">
       <form novalidate [formGroup]="stripeTest" id="payment_metod">
-        <div class="flex flex-col space-y-6">
-          <label for="inputName" class="block text-sm font-medium text-gray-700">Name</label>
+        <div class="flex flex-col space-y-4">
+          <label for="inputName" class="block text-sm font-medium ">Name</label>
           <input id="inputName" [ngClass]="{ 'is-invalid': submitted && fc.name.errors }" formControlName="name" type="text" name="first-name"
-                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                 class="p-2 bg-bgTern mt-1 block w-full  border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                  placeholder="Name and surname" >
           <div *ngIf="submitted && fc.name.errors" class="invalid-feedback">
             <div *ngIf="fc.name.errors.required">name is required</div>
           </div>
-          <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions" id="stripe_card">
+          <label for="inputName" class="block text-sm font-medium ">Card</label>
+          <ngx-stripe-card class="px-2 bg-bgTern text-textPrimary" [options]="cardOptions" [elementsOptions]="elementsOptions" id="stripe_card">
           </ngx-stripe-card>
           <div id="card-element">
 
@@ -95,11 +108,11 @@
 
   </div>
   <!--<div [ngClass]="{'hidden':step !==5}" class="flex flex-wrap justify-between ">-->
-  <div class="flex flex-wrap justify-between ">
+  <div [ngClass]="{'hidden':step !==5}" class="flex flex-wrap justify-between ">
     <div
       class="animate__animated animate__fadeIn animate__fadeIn--slow p-2 sm:10 w-auto mx-auto grid grid-cols-12 gap-6">
       <h1 class="text-3xl font-bold col-span-12">Summary</h1>
-      <div x-data="" class="bg-white p-4 rounded-lg shadow col-span-12 lg:col-span-8">
+      <div x-data="" class="bg-bgPrim p-4 rounded-lg shadow col-span-12 lg:col-span-8">
         <div *ngIf="groupedProducts.length>0">
           <div *ngFor="let product of this.groupedProducts;" class="w-full flex flex-col sm:flex-row items-center gap-4 py-2">
             <a href="/src/product.html" class="w-36 h-32 flex items-center justify-center overflow-hidden">
@@ -127,7 +140,7 @@
         </div>
 
       </div>
-      <div x-data="" class="bg-white p-4 rounded-lg shadow col-span-12 lg:col-span-4 gap-6">
+      <div x-data="" class="bg-bgPrim p-4 rounded-lg shadow col-span-12 lg:col-span-4 gap-6">
         <div class="flex justify-start py-4 ">
           <h1 class="mr-16 text-md font-bold">Summary</h1>
         </div>

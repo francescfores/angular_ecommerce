@@ -39,7 +39,10 @@ export class IndexComponent implements OnInit, AfterViewInit {
     this.cartService.currentStep.subscribe((step) => {
         console.log(step);
         this.step = step;
+      // this.cartService.goStep(step);
+
     });
+
   }
 
   ngAfterViewInit() {

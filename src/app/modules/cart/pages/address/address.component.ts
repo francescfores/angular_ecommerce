@@ -79,10 +79,10 @@ export class AddressComponent implements OnInit, AfterViewInit{
         console.log('¡sdddddddddddddddddddddddddddddd')
         console.log(res)
         console.log(res.data)
-        this.countries =res.data;
-        this.country = this.countries.find(x=>x.id===this.countries[0].id);
-        this.provinces= this.country.provinces;
-        this.province= this.country.provinces[0];
+        //this.countries =res.data;
+        //this.country = this.countries.find(x=>x.id===this.countries[0].id);
+        //this.provinces= this.country.provinces;
+        //this.province= this.country.provinces[0];
         this.getClientById();
 
         // this.fpd.country.setValue(this.country.id);
@@ -395,8 +395,8 @@ export class AddressComponent implements OnInit, AfterViewInit{
     console.log(address);
     if(address){
       this.selected_address = address;
-      this.selected_address.country= this.countries.find(x=>x.id===Number(address.country));
-      this.selected_address.province= this.provinces.find(x=>x.id===Number(address.province));
+      //this.selected_address.country= this.countries.find(x=>x.id===Number(address.country));
+      //this.selected_address.province= this.provinces.find(x=>x.id===Number(address.province));
       console.log(this.selected_address)
     }
   }

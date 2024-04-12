@@ -152,7 +152,7 @@
                   </div>
                 </div>
                 <div class="w-full lg:w-6/12 px-4">
-                  <div class="relative w-full mb-3">
+                  <!--<div class="relative w-full mb-3">
                     <label
                       class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
@@ -171,10 +171,26 @@
                     <div *ngIf="submitted && fa.country.errors" class="invalid-feedback">
                     <div *ngIf="fa.country.errors.required">country is required</div>
                   </div>
+                  </div>-->
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password">
+                      country
+                    </label>
+                    <input formControlName="country"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.country.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow
+                           focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                    <div *ngIf="submitted && fa.country.errors" class="invalid-feedback">
+                      <div *ngIf="fa.country.errors.required">country is required</div>
+                    </div>
                   </div>
+
                 </div>
                 <div class="w-full lg:w-6/12 px-4">
-                  <div class="relative w-full mb-3">
+                  <!--<div class="relative w-full mb-3">
                     <label
                       class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
@@ -194,7 +210,23 @@
                    <div *ngIf="submitted && fa.province.errors" class="invalid-feedback">
                     <div *ngIf="fa.province.errors.required">province is required</div>
                   </div>
+                  </div>-->
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password">
+                      province
+                    </label>
+                    <input formControlName="province"
+                           [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fa.province.errors }"
+                           type="text"
+                           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow
+                           focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                    <div *ngIf="submitted && fa.province.errors" class="invalid-feedback">
+                      <div *ngIf="fa.province.errors.required">province is required</div>
+                    </div>
                   </div>
+
                 </div>
                 <div class="w-full lg:w-6/12 px-4">
                   <div class="relative w-full mb-3">
@@ -413,12 +445,12 @@
                   </div>
                 </div>
                 <div class="w-full lg:w-6/12 px-4">
-                  <div class="relative w-full mb-3">
+                  <!--<div class="relative w-full mb-3">
                     <label
                       class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Country
+                      country
                     </label>
                     <select id="inputCountry" formControlName="country"  (change)="selectCountry($event)"
                             [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.country.errors }"
@@ -432,10 +464,26 @@
                    <div *ngIf="submitted && fea.country.errors" class="invalid-feedback">
                     <div *ngIf="fea.country.errors.required">country is required</div>
                   </div>
+                  </div>-->
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password">
+                      country
+                    </label>
+                    <input  #search formControlName="country"
+                            [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.country.errors }"
+                            type="text"
+                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded
+                           text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                    <div *ngIf="submitted && fea.country.errors" class="invalid-feedback">
+                      <div *ngIf="fea.country.errors.required">country is required</div>
+                    </div>
                   </div>
+
                 </div>
                 <div class="w-full lg:w-6/12 px-4">
-                  <div class="relative w-full mb-3">
+                  <!--<div class="relative w-full mb-3">
                     <label
                       class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
@@ -455,7 +503,23 @@
                     <div *ngIf="submitted && fea.province.errors" class="invalid-feedback">
                     <div *ngIf="fea.province.errors.required">province is required</div>
                   </div>
+                  </div>-->
+                  <div class="relative w-full mb-3">
+                    <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password">
+                      province
+                    </label>
+                    <input  #search formControlName="province"
+                            [ngClass]="{ 'is-invalid border-solid border-b-2 border-b-red-500': submitted && fea.province.errors }"
+                            type="text"
+                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded
+                           text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                    <div *ngIf="submitted && fea.province.errors" class="invalid-feedback">
+                      <div *ngIf="fea.province.errors.required">province is required</div>
+                    </div>
                   </div>
+
                 </div>
                 <div class="w-full lg:w-6/12 px-4">
                   <div class="relative w-full mb-3">
@@ -536,8 +600,8 @@
           hover:bg-secondary focus:outline-none ">
       Create</button>
   </div>
-  <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
-    <div *ngIf="client.addresses.length>0" class="bg-white p-4 rounded-lg shadow">
+  <div class="h-min relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-bgSeco border-0">
+    <div *ngIf="client.addresses.length>0" class="bg-bgPrim p-4 rounded-lg shadow">
       <div *ngFor="let address of client.addresses" class="   p-10 w-full
           animate__animated animate__fadeIn animate__fadeIn--slow">
         <div class="flex flex-col items-center" >
@@ -597,6 +661,17 @@
           </app-button3d>
         </div>
 
+      </div>
+    </div>
+    <div *ngIf="client.addresses.length==0" class="p-10 container lg:w-2/3 xl:w-2/3 mx-auto">
+      <div class="   p-10 w-full
+          animate__animated animate__fadeIn animate__fadeIn--slow">
+          <div class="w-full flex justify-center" >
+           <div>
+             <img  src="./assets/img/map.png" alt="" class="w-32 rounded-lg hover:scale-105 hover:rotate-1 transition-transform">
+             <p class="text-md font-light mt-6">Add mew address</p>
+           </div>
+          </div>
       </div>
     </div>
   </div>

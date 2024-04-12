@@ -3,10 +3,11 @@ transition-colors duration-500 landing_page1 ">
 <app-default-navbar
     [transparent]="false"
   ></app-default-navbar>
-  <div class="py-14 bg-bgPrim h-screen text-textPrimary">
+  <div class="py-14 bg-bgPrim min-h-screen text-textPrimary">
     <app-sidebar class="bg-bgPrim"></app-sidebar>
 
     <div class="w-full py-6 ">
+      {{step}}
       <div class="flex">
         <div (click)="goStep(1)" class="w-1/5">
           <div class="relative mb-2">
@@ -31,7 +32,8 @@ transition-colors duration-500 landing_page1 ">
               class="absolute flex align-center items-center align-middle content-center" style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
               <div
                 [ngClass]="{
-          'bg-primary animate__animated animate__fadeIn animate__fadeIn--slow': step >= 2 && step <= 5,
+          'bg-primary animate__animated animate__fadeIn animate__fadeIn--slow':
+           step >= 2 && step <= 5,
           'bg-gray-200': step ===1}" class="w-full  rounded items-center align-middle align-center flex-1">
                 <div class="w-0  py-1 rounded" style="width: 100%;"></div>
               </div>

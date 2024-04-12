@@ -96,9 +96,9 @@ export class ProductsComponent implements OnInit {
       .subscribe(
         data => {
           this.categories = data.data.category;
-          this.products = data.data.product_admin;
-          this.product_pg = data.data.product_admin;
-          this.product_pg.current_page =data.data.product_admin.current_page+'';
+          this.products = data.data.product_pg;
+          this.product_pg = data.data.product_pg;
+          this.product_pg.current_page =data.data.product_pg.current_page+'';
           this.colors = data.data.color;
           this.sizes = data.data.size;
         },
@@ -315,8 +315,8 @@ export class ProductsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.product_pg = data.data.product_admin;
-          this.product_pg.current_page = data.data.product_admin.current_page+'';
+          this.product_pg = data.data.product_pg;
+          this.product_pg.current_page = data.data.product_pg.current_page+'';
         },
         error => {
           //this.toastr.error('Invalid request', 'Toastr fun!');

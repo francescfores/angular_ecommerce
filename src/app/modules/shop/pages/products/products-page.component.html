@@ -76,14 +76,6 @@
   </div>
   <div class="mx-auto w-full px-2 sm:px-6 pb-60 -mb-20 pt-2 text-textPrimary">
 
-    <div class="bg-bgTern flex items-center p-1 rounded-md mb-2">
-      <input (keyup)="searchProduct($event)"
-             class="bg-bgSeco h-auto px-3 py-2 w-full  border-0  placeholder-blueGray-300 text-blueGray-600 rounded text-sm
-                   focus:outline-none focus:ring  ease-linear transition-all duration-500"/>
-      <button type="button" class="p-2 " (click)="searchOpen=!searchOpen">
-        <svg class="h-5 w-5 text-textPrimary"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="10" cy="10" r="7" />  <line x1="21" y1="21" x2="15" y2="15" /></svg>
-      </button>
-    </div>
     <div class="py-5 w-full flex items-baseline justify-between border-b border-gray-200 h-auto flex-wrap">
       <div class="flex flex-wrap">
         <h1 *ngIf="titleFilterCat!=null" class="text-xl font-bold tracking-tight ">{{titleFilterCat}}</h1>
@@ -205,8 +197,18 @@
             </div>
           </div>
         </form>
+
         <div class="lg:col-span-5">
           <!-- Replace with your content -->
+          <div class="h-min bg-bgTern flex items-center p-1 rounded-md mb-2">
+            <input (keyup)="searchProduct($event)"
+                   class="bg-bgSeco h-auto px-3 py-2 w-full  border-0  placeholder-blueGray-300 text-blueGray-600 rounded text-sm
+                   focus:outline-none focus:ring  ease-linear transition-all duration-500"/>
+            <button type="button" class="p-2 " (click)="searchOpen=!searchOpen">
+              <svg class="h-5 w-5 text-textPrimary"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="10" cy="10" r="7" />  <line x1="21" y1="21" x2="15" y2="15" /></svg>
+            </button>
+          </div>
+
           <div class="rounded-lg lg:h-full">
             <div class="flex items-center pr-2 pb-2 ">
               <div class="mx-2 bg-gray-200 hover:bg-gray-300 font-bold py-2 px-4 rounded inline-flex
@@ -223,48 +225,69 @@
                 border-gray-200 hover:border-gray-400 transition-colors bg-white">
                 <div >
                   <div class="flex flex-wrap">
-                    <div class="relative w-full h-auto bg-gray-300 h-96 overflow-hidden">
+                    <div class="relative w-full h-auto   overflow-hidden">
 <!--                      <img src="{{ imgUrl }}storage/images/{{ product.img }}"-->
 
-                      <img (click)="detail(product.id,product.id)" *ngIf="product.type===1" src="{{product?.imgs[0]?.path}}"
+                      <img  (click)="detail(product.id,product.id)"
+                            *ngIf="product.type===1" src="{{product?.imgs[0]?.path}}"
                            class=" w-full hover:scale-105 hover:rotate-1
                            transition-transform w-full h-64 sm:h-80 object-cover" alt="Imagen 1">
-                      <img (click)="detail(product.id,product.id)" *ngIf="product.type===2" src="{{ product?.imgs[0]?.path }}"
+                      <img (click)="detail(product.id,product.selectedVariation.id)"
+                           *ngIf="product.type===2" src="{{ product.selectedVariation?.imgs[0]?.path }}"
                       class=" w-full hover:scale-105 hover:rotate-1
                       transition-transform w-full h-64 sm:h-80 object-cover" alt="Imagen 1">
                     </div>
                   </div>
                   <div class="flex flex-col gap-2 px-2 py-6">
                     <div class=" grid grid-cols-2">
-                      <a href="assets/img/products/1_1.jpg">
+                      <p >
                         {{ product?.name }}
-                      </a>
-                      <div class="ml-auto w-7 h-7 z-50 flex items-center justify-center"> <!-- Establecer un tamaño fijo para el contenedor del icono -->
+                      </p>
+                      <button *ngIf="product.type===1" (click)="detail(product.id,product.id)" class="ml-auto w-7 h-7 z-50 flex items-center justify-center"> <!-- Establecer un tamaño fijo para el contenedor del icono -->
                         <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="1.008" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-                      </div>
+                      </button>
+                      <button *ngIf="product.type===2" (click)="detail(product.id,product.selectedVariation.id)" class="ml-auto w-7 h-7 z-50 flex items-center justify-center"> <!-- Establecer un tamaño fijo para el contenedor del icono -->
+                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="1.008" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                      </button>
                     </div>
                     <h5 class="font-bold">{{product?.price/100 | number:'1.2-2'}}€</h5>
                     <div class="w-full flex justify-center items-center">
-                      <select *ngIf="uniqueVariationsSize(product.variations).length > 0"
-                              class="w-20
+                      <select (change)="onSizeChange($event,product)" *ngIf="uniqueVariations(product.variations,'size').length > 0"
+                              class=" z-50
                               flex justify-center items-center text-sm bg-transparent
                               font-semibold py-1 px-8 border w-auto focus:border-0"
                               >
-                        <ng-container *ngFor="let variation of uniqueVariationsSize(product.variations)">
+                        <option class="z-50" [value]="-1">select size</option>
+                        <ng-container *ngFor="let variation of uniqueVariations(product.variations,'size')">
                           <ng-container *ngFor="let attr of variation.attributes">
                             <ng-container *ngIf="attr.name === 'size'">
-                              <option [value]="attr.id">{{ attr.value }}</option>
+                              <option class="z-50" [value]="attr.id">{{ attr.value }}</option>
                             </ng-container>
                           </ng-container>
                         </ng-container>
                       </select>
                     </div>
-
+                    <div class="w-full flex justify-center items-center">
+                      <select (change)="onSizeChange($event,product)" *ngIf="uniqueVariations(product.variations,'weight').length > 0"
+                              class=" z-50
+                              flex justify-center items-center text-sm bg-transparent
+                              font-semibold py-1 px-8 border w-auto focus:border-0"
+                      >
+                        <option class="z-50" [value]="-1">select weight</option>
+                        <ng-container *ngFor="let variation of uniqueVariations(product.variations,'weight')">
+                          <ng-container *ngFor="let attr of variation.attributes">
+                            <ng-container *ngIf="attr.name === 'weight'">
+                              <option class="z-50" [value]="attr.id">{{ attr.value }}</option>
+                            </ng-container>
+                          </ng-container>
+                        </ng-container>
+                      </select>
+                    </div>
                     <div class="flex justify-center items-center">
-                      <div *ngFor="let variation of uniqueVariations(product.variations)">
+                      <div *ngFor="let variation of uniqueVariations(product.variations,'color')">
                         <div *ngFor="let attr of variation.attributes;">
                           <label *ngIf="attr.name==='color'" class="relative flex cursor-pointer items-center p-1">
-                            <input [style.background-color]="'#'+attr.desc" type="checkbox" class="focus:accent-pink-500 peer cursor-pointer appearance-none relative h-5 w-5 border border-gray-900 transition-all checked:border-blue-500 checked:bg-blue-500" />
+                            <input (click)="onColorChange(attr, product)" [style.background-color]="'#'+attr.desc" type="radio" name="color" [value]="attr" class="focus:accent-pink-500 peer cursor-pointer appearance-none relative h-5 w-5 border border-gray-900 transition-all checked:border-blue-500 checked:bg-blue-500" />
                             <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 opacity-0 transition-opacity peer-checked:opacity-100">
                               <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
