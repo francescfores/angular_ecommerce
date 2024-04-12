@@ -14,13 +14,13 @@ export class JwtInterceptor implements HttpInterceptor {
     if (currentUser && currentUser.token) {
       console.log('add authorization header with jwt token if available');
 
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${currentUser.token}`
-          // Authorization: `Bearer qLbj4T2O1Iapu3SPgjFFkahd`,
-          // Second_Token: `Bearer ${currentUser.token}`
-        }
-      });
+      // request = request.clone({
+      //   setHeaders: {
+      //     'Authorization': `Bearer ${currentUser.token}`
+      //     // Authorization: `Bearer qLbj4T2O1Iapu3SPgjFFkahd`,
+      //     // Second_Token: `Bearer ${currentUser.token}`
+      //   }
+      // });
     }
     return next.handle(request);
   }
