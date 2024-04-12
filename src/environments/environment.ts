@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   //apiUrl: 'http://ecommerce_api.com/',
-  apiUrl: 'http://blog-back-chi.vercel.app/',
+  apiUrl: 'http://laravel-api-black.vercel.app/',
   //amazons3: 'http://ecommerce_api.com/',
   // apiUrl: 'https://laravelapi-production.up.railway.app/',
   // apiEndpoint: 'http://localhost:40151',
