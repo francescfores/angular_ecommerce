@@ -6,7 +6,7 @@ export const environment = {
   production: false,
 
   // apiUrl: 'http://ecommerce_api.com/',
-   apiUrl: 'https://laravel-api-yctz-9y4qwfkd2-test-symfony.vercel.app/',
+   apiUrl: 'https://laravel-api-yctz.vercel.app/',
   // amazons3: 'http://ecommerce_api.com/',
   // apiUrl: 'https://laravelapi-production.up.railway.app/',
   // apiEndpoint: 'http://localhost:40151',
