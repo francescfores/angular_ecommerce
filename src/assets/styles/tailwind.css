@@ -650,6 +650,10 @@ html {
   top: 3.5rem;
 }
 
+.top-12 {
+  top: 3rem;
+}
+
 .bottom-full {
   bottom: 100%;
 }
@@ -1314,6 +1318,10 @@ html {
   width: 5rem;
 }
 
+.w-3 {
+  width: 0.75rem;
+}
+
 .w-64 {
   width: 16rem;
 }
@@ -1340,10 +1348,6 @@ html {
 
 .w-80 {
   width: 20rem;
-}
-
-.w-3 {
-  width: 0.75rem;
 }
 
 .w-36 {
@@ -23542,11 +23546,6 @@ html {
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-}
-
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
 }
 
 .px-8 {

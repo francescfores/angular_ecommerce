@@ -1,3 +1,4 @@
+<!--<div [ngClass]="{'theme-light': !isDarkEnable, 'theme-dark': isDarkEnable}" class="-->
 <div [ngClass]="{'theme-light': !isDarkEnable, 'theme-dark': isDarkEnable}" class="
 transition-colors duration-500 landing_page1 ">
 <app-default-navbar
@@ -7,7 +8,6 @@ transition-colors duration-500 landing_page1 ">
     <app-sidebar class="bg-bgPrim"></app-sidebar>
 
     <div class="w-full py-6 ">
-      {{step}}
       <div class="flex">
         <div (click)="goStep(1)" class="w-1/5">
           <div class="relative mb-2">

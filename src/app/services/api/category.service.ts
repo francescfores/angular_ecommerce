@@ -17,6 +17,9 @@ export class CategoryService {
   constructor(private http: HttpClient) {
   }
 
+  getCategories() {
+    return this.http.get<any>(`${environment.apiUrl}api/product_category`, {  });
+  }
   getCategorysPaginated(page) {
     return this.http.get<any>(`${environment.apiUrl}api/category_paginated?page=`+page, {  });
   }
