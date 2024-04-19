@@ -842,6 +842,11 @@ html {
   margin-right: -1rem;
 }
 
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
 .my-20 {
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -1318,16 +1323,16 @@ html {
   width: 5rem;
 }
 
-.w-3 {
-  width: 0.75rem;
-}
-
-.w-64 {
-  width: 16rem;
+.w-80 {
+  width: 20rem;
 }
 
 .w-0 {
   width: 0px;
+}
+
+.w-64 {
+  width: 16rem;
 }
 
 .w-6\/12 {
@@ -1346,8 +1351,8 @@ html {
   width: 8rem;
 }
 
-.w-80 {
-  width: 20rem;
+.w-3 {
+  width: 0.75rem;
 }
 
 .w-36 {
@@ -23573,6 +23578,11 @@ html {
   padding-right: 14px;
 }
 
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
 .pl-6 {
   padding-left: 1.5rem;
 }
@@ -24930,6 +24940,11 @@ html {
   .sm\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
+  }
+
+  .sm\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .sm\:text-sm {

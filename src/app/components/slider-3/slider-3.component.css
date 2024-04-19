@@ -49,13 +49,13 @@ input{
 }
 /* -------------------------------------------------------- slide */
 .slider > ul {
-  @apply h-[320px] md:h-[520px]  ;
+  @apply h-[320px] md:h-[520px] flex justify-center ;
   z-index: 12;
 }
 
 .slider > ul > li{
-  @apply flex h-[320px] md:h-[520px]  justify-center items-center;
-  width: 100%;
+  @apply flex h-[320px] md:h-[520px] justify-center items-center rounded;
+  width: 96%;
   position: absolute;
   opacity: 0;
   z-index: 1;
@@ -64,6 +64,7 @@ input{
   -ms-transition: all 2000ms ease;
   -o-transition: all 2000ms ease;
   transition: all 2000ms ease;
+
   /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
 }
 .slider > #input-slide-0:checked ~ ul > li.slide-0,
@@ -80,46 +81,49 @@ input{
 
 .slider > ul > li.slide-0{
   background:
-    linear-gradient(90deg, hsl(var(--twc-secondary)/ 0.9) 30%, hsl(var(--twc-bgSeco)/ 0) 70%),
+    linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
     url(../../../assets/img/banners/los-mejores-cojines-para-palets.png) bottom/cover  ;
   /*background: hsl(var(--twc-bgTern));*/
   /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
 }
 
 .slider > ul > li.slide-1{
-  background: linear-gradient(90deg, hsl(var(--twc-secondary)/ 0) 30%, hsl(var(--twc-bgSeco)/ 0.9) 70%),
+  background:
+    linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
   url(../../../assets/img/banners/banner_2.png) bottom/cover  ;
   /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
 }
 .slider > ul > li.slide-2{
-  background: linear-gradient(90deg, hsl(var(--twc-bgSeco)/ 0.9) 30%, hsl(var(--twc-secondary)/ 0) 70%),
+  background:
+    linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
   url(../../../assets/img/banners/sofa-de-palets.jpg) bottom/cover  ;
 }
 .slider > ul > li.slide-3{
-  background: linear-gradient(90deg, hsl(var(--twc-secondary)/ 0) 30%, hsl(var(--twc-bgSeco)/ 0.9) 70%),
+  background:
+    linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
   url(../../../assets/img/banners/cce41eec-2e51-4d70-830e-d9f0253a36d2.png) center/cover  ;
 }
-@media (max-width: 766px) {
-.slider > ul > li.slide-0{
-  background:
-  url(../../../assets/img/banners/602289b0-6abe-43b1-b9fd-e3bd4ad912fd.png) top/cover  fixed;
-  /*background: hsl(var(--twc-bgTern));*/
-  /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
-}
-.slider > ul > li.slide-1{
-  background:
-  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;
-  /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
-}
-.slider > ul > li.slide-2{
-  background:
-  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;
-}
-.slider > ul > li.slide-3{
-  background:
-  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;
-}
-}
+/*@media (max-width: 766px) {*/
+/*.slider > ul > li.slide-0{*/
+/*  background:*/
+/*  url(../../../assets/img/banners/602289b0-6abe-43b1-b9fd-e3bd4ad912fd.png) top/cover  fixed;*/
+/*  !*background: hsl(var(--twc-bgTern));*!*/
+/*  !*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*!*/
+/*}*/
+/*.slider > ul > li.slide-1{*/
+/*  background:*/
+/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
+/*  !*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*!*/
+/*}*/
+/*.slider > ul > li.slide-2{*/
+/*  background:*/
+/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
+/*}*/
+/*.slider > ul > li.slide-3{*/
+/*  background:*/
+/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
+/*}*/
+/*}*/
 /*.slider > ul > li.slide-4{*/
 /*  background: linear-gradient(90deg, hsl(var(--twc-secondary)/ 1) 40%, hsl(var(--twc-secondary)/ 0.2) 60%),*/
 /*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
@@ -141,7 +145,7 @@ input{
   /*display: flex;*/
   /*justify-content: center;*/
   /*align-items: center;*/
-  z-index: 100;
+  z-index: 40;
   /*font-size: 0;  */
   height: 40px;
   /*@apply absolute top-[520px] bg-bgPrim;*/
@@ -163,13 +167,14 @@ input{
   /*max-width: unset;*/
 }
 .slider > div  > .slider-dot > label {
+  @apply rounded bg-bgPrim/50;
   position: relative;
   display: inline-block;
   margin: 1vw 0.5vw;
-  width: 30px;
-  height: 6px;
-  border-radius: 0%;
-  background-color: hsl(var(--twc-bgTern));
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  /*background-color: hsl(var(--twc-bgTern));*/
 }
 .slider > #input-slide-0:checked ~ div > .slider-dot > label.slide-0,
 .slider > #input-slide-1:checked ~ div > .slider-dot > label.slide-1,
@@ -177,10 +182,10 @@ input{
 .slider > #input-slide-3:checked ~ div > .slider-dot > label.slide-3,
 .slider > #input-slide-4:checked ~ div > .slider-dot > label.slide-4,
 .slider > #input-slide-5:checked ~ div > .slider-dot > label.slide-5 {
-  background-color: hsl(var(--twc-primary));
+  @apply rounded bg-bgPrim;
 }
 .slider > div  > .slider-dot > label:hover{
-  background-color: grey !important;
+  /*background-color: hsl(var(--twc-bgSeco));*/
 }
 /* -------------------------------------------------------- description */
 /*.slider > .slide-description{*/
@@ -302,24 +307,24 @@ input{
 
 /* -------------------------------------------------------- autoplay dot */
 @-webkit-keyframes dot {
-  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
-  25%, 100% { background: hsl(var(--twc-bgTern)); }
+  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
+  25%, 100% {   @apply rounded bg-bgPrim/50; }
 }
 @-moz-keyframes dot {
-  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
-  25%, 100% { background: hsl(var(--twc-bgTern)); }
+  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
+  25%, 100% {   @apply rounded bg-bgPrim/50; }
 }
 @-ms-keyframes dot {
-  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
-  25%, 100% { background: hsl(var(--twc-bgTern)); }
+  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
+  25%, 100% {   @apply rounded bg-bgPrim/50; }
 }
 @-o-keyframes dot {
-  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
-  25%, 100% { background: hsl(var(--twc-bgTern)); }
+  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
+  25%, 100% {   @apply rounded bg-bgPrim/50; }
 }
 @keyframes dot {
-  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
-  25%, 100% { background: hsl(var(--twc-bgTern)); }
+  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
+  25%, 100% {   @apply rounded bg-bgPrim/50; }
 }
 .slider > #input-slide-autoplay:checked ~ div > .slider-dot > label.slide-0{
   -webkit-animation: dot 32000ms infinite -2000ms;

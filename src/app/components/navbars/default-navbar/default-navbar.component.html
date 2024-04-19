@@ -7,15 +7,15 @@
                  items-start flex flex-col rounded justify-start group
                  transition-all duration-500' (click)="toggleSidebar()">
         <div [ngClass]="{
-        'h-0.5 w-5 mb-1 bg-primary transition ease transform duration-300':true,
+        'h-0.5 w-5 mb-1 bg-textPrimary transition ease transform duration-300':true,
         'rotate-45 translate-y-1.5 opacity-50 group-hover:opacity-100' : sidebarOpen,
         'opacity-50 group-hover:opacity-100': !sidebarOpen}"> </div>
         <div [ngClass]="{
-        'h-0.5 w-5 mb-1 bg-primary transition ease transform duration-300':true,
+        'h-0.5 w-5 mb-1 bg-textPrimary transition ease transform duration-300':true,
         'opacity-0' : sidebarOpen,
         'opacity-50 group-hover:opacity-100': !sidebarOpen}">        </div>
         <div [ngClass]="{
-        'h-0.5 w-5  mb-1 bg-primary transition ease transform duration-300':true,
+        'h-0.5 w-5  mb-1 bg-textPrimary transition ease transform duration-300':true,
         '-rotate-45 -translate-y-1.5 opacity-50 group-hover:opacity-100' : sidebarOpen,
         'opacity-50 group-hover:opacity-100': !sidebarOpen}">
         </div>

@@ -1,13 +1,15 @@
 <div class="min-h-screen">
   <!-- <app-slider class="opacity-75 hover:opacity-100 "></app-slider> -->
-  <section class="overflow-hidden">
-    <!--<app-slider-blog></app-slider-blog> -->
+  <section class="overflow-hidden my-10">
+    <app-slider-blog></app-slider-blog>
   </section>
   <div [ngClass]="{ 'translate-x-0 ': filtersOpen, 'translate-x-full': !filtersOpen, 'opacity-100': filtersOpen, 'opacity-0': !filtersOpen}"
-         class="top-0 right-0  h-full
-       fixed z-30
+         class="top-0 right-0 h-screen
+       fixed z-50
        ease-in-out duration-300 w-3/4 ">
-    <div class="relative ml-auto flex h-full w-full flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl scrollbar-thin scrollbar-thumb-blueGray-500 scrollbar-track-blueGray-200 h-32 overflow-y-scroll">
+    <div class="relative ml-auto flex h-screen w-full flex-col  bg-white py-4 pb-12 shadow-xl
+
+    overflow-y-scroll">
       <div class="flex items-center justify-between px-4">
         <!--            <h2 class="text-lg font-medium ">Filters</h2>-->
         <button (click)="setFiltersOpen()" type="button" class="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 ">
@@ -20,15 +22,16 @@
       </div>
 
       <!-- Filters -->
-      <form class="lg:hidden px-4 py-4">
+      <form class="lg:hidden px-10 py-10">
         <h3 class="sr-only">Categories</h3>
         <ul role="list" class=" space-y-4 border-b border-gray-200 pb-6 text-sm font-medium ">
           <li *ngFor="let category of categories2;">
-            <a  [ngClass]="{'text-header-color': openProductType === category.id}" (click)="showProductType(category)">{{category.name}}</a>
-            <ul *ngIf="openProductType === category.id" role="list" class="ml-2 text-sm font-medium ">
+            <a class="font-semibold" [ngClass]="{'text-header-color': openProductType === category.id}"
+               (click)="showProductType(category)">{{category.name}}</a>
+            <ul *ngIf="openProductType === category.id" role="list" class="flex flex-col mt-2 gap-2 ml-3 text-sm font-medium ">
               <li *ngFor="let subcategory of category.subcategories;" >
                 <a (click)="showproductTypeCat(category, subcategory)" [ngClass]="{'text-header-color': openProductTypeCat === subcategory.id}">{{subcategory.name}}</a>
-                <ul *ngIf="openProductTypeCat === subcategory.id" role="list" class="ml-2 text-sm font-medium ">
+                <ul *ngIf="openProductTypeCat === subcategory.id" role="list" class="flex flex-col mt-2 gap-2 ml-3 text-sm font-medium ">
                   <li *ngFor="let supercategory of subcategory.supercategories;" >
                     <a (click)="showproductTypeSubCat(category, subcategory,supercategory)" [ngClass]="{'text-header-color': openProductTypeSubCat === supercategory.id}">{{supercategory.name}}</a>
                   </li>
@@ -58,13 +61,14 @@
               transition-all duration-150 ease-in-out origin-top overflow-hidden"
                [ngClass]="{ 'max-h-screen ': this.selectFilter === attr.key, 'max-h-0 ': this.selectFilter != attr.key}">
             <div class="space-y-4 pt-6">
-              <div class="flex items-center" >
-                <div *ngIf="attr.key==='color'">
-                  <div class="h-10 w-10 bg-[#{{value.desc}}]" [style.background-color]="'#'+value.desc">
-
-                  </div>
-                </div>
-
+              <div class="flex items-center" *ngIf="attr.key==='color'" >
+                <input  (change)="onAttributeSelected(value)" id="filter-color-0" name="{{value.id}}"
+                        value="white" type="checkbox" class="h-4 w-4 rounded
+                           text-primary ring-0">
+                <label for="filter-color-0" class="ml-3 text-sm ">{{value.value}}</label>
+                <div class="h-6 w-6 ml-3 border-2 border-gray-300" [style.background]="'#'+value.desc"></div>
+              </div>
+              <div *ngIf="attr.key!=='color'" class="flex items-center" >
                 <input (change)="onAttributeSelected(value)" id="filter-color-0" name="{{value.id}}" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-primary ring-0">
                 <label for="filter-color-0" class="ml-3 text-sm ">{{value.value}}</label>
               </div>
@@ -74,7 +78,7 @@
       </form>
     </div>
   </div>
-  <div class="mx-auto w-full px-2 sm:px-6 pb-60 -mb-20 pt-2 text-textPrimary">
+  <div class="mx-auto w-full px-2 sm:px-8 pb-60 -mb-20 pt-2 text-textPrimary">
 
     <div class="py-5 w-full flex items-baseline justify-between border-b border-gray-200 h-auto flex-wrap">
       <div class="flex flex-wrap">
@@ -89,7 +93,7 @@
           <div class="flex justify-center">
             <div>
               <div class="dropdown relative">
-                <select (change)="onSortSelected($event)" class="text-sm bg-transparent  font-semibold py-1 px-8 border  rounded-full  w-auto focus:border-0" >
+                <select (change)="onSortSelected($event)" class="text-sm bg-transparent  font-semibold py-1 px-8 border  rounded  w-auto focus:border-0" >
                   <option *ngFor="let value of sortfilters"
                           [value]="value.id">
                     {{value.key}}
@@ -120,7 +124,6 @@
     <section>
       <div class="p-2 pt-4 grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-6">
         <form class="lg:col-span-1 hidden lg:block">
-
           <ul role="list" class=" space-y-4 border-b border-gray-200 pb-6 text-sm font-medium ">
             <li *ngFor="let category of categories2;">
               <a class="font-semibold" [ngClass]="{'text-header-color': openProductType === category.id}"
@@ -137,35 +140,11 @@
               </ul>
             </li>
           </ul>
-         <!--<div class="flex items-center ml-auto">
-            <div class="relative inline-block text-left">
-              <div class="flex justify-center">
-                <div>
-                  <div class="dropdown relative">
-                    <select (change)="onSortSelected($event)" class="text-sm bg-transparent  font-semibold py-1 px-8 border  rounded-full  w-auto focus:border-0" >
-                      <option *ngFor="let value of sortfilters"
-                              [value]="value.id">
-                        {{value.key}}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-
-            <button type="button" class="-m-2 ml-4 p-2  hover: sm:ml-6 lg:hidden" (click)="setFiltersOpen()">
-              <span class="sr-only">Filters</span>
-              <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z" clip-rule="evenodd" />
-              </svg>
-            </button>
-
-          </div>-->
-          <div class="border-b border-gray-200 py-6" *ngFor="let attr of attributes_group | keyvalue">
+          <div class="border-b border-gray-200 py-6" *ngFor="let attr of attributes_group | keyvalue" (click)="showFilter(attr)">
             <h3 class="-my-3 flow-root">
               <!-- Expand/collapse section button -->
-              <button (click)="showFilter(attr)" type="button" class="flex w-full items-center justify-between  py-3 text-sm  hover:" aria-controls="filter-section-0" aria-expanded="false">
+              <button type="button" class="flex w-full items-center justify-between  py-3 text-sm  hover:" aria-controls="filter-section-0" aria-expanded="false">
                 <span class="font-medium ">{{attr.key}}</span>
                 <span class="ml-6 flex items-center"  >
                     <svg *ngIf="this.selectFilter != attr.key" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -177,7 +156,6 @@
                   </span>
               </button>
             </h3>
-
             <div *ngFor="let value of attr.value" class="transform
               transition-all duration-150 ease-in-out origin-top overflow-hidden"
                  [ngClass]="{ 'max-h-screen ': this.selectFilter === attr.key, 'max-h-0 ': this.selectFilter != attr.key}">
@@ -200,29 +178,30 @@
 
         <div class="lg:col-span-5">
           <!-- Replace with your content -->
-          <div class="h-min bg-bgTern flex items-center p-1 rounded-md mb-2">
-            <input (keyup)="searchProduct($event)"
-                   class="bg-bgSeco h-auto px-3 py-2 w-full  border-0  placeholder-blueGray-300 text-blueGray-600 rounded text-sm
-                   focus:outline-none focus:ring  ease-linear transition-all duration-500"/>
+          <div class="h-min bg-bgSeco flex items-center p-1 rounded-md mb-2">
             <button type="button" class="p-2 " (click)="searchOpen=!searchOpen">
               <svg class="h-5 w-5 text-textPrimary"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="10" cy="10" r="7" />  <line x1="21" y1="21" x2="15" y2="15" /></svg>
             </button>
+            <input (keyup)="searchProduct($event)"
+                   class="bg-bgTern h-auto px-3 py-2 w-full  border-0  placeholder-blueGray-300 text-blueGray-600 rounded text-sm
+                   focus:outline-none focus:ring  ease-linear transition-all duration-150"/>
+
           </div>
 
           <div class="rounded-lg lg:h-full">
-            <div class="flex items-center pr-2 pb-2 ">
-              <div class="mx-2 bg-gray-200 hover:bg-gray-300 font-bold py-2 px-4 rounded inline-flex
-                items-center border rounded-full" *ngFor="let attr of filters.searchFilters[5]?.attributes">
+            <div class="flex items-center pr-2 pb-2 gap-2">
+              <div class=" bg-bgSeco hover:bg-gray-300 font-bold py-2 px-4 rounded
+                items-center  " *ngFor="let attr of filters.searchFilters[5]?.attributes">
                 <p class="text-sm">{{attr.value}}</p>
-                <button (click)="onAttributeSelected(attr)">
-                  <svg  class="ml-2 h-3 w-3 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>
-                </button>
+<!--                <button (click)="onAttributeSelected(attr)">-->
+<!--                  <svg  class="ml-2 h-3 w-3 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>-->
+<!--                </button>-->
               </div>
             </div>
             <div *ngIf="products?.length > 0" class="grid gap-2 sm:gap-8 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               <!-- Product Item -->
               <div *ngFor="let product of products;"  class="overflow-hidden  text-sm border border-0
-                border-gray-200 hover:border-gray-400 transition-colors bg-white">
+                border-gray-200 hover:border-gray-400 transition-colors bg-bgPrim rounded">
                 <div >
                   <div class="flex flex-wrap">
                     <div class="relative w-full h-auto   overflow-hidden">
@@ -230,32 +209,32 @@
 
                       <img  (click)="detail(product.id,product.id)"
                             *ngIf="product.type===1" src="{{product?.imgs[0]?.path}}"
-                           class=" w-full hover:scale-105 hover:rotate-1
+                           class="rounded w-full hover:scale-105 hover:rotate-1
                            transition-transform w-full h-64 sm:h-80 object-cover" alt="Imagen 1">
                       <img (click)="detail(product.id,product.selectedVariation.id)"
                            *ngIf="product.type===2" src="{{ product.selectedVariation?.imgs[0]?.path }}"
-                      class=" w-full hover:scale-105 hover:rotate-1
-                      transition-transform w-full h-64 sm:h-80 object-cover" alt="Imagen 1">
+                      class="rounded w-full hover:scale-105 hover:rotate-1
+                           transition-transform w-full h-64 sm:h-80 object-cover" alt="Imagen 1">
                     </div>
                   </div>
                   <div class="flex flex-col gap-2 px-2 py-6">
-                    <div class=" grid grid-cols-2">
+                    <div class="flex">
                       <p >
                         {{ product?.name }}
                       </p>
-                      <button *ngIf="product.type===1" (click)="detail(product.id,product.id)" class="ml-auto w-7 h-7 z-50 flex items-center justify-center"> <!-- Establecer un tamaño fijo para el contenedor del icono -->
-                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="1.008" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-                      </button>
-                      <button *ngIf="product.type===2" (click)="detail(product.id,product.selectedVariation.id)" class="ml-auto w-7 h-7 z-50 flex items-center justify-center"> <!-- Establecer un tamaño fijo para el contenedor del icono -->
-                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="1.008" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-                      </button>
+<!--                      <button *ngIf="product.type===1" (click)="detail(product.id,product.id)" class="ml-auto w-7 h-7 z-50 flex items-center justify-center"> &lt;!&ndash; Establecer un tamaño fijo para el contenedor del icono &ndash;&gt;-->
+<!--                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="1.008" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>-->
+<!--                      </button>-->
+<!--                      <button *ngIf="product.type===2" (click)="detail(product.id,product.selectedVariation.id)" class="ml-auto w-7 h-7 z-50 flex items-center justify-center"> &lt;!&ndash; Establecer un tamaño fijo para el contenedor del icono &ndash;&gt;-->
+<!--                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="1.008" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>-->
+<!--                      </button>-->
+                      <h5 class="font-bold ml-auto">{{product?.price/100 | number:'1.2-2'}}€</h5>
                     </div>
-                    <h5 class="font-bold">{{product?.price/100 | number:'1.2-2'}}€</h5>
                     <div class="w-full flex justify-center items-center">
                       <select (change)="onSizeChange($event,product)" *ngIf="uniqueVariations(product.variations,'size').length > 0"
-                              class=" z-50
+                              class=" z-40
                               flex justify-center items-center text-sm bg-transparent
-                              font-semibold py-1 px-8 border w-auto focus:border-0"
+                              font-semibold py-1 px-8 border w-auto focus:border-0 rounded"
                               >
                         <option class="z-50" [value]="-1">select size</option>
                         <ng-container *ngFor="let variation of uniqueVariations(product.variations,'size')">
@@ -284,11 +263,11 @@
                       </select>
                     </div>
                     <div class="flex justify-center items-center">
-                      <div *ngFor="let variation of uniqueVariations(product.variations,'color')">
+                      <div *ngFor="let variation of uniqueVariations(product.variations)">
                         <div *ngFor="let attr of variation.attributes;">
                           <label *ngIf="attr.name==='color'" class="relative flex cursor-pointer items-center p-1">
-                            <input (click)="onColorChange(attr, product)" [style.background-color]="'#'+attr.desc" type="radio" name="color" [value]="attr" class="focus:accent-pink-500 peer cursor-pointer appearance-none relative h-5 w-5 border border-gray-900 transition-all checked:border-blue-500 checked:bg-blue-500" />
-                            <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 opacity-0 transition-opacity peer-checked:opacity-100">
+                            <input (click)="onColorChange(attr, product)" [style.background-color]="'#'+attr.desc" type="radio" name="color" [value]="attr" class="rounded focus:accent-pink-500 peer cursor-pointer appearance-none relative h-5 w-5 border border-gray-900 transition-all checked:border-blue-500 checked:bg-blue-500" />
+                            <div class=" pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 opacity-0 transition-opacity peer-checked:opacity-100">
                               <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                               </svg>
