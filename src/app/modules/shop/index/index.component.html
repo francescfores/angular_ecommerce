@@ -1,12 +1,9 @@
-<div [ngClass]="{'theme-light': !isDarkEnable, 'theme-dark': isDarkEnable}" class="transition-colors duration-500 landing_page1 bg-bgPrim">
-  <app-default-navbar
-    [transparent]="false"
-  ></app-default-navbar>
-<!--  <app-ecommerce-navbar class="top-[150px] z-50"-->
-<!--                        [isDarkEnable]="isDarkEnable"-->
-<!--                        [transparent]="false"-->
-<!--  ></app-ecommerce-navbar>-->
-  <div [ngClass]="{'theme-light': !isDarkEnable, 'theme-dark': isDarkEnable }" class="relative top-12">
+<div [ngClass]="{'theme-light': !isDarkEnable,
+'theme-dark': isDarkEnable}"
+     class="transition-colors duration-500  landing_page1 bg-bgPrim">
+  <app-index-navbar [transparent]="false"></app-index-navbar>
+  <div [ngClass]="{'theme-light': !isDarkEnable, 'theme-dark': isDarkEnable }"
+       class="relative ">
     <!--<app-admin-navbar></app-admin-navbar>
     <app-header-stats></app-header-stats>
     <div class="px-4 md:px-10 mx-auto w-full -m-24">-->

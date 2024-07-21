@@ -37,7 +37,6 @@ import { CardTableComponent } from './components/cards/card-table/card-table.com
 import { FooterAdminComponent } from './components/footers/footer-admin/footer-admin.component';
 import { FooterSmallComponent } from './components/footers/footer-small/footer-small.component';
 import { HeaderStatsComponent } from './components/headers/header-stats/header-stats.component';
-import { IndexNavbarComponent } from './components/navbars/index-navbar/index-navbar.component';
 import { MapExampleComponent } from './components/maps/map-example/map-example.component';
 import { IndexDropdownComponent } from './components/dropdowns/index-dropdown/index-dropdown.component';
 import { TableDropdownComponent } from './components/dropdowns/table-dropdown/table-dropdown.component';
@@ -118,7 +117,6 @@ import { EditUserComponent } from './views/admin/users/edit-user/edit-user.compo
     MapExampleComponent,
     AuthNavbarComponent,
     AdminNavbarComponent,
-    IndexNavbarComponent,
     AdminComponent,
     MapsComponent,
     SettingsComponent,
@@ -192,7 +190,8 @@ import { EditUserComponent } from './views/admin/users/edit-user/edit-user.compo
   ],
   bootstrap: [AppComponent],
   exports: [
-    NotificationDropdownComponent
+    NotificationDropdownComponent,
+    EcommerceComponent,
   ]
 })
 export class AppModule {}

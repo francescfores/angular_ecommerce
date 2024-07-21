@@ -1,0 +1,8 @@
+.moon_sun *{
+  transition: all 1.2s;  overflow:visible;
+
+}
+svg{
+  overflow:visible;
+  transition: all 0.6s;
+}

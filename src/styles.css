@@ -8,6 +8,7 @@
   transition-duration: 2000ms;
 }
 
+
 input:focus {
   border: 2px solid #363638!important;
   outline: none!important;
@@ -19,15 +20,23 @@ select:focus {
   box-shadow: none!important;
 }
 @font-face {
-  font-family: 'Montserrat', sans-serif;
+  /*font-family: 'Montserrat';*/
   font-weight: normal;
   font-style: normal;
 }
-/*
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-*/
+body { margin: 0; font-family: 'Montserrat', "Helvetica Neue", sans-serif; }
+.banco{
+  font-family: 'Banco Regular', sans-serif;
+  /*color: #6bda90 !important;*/
+}
 
+@font-face {
+  font-family: 'Banco Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Banco Regular'), url('./assets/fonts/banco/Banco Regular.woff') format('woff');
+}
 /*select:focus{*/
 /*  border: none;*/
 /*}*/

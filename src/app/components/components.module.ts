@@ -11,6 +11,7 @@ import { GooglePlacesComponent } from './google-places/google-places.component';
 import {ProductListComponent} from "./product-list/product-list.component";
 import {Slider3Component} from "./slider-3/slider-3.component";
 import {DefaultNavbarComponent} from "./navbars/default-navbar/default-navbar.component";
+import {IndexNavbarComponent} from "./navbars/index-navbar/index-navbar.component";
 import { Sidebar2Component } from './sidebars/sidebar2/sidebar2.component';
 import {FormsModule} from "@angular/forms";
 import {SidebarComponent} from "./sidebars/sidebar/sidebar.component";
@@ -19,18 +20,21 @@ import {MenuComponent} from "./sidebars/sidebar/menu/menu.component";
 import {SubmenuComponent} from "./sidebars/sidebar/submenu/submenu.component";
 import {Button3dComponent} from "./buttons/button3d/button3d.component";
 import { SliderGalleryComponent } from './sliders/slider-gallery/slider-gallery.component';
+import {Slider4Component} from "./slider-4/slider-4.component";
 
 @NgModule({
     declarations: [
         FooterComponent,
         EcommerceNavbarComponent,
         DefaultNavbarComponent,
+        IndexNavbarComponent,
         CategoryFiltersComponent,
         SliderComponent,
         AlertComponent,
         GooglePlacesComponent,
         ProductListComponent,
         Slider3Component,
+        Slider4Component,
         Sidebar2Component,
         SidebarComponent,
         SidebarV2Component,
@@ -48,10 +52,12 @@ import { SliderGalleryComponent } from './sliders/slider-gallery/slider-gallery.
         FooterComponent,
         EcommerceNavbarComponent,
         DefaultNavbarComponent,
+        IndexNavbarComponent,
         SliderComponent,
         AlertComponent,
         GooglePlacesComponent,
         Slider3Component,
+        Slider4Component,
         Sidebar2Component,
         SidebarComponent,
         SliderGalleryComponent,

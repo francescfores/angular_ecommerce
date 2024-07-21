@@ -419,10 +419,6 @@ video {
   display: none;
 }
 
-html {
-  font-family: Montserrat, sans-serif;
-}
-
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -650,10 +646,6 @@ html {
   top: 3.5rem;
 }
 
-.top-12 {
-  top: 3rem;
-}
-
 .bottom-full {
   bottom: 100%;
 }
@@ -842,11 +834,6 @@ html {
   margin-right: -1rem;
 }
 
-.my-10 {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
-
 .my-20 {
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -855,6 +842,11 @@ html {
 .my-24 {
   margin-top: 6rem;
   margin-bottom: 6rem;
+}
+
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .mx-2 {
@@ -1323,6 +1315,10 @@ html {
   width: 5rem;
 }
 
+.w-\[50px\] {
+  width: 50px;
+}
+
 .w-80 {
   width: 20rem;
 }
@@ -1357,10 +1353,6 @@ html {
 
 .w-36 {
   width: 9rem;
-}
-
-.w-40 {
-  width: 10rem;
 }
 
 .w-\[180px\] {
@@ -24390,9 +24382,9 @@ html {
   --twc-warning: 42 100% 62%;
   --twc-help: 263 49% 38%;
   --twc-danger: 346 84% 61%;
-  --twc-bgPrim: 235 52% 25%;
-  --twc-bgSeco: 235 46% 31%;
-  --twc-bgTern: 235 39% 43%;
+  --twc-bgPrim: 236 48% 6%;
+  --twc-bgSeco: 236 47% 13%;
+  --twc-bgTern: 235 41% 16%;
   --twc-textPrimary: 235 79% 81%;
   --twc-textSecondary: 235 39% 62%;
   --twc-textTertiary: 235 37% 34%;
@@ -24434,6 +24426,16 @@ html {
   --twc-poppins: 0 0% 0%;
   --twc-nunito: 0 0% 0%;
 }
+
+/*@layer base {*/
+
+/*  html {*/
+
+/*    font-family: Montserrat, sans-serif;*/
+
+/*  }*/
+
+/*}*/
 
 .last\:mr-0:last-child {
   margin-right: 0px;
@@ -25059,10 +25061,6 @@ html {
     width: 16rem;
   }
 
-  .md\:w-auto {
-    width: auto;
-  }
-
   .md\:min-w-full {
     min-width: 100%;
   }
@@ -25073,10 +25071,6 @@ html {
 
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .md\:grid-cols-5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .md\:grid-cols-4 {
@@ -25191,10 +25185,6 @@ html {
 }
 
 @media (min-width: 1024px) {
-  .lg\:static {
-    position: static;
-  }
-
   .lg\:order-2 {
     order: 2;
   }
@@ -25255,20 +25245,12 @@ html {
     margin-left: auto;
   }
 
-  .lg\:mr-1 {
-    margin-right: 0.25rem;
-  }
-
   .lg\:block {
     display: block;
   }
 
   .lg\:inline-block {
     display: inline-block;
-  }
-
-  .lg\:flex {
-    display: flex;
   }
 
   .lg\:hidden {
@@ -25311,10 +25293,6 @@ html {
     width: 75%;
   }
 
-  .lg\:w-auto {
-    width: auto;
-  }
-
   .lg\:max-w-7xl {
     max-width: 80rem;
   }
@@ -25333,10 +25311,6 @@ html {
 
   .lg\:flex-row {
     flex-direction: row;
-  }
-
-  .lg\:justify-start {
-    justify-content: flex-start;
   }
 
   .lg\:justify-between {

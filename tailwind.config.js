@@ -240,9 +240,9 @@ module.exports = {
         'warning': '#FFC43D99', //'#FFC43D',
         'help': '#55319199', //'#29335C',
         'danger': '#EF476F99', //'#29335C',
-        'bgPrim': '#1f2562', ////0F1C2E //rgb(36, 28, 81) rgb(36, 28, 81) rgb(28, 20, 69)
-        'bgSeco': '#2b3175',//0A131F
-        'bgTern': '#424998',//1e314b #474954
+        'bgPrim': '#080917', ////0F1C2E //rgb(36, 28, 81) rgb(36, 28, 81) rgb(28, 20, 69)
+        'bgSeco': '#121432',//0A131F
+        'bgTern': '#181b39',//1e314b #474954
         // 'secondary': '#CBF7ED',
         // 'ternary': '#1D3557',
         // 'quaternary': '#1D3557',

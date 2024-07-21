@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 // import {ThemeService} from "../../../../services/theme/theme.service";
 import {first} from "rxjs/operators";
 import {environment} from '../../../../../environments/environment';
+import {ThemeService} from "../../../../services/theme.service";
 
 @Component({
   selector: 'app-home',
@@ -19,10 +20,8 @@ export class HomeComponent implements OnInit, AfterViewInit{
     private router: Router,
     private formBuilder: UntypedFormBuilder,
     // private toastr: ToastrService,
-    // public themeService: ThemeService,
-
+    public themeService: ThemeService,
   ) {
-
   }
 
   animations: { element: HTMLElement, animationClasses: string[] }[] = [];
@@ -132,9 +131,9 @@ export class HomeComponent implements OnInit, AfterViewInit{
       let animationClasses = this.animationClasses[i % this.animationClasses.length];
       this.animations.push({ element: elements[i] as HTMLElement, animationClasses });
     }
-    // this.themeService.getCurrentTheme().subscribe(theme => {
-    //   this.isDarkEnable = theme === 'theme-dark';
-    // });
+    this.themeService.getCurrentTheme().subscribe(theme => {
+      this.isDarkEnable = theme === 'theme-dark';
+    });
   }
 
 

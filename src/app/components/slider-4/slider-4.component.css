@@ -1,0 +1,386 @@
+/* -------------------------------------------------------- reset */
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Monoton|Poiret+One|Raleway');
+.slider_body{
+  width: 100%;
+  /*margin: 0 auto;*/
+  font-family: 'Raleway', sans-serif;
+  color: #FFF;
+  /*font-size: 1.75vw;*/
+    position: relative;
+  /*clip-path: polygon(0 0, 100% 0, 100% 99%, 0 81%);*/
+}
+/*.slider_body *{*/
+/*  width: 100%;*/
+/*  height: 520px;*/
+/*  !*position: relative;*!*/
+/*  !*display: block;*!*/
+/*  !*margin: 0 auto;*!*/
+/*  !*padding: 0;*!*/
+/*  !*text-align: center;*!*/
+/*  z-index: 100;*/
+/*}*/
+h1{
+  font-size: 6vw;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+a{
+  color: inherit;
+  text-decoration: none;
+  outline: 0;
+}
+ul,
+li{
+  list-style: none;
+}
+label{
+  cursor: pointer;
+}
+input{
+  display: none;
+}
+/* -------------------------------------------------------- codepen */
+/* -------------------------------------------------------- slider */
+.slider{
+  @apply h-screen ;
+  /*height: 520px;*/
+  /*margin-bottom: 40px;*/
+  overflow: hidden;
+}
+/* -------------------------------------------------------- slide */
+.slider > ul {
+  @apply  h-screen flex justify-center ; /*h-[320px]*/
+  z-index: 12;
+}
+
+.slider > ul > li{
+  @apply flex h-screen justify-center items-center rounded;
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+  -webkit-transition: all 2000ms ease;
+  -moz-transition: all 2000ms ease;
+  -ms-transition: all 2000ms ease;
+  -o-transition: all 2000ms ease;
+  transition: all 2000ms ease;
+
+  /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
+}
+.slider > #input-slide-0:checked ~ ul > li.slide-0,
+.slider > #input-slide-1:checked ~ ul > li.slide-1,
+.slider > #input-slide-2:checked ~ ul > li.slide-2,
+.slider > #input-slide-3:checked ~ ul > li.slide-3,
+.slider > #input-slide-4:checked ~ ul > li.slide-4,
+.slider > #input-slide-5:checked ~ ul > li.slide-5{
+  opacity: 1;
+  z-index: 2;
+  /*background: #ef4444;*/
+  /*height: 9900px;*/
+}
+
+.slider > ul > li.slide-0{
+  background:
+    linear-gradient(180deg, hsl(var(--twc-textTertiary)/ 0.5) 5%, hsl(var(--twc-textPrimary)/ 0) 15%),
+    url(https://img.redbull.com/images/w_3000/q_auto,f_auto/redbullcom/2020/6/29/mhptw8rtprw9isbatczw/mini-ramp-la-petja) bottom/cover  ;
+  /*background: hsl(var(--twc-bgTern));*/
+  /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
+}
+
+.slider > ul > li.slide-1{
+  background:
+    linear-gradient(180deg, hsl(var(--twc-textTertiary)/ 0.1) 30%, hsl(var(--twc-textPrimary)/ 0) 70%),
+    url(../../../assets/img/8d48c686a45d2d01bc32b7605b06599e.gif) bottom/cover  ;
+  /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
+}
+.slider > ul > li.slide-2{
+  background:
+    linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
+  url(../../../assets/img/banners/sofa-de-palets.jpg) bottom/cover  ;
+}
+.slider > ul > li.slide-3{
+  background:
+    linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
+  url(../../../assets/img/banners/cce41eec-2e51-4d70-830e-d9f0253a36d2.png) center/cover  ;
+}
+/*@media (max-width: 766px) {*/
+/*.slider > ul > li.slide-0{*/
+/*  background:*/
+/*  url(../../../assets/img/banners/602289b0-6abe-43b1-b9fd-e3bd4ad912fd.png) top/cover  fixed;*/
+/*  !*background: hsl(var(--twc-bgTern));*!*/
+/*  !*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*!*/
+/*}*/
+/*.slider > ul > li.slide-1{*/
+/*  background:*/
+/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
+/*  !*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*!*/
+/*}*/
+/*.slider > ul > li.slide-2{*/
+/*  background:*/
+/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
+/*}*/
+/*.slider > ul > li.slide-3{*/
+/*  background:*/
+/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
+/*}*/
+/*}*/
+/*.slider > ul > li.slide-4{*/
+/*  background: linear-gradient(90deg, hsl(var(--twc-secondary)/ 1) 40%, hsl(var(--twc-secondary)/ 0.2) 60%),*/
+/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
+/*}*/
+/*.slider > ul > li.slide-5{*/
+/*  background: linear-gradient(90deg, hsl(var(--twc-primary)/ 0) 50%, hsl(var(--twc-secondary)/ 0.9) 50%),*/
+/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
+/*}*/
+/* -------------------------------------------------------- arrow */
+
+/* -------------------------------------------------------- dot */
+.text_font_marvel{
+  /*font-family: 'Da Mad Rave', sans-serif;*/
+}
+.slider > div > .slider-dot {
+  /*margin-top: -4vw;*/
+  /*text-align: center;*/
+  /*position: relative;*/
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  z-index: 40;
+  /*font-size: 0;  */
+  height: 40px;
+  /*@apply absolute top-[520px] bg-bgPrim;*/
+  @apply  mt-[-100px]  ;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider_waves {
+  @apply absolute text-center top-[648px] min-w-[600px];
+  /*position: relative;*/
+  /*text-align: center;*/
+  /*margin-top: -104px;*/
+  z-index: 30;
+  /*font-size: 0;*/
+  /*min-width: 600px;*/
+  /*max-width: unset;*/
+}
+.slider > div  > .slider-dot > label {
+  @apply rounded bg-bgPrim/50;
+  position: relative;
+  display: inline-block;
+  margin: 1vw 0.5vw;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  /*background-color: hsl(var(--twc-bgTern));*/
+}
+.slider > #input-slide-0:checked ~ div > .slider-dot > label.slide-0,
+.slider > #input-slide-1:checked ~ div > .slider-dot > label.slide-1,
+.slider > #input-slide-2:checked ~ div > .slider-dot > label.slide-2,
+.slider > #input-slide-3:checked ~ div > .slider-dot > label.slide-3,
+.slider > #input-slide-4:checked ~ div > .slider-dot > label.slide-4,
+.slider > #input-slide-5:checked ~ div > .slider-dot > label.slide-5 {
+  @apply rounded bg-bgPrim;
+}
+.slider > div  > .slider-dot > label:hover{
+  /*background-color: hsl(var(--twc-bgSeco));*/
+}
+/* -------------------------------------------------------- description */
+/*.slider > .slide-description{*/
+/*  position: absolute;*/
+/*  width: 50%;*/
+/*  top: calc(50% - 3vw);*/
+/*  left: 25%;*/
+/*  z-index: 200;*/
+/*}*/
+/*.slider > .slide-description > label{*/
+/*  position: absolute;*/
+/*  width: 100%;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  cursor: default;*/
+
+/*  z-index: 0;*/
+/*  opacity: 0;*/
+/*  visibility: hidden;*/
+/*  -webkit-transition: all 0.75s ease;*/
+/*  -moz-transition: all 0.75s ease;*/
+/*  -ms-transition: all 0.75s ease;*/
+/*  -o-transition: all 0.75s ease;*/
+/*  transition: all 0.75s ease;*/
+/*}*/
+/*.slider > #input-slide-0:checked ~ .slide-description > .slide-0,*/
+/*.slider > #input-slide-1:checked ~ .slide-description > .slide-1,*/
+/*.slider > #input-slide-2:checked ~ .slide-description > .slide-2,*/
+/*.slider > #input-slide-3:checked ~ .slide-description > .slide-3{*/
+/*  z-index: 2;*/
+/*  opacity: 1;*/
+/*  visibility: visible;*/
+/*}*/
+/*.slider > .slide-description > label > .text-slide{*/
+/*  margin: 0 auto;*/
+/*  line-height: 6vw;*/
+/*  text-align: center;*/
+/*}*/
+/*.slider > .slide-description > .slide-0{*/
+/*  font-family: 'Raleway', sans-serif;*/
+/*}*/
+/*.slider > .slide-description > .slide-1{*/
+/*  font-family: 'Poiret One', cursive;*/
+/*}*/
+/*.slider > .slide-description > .slide-2{*/
+/*  font-family: 'Monoton', cursive;*/
+/*}*/
+/*.slider > .slide-description > .slide-3{*/
+/*  font-family: 'Audiowide', cursive;*/
+/*}*/
+/* -------------------------------------------------------- autoplay */
+/*
+	if you don't want to autoplay
+  just check input "slide-0"
+  instead of input "play" in html code
+  and remove the code below
+*/
+/* -------------------------------------------------------- autoplay slide */
+/*@-webkit-keyframes slide{*/
+/*  0%, 100% { opacity: 0; }*/
+/*  6%, 25% { opacity: 1; z-index: 2; }*/
+/*  30%, 50% { opacity: 0; z-index: 2; }*/
+/*}*/
+/*@-moz-keyframes slide{*/
+/*  0%, 100% { opacity: 0; }*/
+/*  6%, 24% { opacity: 1; z-index: 2; }*/
+/*  30%, 50% { opacity: 0; z-index: 2; }*/
+/*}*/
+/*@-ms-keyframes slide{*/
+/*  0%, 100% { opacity: 0; }*/
+/*  6%, 25% { opacity: 1; z-index: 2; }*/
+/*  30%, 50% { opacity: 0; z-index: 2; }*/
+/*}*/
+/*@-o-keyframes slide{*/
+/*  0%, 100% { opacity: 0; }*/
+/*  6%, 25% { opacity: 1; z-index: 2; }*/
+/*  30%, 50% { opacity: 0; z-index: 2; }*/
+/*}*/
+@keyframes slide{
+  0%, 100% { opacity: 0; }
+  6%, 25% { opacity: 1; z-index: 2; }
+  30%, 50% { opacity: 0; z-index: 2; }
+}
+.slider > #input-slide-autoplay:checked ~ ul > li.slide-0{
+  /*-webkit-animation: slide 32000ms infinite -2000ms linear;*/
+  /*-moz-animation: slide 32000ms infinite -2000ms linear;*/
+  /*-ms-animation: slide 32000ms infinite -2000ms linear;*/
+  /*-o-animation: slide 32000ms infinite -2000ms linear;*/
+  animation: slide 32000ms infinite -2000ms linear;
+}
+.slider > #input-slide-autoplay:checked ~ ul > li.slide-1{
+  /*-webkit-animation: slide 32000ms infinite 6000ms linear;*/
+  /*-moz-animation: slide 32000ms infinite 6000ms linear;*/
+  /*-ms-animation: slide 32000ms infinite 6000ms linear;*/
+  /*-o-animation: slide 32000ms infinite 6000ms linear;*/
+  animation: slide 32000ms infinite 6000ms linear;
+}
+.slider > #input-slide-autoplay:checked ~ ul > li.slide-2{
+  /*-webkit-animation: slide 32000ms infinite 14000ms linear;*/
+  /*-moz-animation: slide 32000ms infinite 14000ms linear;*/
+  /*-ms-animation: slide 32000ms infinite 14000ms linear;*/
+  /*-o-animation: slide 32000ms infinite 14000ms linear;*/
+  animation: slide 32000ms infinite 14000ms linear;
+}
+.slider > #input-slide-autoplay:checked ~ ul > li.slide-3{
+  /*-webkit-animation: slide 32000ms infinite 22000ms linear;*/
+  /*-moz-animation: slide 32000ms infinite 22000ms linear;*/
+  /*-ms-animation: slide 32000ms infinite 22000ms linear;*/
+  /*-o-animation: slide 32000ms infinite 22000ms linear;*/
+  animation: slide 32000ms infinite 22000ms linear;
+}
+.slider > #input-slide-autoplay:checked ~ ul > li{
+  /*-webkit-transition: none;*/
+  /*-moz-transition: none;*/
+  /*-ms-transition: none;*/
+  /*-o-transition: none;*/
+  /*transition: none;*/
+}
+
+/* -------------------------------------------------------- autoplay dot */
+@-webkit-keyframes dot {
+  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
+  25%, 100% {   @apply rounded bg-bgPrim/50; }
+}
+@-moz-keyframes dot {
+  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
+  25%, 100% {   @apply rounded bg-bgPrim/50; }
+}
+@-ms-keyframes dot {
+  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
+  25%, 100% {   @apply rounded bg-bgPrim/50; }
+}
+@-o-keyframes dot {
+  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
+  25%, 100% {   @apply rounded bg-bgPrim/50; }
+}
+@keyframes dot {
+  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
+  25%, 100% {   @apply rounded bg-bgPrim/50; }
+}
+.slider > #input-slide-autoplay:checked ~ div > .slider-dot > label.slide-0{
+  -webkit-animation: dot 32000ms infinite -2000ms;
+  -moz-animation: dot 32000ms infinite -2000ms;
+  -ms-animation: dot 32000ms infinite -2000ms;
+  -o-animation: dot 32000ms infinite -2000ms;
+  animation: dot 32000ms infinite -2000ms;
+}
+.slider > #input-slide-autoplay:checked ~ div > .slider-dot > label.slide-1{
+  -webkit-animation: dot 32000ms infinite 6000ms;
+  -moz-animation: dot 32000ms infinite 6000ms;
+  -ms-animation: dot 32000ms infinite 6000ms;
+  -o-animation: dot 32000ms infinite 6000ms;
+  animation: dot 32000ms infinite 6000ms;
+}
+.slider > #input-slide-autoplay:checked ~ div > .slider-dot > label.slide-2{
+  -webkit-animation: dot 32000ms infinite 14000ms;
+  -moz-animation: dot 32000ms infinite 14000ms;
+  -ms-animation: dot 32000ms infinite 14000ms;
+  -o-animation: dot 32000ms infinite 14000ms;
+  animation: dot 32000ms infinite 14000ms;
+}
+.slider > #input-slide-autoplay:checked ~ div > .slider-dot > label.slide-3{
+  -webkit-animation: dot 32000ms infinite 22000ms;
+  -moz-animation: dot 32000ms infinite 22000ms;
+  -ms-animation: dot 32000ms infinite 22000ms;
+  -o-animation: dot 32000ms infinite 22000ms;
+  animation: dot 32000ms infinite 22000ms;
+}
+
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  perspective: 600px;
+  cursor: pointer;
+}
+@keyframes card-3d{
+  0% {opacity: 0;}
+  50% {opacity: 0.5;}
+  100% {opacity: 1;}
+}
+
+.card-3d {
+  padding: 30px;
+  width: 300px;
+  height: 300px;
+  border-radius: 48px;
+  background-color: transparent;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(var(--x)) rotateX(var(--y));
+  position: absolute;
+  animation: card-3d 800ms ease-in;
+
+}
