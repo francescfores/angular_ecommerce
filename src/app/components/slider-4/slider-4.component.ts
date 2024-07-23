@@ -60,10 +60,10 @@ export class Slider4Component implements OnInit, AfterViewInit{
       var label3 = slide3.querySelector('.animation_div_left') as HTMLElement;
 
       if(opacity<1 ){
-        label.classList.remove('animate__animated','animate__slideInLeft')
+        label.classList.remove('animate__animated','animate__slideInDown')
       }
       if(opacity>0.1){
-        label.classList.add('animate__animated','animate__slideInLeft')
+        label.classList.add('animate__animated','animate__slideInDown')
       }
       if(opacity1<1 ){
         label1.classList.remove('animate__animated','animate__slideInRight')

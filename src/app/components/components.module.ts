@@ -21,6 +21,7 @@ import {SubmenuComponent} from "./sidebars/sidebar/submenu/submenu.component";
 import {Button3dComponent} from "./buttons/button3d/button3d.component";
 import { SliderGalleryComponent } from './sliders/slider-gallery/slider-gallery.component';
 import {Slider4Component} from "./slider-4/slider-4.component";
+import {MapExampleComponent} from "./maps/map-example/map-example.component";
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import {Slider4Component} from "./slider-4/slider-4.component";
         SubmenuComponent,
         Button3dComponent,
         SliderGalleryComponent,
+        MapExampleComponent
     ],
   imports: [
     CommonModule,
@@ -62,7 +64,7 @@ import {Slider4Component} from "./slider-4/slider-4.component";
         SidebarComponent,
         SliderGalleryComponent,
         Button3dComponent,
-
+        MapExampleComponent
     ]
 })
 export class ComponentsModule { }

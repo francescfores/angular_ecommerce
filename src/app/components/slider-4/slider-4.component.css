@@ -82,7 +82,7 @@ input{
 .slider > ul > li.slide-0{
   background:
     linear-gradient(180deg, hsl(var(--twc-textTertiary)/ 0.5) 5%, hsl(var(--twc-textPrimary)/ 0) 15%),
-    url(https://img.redbull.com/images/w_3000/q_auto,f_auto/redbullcom/2020/6/29/mhptw8rtprw9isbatczw/mini-ramp-la-petja) bottom/cover  ;
+    url(../../../assets/img/lapetja/198684836_2097520570426310_3624404012612936900_n.jpg) bottom/cover
   /*background: hsl(var(--twc-bgTern));*/
   /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
 }
@@ -90,18 +90,18 @@ input{
 .slider > ul > li.slide-1{
   background:
     linear-gradient(180deg, hsl(var(--twc-textTertiary)/ 0.1) 30%, hsl(var(--twc-textPrimary)/ 0) 70%),
-    url(../../../assets/img/8d48c686a45d2d01bc32b7605b06599e.gif) bottom/cover  ;
+    url(../../../assets/img/lapetja/LaPetja-logo-gran-blanc-transparent-pastilla.jpg) bottom/cover
   /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
 }
 .slider > ul > li.slide-2{
   background:
     linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
-  url(../../../assets/img/banners/sofa-de-palets.jpg) bottom/cover  ;
-}
+    url(https://img.redbull.com/images/w_3000/q_auto,f_auto/redbullcom/2020/6/29/mhptw8rtprw9isbatczw/mini-ramp-la-petja) bottom/cover  ;
+  }
 .slider > ul > li.slide-3{
   background:
     linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
-  url(../../../assets/img/banners/cce41eec-2e51-4d70-830e-d9f0253a36d2.png) center/cover  ;
+    url(../../../assets/img/lapetja/LaPetja-logo-gran-blanc-transparent-pastilla.jpg) bottom/cover  ;
 }
 /*@media (max-width: 766px) {*/
 /*.slider > ul > li.slide-0{*/
@@ -381,6 +381,6 @@ input{
   justify-content: center;
   transform: rotateY(var(--x)) rotateX(var(--y));
   position: absolute;
-  animation: card-3d 800ms ease-in;
+  animation: card-3d 3000ms;
 
 }

@@ -228,9 +228,9 @@ module.exports = {
 
       },
       dark: {
-        'primary': '#e5b000',
-        'primary-2': '#daa907',
-        'primary-3': '#c79f1b',
+        'primary': '#3ff168',
+        'primary-2': '#43d565',
+        'primary-3': '#35a14e',
         'secondary': '#989898', //'#70d0f8',
         'secondary-2': '#C4C4C4', //'#70d0f8',
         'secondary-3': '#d9d9d9', //'#70d0f8',
