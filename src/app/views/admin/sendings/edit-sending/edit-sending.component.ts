@@ -22,14 +22,7 @@ export class EditSendingComponent implements OnInit{
   loading = false;
   loaded=false;
   updateSending=false;
-  statuses = [
-    { id: 1, key:'pending', name: 'Pendiente' },
-    { id: 2, key:'processing', name: 'Procesando' },
-    { id: 3, key:'shipped', name: 'Enviado' },
-    { id: 4, key:'delivered', name: 'Entregado' },
-    { id: 5, key:'returned', name: 'Devuelto' },
-    { id: 6, key:'cancelled', name: 'Cancelado' },
-  ];
+  statuses = [];
   status:string;
 
   constructor(
@@ -70,6 +63,14 @@ export class EditSendingComponent implements OnInit{
       width: ['', Validators.required],
       height: ['', Validators.required],
     });
+    this.statuses = [
+      { id: 1, key:'pending', name: 'Pendiente' },
+      { id: 2, key:'processing', name: 'Procesando' },
+      { id: 3, key:'shipped', name: 'Enviado' },
+      { id: 4, key:'delivered', name: 'Entregado' },
+      { id: 5, key:'returned', name: 'Devuelto' },
+      { id: 6, key:'cancelled', name: 'Cancelado' },
+    ];
   }
 
 

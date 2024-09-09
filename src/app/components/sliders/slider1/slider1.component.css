@@ -1,0 +1,188 @@
+/* -------------------------------------------------------- reset */
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Monoton|Poiret+One|Raleway');
+.slider_body{
+  width: 100%;
+  /*margin: 0 auto;*/
+  font-family: 'Raleway', sans-serif;
+  color: #FFF;
+  /*font-size: 1.75vw;*/
+    position: relative;
+  /*clip-path: polygon(0 0, 100% 0, 100% 99%, 0 81%);*/
+}
+
+
+ul,
+li{
+  list-style: none;
+}
+label{
+  cursor: pointer;
+}
+input{
+  display: none;
+}
+.slider{
+  @apply h-[280px] md:h-[520px]  ;
+  overflow: hidden;
+}
+.slider > ul {
+  @apply h-[280px] md:h-[520px]  ;
+  z-index: 12;
+}
+
+.slider > ul > li{
+  @apply h-[280px] md:h-[520px]  ;
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+  -webkit-transition: all 2000ms ease;
+  -moz-transition: all 2000ms ease;
+  -ms-transition: all 2000ms ease;
+  -o-transition: all 2000ms ease;
+  transition: all 2000ms ease;
+  @apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;
+}
+.slider > #input-slide-0:checked ~ ul > li.slide-0,
+.slider > #input-slide-1:checked ~ ul > li.slide-1,
+.slider > #input-slide-2:checked ~ ul > li.slide-2,
+.slider > #input-slide-3:checked ~ ul > li.slide-3{
+  opacity: 1;
+  z-index: 2;
+  position: fixed!important;
+}
+
+
+.slider img{
+  filter: blur(1.5px) brightness(0.3) ;
+}
+.slider-0 img{
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.slide-0 img.loaded {
+  opacity: 1;
+}
+
+.slider > div > .slider-dot {
+  z-index: 41;
+  height: 40px;
+  @apply absolute  top-[320px] md:top-[560px]  bg-bgPrim; 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.slider > div  > .slider-dot > label {
+  position: relative;
+  display: inline-block;
+  margin: 1vw 0.5vw;
+  width: 30px;
+  height: 6px;
+  border-radius: 0%;
+  background-color: hsl(var(--twc-bgTern));
+}
+.slider > #input-slide-0:checked ~ div > .slider-dot > label.slide-0,
+.slider > #input-slide-1:checked ~ div > .slider-dot > label.slide-1,
+.slider > #input-slide-2:checked ~ div > .slider-dot > label.slide-2,
+.slider > #input-slide-3:checked ~ div > .slider-dot > label.slide-3 {
+  background-color: hsl(var(--twc-primary));
+}
+.slider > div  > .slider-dot > label:hover{
+  background-color: grey !important;
+}
+
+@keyframes slide{
+  0%, 100% { opacity: 0; }
+  6%, 25% { opacity: 1; z-index: 2; }
+  30%, 50% { opacity: 0; z-index: 2; }
+}
+.slider > #input-slide-autoplay:checked ~ ul > li.slide-0{
+  /*-webkit-animation: slide 32000ms infinite -2000ms linear;*/
+  /*-moz-animation: slide 32000ms infinite -2000ms linear;*/
+  /*-ms-animation: slide 32000ms infinite -2000ms linear;*/
+  /*-o-animation: slide 32000ms infinite -2000ms linear;*/
+  animation: slide 32000ms infinite -2000ms linear;
+}
+.slider > #input-slide-autoplay:checked ~ ul > li.slide-1{
+  /*-webkit-animation: slide 32000ms infinite 6000ms linear;*/
+  /*-moz-animation: slide 32000ms infinite 6000ms linear;*/
+  /*-ms-animation: slide 32000ms infinite 6000ms linear;*/
+  /*-o-animation: slide 32000ms infinite 6000ms linear;*/
+  animation: slide 32000ms infinite 6000ms linear;
+}
+.slider > #input-slide-autoplay:checked ~ ul > li.slide-2{
+  /*-webkit-animation: slide 32000ms infinite 14000ms linear;*/
+  /*-moz-animation: slide 32000ms infinite 14000ms linear;*/
+  /*-ms-animation: slide 32000ms infinite 14000ms linear;*/
+  /*-o-animation: slide 32000ms infinite 14000ms linear;*/
+  animation: slide 32000ms infinite 14000ms linear;
+}
+.slider > #input-slide-autoplay:checked ~ ul > li.slide-3{
+  /*-webkit-animation: slide 32000ms infinite 22000ms linear;*/
+  /*-moz-animation: slide 32000ms infinite 22000ms linear;*/
+  /*-ms-animation: slide 32000ms infinite 22000ms linear;*/
+  /*-o-animation: slide 32000ms infinite 22000ms linear;*/
+  animation: slide 32000ms infinite 22000ms linear;
+}
+.slider > #input-slide-autoplay:checked ~ ul > li{
+  /*-webkit-transition: none;*/
+  /*-moz-transition: none;*/
+  /*-ms-transition: none;*/
+  /*-o-transition: none;*/
+  /*transition: none;*/
+}
+
+/* -------------------------------------------------------- autoplay dot */
+@-webkit-keyframes dot {
+  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
+  25%, 100% { background: hsl(var(--twc-bgTern)); }
+}
+@-moz-keyframes dot {
+  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
+  25%, 100% { background: hsl(var(--twc-bgTern)); }
+}
+@-ms-keyframes dot {
+  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
+  25%, 100% { background: hsl(var(--twc-bgTern)); }
+}
+@-o-keyframes dot {
+  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
+  25%, 100% { background: hsl(var(--twc-bgTern)); }
+}
+@keyframes dot {
+  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
+  25%, 100% { background: hsl(var(--twc-bgTern)); }
+}
+.slider > #input-slide-autoplay:checked ~ div > .slider-dot > label.slide-0{
+  -webkit-animation: dot 32000ms infinite -2000ms;
+  -moz-animation: dot 32000ms infinite -2000ms;
+  -ms-animation: dot 32000ms infinite -2000ms;
+  -o-animation: dot 32000ms infinite -2000ms;
+  animation: dot 32000ms infinite -2000ms;
+}
+.slider > #input-slide-autoplay:checked ~ div > .slider-dot > label.slide-1{
+  -webkit-animation: dot 32000ms infinite 6000ms;
+  -moz-animation: dot 32000ms infinite 6000ms;
+  -ms-animation: dot 32000ms infinite 6000ms;
+  -o-animation: dot 32000ms infinite 6000ms;
+  animation: dot 32000ms infinite 6000ms;
+}
+.slider > #input-slide-autoplay:checked ~ div > .slider-dot > label.slide-2{
+  -webkit-animation: dot 32000ms infinite 14000ms;
+  -moz-animation: dot 32000ms infinite 14000ms;
+  -ms-animation: dot 32000ms infinite 14000ms;
+  -o-animation: dot 32000ms infinite 14000ms;
+  animation: dot 32000ms infinite 14000ms;
+}
+.slider > #input-slide-autoplay:checked ~ div > .slider-dot > label.slide-3{
+  -webkit-animation: dot 32000ms infinite 22000ms;
+  -moz-animation: dot 32000ms infinite 22000ms;
+  -ms-animation: dot 32000ms infinite 22000ms;
+  -o-animation: dot 32000ms infinite 22000ms;
+  animation: dot 32000ms infinite 22000ms;
+}
+
+

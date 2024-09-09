@@ -160,8 +160,8 @@ module.exports = {
     //   // }),
     createThemes({
       light: {
-        'primary': '#e5b000',
-        'primary-2': '#daa907',
+        'primary': '#901E3C',
+        'primary-2': '#f9f7d8',
         'primary-3': '#c79f1b',
         'secondary': '#989898', //'#70d0f8',
         'secondary': '#989898', //'#70d0f8',
@@ -173,15 +173,15 @@ module.exports = {
         'warning': '#FFC43D', //'#FFC43D',
         'help': 'rgba(85,49,145,0.63)', //'#29335C',
         'danger': '#EF476F', //'#29335C',
-        'bgPrim': '#ffffff',
-        'bgSeco': '#e5e5e5',
-        'bgTern': '#d3d3d3',
+        'bgPrim': '#fffef5',
+        'bgSeco': '#fffee9',
+        'bgTern': '#ddddc3',
         // 'secondary': '#CBF7ED',
         // 'ternary': '#1D3557',
         // 'quaternary': '#1D3557',
-        'textPrimary': 'rgba(17,17,21,0.9)', //0e1a2a
-        'textSecondary': 'rgba(46,48,61,0.9)',//89919d
-        'textTertiary': 'rgba(82,87,100,0.9)',//c0c0c0
+        'textPrimary': '#901E3C', //0e1a2a
+        'textSecondary': '#72192f',//89919d
+        'textTertiary': '#66182b',//c0c0c0
         // 'nav-color': '#242b3b',
         // 'theme': '#fff',
         // 'header-color': '#404040',
@@ -190,11 +190,11 @@ module.exports = {
         // 'border-color': '#E85651',
 
         //for 3d button
-        'btn_primary_border_style': '#daa907',
-        'btn_primary_bg_front_color': '#e5b000',
+        'btn_primary_border_style': '#ac2447',
+        'btn_primary_bg_front_color': '#901E3C',
         'btn_primary_bg_shadow_color': '#D9D9D949',
-        'btn_primary_bg_back_color': '#c79f1b',
-        'btn_primary_font_color': '#fff',
+        'btn_primary_bg_back_color': '#69162d',
+        'btn_primary_font_color': '#f9f7d8',
 
         'btn_secondary_border_style': '#b4b4b4',
         'btn_secondary_bg_front_color': '#C4C4C4',

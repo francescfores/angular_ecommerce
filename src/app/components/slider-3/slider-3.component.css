@@ -42,20 +42,19 @@ input{
 /* -------------------------------------------------------- codepen */
 /* -------------------------------------------------------- slider */
 .slider{
-  @apply h-[320px] md:h-[520px]  ;
-  /*height: 520px;*/
-  margin-bottom: 40px;
-  overflow: hidden;
+  @apply h-[280px] md:h-[520px]  ;
+/*   margin-bottom: 40px;
+ */  overflow: hidden;
 }
 /* -------------------------------------------------------- slide */
 .slider > ul {
-  @apply h-[320px] md:h-[520px] flex justify-center ;
+  @apply h-[280px] md:h-[520px]  ;
   z-index: 12;
 }
 
 .slider > ul > li{
-  @apply flex h-[320px] md:h-[520px] justify-center items-center rounded;
-  width: 96%;
+  @apply h-[280px] md:h-[520px]  ;
+  width: 100%;
   position: absolute;
   opacity: 0;
   z-index: 1;
@@ -64,74 +63,49 @@ input{
   -ms-transition: all 2000ms ease;
   -o-transition: all 2000ms ease;
   transition: all 2000ms ease;
-
-  /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
+  @apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;
 }
 .slider > #input-slide-0:checked ~ ul > li.slide-0,
 .slider > #input-slide-1:checked ~ ul > li.slide-1,
 .slider > #input-slide-2:checked ~ ul > li.slide-2,
-.slider > #input-slide-3:checked ~ ul > li.slide-3,
-.slider > #input-slide-4:checked ~ ul > li.slide-4,
-.slider > #input-slide-5:checked ~ ul > li.slide-5{
+.slider > #input-slide-3:checked ~ ul > li.slide-3{
   opacity: 1;
   z-index: 2;
   /*background: #ef4444;*/
   /*height: 9900px;*/
+position: fixed!important;
 }
 
+.slider img{
+  filter: blur(1.5px) brightness(0.6) ;
+}
+.slide-0 img{
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  filter: blur(1.5px) brightness(0.6) ;
+}
+
+.slide-0 img.loaded {
+  opacity: 1;
+}
 .slider > ul > li.slide-0{
-  background:
-    linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
-    url(../../../assets/img/banners/los-mejores-cojines-para-palets.png) bottom/cover  ;
+  
   /*background: hsl(var(--twc-bgTern));*/
-  /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
 }
-
 .slider > ul > li.slide-1{
-  background:
-    linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
-  url(../../../assets/img/banners/banner_2.png) bottom/cover  ;
+  /*background: linear-gradient(207deg, rgba(195,34,67,0.8) 21%, rgba(65, 65, 65, 0.53) 66%),*/
+  /*url(https://images.hdqwalls.com/download/iron-man4k-2019-new-7i-1920x1080.jpg) top/cover;*/
   /*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*/
 }
 .slider > ul > li.slide-2{
-  background:
-    linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
-  url(../../../assets/img/banners/sofa-de-palets.jpg) bottom/cover  ;
+  /*background: linear-gradient(118deg, rgba(101,101,101,1) 21%, rgba(255,255,255,0.1) 66%),*/
+  /*url(https://cdn.marvel.com/content/1x/newcomics53122_mas_dsk.jpg) top/cover;*/
 }
+
 .slider > ul > li.slide-3{
-  background:
-    linear-gradient(180deg, hsl(var(--twc-textPrimary)/ 0.4) 30%, hsl(var(--twc-textTertiary)/ 0) 70%),
-  url(../../../assets/img/banners/cce41eec-2e51-4d70-830e-d9f0253a36d2.png) center/cover  ;
+  /*background: linear-gradient(207deg, rgba(195,34,67,0.5) 21%, rgba(255,255,255,0.08) 66%),*/
+  /*url(https://rare-gallery.com/uploads/posts/576321-marvel-wallpaper.jpg) top/cover;*/
 }
-/*@media (max-width: 766px) {*/
-/*.slider > ul > li.slide-0{*/
-/*  background:*/
-/*  url(../../../assets/img/banners/602289b0-6abe-43b1-b9fd-e3bd4ad912fd.png) top/cover  fixed;*/
-/*  !*background: hsl(var(--twc-bgTern));*!*/
-/*  !*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*!*/
-/*}*/
-/*.slider > ul > li.slide-1{*/
-/*  background:*/
-/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
-/*  !*@apply bg-gradient-to-b from-bgPrim via-bgSeco to-bgTern;*!*/
-/*}*/
-/*.slider > ul > li.slide-2{*/
-/*  background:*/
-/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
-/*}*/
-/*.slider > ul > li.slide-3{*/
-/*  background:*/
-/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
-/*}*/
-/*}*/
-/*.slider > ul > li.slide-4{*/
-/*  background: linear-gradient(90deg, hsl(var(--twc-secondary)/ 1) 40%, hsl(var(--twc-secondary)/ 0.2) 60%),*/
-/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
-/*}*/
-/*.slider > ul > li.slide-5{*/
-/*  background: linear-gradient(90deg, hsl(var(--twc-primary)/ 0) 50%, hsl(var(--twc-secondary)/ 0.9) 50%),*/
-/*  url(../../../assets/img/banners/sofa-de-palets.jpg) top/cover  fixed;*/
-/*}*/
 /* -------------------------------------------------------- arrow */
 
 /* -------------------------------------------------------- dot */
@@ -145,19 +119,350 @@ input{
   /*display: flex;*/
   /*justify-content: center;*/
   /*align-items: center;*/
-  z-index: 40;
+  z-index: 41;
   /*font-size: 0;  */
   height: 40px;
-  /*@apply absolute top-[520px] bg-bgPrim;*/
-  @apply absolute top-[320px] md:top-[520px]  ;
+  @apply absolute  top-[320px] md:top-[560px]  bg-bgPrim; 
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* claw start */
+.claw_main {
+  @apply absolute top-[0] w-full h-[500px]  z-40;
+  /*filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.27));*/
+  /*animation: claw_main 4s ease-in-out forwards;;;*/
+}
+@keyframes claw_main {
+  90%{
+    opacity: 1;
+  }
+  100% {
+    z-index: 0;
+    opacity: 0;
+    display: none;
+  }
+  }
+.claw {
+  @apply absolute text-center top-[-360px] w-[120px] right-[0px];
+  z-index: 50;
+  filter: drop-shadow(10px 10px 100px rgba(222, 255, 176, 0.16)) drop-shadow(0px 0px 10px rgb(113, 255, 159));
+  animation: slide_down 4s ease-in-out infinite;;;
+}
+@keyframes slide_down {
+  10% {
+    transform: translatey(0px) translatex(-300px) ;
+  }
+  20%{
+    /*transform: translatey(0px) translatex(100px);*/
+  }
+  30%{
+    transform: translatey(0px) translatex(-200px);
+  }
+  40%{
+    transform: translatey(0px) translatex(-250px);
+  }
+  50% {
+    transform: translatey(320px) translatex(-250px) ;
+  }
+  60% {
+    transform: translatey(340px) translatex(-250px) ;
+  }
+  70% {
+    transform: translatey(40px) translatex(-250px) ;
+  }
+  80% {
+    transform: translatey(40px) translatex(0px) ;
+  }
+  85% {
+    transform: translatey(130px) translatex(0px) ;
+  }
+  91% {
+    transform: translatey(130px) translatex(0px) ;
+  }
+  92% {
+    /*transform: translatey(130px) translatex(0px) ;*/
+  }
+  100% {
+    transform: translatey(0px) translatex(0px) ;
+  }
+}
+
+.claw_wire {
+  /*@apply absolute text-center top-[-200px] w-[5px] right-[325px] fill-textPrimary h-[265px] bg-[#53c9df] rounded-b-md;*/
+  @apply w-[3px] mx-auto fill-textPrimary top-[0px] h-[400px] bg-[#53c9df] rounded-b-md ;
+  filter: drop-shadow(10px 10px 100px rgba(222, 255, 176, 0.16)) drop-shadow(0px 0px 10px rgb(113, 255, 159));
+  /*animation: float 4s ease-in-out infinite;;;*/
+}
+
+.claw_body{
+  @apply px-5 absolute ;
+  animation: rotate 12s ease-in-out infinite;
+}
+.claw_support {
+  @apply  mt-1 w-[80%] mx-auto z-50;
+}
+
+@keyframes rotate {
+  10% {
+    transform: rotateZ(5deg) ;
+  }
+  20%{
+    /*transform: translatey(0px) translatex(100px);*/
+  }
+  30%{
+    transform: rotateZ(-5deg) ;
+  }
+  40%{
+    transform: rotateZ(5deg) ;
+  }
+  50% {
+    transform: rotateZ(15deg) ;
+  }
+  60% {
+    transform: rotateZ(0deg) ;
+  }
+  70% {
+    transform: rotateZ(5deg) ;
+  }
+  80% {
+    /*transform: translatey(20px) translatex(220px) ;*/
+  }
+  90% {
+    /*transform: translatey(0px) translatex(0px) ;*/
+  }
+  100% {
+  }
+}
+
+.claw_support_left {
+  @apply absolute w-[32%] left-[7%] ;
+  animation: claw_support_left 4s ease-in-out infinite;;;
+}
+@keyframes claw_support_left {
+  10% {
+    /*transform: translatey(0px) translatex(-300px) ;*/
+    transform: rotateZ(0deg) ;
+  }
+  20%{
+    /*transform: translatey(0px) translatex(100px);*/
+  }
+  30%{
+    /*transform: translatey(0px) translatex(-200px);*/
+  }
+  40%{
+    /*transform: translatey(0px) translatex(-250px);*/
+    transform: rotateZ(30deg) ;
+  }
+  50% {
+    /*transform: translatey(320px) translatex(-250px) ;*/
+    transform: rotateZ(20deg) ;
+  }
+  60% {
+    /*transform: translatey(290px) translatex(-250px) ;*/
+    transform: rotateZ(-20deg);
+  }
+  70% {
+    /*transform: translatey(0px) translatex(-250px) ;*/
+  }
+  80% {
+    /*transform: translatey(20px) translatex(220px) ;*/
+  }
+  90% {
+    transform: rotateZ(30deg) ;
+  }
+  100% {
+    /*transform: translatey(0px) translatex(100px) ;*/
+    transform: rotateZ(0deg) ;
+  }
+}
+.claw_support_right {
+  @apply absolute w-[32%] right-[7%] ;
+  animation: claw_support_right 4s ease-in-out infinite;;;
+}
+@keyframes claw_support_right {
+  10% {
+    /*transform: translatey(0px) translatex(-300px) ;*/
+    transform: rotateZ(0deg) ;
+  }
+  20%{
+    /*transform: translatey(0px) translatex(100px);*/
+  }
+  30%{
+    /*transform: translatey(0px) translatex(-200px);*/
+  }
+  40%{
+    /*transform: translatey(0px) translatex(-250px);*/
+    transform: rotateZ(-30deg) ;
+  }
+  50% {
+    /*transform: translatey(320px) translatex(-250px) ;*/
+    transform: rotateZ(-20deg) ;
+  }
+  60% {
+    /*transform: translatey(290px) translatex(-250px) ;*/
+    transform: rotateZ(20deg);
+  }
+  70% {
+    /*transform: translatey(0px) translatex(-250px) ;*/
+  }
+  80% {
+  }
+  90% {
+    transform: rotateZ(-30deg) ;
+    /*transform: translatey(0px) translatex(0px) ;*/
+  }
+  100% {
+    /*transform: translatey(0px) translatex(100px) ;*/
+    transform: rotateZ(0deg) ;
+  }
+}
+.claw_support_center {
+  @apply absolute mt-2 w-[14%] left-[43%] h-[160%] ;
+  /*animation: float 4s ease-in-out infinite;;;*/
+}
+
+.claw_toy{
+  @apply absolute bottom-[-20px] p-5 w-[100px]  right-[250px] ;
+  animation: claw_toy 4s ease-in-out infinite, bounceInUp 1s;
+  z-index:31;
+}
+@keyframes claw_toy {
+  0% {
+    /*opacity: 0;*/
+    @apply absolute bottom-[-20px] p-5 w-[100px]  right-[250px] ;
+
+  }
+  10% {
+    /*opacity: 0.5;*/
+    /*transform: translatey(0px) translatex(-300px) ;*/
+  }
+  20%{
+    opacity: 1;
+    /*transform: translatey(0px) translatex(100px);*/
+  }
+  30%{
+    /*transform: translatey(0px) translatex(-200px);*/
+  }
+  40%{
+    /*transform: translatey(0px) translatex(-250px);*/
+    @apply absolute bottom-[-18px] p-5 w-[100px]  right-[250px] ;
+  }
+  50% {
+    transform: rotateZ(0deg);
+    @apply absolute bottom-[-18px] p-5 w-[120px]  right-[250px] ;
+    /*transform: translatey(300px) translatex(-250px) ;*/
+  }
+  60% {
+    @apply absolute bottom-[0px] p-5 w-[120px]  right-[250px] ;
+    transform: translatey(0px) translatex(0px) rotateZ(20deg) ;
+  }
+  70% {
+    transform: translatey(-270px) rotateZ(15deg);
+  }
+  80% {
+    transform: translatey(-270px) translatex(250px) rotateZ(10deg);
+  }
+  90% {
+    transform: translatey(130px) translatex(250px) ;
+    opacity:1;
+    @apply absolute bottom-[0px] p-5 w-[120px]  right-[250px] ;
+  }
+  91% {
+    transform: translatey(130px) translatex(0px) ;
+    opacity: 0;
+  }
+  92% {
+    transform: translatey(130px) translatex(0px) ;
+    /*transform: translatey(-30px) translatex(0px) ;*/
+    opacity: 0;
+  }
+  100% {
+    transform: translatey(0px) translatex(0px) ;
+    opacity: 0;
+  }
+}
+
+.claw_toys{
+  @apply absolute bottom-0 w-[120px]  ;
+  /*animation: claw_limit 4s ease-in-out infinite;;;*/
+  z-index: 50;
+  animation: bounceInUp; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1s; /* don't forget to set a duration! */
+}
+
+.claw_limit{
+  @apply absolute bottom-[-20px] rounded-[100%] bg-gray-500/20 w-[100px] h-[14px] right-[0px];
+  animation: claw_limit 4s ease-in-out infinite;
+  /*filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.27));*/
+  z-index: 100;
+}
+@keyframes claw_limit {
+  10% {
+    @apply bottom-[-20px];
+    transform: translatey(0px) translatex(-300px) ;
+  }
+  20%{
+    /*transform: translatey(0px) translatex(100px);*/
+  }
+  30%{
+    @apply bottom-[-10px] w-[130px];
+    transform: translatey(0px) translatex(-230px);
+  }
+  40%{
+    transform: translatey(0px) translatex(-250px);
+  }
+  50% {
+    transform: translatey(0px) translatex(-230px) ;
+    @apply bottom-[0px] w-[140px];
+  }
+  60% {
+    @apply bottom-[0px] w-[140px];
+    transform: translatey(0px) translatex(-230px) ;
+  }
+  70% {
+    transform: translatey(0px) translatex(-240px) ;
+  }
+  80% {
+    @apply bottom-[-20px] w-[120px];
+    transform: translatey(0px) translatex(0px) ;
+  }
+  85% {
+    @apply bottom-[-20px] h-[10px] w-[120px];
+    transform: translatey(0px) translatex(0px) ;
+  }
+  90% {
+    @apply bottom-[-20px]  h-[0px] w-[70px];
+    transform: translatey(0px) translatex(-20px) ;
+  }
+  95.5% {
+    /*transform: translatey(0px) translatex(0px) ;*/
+    /*@apply bottom-[-20px] w-[100px] h-[10px];*/
+    @apply bottom-[-20px] h-[10px]  w-[140px] ;
+    transform: translatey(0px) translatex(0px) ;
+  }
+  100% {
+    @apply bottom-[-20px] w-[100px];
+
+    transform: translatey(0px) translatex(0px) ;
+  }
+}
+
+
+.slider_img_claw_text {
+  @apply absolute text-center top-[430px] w-[170px] right-[115px] fill-textPrimary;
+  z-index: 100;
+  filter: drop-shadow(10px 10px 100px rgb(222, 255, 176)) drop-shadow(-10px -10px 10px rgb(113, 255, 159));
+}
+
+
+/*claw end*/
 .slider_waves {
-  @apply absolute text-center top-[648px] min-w-[600px];
+  @apply absolute text-center  top-[260px] md:top-[500px]  ;
+/*   @apply absolute text-center  top-[230px] md:top-[400px] lg:top-[300px]  h-[100px] md:h-[200px] lg:h-[300px] w-[500%];
+ */
   /*position: relative;*/
   /*text-align: center;*/
   /*margin-top: -104px;*/
@@ -167,25 +472,22 @@ input{
   /*max-width: unset;*/
 }
 .slider > div  > .slider-dot > label {
-  @apply rounded bg-bgPrim/50;
   position: relative;
   display: inline-block;
   margin: 1vw 0.5vw;
-  width: 10px;
-  height: 10px;
-  border-radius: 100%;
-  /*background-color: hsl(var(--twc-bgTern));*/
+  width: 30px;
+  height: 6px;
+  border-radius: 0%;
+  background-color: hsl(var(--twc-bgTern));
 }
 .slider > #input-slide-0:checked ~ div > .slider-dot > label.slide-0,
 .slider > #input-slide-1:checked ~ div > .slider-dot > label.slide-1,
 .slider > #input-slide-2:checked ~ div > .slider-dot > label.slide-2,
-.slider > #input-slide-3:checked ~ div > .slider-dot > label.slide-3,
-.slider > #input-slide-4:checked ~ div > .slider-dot > label.slide-4,
-.slider > #input-slide-5:checked ~ div > .slider-dot > label.slide-5 {
-  @apply rounded bg-bgPrim;
+.slider > #input-slide-3:checked ~ div > .slider-dot > label.slide-3 {
+  background-color: hsl(var(--twc-primary));
 }
 .slider > div  > .slider-dot > label:hover{
-  /*background-color: hsl(var(--twc-bgSeco));*/
+  background-color: grey !important;
 }
 /* -------------------------------------------------------- description */
 /*.slider > .slide-description{*/
@@ -307,24 +609,24 @@ input{
 
 /* -------------------------------------------------------- autoplay dot */
 @-webkit-keyframes dot {
-  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
-  25%, 100% {   @apply rounded bg-bgPrim/50; }
+  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
+  25%, 100% { background: hsl(var(--twc-bgTern)); }
 }
 @-moz-keyframes dot {
-  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
-  25%, 100% {   @apply rounded bg-bgPrim/50; }
+  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
+  25%, 100% { background: hsl(var(--twc-bgTern)); }
 }
 @-ms-keyframes dot {
-  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
-  25%, 100% {   @apply rounded bg-bgPrim/50; }
+  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
+  25%, 100% { background: hsl(var(--twc-bgTern)); }
 }
 @-o-keyframes dot {
-  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
-  25%, 100% {   @apply rounded bg-bgPrim/50; }
+  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
+  25%, 100% { background: hsl(var(--twc-bgTern)); }
 }
 @keyframes dot {
-  0%, 24%	{ background-color: hsl(var(--twc-bgPrim)); }
-  25%, 100% {   @apply rounded bg-bgPrim/50; }
+  0%, 24%	{ background-color: hsl(var(--twc-primary)); }
+  25%, 100% { background: hsl(var(--twc-bgTern)); }
 }
 .slider > #input-slide-autoplay:checked ~ div > .slider-dot > label.slide-0{
   -webkit-animation: dot 32000ms infinite -2000ms;
@@ -353,5 +655,23 @@ input{
   -ms-animation: dot 32000ms infinite 22000ms;
   -o-animation: dot 32000ms infinite 22000ms;
   animation: dot 32000ms infinite 22000ms;
+}
+
+.website-divider-container-653940 {
+  overflow:hidden;
+  position: relative;
+  height: 200%;
+}
+
+.divider-img-653940
+{
+	position: absolute;
+	width:44%;
+	height: 2049px;
+	
+	transform: scale(1);
+	bottom:0px;
+	left: 0px;
+	fill: rgb(255, 255, 255)
 }
 

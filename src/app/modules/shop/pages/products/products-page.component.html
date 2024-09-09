@@ -1,7 +1,10 @@
-<div class="min-h-screen">
+<div class="min-h-screen ">
   <!-- <app-slider class="opacity-75 hover:opacity-100 "></app-slider> -->
-  <section class="overflow-hidden my-10">
-    <app-slider-blog></app-slider-blog>
+  <section class="overflow-hidden ">
+   <!--  <app-slider-blog></app-slider-blog> -->
+  </section>
+  <section class="overflow-hidden ">
+    <app-slider1></app-slider1>
   </section>
   <div [ngClass]="{ 'translate-x-0 ': filtersOpen, 'translate-x-full': !filtersOpen, 'opacity-100': filtersOpen, 'opacity-0': !filtersOpen}"
          class="top-0 right-0 h-screen
@@ -78,8 +81,60 @@
       </form>
     </div>
   </div>
-  <div class="mx-auto w-full px-2 sm:px-8 pb-60 -mb-20 pt-2 text-textPrimary">
 
+  <div class="z-40 bg-bgPrim relative mx-auto w-full px-2 sm:px-8 pb-60 -mb-20 pt-2 text-textPrimary">
+    
+    <section class="flex flex-col space-y-16 pt-20">
+      <div class="space-y-12 flex flex-col justify-center items-center w-full" *ngFor="let category of categories2;">
+        <p class="text-5xl font-bold ">{{category.name}}</p>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 w-full items-center justify-center">
+          <div class="col-span-1 " *ngFor="let product of category.products;">
+            <img  (click)="detail(product.id,product.id)"
+              *ngIf="product.type===1" src="{{product?.imgs[0]?.path}}"
+                class="rounded w-full hover:scale-105 hover:rotate-1
+                  transition-transform w-full h-96 object-cover" alt="Imagen 1">
+            <img (click)="detail(product.id,product.variations[0].id)"
+            *ngIf="product.type===2" src="{{ product.variations[0]?.imgs[0]?.path }}"
+            class="rounded w-full hover:scale-105 hover:rotate-1
+                transition-transform w-full h-96 object-cover" alt="Imagen 1">
+                <div class="flex flex-col gap-2 px-2 py-6 justify-center items-center">
+                  <h5 class="font-bold ">{{product?.price/100 | number:'1.2-2'}}€</h5>
+                  <p >
+                    {{ product?.name }}
+                  </p>
+              </div>               
+          </div>
+        </div>
+        <app-button3d  class="w-[100px] "
+                        [rounded]="'5px'" [title]="''"
+                        [type]="'btn_primary'"
+                        [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
+                        [raise]="5" [width]="'100%'">
+            <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+              <p>Show all</p>
+            </div>
+          </app-button3d>
+      </div>
+      
+    </section>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <div class="z-40 bg-bgPrim relative mx-auto w-full px-2 sm:px-8 pb-60 -mb-20 pt-2 text-textPrimary">
     <div class="py-5 w-full flex items-baseline justify-between border-b border-gray-200 h-auto flex-wrap">
       <div class="flex flex-wrap">
         <h1 *ngIf="titleFilterCat!=null" class="text-xl font-bold tracking-tight ">{{titleFilterCat}}</h1>
@@ -120,7 +175,6 @@
       </div>
 
     </div>
-
     <section>
       <div class="p-2 pt-4 grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-6">
         <form class="lg:col-span-1 hidden lg:block">
@@ -210,11 +264,11 @@
                       <img  (click)="detail(product.id,product.id)"
                             *ngIf="product.type===1" src="{{product?.imgs[0]?.path}}"
                            class="rounded w-full hover:scale-105 hover:rotate-1
-                           transition-transform w-full h-64 sm:h-80 object-cover" alt="Imagen 1">
+                           transition-transform w-full h-auto sm:h-80 object-cover" alt="Imagen 1">
                       <img (click)="detail(product.id,product.selectedVariation.id)"
                            *ngIf="product.type===2" src="{{ product.selectedVariation?.imgs[0]?.path }}"
                       class="rounded w-full hover:scale-105 hover:rotate-1
-                           transition-transform w-full h-64 sm:h-80 object-cover" alt="Imagen 1">
+                           transition-transform w-full h-auto sm:h-80 object-cover" alt="Imagen 1">
                     </div>
                   </div>
                   <div class="flex flex-col gap-2 px-2 py-6">

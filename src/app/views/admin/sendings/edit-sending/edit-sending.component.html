@@ -195,7 +195,7 @@
               <line x1="16" y1="5" x2="19" y2="8" />
             </svg>
           </div>
-          <select [(ngModel)]="status"  (change)="updateStatus($event)" class="text-sm bg-transparent  font-semibold
+          <select  [value]="status"  (change)="updateStatus($event)" class="text-sm bg-transparent  font-semibold
          py-1 px-4 border  rounded-full  w-36 focus:border-0"
                   [ngClass]="{
                   'text-amber-300 border-amber-300': status === 'pending',
@@ -211,6 +211,10 @@
             </option>
           </select>
         </div>
+        <p *ngFor="let value of statuses"
+        >
+          {{value.name}}
+      </p>
       </div>
       <div class="mt-5">
         <div class="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded text-gray-600"  >
@@ -218,6 +222,10 @@
             <div class="py-4 col-span-6">
               <h3 class="text-lg font-medium leading-6 text-gray-900">Datos de la dirección</h3>
             </div>
+            <p *ngFor="let value of statuses"
+            >
+              {{value.name}}
+          </p>
             <div class="col-span-3 ">
               <label class="block text-sm font-medium text-gray-700">name</label>
               <input [ngClass]="{ 'is-invalid': submitted && fc.name.errors }" formControlName="name" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">

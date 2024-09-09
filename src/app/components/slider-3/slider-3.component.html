@@ -1,158 +1,130 @@
-  <div #slide class='slider  '>
-    <input name="input-slider" id='input-slide-0' type="radio" class='input-slide input-slide-num' >
-    <input name="input-slider" id='input-slide-1' type="radio" class='input-slide input-slide-num' >
-    <input name="input-slider" id='input-slide-2' type="radio" class='input-slide input-slide-num' >
-    <input name="input-slider" id='input-slide-3' type="radio" class='input-slide input-slide-num' >
-    <input name="input-slider" id='input-slide-4' type="radio" class='input-slide input-slide-num' >
-    <input name="input-slider" id='input-slide-5' type="radio" class='input-slide input-slide-num' >
-    <input name="input-slider" id='input-slide-autoplay' type="radio" class='input-slide' checked>
-    <ul class=" ">
-      <li class='slide-0  '>
-        <div class="max-w-6xl mx-auto relative  lg:px-10 pb-10 pt-0 md:pt-20 text-textPrimary">
-          <div class="sticky top-[150px] w-full md:w-1/2 p-4 flex flex-col animation_div_right bg-bgPrim/70 rounded">
-<!--            <img class="w-3/4 md:w-1/3 " src="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png"-->
-<!--                 srcset="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png" alt="MSM2">-->
-          <p class="text-xl lg:text-3xl font-bold  ">¡Dale vida a tu espacio!</p>
-          <p class=" text-md md:text-xl my-6 ">
-            Descubre la versatilidad y el encanto de nuestras estructuras con palets. Transforma cualquier rincón de tu hogar con nuestros diseños únicos.</p>
-            <app-button3d class="w-full lg:w-1/2 "
-                          [rounded]="'5px'" [title]="''"
-                          [bg_front_color]="'transparent'"
-                          [bg_shadow_color]="'transparent'"
-                          [bg_back_color]="'transparent'"
-                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
-                          [border]="'2px'"
-                          [border_style]="'solid transparent var(--border)'"
-                          [width]="''" [raise]="4">
-              <div class="w-full h-full gap-3 flex flex-nowrap justify-start items-center uppercase text-textPrimary">
-                <p>ver mas </p>
-                <i class="fas fa-light fa-arrow-right  text-xs "></i>
-              </div>
-            </app-button3d>
-          </div>
-          <div>
-
-          </div>
-        </div>
-      </li>
-      <li class='slide-1 '>
-        <div class="max-w-6xl mx-auto relative  lg:px-10 pb-10 pt-0 md:pt-20 text-textPrimary ">
-          <div class="ml-auto sticky top-[150px] w-full md:w-1/2 p-4 flex flex-col animation_div_left bg-bgPrim/70 rounded">
+<div #slide class='slider  '>
+  <input name="input-slider" id='input-slide-0' type="radio" class='input-slide input-slide-num' >
+  <input name="input-slider" id='input-slide-1' type="radio" class='input-slide input-slide-num' >
+  <input name="input-slider" id='input-slide-2' type="radio" class='input-slide input-slide-num' >
+  <input name="input-slider" id='input-slide-3' type="radio" class='input-slide input-slide-num' >
+  <input name="input-slider" id='input-slide-autoplay' type="radio" class='input-slide' checked>
+  <ul class="">
+    <li class='slide-0 '>
+      <img onload="this.classList.add('loaded')" loading="lazy" class="fixed w-full h-[280px] md:h-[520px] " 
+      src="./assets/img/banners/banner_7.png" alt="">
+      <div class="  mx-auto relative h-[280px] md:h-[720px] px-4 lg:px-10 pb-10 pt-20 text-textPrimary ">
+        <div class="bg-bgPrim/80 p-4 rounded sticky top-[62px] w-3/4 md:w-1/2  
+        flex flex-col animation_div_right -translate-x-full">
+          <!--            <img class="w-3/4 md:w-1/3 " src="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png"-->
+          <!--                 srcset="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png" alt="MSM2">-->
+                    <p class="banco text-4xl lg:text-7xl font-black text_font_marvel mt-4">Gameplay Revealed</p>
+                    <p class="text-2xl font-black my-6 ">Check out the all-new gameplay for 'Marvel's Spider-Man 2', just revealed at PlayStation Showcase 2023!</p>
+                    <app-button3d  class="w-[100px] "
+                    [rounded]="'5px'" [title]="''"
+                    [type]="'btn_primary'"
+                    [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
+                    [raise]="5" [width]="'100%'">
+                      <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+                      <p>Show all</p>
+                      </div>
+                    </app-button3d>
+                    </div>
+      </div>
+    </li>
+    <li class='slide-1 '>
+      <img onload="this.classList.add('loaded')" loading="lazy" class="fixed w-full h-[280px] md:h-[520px] " 
+      src="./assets/img/banners/banner_8.jpg" alt="">
+      <div class="  mx-auto relative h-[280px] md:h-[720px] px-4 lg:px-10 pb-10 pt-20 text-textPrimary ">
+        <div class="bg-bgPrim/80 p-4 ml-auto rounded sticky top-[62px] w-3/4 md:w-1/2  
+        flex flex-col animation_div_left">
 <!--            <img class="w-3/4 md:w-1/3 "  src="https://cdn.marvel.com/content/1x/ironman_lob_log_eye_01_0.png" srcset="https://cdn.marvel.com/content/1x/ironman_lob_log_eye_01_0.png" alt="Iron Man 1">-->
-            <p class="text-xl lg:text-3xl font-bold  ">Estilo y sustentabilidad en cada pieza.</p>
-            <p class=" text-md md:text-xl my-6">
-              Convierte tu casa en un reflejo de tu estilo personal mientras contribuyes al medio ambiente.</p>
-            <app-button3d class="w-full lg:w-1/2 "
-                          [rounded]="'5px'" [title]="''"
-                          [bg_front_color]="'transparent'"
-                          [bg_shadow_color]="'transparent'"
-                          [bg_back_color]="'transparent'"
-                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
-                          [border]="'2px'"
-                          [border_style]="'solid transparent var(--border)'"
-                          [width]="''" [raise]="4">
-              <div class="w-full h-full gap-3 flex flex-nowrap justify-start items-center uppercase text-textPrimary">
-                <p>ver mas </p>
-                <i class="fas fa-light fa-arrow-right  text-xs "></i>
-              </div>
-            </app-button3d>
-
-<!--            <app-button3d class="w-full lg:w-1/2 "-->
-<!--                          [rounded]="'5px'" [title]="''"-->
-<!--                          [type]="'btn_primary'"-->
-<!--                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"-->
-<!--                          [width]="'200px'" [raise]="4">-->
-<!--              <div class="w-full h-full gap-3  flex flex-nowrap justify-center items-center uppercase">-->
-<!--                <p>ver mas </p>-->
-<!--                <i class="fas fa-light fa-arrow-right  text-xs "></i>-->
-<!--              </div>-->
-<!--            </app-button3d>-->
+        <p class="banco text-4xl lg:text-7xl font-black text_font_marvel mt-4">Gameplay Revealed</p>
+        <p class="text-2xl font-black my-6 ">Check out the all-new gameplay for 'Marvel's Spider-Man 2', just revealed at PlayStation Showcase 2023!</p>
+        <app-button3d  class="w-[100px] "
+        [rounded]="'5px'" [title]="''"
+        [type]="'btn_primary'"
+        [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
+        [raise]="5" [width]="'100%'">
+          <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+          <p>Show all</p>
           </div>
+        </app-button3d>
         </div>
-      </li>
-      <li class='slide-2 '>
-        <div class="max-w-6xl mx-auto relative  lg:px-10 pb-10 pt-0 md:pt-20 text-textPrimary">
-          <div class="sticky top-[150px] w-full md:w-1/2 p-4 flex flex-col animation_div_right bg-bgPrim/70 rounded">
-            <p class="text-xl lg:text-3xl font-bold">Innovación en diseño para tu hogar.</p>
-            <p class=" text-md md:text-xl my-6">
-              ¿Buscas muebles que se adapten a tu espacio y estilo de vida? Nuestras estructuras con palets son la solución perfecta.
-            </p>
-            <app-button3d class="w-full lg:w-1/2 "
-                          [rounded]="'5px'" [title]="''"
-                          [bg_front_color]="'transparent'"
-                          [bg_shadow_color]="'transparent'"
-                          [bg_back_color]="'transparent'"
-                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
-                          [border]="'2px'"
-                          [border_style]="'solid transparent var(--border)'"
-                          [width]="''" [raise]="4">
-              <div class="w-full h-full gap-3 flex flex-nowrap justify-start items-center uppercase text-textPrimary">
-                <p>ver mas </p>
-                <i class="fas fa-light fa-arrow-right  text-xs "></i>
-              </div>
-            </app-button3d>
+      </div>
+    </li>
+    <li class='slide-2'>
+      <img onload="this.classList.add('loaded')" loading="lazy" class="fixed w-full h-[280px] md:h-[520px] " 
+      src="./assets/img/banners/banner_6.jpeg" alt="">
+      <div class="  mx-auto relative h-[280px] md:h-[720px] px-4 lg:px-10 pb-10 pt-20 text-textPrimary ">
+        <div class="bg-bgPrim/80 p-4 rounded sticky top-[62px] w-3/4 md:w-1/2  
+        flex flex-col animation_div_right -translate-x-full">
+          <!--            <img class="w-3/4 md:w-1/3 " src="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png"-->
+          <!--                 srcset="https://cdn.marvel.com/content/1x/msm2_lob_log_eye_01_1.png" alt="MSM2">-->
+                    <p class="banco text-4xl lg:text-7xl font-black text_font_marvel mt-4">Gameplay Revealed</p>
+                    <p class="text-2xl font-black my-6 ">Check out the all-new gameplay for 'Marvel's Spider-Man 2', just revealed at PlayStation Showcase 2023!</p>
+                    <app-button3d  class="w-[100px] "
+                    [rounded]="'5px'" [title]="''"
+                    [type]="'btn_primary'"
+                    [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
+                    [raise]="5" [width]="'100%'">
+                      <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+                      <p>Show all</p>
+                      </div>
+                    </app-button3d>
+                    </div>
+      </div>
+    </li>
+    <li class='slide-3'>
+      <img onload="this.classList.add('loaded')" loading="lazy" class="fixed w-full h-[280px] md:h-[520px] " 
+      src="./assets/img/banners/banner_8.jpg" alt="">
+      <div class="  mx-auto relative h-[280px] md:h-[720px] px-4 lg:px-10 pb-10 pt-20 text-textPrimary ">
+        <div class="bg-bgPrim/80 p-4 ml-auto rounded sticky top-[62px] w-3/4 md:w-1/2  
+        flex flex-col animation_div_left">
+<!--            <img class="w-3/4 md:w-1/3 "  src="https://cdn.marvel.com/content/1x/ironman_lob_log_eye_01_0.png" srcset="https://cdn.marvel.com/content/1x/ironman_lob_log_eye_01_0.png" alt="Iron Man 1">-->
+        <p class="banco text-4xl lg:text-7xl font-black text_font_marvel mt-4">Gameplay Revealed</p>
+        <p class="text-2xl font-black my-6 ">Check out the all-new gameplay for 'Marvel's Spider-Man 2', just revealed at PlayStation Showcase 2023!</p>
+        <app-button3d  class="w-[100px] "
+        [rounded]="'5px'" [title]="''"
+        [type]="'btn_primary'"
+        [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
+        [raise]="5" [width]="'100%'">
+          <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+          <p>Show all</p>
           </div>
+        </app-button3d>
         </div>
-      </li>
-      <li class='slide-3 '>
-        <div class="max-w-6xl mx-auto relative  lg:px-10 pb-10 pt-0 md:pt-20 text-textPrimary ">
-          <div class="ml-auto sticky top-[150px] w-full md:w-1/2 p-4 flex flex-col animation_div_left bg-bgPrim/70 rounded">
-            <p class="text-xl lg:text-3xl font-bold ">
-              Creando ambientes únicos.
-            </p>
-            <p class=" text-md md:text-xl my-6">
-              Deja volar tu creatividad y transforma tu hogar en un oasis de confort y estilo con nuestras estructuras
-              de palets.
-            </p>
-            <app-button3d class="w-full lg:w-1/2 "
-                          [rounded]="'5px'" [title]="''"
-                          [bg_front_color]="'transparent'"
-                          [bg_shadow_color]="'transparent'"
-                          [bg_back_color]="'transparent'"
-                          [font_size]="'12px'" [font_body_weight]="'900'" [height]="'35px'"
-                          [border]="'2px'"
-                          [border_style]="'solid transparent var(--border)'"
-                          [width]="''" [raise]="4">
-              <div class="w-full h-full gap-3 flex flex-nowrap justify-start items-center uppercase text-textPrimary">
-                <p>ver mas </p>
-                <i class="fas fa-light fa-arrow-right  text-xs "></i>
-              </div>
-            </app-button3d>
-
-          </div>
-        </div>
-      </li>
-    </ul>
-    <div class="flex items-center justify-center">
+      </div>
+    </li>
+  </ul>
+  <div class="flex items-center justify-center">
 <!--      <img class="z-40 slider_img_claw" src="./assets/img/slider/the_claw.png" alt="">-->
-<!--      <div class="claw_main">-->
-<!--        <div class="claw">-->
-<!--          <div class="claw_wire"></div>-->
-<!--          <div class="claw_body">-->
-<!--            <img class="claw_support" src="./assets/img/slider/claw/claw_support.png" alt="">-->
-<!--            <img class="claw_support_left" src="./assets/img/slider/claw/claw_left.png" alt="">-->
-<!--            <img class="claw_support_center" src="./assets/img/slider/claw/claw_center.png" alt="">-->
-<!--            <img class="claw_support_right" src="./assets/img/slider/claw/claw_right.png" alt="">-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <img class="claw_toy" src="./assets/img/slider/claw/alien_claw.png" alt="">-->
-<!--        <img class="claw_toys right-[250px]" src="./assets/img/slider/claw/aliens_claw.png" alt="">-->
-<!--        <img class="claw_toys right-[235px]" src="./assets/img/slider/claw/aliens_claw.png" alt="">-->
-<!--        <img class="claw_toys right-[240px]" src="./assets/img/slider/claw/aliens_claw.png" alt="">-->
-<!--        <div class="claw_limit" ></div>-->
-<!--      </div>-->
+   <!--  <div class="claw_main">
+      <div class="claw">
+        <div class="claw_wire"></div>
+        <div class="claw_body">
+          <img class="claw_support" src="./assets/img/slider/claw/claw_support.png" alt="">
+          <img class="claw_support_left" src="./assets/img/slider/claw/claw_left.png" alt="">
+          <img class="claw_support_center" src="./assets/img/slider/claw/claw_center.png" alt="">
+          <img class="claw_support_right" src="./assets/img/slider/claw/claw_right.png" alt="">
+        </div>
+      </div>
+      <img class="claw_toy" src="./assets/img/slider/claw/alien_claw.png" alt="">
+      <img class="claw_toys right-[250px]" src="./assets/img/slider/claw/aliens_claw.png" alt="">
+      <img class="claw_toys right-[235px]" src="./assets/img/slider/claw/aliens_claw.png" alt="">
+      <img class="claw_toys right-[240px]" src="./assets/img/slider/claw/aliens_claw.png" alt="">
+      <div class="claw_limit" ></div>
+    </div> -->
 <!--      <img class="z-40 slider_img_claw_text animate__animated animate__shakeY animate__repeat-2 animate__delay-3s" src="./assets/img/slider/the_claw_text.png" alt="">-->
 
-<!--      <svg class=" slider_waves w-full fill-bgPrim" preserveAspectRatio="none" width="1440" height="74" viewBox="0 0 1440 74"><path d="M456.464 0.0433865C277.158 -1.70575 0 50.0141 0 50.0141V74H1440V50.0141C1440 50.0141 1320.4 31.1925 1243.09 27.0276C1099.33 19.2816 1019.08 53.1981 875.138 50.0141C710.527 46.3727 621.108 1.64949 456.464 0.0433865Z"></path></svg>-->
-      <div class=' z-40 slider-dot '>
-        <label class='slide-0' for='input-slide-0'></label>
-        <label class='slide-1' for='input-slide-1'></label>
-        <label class='slide-2' for='input-slide-2'></label>
-        <label class='slide-3' for='input-slide-3'></label>
-<!--        <label class='slide-4' for='input-slide-4'></label>-->
-<!--        <label class='slide-5' for='input-slide-5'></label>-->
-      </div>
+      <svg class=" slider_waves w-full fill-bgPrim" preserveAspectRatio="none" width="1440" height="74" viewBox="0 0 1440 74"><path d="M456.464 0.0433865C277.158 -1.70575 0 50.0141 0 50.0141V74H1440V50.0141C1440 50.0141 1320.4 31.1925 1243.09 27.0276C1099.33 19.2816 1019.08 53.1981 875.138 50.0141C710.527 46.3727 621.108 1.64949 456.464 0.0433865Z"></path></svg>
+      
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" class="slider_waves w-full fill-bgPrim" viewBox="0 0 1080 128" preserveAspectRatio="none">
+      <path d="m 1024.529,65.89499 c -9.8872,-1.55814 -1.9409,13.54792 -10.9274,10.92718 -8.0028,-7.17477 13.3667,-37.50122 -4.2928,-40.97692 -19.59313,-1.37976 2.7561,30.76667 -11.31776,40.97692 -8.27874,1.37977 -6.86514,-13.7906 -14.29772,-13.26872 -9.10661,-0.82785 -9.5672,12.60251 -15.91424,12.05062 -7.72683,0.27594 -3.18093,-9.41351 -8.42414,-9.96542 -5.26314,0.35109 -2.77107,10.2691 -6.63449,8.06147 -12.86721,-16.94603 17.65572,-62.783815 -7.02474,-67.514358 -27.83024,-0.498989 6.75086,57.687718 -10.92739,67.514358 -7.95663,-0.57772 0.33144,-11.82199 -5.46368,-12.09794 -5.79513,0 0.93068,9.10981 -6.24422,11.31743 -7.72683,0 -0.40594,-13.79232 -7.02475,-14.82975 -8.83066,1.10382 3.32778,13.38303 -9.36634,13.65898 -14.62859,-3.84534 4.40854,-25.91159 -13.52531,-26.92769 -12.97,4.96715 2.36596,20.39951 -10.32811,24.26285 -31.73517,3.03549 6.08396,-42.825386 -19.85611,-48.068494 -28.97559,3.311442 8.57909,50.240264 -14.04948,56.587184 -14.07387,-1.93167 -3.15322,-16.45773 -11.70792,-17.56154 -8.27874,0 2.12922,17.39989 -7.80526,17.9518 -9.10662,0 -0.67772,-12.48821 -7.02476,-12.48821 -6.62298,1.10381 4.93328,20.61139 -9.36632,16.39077 -14.24939,-5.32056 11.59023,-46.2251 -10.5371,-48.78205 -20.1385,3.54985 2.55158,46.52367 -8.30817,47.15001 -11.93695,0.86869 3.88824,-21.88933 -11.09746,-22.19921 -13.07582,4.61259 3.78729,27.013763 -8.49825,27.544023 -7.78525,-1.79656 0.59064,-21.698043 -6.24422,-24.396363 -9.88713,-1.55815 -1.9409,13.54792 -10.92737,10.92718 -8.00279,-7.17478 13.36667,-37.50123 -4.29291,-40.97692 -19.59301,-1.37977 2.75621,30.76666 -11.31764,40.97692 -8.27875,1.37976 -6.86514,-13.7906 -14.29771,-13.26872 -9.10662,-0.82786 -9.56721,12.6025 -15.91425,12.05061 -7.72683,0.27594 -3.18094,-9.4135 -8.42414,-9.96541 -5.26314,0.35109 -2.77108,10.26909 -6.63449,8.06146 C 683.64514,52.07101 714.16807,6.233227 689.48761,1.502685 661.65736,1.003696 696.23848,59.1904 678.56022,69.01704 c -7.95663,-0.57772 0.33144,-11.82199 -5.46368,-12.09794 -5.79512,0 0.93069,9.10981 -6.24422,11.31743 -7.72682,0 -0.40593,-13.79232 -7.02475,-14.82974 -8.83066,1.10381 3.32777,13.38303 -9.36633,13.65898 -14.62859,-3.84535 4.40853,-25.91161 -13.5253,-26.9277 -12.97001,4.96716 2.36594,20.39951 -10.32811,24.26286 -28.42369,6.89882 4.15223,-43.101343 -19.85611,-48.068501 -28.14772,-0.27595 4.4397,40.030011 -14.04949,56.587181 -17.38536,-1.93167 -3.15321,-16.45773 -11.70791,-17.56153 -8.27875,0 2.12922,17.39988 -7.80527,17.95179 -9.10662,0 -0.67772,-12.48821 -7.02475,-12.48821 -6.62299,1.10381 5.81137,11.14767 -9.36632,16.39077 -20.97279,1.37977 9.65851,-46.22509 -10.53717,-48.782047 -22.62209,1.066267 2.55164,46.523677 -8.3081,47.150007 -11.93696,0.86868 3.88819,-21.88933 -11.09743,-22.1992 -13.07589,4.61258 3.7873,31.08855 -8.49833,31.61881 -12.28553,-0.53026 4.57758,-27.00623 -8.49824,-31.61881 -14.98572,0.30987 0.83948,23.06788 -11.09747,22.1992 -10.85973,-0.62633 13.48609,-44.42802 -8.30815,-47.150007 -24.05905,3.384807 5.1925,49.885857 -10.53712,48.782047 -15.17769,-5.2431 -2.74333,-15.28696 -9.36632,-16.39077 -6.34703,0 2.08187,12.48821 -7.02475,12.48821 -9.93449,-0.55191 0.47347,-17.95179 -7.80528,-17.95179 -8.55469,1.1038 5.67746,15.62986 -11.7079,17.56153 -18.48919,-16.55717 14.09823,-56.863131 -14.0495,-56.587181 -24.00835,4.967158 8.56759,54.967321 -19.8561,48.068501 -12.69406,-3.86335 2.6419,-19.2957 -10.32811,-24.26286 -17.93384,1.01609 1.10327,23.08235 -13.52532,26.9277 -12.6941,-0.27595 -0.53566,-12.55517 -9.36632,-13.65898 -6.6188,1.03742 0.70208,14.82974 -7.02474,14.82974 -7.17491,-2.20762 -0.4491,-11.31743 -6.24423,-11.31743 -5.79512,0.27595 2.49294,11.52022 -5.46369,12.09794 -17.67824,-9.82664 16.90287,-68.013344 -10.92737,-67.514355 -24.68047,4.730542 5.84246,50.568325 -7.02476,67.514355 -3.86341,2.20763 -1.37135,-7.71037 -6.63448,-8.06146 -5.2432,0.55191 -0.69731,10.24135 -8.42414,9.96541 -6.34705,0.55189 -6.80763,-12.87847 -15.91424,-12.05061 -7.43257,-0.52188 -6.01897,14.64848 -14.29772,13.26872 -14.07385,-10.21026 8.27538,-42.35669 -11.31764,-40.97692 -17.65959,3.47569 3.70988,33.80214 -4.2929,40.97692 -8.98648,2.62074 -1.04023,-12.48533 -10.92739,-10.92718 -6.83485,2.69832 1.54104,21.99152 -6.24421,23.78808 -12.28554,-0.53026 4.57758,-22.32315 -8.49825,-26.93574 -14.98571,0.30988 0.83948,23.0679 -11.09746,22.19921 -10.85974,-0.62634 11.83033,-43.60017 -8.30815,-47.15002 -22.12735,2.55696 3.71227,43.4615 -10.53712,48.78206 -14.2996,4.22062 -2.74333,-15.28696 -9.36632,-16.39077 -6.34704,0 2.08187,12.48821 -7.02476,12.48821 -9.93448,-0.55191 0.47347,-17.9518 -7.80527,-17.9518 -8.55469,1.10381 2.36596,15.62987 -11.7079,17.56154 -22.62856,-6.34692 14.9261,-53.275742 -14.0495,-56.587184 -25.94006,5.243108 11.87907,51.103984 -19.8561,48.068494 -12.69406,-3.86334 2.6419,-19.2957 -10.32811,-24.26285 -17.93384,1.01609 1.10327,23.08235 -13.52532,26.92769 -12.69411,-0.27595 -0.53566,-12.55516 -9.36632,-13.65898 -6.61881,1.03743 0.70208,14.82975 -7.02475,14.82975 -7.1749,-2.20762 -0.4491,-11.31743 -6.24422,-11.31743 -5.79512,0.27595 2.49294,11.52022 -5.46369,12.09794 C 84.267382,63.87348 118.84849,5.686773 91.018241,6.185762 66.337783,10.916305 96.860712,56.75409 83.993495,73.70012 c -3.863413,2.20763 -1.37135,-7.71038 -6.634487,-8.06147 -5.243205,0.55191 -0.697314,10.24136 -8.42414,9.96542 C 62.587826,76.15596 62.127241,62.7256 53.020623,63.55345 45.588055,63.03157 47.001657,78.20194 38.722912,76.82217 24.649053,66.61192 46.99828,34.46549 27.405261,35.84525 9.7456831,39.32095 31.115147,69.6474 23.112366,76.82217 14.125887,79.44291 22.07213,64.33685 12.184984,65.89499 5.350123,68.59331 13.726017,83.20343 5.9407662,85 c 0,0 -1.5742431,0.578545 -5.44123335,-1.76927 v 45.26974 H 1079.5004 V 70.18782 c -6.6229,1.10381 4.8915,11.14766 -10.2862,16.39077 -20.9728,1.37976 9.6585,-46.2251 -10.5372,-48.78205 -22.622,1.06628 2.5517,46.52367 -8.3081,47.15 -11.9369,0.86871 3.8882,-21.88933 -11.0974,-22.19919 -13.0759,4.61258 1.7157,23.483252 -8.4983,22.25265 -7.7852,-1.79657 0.5906,-16.40669 -6.2442,-19.10501 z"></path>
+    </svg>  -->  
+      
+    <div class='slider-dot '>
+      <label class='slide-0' for='input-slide-0'></label>
+      <label class='slide-1' for='input-slide-1'></label>
+      <label class='slide-2' for='input-slide-2'></label>
+      <label class='slide-3' for='input-slide-3'></label>
     </div>
-
   </div>
+
+</div>
 

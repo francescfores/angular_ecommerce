@@ -14,18 +14,19 @@ import {DefaultNavbarComponent} from "./navbars/default-navbar/default-navbar.co
 import {IndexNavbarComponent} from "./navbars/index-navbar/index-navbar.component";
 import { Sidebar2Component } from './sidebars/sidebar2/sidebar2.component';
 import {FormsModule} from "@angular/forms";
-import {SidebarComponent} from "./sidebars/sidebar/sidebar.component";
+import {SidebarComponent} from "./sidebars/sidebar/sidebar.component"; 
 import { SidebarV2Component } from './sidebars/sidebar-v2/sidebar-v2.component';
 import {MenuComponent} from "./sidebars/sidebar/menu/menu.component";
 import {SubmenuComponent} from "./sidebars/sidebar/submenu/submenu.component";
 import {Button3dComponent} from "./buttons/button3d/button3d.component";
 import { SliderGalleryComponent } from './sliders/slider-gallery/slider-gallery.component';
-import {Slider4Component} from "./slider-4/slider-4.component";
 import {MapExampleComponent} from "./maps/map-example/map-example.component";
+import { Slider1Component } from './sliders/slider1/slider1.component';
+import { Slider2Component } from './sliders/slider2/slider2.component';
 
 @NgModule({
-    declarations: [
-        FooterComponent,
+    declarations: [ 
+        FooterComponent, 
         EcommerceNavbarComponent,
         DefaultNavbarComponent,
         IndexNavbarComponent,
@@ -35,7 +36,6 @@ import {MapExampleComponent} from "./maps/map-example/map-example.component";
         GooglePlacesComponent,
         ProductListComponent,
         Slider3Component,
-        Slider4Component,
         Sidebar2Component,
         SidebarComponent,
         SidebarV2Component,
@@ -43,13 +43,15 @@ import {MapExampleComponent} from "./maps/map-example/map-example.component";
         SubmenuComponent,
         Button3dComponent,
         SliderGalleryComponent,
-        MapExampleComponent
+        MapExampleComponent,
+        Slider1Component,
+        Slider2Component
     ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
-  ],
+  ], 
     exports: [
         FooterComponent,
         EcommerceNavbarComponent,
@@ -59,12 +61,12 @@ import {MapExampleComponent} from "./maps/map-example/map-example.component";
         AlertComponent,
         GooglePlacesComponent,
         Slider3Component,
-        Slider4Component,
         Sidebar2Component,
         SidebarComponent,
         SliderGalleryComponent,
         Button3dComponent,
-        MapExampleComponent
+        MapExampleComponent,
+        Slider1Component
     ]
 })
 export class ComponentsModule { }

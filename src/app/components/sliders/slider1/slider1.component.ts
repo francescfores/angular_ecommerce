@@ -1,13 +1,11 @@
 import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 
 @Component({
-  selector: 'app-slider-4',
-  templateUrl: './slider-4.component.html',
-  styleUrls: ['./slider-4.component.css']
+  selector: 'app-slider1',
+  templateUrl: './slider1.component.html',
+  styleUrls: ['./slider1.component.css']
 })
-
-
-export class Slider4Component implements OnInit, AfterViewInit{
+export class Slider1Component implements OnInit, AfterViewInit{
   @ViewChild('slide') slide!: ElementRef<HTMLElement>;
   intervalId: any;
   constructor(
@@ -60,10 +58,10 @@ export class Slider4Component implements OnInit, AfterViewInit{
       var label3 = slide3.querySelector('.animation_div_left') as HTMLElement;
 
       if(opacity<1 ){
-        label.classList.remove('animate__animated','animate__slideInDown')
+        label.classList.remove('animate__animated','animate__slideInLeft')
       }
       if(opacity>0.1){
-        label.classList.add('animate__animated','animate__slideInDown')
+        label.classList.add('animate__animated','animate__slideInLeft')
       }
       if(opacity1<1 ){
         label1.classList.remove('animate__animated','animate__slideInRight')
