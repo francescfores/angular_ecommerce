@@ -228,7 +228,7 @@ module.exports = {
 
       },
       dark: {
-        'primary': '#3ff168',
+        'primary': '#70ff93',
         'primary-2': '#43d565',
         'primary-3': '#35a14e',
         'secondary': '#989898', //'#70d0f8',
@@ -240,9 +240,9 @@ module.exports = {
         'warning': '#FFC43D99', //'#FFC43D',
         'help': '#55319199', //'#29335C',
         'danger': '#EF476F99', //'#29335C',
-        'bgPrim': '#080917', ////0F1C2E //rgb(36, 28, 81) rgb(36, 28, 81) rgb(28, 20, 69)
-        'bgSeco': '#121432',//0A131F
-        'bgTern': '#181b39',//1e314b #474954
+        'bgPrim': '#181b39', ////0F1C2E //rgb(36, 28, 81) rgb(36, 28, 81) rgb(28, 20, 69)
+        'bgSeco': '#10132e',//0A131F
+        'bgTern': '#080917',//1e314b #474954
         // 'secondary': '#CBF7ED',
         // 'ternary': '#1D3557',
         // 'quaternary': '#1D3557',
@@ -258,23 +258,23 @@ module.exports = {
         'link-color': '#41FF6CCA',
         // 'border-color': '#E85651',
 
-        'btn_primary_border_style': '#daa907',
-        'btn_primary_bg_front_color': '#e5b000',
+        'btn_primary_border_style': '#ac2447',
+        'btn_primary_bg_front_color': '#901E3C',
         'btn_primary_bg_shadow_color': '#D9D9D949',
-        'btn_primary_bg_back_color': '#c79f1b',
-        'btn_primary_font_color': '#fff',
+        'btn_primary_bg_back_color': '#69162d',
+        'btn_primary_font_color': '#f9f7d8',
 
-        'btn_secondary_border_style': '#b3e5e1',
-        'btn_secondary_bg_front_color': '#FAFAFA',
+        'btn_secondary_border_style': '#b4b4b4',
+        'btn_secondary_bg_front_color': '#C4C4C4',
         'btn_secondary_bg_shadow_color': '#D9D9D949',
-        'btn_secondary_bg_back_color': '#349890',
-        'btn_secondary_font_color': '#1A4C48',
+        'btn_secondary_bg_back_color': '#8a8a8a',
+        'btn_secondary_font_color': '#505050',
 
-        'btn_ternary_border_style': '#69b5e0',
-        'btn_ternary_bg_front_color': '#AAD3EA',
+        'btn_ternary_border_style': '#9ab789',
+        'btn_ternary_bg_front_color': '#c0e0ae',
         'btn_ternary_bg_shadow_color': '#D9D9D949',
-        'btn_ternary_bg_back_color': '#57A9D4',
-        'btn_ternary_font_color': '#2875A0',
+        'btn_ternary_bg_back_color': '#819a73',
+        'btn_ternary_font_color': '#5a6b52',
 
         'btn_anchor_border_style': 'transparent',
         'btn_anchor_bg_front_color': 'transparent',

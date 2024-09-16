@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit {
           for (const cat of this.categories) {
             console.log(cat)
               this.menuItems.push( new MenuItem(cat.name, '',
-                '/'+cat.name,'', 'pt-1 text-textPrimary text-2xl font-extralight',false, null));
+                '/'+cat.name,'', 'text-textPrimary text-4xl font-semibold',false, null));
             console.log(this.menuItems)
 
             for (const subcat of cat.subcategories) {
@@ -35,7 +35,7 @@ export class MenuComponent implements OnInit {
                 item.children=[];
               }
               item.children.push(new MenuItem(subcat.name, 'fas fa-light fa-users',
-                '/'+subcat.name,'', 'pt-1',false, null))
+                '/'+subcat.name,'', 'pt-0',false, null))
 
               for (const supercat of subcat.supercategories) {
                 console.log(supercat)
@@ -44,7 +44,7 @@ export class MenuComponent implements OnInit {
                   item2.children=[];
                 }
                 item2.children.push(new MenuItem(supercat.name, 'fas fa-light fa-users',
-                  '/'+supercat.name,'', 'pt-1',false, null))
+                  '/'+supercat.name,'', 'pt-0',false, null))
 
               }
             }
@@ -63,9 +63,9 @@ export class MenuComponent implements OnInit {
     this.getCategories();
 
     this.menuItems=[
-      new MenuItem('Home', 'fas fa-light fa-users','/home','', 'pt-1',false, null),
-      new MenuItem('Contacto', 'fas fa-light fa-users','/contact','', 'pt-1',false, null),
-      new MenuItem('Productos', 'fas fa-light fa-users','/products','', 'pt-1',false, null),
+      new MenuItem('Home', 'fas fa-light fa-users','/home','', 'font-bold text-4xl',false, null),
+      new MenuItem('Contacto', 'fas fa-light fa-users','/contact','', 'pt-0',false, null),
+      new MenuItem('Productos', 'fas fa-light fa-users','/products','', 'pt-0',false, null),
 
       // new MenuItem('Dashboard', 'fas fa-light fa-chart-pie','/admin/dashboard','Admin Layouts','pt-2 border-t border-dashed border-bgTern',false,[
       //   new MenuItem('Dashboard', null,'/admin/dashboard','Base','pt-0',false,null),

@@ -1,10 +1,11 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';@Component({
-  selector: 'app-slider2',
-  templateUrl: './slider2.component.html',
-  styleUrls: ['./slider2.component.css'],
-  
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+
+@Component({
+  selector: 'app-home4',
+  templateUrl: './home4.component.html',
+  styleUrls: ['./home4.component.css']
 })
-export class Slider2Component implements AfterViewInit {
+export class Home4Component implements AfterViewInit {
   
   @ViewChild('mySwiper') swiperEl!: ElementRef;
   intervalId: any;
@@ -23,7 +24,7 @@ export class Slider2Component implements AfterViewInit {
           translate: ["0", 0, 0],
         },
         next: {
-          translate: ["100%", 0, 0],
+          translate: [0, "100%", 0],
         },
       },
     });

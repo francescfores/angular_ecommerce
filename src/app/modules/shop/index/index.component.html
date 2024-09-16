@@ -3,7 +3,8 @@
      class="transition-colors duration-500  landing_page1 bg-bgPrim">
      <app-default-navbar
      [transparent]="false"
-   ></app-default-navbar>  <div [ngClass]="{'theme-light': !isDarkEnable, 'theme-dark': isDarkEnable }"
+   ></app-default-navbar> 
+    <div [ngClass]="{'theme-light': !isDarkEnable, 'theme-dark': isDarkEnable }"
        class="relative ">
     <!--<app-admin-navbar></app-admin-navbar>
     <app-header-stats></app-header-stats>
@@ -13,8 +14,8 @@
       <app-sidebar class="bg-bgPrim"></app-sidebar>
 
       <!-- Main -->
-      <!--      <div class="flex-grow py-16 bg-[conic-gradient(at_bottom_right,_var(&#45;&#45;tw-gradient-stops))] from-bgPrim via-bgTern to-bgPrim duration-500 transition-all ease-in-out"-->
-      <div class="mt-12 flex-grow bg-bgPrim  duration-500 transition-all ease-in-out ">
+      <!-- mt-12       <div class="flex-grow py-16 bg-[conic-gradient(at_bottom_right,_var(&#45;&#45;tw-gradient-stops))] from-bgPrim via-bgTern to-bgPrim duration-500 transition-all ease-in-out"-->
+      <div class="mt-12  flex-grow bg-bgPrim  duration-500 transition-all ease-in-out ">
         <router-outlet></router-outlet>
       </div>
       <app-footer

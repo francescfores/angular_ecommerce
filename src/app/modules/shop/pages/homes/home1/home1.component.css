@@ -1,0 +1,90 @@
+html {
+    box-sizing: border-box;
+    background: black;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang TC", "Heiti TC", 微軟正黑體, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  .nav-dots {
+    position: fixed;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .nav-dot {
+    width: 12px;
+    height: 12px;
+    border: 2px solid #52616a;
+    border-radius: 50%;
+    list-style: none;
+    background: #c9d6de;
+    transition: all 0.3s;
+  
+    &:not(:last-of-type) {
+      margin-bottom: 20px;
+    }
+  
+    &:hover,
+    &.is-active {
+      transform: scale(1.8);
+      background: transparent;
+    }
+  }
+  
+  .section {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    z-index: 1;
+    position: relative;
+
+    
+    &:nth-of-type(1) {
+      height: 100vh;  
+      background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+      background-image: url("https://images.unsplash.com/photo-1558985040-ed4d5029dd50?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NjIzODkxNjg&ixlib=rb-1.2.1&q=80"); 
+      background-color: #a5d296;
+    }
+
+    &:nth-of-type(2) {
+      height: 100vh;  
+      background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://images.unsplash.com/photo-1610128114197-485d933885c5?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NjIzOTA2Nzc&ixlib=rb-1.2.1&q=80");      background-color: #a5d296;
+    }
+
+    &:nth-of-type(4) {
+      height: 100vh;
+      background-color: #ffc952;
+    }
+  
+    &:nth-of-type(3) {
+      height: 100vh;
+      background-color: #ff7473;
+    }
+  }
+  
+  .section__heading {
+    margin: 0;
+    color: white;
+    font-size: 32px;
+    text-transform: capitalize;
+  }
+  
+

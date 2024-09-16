@@ -15,7 +15,7 @@
 
 .swiper-container {
   /*width: 80%;*/
-  height: 40vh;
+ /*  height: 40vh; */
   /*float: left;*/
   transition: opacity 0.6s ease, transform 0.3s ease;
 }

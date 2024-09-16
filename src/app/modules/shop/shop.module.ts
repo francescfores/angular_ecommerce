@@ -18,6 +18,11 @@ import { AddressComponent } from './pages/cart/address/address.component';
 import {IndexComponent} from './index/index.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { Home1Component } from './pages/homes/home1/home1.component';
+import { Home2Component } from './pages/homes/home2/home2.component';
+import { Home3Component } from './pages/homes/home3/home3.component';
+import { Home4Component } from './pages/homes/home4/home4.component';
+import { Home5Component } from './pages/homes/home5/home5.component';
 
 
 @NgModule({
@@ -31,18 +36,22 @@ import { ContactComponent } from './pages/contact/contact.component';
     AddressComponent,
     HomeComponent,
     ContactComponent,
+    Home2Component,
+    Home3Component,
+    Home4Component,
+    Home5Component,
   ],
     imports: [
         CommonModule,
         ShopRoutingModule,
         ComponentsModule,
         NgxPayPalModule,
-        StripeCardComponent,
+    StripeCardComponent,
         ReactiveFormsModule,
         NgxStripeModule.forRoot('pk_test_51MdcD9G72AP1pY3usq8Eun6PO8buzaLm1nHdbu7KjxOQ6ms4Qxy3faW7BN8rhX8oBVFgS9dv3Lq12wLZHjGvXTLN00twOfb7EK'),
         FormsModule,
     ],
-  exports: [IndexComponent],
+  exports: [IndexComponent  ],
   providers: [ProductService
   ]
 })

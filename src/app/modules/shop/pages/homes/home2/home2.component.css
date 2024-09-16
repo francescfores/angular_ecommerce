@@ -1,0 +1,15 @@
+.full-page-section {
+    height: 100vh; /* La sección ocupa toda la pantalla */
+    position: relative;
+    background-color: #f0f0f0; /* Fondo opcional */
+    display: flex;
+    align-items: center;
+    justify-items: start;
+  }
+    .circle {
+    width: 250px;
+    height: 250px;
+    background-color: red;
+    border-radius: 50%;
+    transition: transform 1s linear; /* Transición suave */
+  }

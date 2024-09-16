@@ -66,7 +66,8 @@ import { Slider2Component } from './sliders/slider2/slider2.component';
         SliderGalleryComponent,
         Button3dComponent,
         MapExampleComponent,
-        Slider1Component
+        Slider1Component,
+        Slider2Component
     ]
 })
 export class ComponentsModule { }

@@ -1,0 +1,103 @@
+html {
+  scroll-behavior: smooth;
+}
+.brands.move {
+    animation: slide 15s linear infinite;
+}
+
+/* Definimos los keyframes para la animación */
+@keyframes slide {
+  from {
+    transform: translateX(0); /* Posición inicial */
+  }
+  to {
+    transform: translateX(-200%); /* Posición final */
+  }
+}
+
+.framer-zxpwxw {
+  background: radial-gradient(50% 50% at 50% 50%,#0048ff 35.75978322072072%,rgba(171,171,171,0) 100%);
+  border-radius: 8px;
+  flex: none;
+  height: 664px;
+  left: calc(50.00000000000002% - 90% / 2);
+  opacity: .8;
+  overflow: hidden;
+  position: absolute;
+  top: calc(45.72538860103629% - 664px / 2);
+  width: 90%;
+  will-change: var(--framer-will-change-override, transform);
+  z-index: -1;
+}
+
+.mask{
+  mask: radial-gradient(73% 50% at 32.5% 50%,rgba(0, 0, 0, 0) 64.56925675675676%,#000000f3 93.16230292792793%) add;
+}
+.section3_animation .div3{
+  mask: linear-gradient(0deg,rgba(0, 0, 0, 0.37) 30%,rgba(0, 0, 0, 0.884) 70%) add;
+}
+/* 
+.framer-u4feO .framer-ah6xu5 {
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  height: 100%;
+  justify-content: center;
+  left: calc(50.00000000000002% - 100% / 2);
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.framer-u4feO .framer-lixmbq, .framer-u4feO .framer-bwuns3 {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 10px;
+  height: min-content;
+  justify-content: center;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+  width: 394px;
+}
+
+.ssr-variant {
+  display: contents;
+} */
+/* 
+.framer-u4feO .framer-t02vse, .framer-u4feO .framer-14ogxfn {
+  aspect-ratio: .5956112852664577 / 1;
+  border-radius: 8px;
+  cursor: pointer;
+  flex: none;
+  height: var(--framer-aspect-ratio-supported, 319px);
+  opacity: .6;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+  will-change: var(--framer-will-change-override, transform);
+  z-index: 1;
+} */
+
+.section4_animation div{
+  @apply flex;
+}
+
+.section4_animation a{
+  @apply  w-full;
+}
+.section4_animation img{
+  @apply rounded w-full;
+}
