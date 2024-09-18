@@ -91,14 +91,14 @@ export class Home5Component implements AfterViewInit {
      }
    }
    animationDiv2() {
-    const visibilityPercentage = 0.1; // 50% de visibilidad
+    const visibilityPercentage = 0.5; // 50% de visibilidad
     const targetDivRect = this.section2.getBoundingClientRect();
     const targetDivHeight = targetDivRect.height;
     const targetDivWidth = targetDivRect.width; // Añadimos la anchura del targetDiv
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
     const circleHeight = this.circle2.offsetHeight; // Cambiar a offsetHeight para el círculo
-    const speed = -0.3;
+    const speed = -0.25;
   
     // Calcular la altura visible requerida
     const requiredVisibilityHeight = targetDivHeight * visibilityPercentage;
@@ -113,9 +113,9 @@ export class Home5Component implements AfterViewInit {
       // Calcular la posición Y proporcional al ancho del targetDiv
       const positionY = proportionY * (viewportHeight - circleHeight) * speed;
       // Aplicar el movimiento en el eje Y
-      this.renderer.setStyle(this.section2_div, 'transform', `translateY(${positionY}px)`);
-      this.renderer.setStyle(this.section2_div2, 'transform', `translateY(${positionY*0.5}px)`);
-      this.renderer.setStyle(this.section2_div3, 'transform', `translateY(${positionY}px)`);
+      this.renderer.setStyle(this.section2_div, 'transform', `translateY(${positionY*1.5}px)`);
+      this.renderer.setStyle(this.section2_div2, 'transform', `translateY(${(positionY)}px)`);
+      this.renderer.setStyle(this.section2_div3, 'transform', `translateY(${positionY*1.5}px)`);
     } else {
       // Mover el círculo fuera del viewport si no es visible
     }
@@ -127,7 +127,7 @@ export class Home5Component implements AfterViewInit {
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
     const circleWidth = this.section3_div1.offsetWidth;
-    const speed = 0.4;
+    const speed = 0.3;
   
     // Calcular la altura visible requerida
     const requiredVisibilityHeight = targetDivHeight * visibilityPercentage;
