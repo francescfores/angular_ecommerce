@@ -180,7 +180,7 @@ export class Home5Component implements AfterViewInit {
       const scaleValue = Math.max(0, 2 - proportionY ); // Escala de 2 a 0
 /*       const scaleValue = Math.max(0, 2 - proportionY * 2); // Escala de 2 a 0
  */      // Aplicar el movimiento y la escala
-      this.renderer.setStyle(this.section4_div1, 'transform', `translateY(${positionY*2}px) scale(${scaleValue})`);
+      this.renderer.setStyle(this.section4_div1, 'transform', `translateY(${0}px) scale(${scaleValue})`);
     } else {
       // Si no está visible, resetear la posición y la escala (si es necesario)
       this.renderer.setStyle(this.section4_div1, 'transform', `translateY(0px) scale(2)`);
