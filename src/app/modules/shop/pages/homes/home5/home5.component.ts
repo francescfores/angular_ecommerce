@@ -32,6 +32,10 @@ export class Home5Component implements AfterViewInit {
   section5:HTMLElement;
   section5_div1:HTMLElement;
 
+  section6:HTMLElement;
+  section6_div1:HTMLElement;
+  section6_div2:HTMLElement;
+
 
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 
@@ -70,6 +74,11 @@ export class Home5Component implements AfterViewInit {
 
     this.section5 = this.el.nativeElement.querySelector('.section5');
     this.section5_div1 = this.el.nativeElement.querySelector('.section5 .div1');
+
+
+    this.section6 = this.el.nativeElement.querySelector('.section6');
+    this.section6_div1 = this.el.nativeElement.querySelector('.section6 .div1');
+    this.section6_div2 = this.el.nativeElement.querySelector('.section6 .div2');
 
     this.animationDiv()
     
@@ -136,6 +145,7 @@ export class Home5Component implements AfterViewInit {
     this.animationDiv3()
     this.animationDiv4()
     this.animationDiv5()
+    this.animationDiv6()
     this.animationTest1()
     this.animationTest2()
 
@@ -296,7 +306,28 @@ export class Home5Component implements AfterViewInit {
  }
     
   }
+  animationDiv6() {
+    const visibilityPercentage = -0.1; // 50% de visibilidad
+    const targetDivRect = this.section6.getBoundingClientRect();
+    const targetDivHeight = targetDivRect.height;
+    const viewportHeight = window.innerHeight;
+    const speed = 0.001;
+  
+    // Calcular la altura visible requerida
+    const requiredVisibilityHeight = targetDivHeight * visibilityPercentage;
+    // Verificar visibilidad del targetDiv (dentro del viewport)
+    const isVisible = targetDivRect.top < (viewportHeight - requiredVisibilityHeight) 
+    && targetDivRect.bottom > requiredVisibilityHeight;
+          // Calcular la distancia visible
 
+    if (isVisible) {
+     
+        this.renderer.setStyle(this.section6_div1, 'opacity', `${targetDivRect.bottom*speed}`);
+      } else {
+/*         this.renderer.setStyle(this.section6_div1, 'opacity', `${1}`);
+ */     }
+    
+  }
    animationTest1() {
     const visibilityPercentage = 0.50; // 50% de visibilidad
     const targetDivRect = this.targetDiv.getBoundingClientRect();
