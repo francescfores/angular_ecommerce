@@ -1,16 +1,28 @@
-<main class="relative bg-black text-white flex justify-center items-center w-full flex-col z-0 overflow-hidden">
-   <section class="section6 flex flex-col h-[100vh] w-full gap-20 overflow-hidden relative animate-fade-in-left animate-delay-200 animate-duration-1000">
-      <div class="max-w-screen-2xl mt-auto w-full md:w-1/2 p-4 md:p-20 flex flex-col flex-nowrap gap-10  ">
-         <p class="text-7xl font-bold animate-slide-in-bottom animate-delay-300 animate-duration-600">More than a website  builder</p>
-            <p class="animate-slide-in-bottom animate-delay-400 animate-duration-600" >With Webflow’s visual-first platform, marketers, designers, and devs alike can create, optimize, and scale web experiences that get results — all backed by enterprise-grade hosting and security.</p>
-            <a class="w-min p-1 px-4 bg-primary font-semibold rounded  animate-slide-in-bottom animate-delay-500 animate-duration-600">
+<main class="relative bg-bgPrim text-white flex justify-center items-center w-full flex-col z-0 overflow-hidden">
+   <section class="section6 flex flex-col h-[100vh] w-full gap-20 overflow-hidden relative ">
+      <div class="z-10 max-w-screen-2xl mt-auto w-full md:w-1/2 p-4 md:p-20 flex flex-col flex-nowrap gap-10  ">
+         <p class="text-6xl md:text-7xl font-semibold animate-fade-in-up animate-delay-300 animate-duration-600">More than a website  builder</p>
+            <p class="animate-fade-in-up animate-delay-400 animate-duration-600" >With Webflow’s visual-first platform, marketers, designers, and devs alike can create, optimize, and scale web experiences that get results — all backed by enterprise-grade hosting and security.</p>
+            <!-- <a class="w-min p-1 px-4 bg-primary font-semibold rounded  animate-slide-in-bottom animate-delay-500 animate-duration-600">
                <p>Business</p>
-               </a>
+               </a> -->
+               <app-button3d  class="w-[100px] "
+                        [border]="'2px'"
+                        [rounded]="'10px'" [title]="''"
+                        [type]="'btn_primary'"
+                        [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
+                        [raise]="4" [width]="'100%'">
+            <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+              <p>Business</p>
+            </div>
+          </app-button3d>
         </div>
-         <div class="framer-1ph24t6 " data-framer-appear-id="1ph24t6" data-framer-name="Video Desktop" 
+         <div class="framer-1ph24t6 h-[400px] md:h-inherit" data-framer-appear-id="1ph24t6" data-framer-name="Video Desktop" 
          name="Video Desktop" >
             <div class="framer-1e85zkz-container">
-               <video loop="true" autoplay="true" style="cursor:auto;width:100%;height:100%;border-radius:0px;display:block;object-fit:cover;background-color:rgba(0, 0, 0, 0);object-position:50% 50%">
+               <video loop="true" autoplay="true"
+                style="cursor:auto;width:100%;height:100%;border-radius:0px;
+                display:block;object-fit:cover;background-color:rgba(0, 0, 0, 0);object-position:50% 50%">
                   <source type="video/webm" 
                src="https://framerusercontent.com/assets/2xzmrDT6kHCEyePneiicGOLssgk.webm"></video>
 
@@ -44,16 +56,16 @@
       </div>
     </section>
   
-    <section class="max-w-screen-2xl p-4 md:p-20 section_animate_video overflow-hidden animate-fade-in-up animate-delay-200 animate-duration-600">
+    <section class="hidden max-w-screen-2xl px-4 py-20 md:p-20 section_animate_video overflow-hidden animate-fade-in-up animate-delay-200 animate-duration-600">
         <div class=" w-full flex justify-center items-start" style="transform-style: preserve-3d;  perspective: 50vh;">
             <div class="video-alt_1-gradient"></div>
             <video class="video1 h-fit overflow-hidden " style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg); transform-style: preserve-3d;" autoplay="true" muted="" loop="" title="Webflow Designer" poster="https://cdn.prod.website-files.com/669e85bc7c10a1b210e2fcd6/66abf8b62e53dbfa5fc2e5a0_hero-video-optimized.avif" playsinline="true" data-hero-video="1" ><source type="video/webm" src="https://dhygzobemt712.cloudfront.net/Web/home/2024-hero_experiment-august/hero_video-optimized.webm"></video>
         </div>
     </section>
     
-    <section class="fade-in-up max-w-screen-2xl p-4 md:p-20 pb-0 w-full flex  justify-center items-center  gap-8 flex-col text-center">
+    <section class="fade-in-up max-w-screen-2xl px-4 pt-20 md:px-20 pb-0 w-full flex  justify-center items-center  gap-8 flex-col text-center">
       <div class="w-full flex flex-col gap-8 items-center">
-         <p class="text-3xl md:text-7xl font-bold">Creative power that goes beyond templates</p>
+         <p class="text-3xl md:text-7xl font-semibold">Creative power that goes beyond templates</p>
         </div>
         <div class="w-full flex flex-col gap-8 w-1/2 items-center">
             <p>Design beautiful responsive sites with an intuitive interface.</p>
@@ -62,7 +74,7 @@
     </section>
     <section class="max-w-screen-2xl p-4 md:p-20 pb-0 w-full flex relative  section2_animation animate-fade-in-up animate-delay-200 animate-duration-600">
         <div class="flex relative w-full justify-center items-start">
-            <div class="w-2/6 div1  -mr-20 mt-10   z-20  ">
+            <div class="opacity-0 md:opacity-100 w-2/6 div1  -mr-20 mt-10   z-20  ">
                 <img class="w-full test border border-textPrimary/70  rounded " src="./assets/img/home5/Captura desde 2024-09-12 17-19-43.png" alt="">
             </div> 
             <div class="div2 w-full relative">
@@ -70,16 +82,16 @@
                <div data-framer-name="Glow" class="glow2  z-0   relative"></div>
                <img class="  test2 framer-zxpwxw2 border border-textPrimary/70  rounded z-10 relative" src="./assets/img/home5/Captura desde 2024-09-12 17-17-44.png" alt="">
             </div>
-            <div class="w-2/6 div3 -ml-20  mt-10 z-20  ">
+            <div class="opacity-0 md:opacity-100 w-2/6 div3 -ml-20  mt-10 z-20  ">
                 <img class="w-full test border border-textPrimary/70  rounded " src="./assets/img/home5/Captura desde 2024-09-12 17-19-28.png" alt="">
             </div>
-            <div class="flex w-full absolute  z-20 pb-10 bottom-0 space-x-10 text-md gap-2 lg:gap-20">
+            <div class="flex w-full absolute text-center z-20 pb-10  md:pb-10 bottom-0 space-x-10 text-md gap-2 lg:gap-20">
                <p>
-                 <b>Design. </b>Launch in one click. Your site goes live with lightning-fast speed and is already SEO optimized to start ranking on search engines.</p>
-               <p class="hidden md:flex">
+                  <b>Design. </b>Launch in one click. Your site goes live with lightning-fast speed and is already SEO optimized to start ranking on search engines.</p>
+                  <p class="hidden md:block">
                   <b>Publish. </b>Design on a familiar free-form canvas. Use stacks, grids, breakpoints for responsiveness, and effects to bring your website to life.
                </p>
-               <p class="hidden md:flex">
+               <p class="hidden md:block">
                   <b>Scale. </b>Easily grow your site with a built-in CMS, AI-powered localization, and maintenance tools, designed to handle projects of any size.
                </p>
             </div>
@@ -88,21 +100,21 @@
     </section>
     <section class="max-w-screen-2xl p-4 md:p-20 w-full flex relative    flex-col justify-end items-center
      section3_animation  overflow-x-hidden gap-4">
-        <div class=" absolute mask w-full  h-full flex bg-black  z-10">
+        <div class=" absolute mask w-full  h-full flex bg-bgPrim z-10">
            <!--  <div class="h-[25%] border border-blue-300 w-full"></div>
         <div class="h-[25%] border border-blue-300 w-full"></div>
         <div class="h-[25%] border border-blue-300 w-full"></div>
         <div class="h-[25%] border border-blue-300 w-full"></div> -->
         </div>
-       <div class="w-full flex h-full   justify-end">
-         <div class="w-6/12  text-start  flex flex-col gap-2 z-50 justify-center items-start">
+       <div class="w-full flex flex-col md:flex-row h-full   justify-end">
+         <div class="w-full md:w-6/12  flex flex-col gap-2 z-50   text-center md:text-start justify-center items-center md:items-start  ">
             <p class="font-bold text-md mb-5" style=" background: linear-gradient(rgb(0, 195, 255), rgb(23, 82, 247));
             -webkit-background-clip: text;
                     background-clip: text;
             -webkit-text-fill-color: transparent;">Tempaltes</p>   
             <p class="font-semibold text-3xl">Design in minutes, publish sites in seconds.</p>
             <p class="hidden md:flex" >Turn your ideas into a real website quickly. Select from thousands of free and premium website templates and customize them as you see fit.</p>
-            <div class="flex flex-wrap gap-2 mt-6">
+            <div class="flex flex-wrap gap-2 mt-6 justify-center md:justify-start ">
                <a class=" p-1 rounded border border-textPrimary/80">
                   <p>Business</p>
                   </a>
@@ -120,24 +132,24 @@
                               </a>
            </div>
            </div>
-        <div class="w-6/12  gap-4  flex flex-col mt-auto mask2">
-         <div class="ml-24 w-full div1  gap-4  flex h-[132px] ">
+        <div class="hidden md:flex md:w-6/12  gap-4 md:flex-col mt-auto mask2 ">
+         <div class="ml-24 div1  gap-4  flex h-[132px] md:h-[264px]">
             <img class="border border-textPrimary/70 max-w-none rounded  h-full  w-[180px] md:w-[400px]" src="https://framerusercontent.com/images/VVGI8Q3kWsiPUjgrDMrsW2zdgDw.png" alt="Framer template">
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"  src="https://framerusercontent.com/images/skHEusBDUUbPZr9t8U4nta4a9mE.png" alt="Framer template" >
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"   src="https://framerusercontent.com/images/Z5DT6too0gzqqE7EPHcNXDQym30.png" alt="Framer template" >
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]" src="https://framerusercontent.com/images/8MCGPagnE5ASvd2v5wHOnEp8.png" alt="Framer template" >
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"  src="https://framerusercontent.com/images/1TkbzJGLWuBG0Jh1iXMwYmPR8s.png" alt="Framer template" >
         </div>  
-        <div class="w-full div2 gap-4  flex  h-[132px] ">
+        <div class="div2 gap-4  flex  h-[132px] md:h-[264px]">
          <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]" src="https://framerusercontent.com/images/S10cE3cMfkzY0QhXwlaebckvw7Y.png" alt="Framer template">
          <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"  src="https://framerusercontent.com/images/skHEusBDUUbPZr9t8U4nta4a9mE.png" alt="Framer template" >
          <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"   src="https://framerusercontent.com/images/Z5DT6too0gzqqE7EPHcNXDQym30.png" alt="Framer template" >
          <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]" src="https://framerusercontent.com/images/8MCGPagnE5ASvd2v5wHOnEp8.png" alt="Framer template" >
          <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"  src="https://framerusercontent.com/images/1TkbzJGLWuBG0Jh1iXMwYmPR8s.png" alt="Framer template" >
-     </div>   
+         </div>   
         </div>        
        </div>
-        <div class="div3 gap-4 flex h-[132px] md:h-[264px] place-content- content-">
+        <div class="w-full div3 gap-4 flex h-[132px] md:h-[264px] ">
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]" src="https://framerusercontent.com/images/VVGI8Q3kWsiPUjgrDMrsW2zdgDw.png" alt="Framer template">
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"  src="https://framerusercontent.com/images/skHEusBDUUbPZr9t8U4nta4a9mE.png" alt="Framer template" >
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"   src="https://framerusercontent.com/images/iSraaY9qtxUhm7zXUOVN5TVazY.png" alt="Framer template" >
@@ -146,11 +158,11 @@
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"  src="https://framerusercontent.com/images/SzzHQt7zAmLntg7Zozn3HRcM.png" alt="Framer template" >
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"  src="https://framerusercontent.com/images/1TkbzJGLWuBG0Jh1iXMwYmPR8s.png" alt="Framer template" >
         </div>
-        <div class="div4 gap-4 flex h-[132px] place-content- content-">
+        <div class="w-full test div4 gap-4 flex  h-[132px] md:h-[264px] ">
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]" src="https://framerusercontent.com/images/VVGI8Q3kWsiPUjgrDMrsW2zdgDw.png" alt="Framer template">
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]" src="https://framerusercontent.com/images/VVGI8Q3kWsiPUjgrDMrsW2zdgDw.png" alt="Framer template">
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"  src="https://framerusercontent.com/images/skHEusBDUUbPZr9t8U4nta4a9mE.png" alt="Framer template" >
-            <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"   src="https://framerusercontent.com/images/Z5DT6too0gzqqE7EPHcNXDQym30.png" alt="Framer template" >
+            <img class="border border-textPrimary/70 max-w-none rounded  h-full  w-[180px] md:w-[400px]" src="https://framerusercontent.com/images/VVGI8Q3kWsiPUjgrDMrsW2zdgDw.png" alt="Framer template">
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]" src="https://framerusercontent.com/images/8MCGPagnE5ASvd2v5wHOnEp8.png" alt="Framer template" >
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"  src="https://framerusercontent.com/images/1TkbzJGLWuBG0Jh1iXMwYmPR8s.png" alt="Framer template" >
             <img class="border border-textPrimary/70 max-w-none rounded  h-full w-[180px] md:w-[400px]"  src="https://framerusercontent.com/images/1TkbzJGLWuBG0Jh1iXMwYmPR8s.png" alt="Framer template" >
@@ -167,15 +179,18 @@
        <p>Framer is packed with powerful features, making it easy <br> to grow and expand your website to fit your needs.</p>
       </div>
    </section>
-    <section class="animate-fade-in animate-delay-200 animate-duration-600 py-20 h-screen overflow-x-hidden overflow-y-hidden section4_animation relative w-full h-full flex flex-col justify-center items-center gap-4">
+    <section class="animate-fade-in animate-delay-200 animate-duration-600 
+    py-20 h-screen overflow-x-hidden overflow-y-hidden section4_animation relative w-full h-[80vh] md:h-[150vh] flex 
+    flex-col justify-center items-center gap-4">
       <div class="div_back fixed w-full h-full flex-col justify-center items-center absolute -mt-20 text-center ">
-         <p class="text-white text-7xl font-semibold z-50">Made in framer</p>
+         <p class="text-white text-6xl md:text-7xl font-semibold z-50">Made in framer</p>
       <!-- <div class="h-[25%] border border-blue-300 w-full"></div>
       <div class="h-[25%] border border-blue-300 w-full"></div>
       <div class="h-[25%] border border-blue-300 w-full"></div>
       <div class="h-[25%] border border-blue-300 w-full"></div> -->
      </div>  
-      <div style="transform-origin: top" class="test div1 space-x-2  w-full overflow-x-hidden overflow-y-hidden" data-framer-name="Sites" name="Sites" >
+      <div style="transform-origin: top" class="test div1 
+      space-x-2  w-full overflow-x-hidden overflow-y-hidden" data-framer-name="Sites" name="Sites" >
             <div class="flex flex-col space-y-2 w-full" data-framer-name="Far Left" name="Far Left">
                <!--$-->
                <div class="ssr-variant hidden-1u310t9">
@@ -245,11 +260,11 @@
                   </a>
                </div>
                <!--/$--><!--$-->
-               <div class="ssr-variant hidden-1u310t9">
+              <!--  <div class="ssr-variant hidden-1u310t9">
                   <a class="framer-1r8jn64 framer-1tnasrg" data-framer-name="Pinnacle" name="Pinnacle" href="https://www.framer.com/gallery/pinnacledesignlabcom?utm_source=google&amp;utm_medium=adwords&amp;utm_campaign=Brand-Search-Framer-M-Aug2024-PUBLISH_Standard&amp;gad_source=1&amp;gclid=CjwKCAjwooq3BhB3EiwAYqYoEg9Eq_thS-CrYCsh0dv9Vh6IbBMBdEx31jJOfFdCMbk6c595cJpAbxoCMW4QAvD_BwE" target="_blank">
                      <div data-framer-background-image-wrapper="true"><img decoding="async" sizes="190px" srcset="https://framerusercontent.com/images/u7gDRpyYxq0YZ6n3JhtztUocfM.png 776w" src="https://framerusercontent.com/images/u7gDRpyYxq0YZ6n3JhtztUocfM.png" alt="Pinnacle website" style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center top;object-fit:cover;image-rendering:auto"></div>
                   </a>
-               </div>
+               </div> -->
                <!--/$-->
             </div>
             <div class="flex flex-col space-y-2 w-full" data-framer-name="Left" name="Left">
@@ -356,11 +371,11 @@
                   </a>
                </div>
                <!--/$--><!--$-->
-               <div class="ssr-variant hidden-1u310t9">
+               <!-- <div class="ssr-variant hidden-1u310t9">
                   <a class="framer-29glqk framer-1tnasrg" data-framer-name="Packaly" name="Packaly" href="https://www.framer.com/gallery/packalycom?utm_source=google&amp;utm_medium=adwords&amp;utm_campaign=Brand-Search-Framer-M-Aug2024-PUBLISH_Standard&amp;gad_source=1&amp;gclid=CjwKCAjwooq3BhB3EiwAYqYoEg9Eq_thS-CrYCsh0dv9Vh6IbBMBdEx31jJOfFdCMbk6c595cJpAbxoCMW4QAvD_BwE" target="_blank">
                      <div data-framer-background-image-wrapper="true"><img decoding="async" sizes="190px" srcset="https://framerusercontent.com/images/u6oRpHzLdLtmVtorht8rCe08lU.png?scale-down-to=1024 528w,https://framerusercontent.com/images/u6oRpHzLdLtmVtorht8rCe08lU.png 778w" src="https://framerusercontent.com/images/u6oRpHzLdLtmVtorht8rCe08lU.png" alt="Packaly website" style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center;object-fit:cover;image-rendering:auto"></div>
                   </a>
-               </div>
+               </div> -->
                <!--/$-->
             </div>
             <div class="flex flex-col space-y-2 w-full" data-framer-name="Far Right" name="Far Right">
@@ -389,6 +404,11 @@
                         <img decoding="async" sizes="393px" srcset="https://framerusercontent.com/images/2DMpiopmV0LHrnxk0GVgYpL3g.png?scale-down-to=1024 576w,https://framerusercontent.com/images/2DMpiopmV0LHrnxk0GVgYpL3g.png?scale-down-to=2048 1152w,https://framerusercontent.com/images/2DMpiopmV0LHrnxk0GVgYpL3g.png 1200w" src="https://framerusercontent.com/images/2DMpiopmV0LHrnxk0GVgYpL3g.png" alt="Page Break website" style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center;object-fit:cover;image-rendering:auto"></div>
                   </a>
                </div>
+               <div class="ssr-variant hidden-1u310t9">
+                  <a class="framer-1r8jn64 framer-1tnasrg" data-framer-name="Pinnacle" name="Pinnacle" href="https://www.framer.com/gallery/pinnacledesignlabcom?utm_source=google&amp;utm_medium=adwords&amp;utm_campaign=Brand-Search-Framer-M-Aug2024-PUBLISH_Standard&amp;gad_source=1&amp;gclid=CjwKCAjwooq3BhB3EiwAYqYoEg9Eq_thS-CrYCsh0dv9Vh6IbBMBdEx31jJOfFdCMbk6c595cJpAbxoCMW4QAvD_BwE" target="_blank">
+                     <div data-framer-background-image-wrapper="true"><img decoding="async" sizes="190px" srcset="https://framerusercontent.com/images/u7gDRpyYxq0YZ6n3JhtztUocfM.png 776w" src="https://framerusercontent.com/images/u7gDRpyYxq0YZ6n3JhtztUocfM.png" alt="Pinnacle website" style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center top;object-fit:cover;image-rendering:auto"></div>
+                  </a>
+               </div>
                <!--/$-->
             </div>
          </div>
@@ -404,9 +424,9 @@
        <p class="text-white/70" >Browse the Framer academy, blog, and community <br> to get you started with Framer.</p>
       </div>
    </section>
-   <section class="max-w-screen-2xl flex flex-col md:flex-row gap-4 w-full p-4 md:p-20 group  overflow-visible">
+   <section class="max-w-screen-2xl flex flex-col sm:flex-row gap-4 w-full p-4 md:p-20 group  overflow-visible">
       <div class="relative flex w-full text-white rounded text-center rounded flex flex-col 
-      border border-neutral-500/70 h-[230px] md:h-[530px] w-[450px] overflow-hidden">
+      border border-neutral-500/70 h-[50vh] md:h-[530px] w-[450px] overflow-hidden">
          <div class="absolute flex flex-col justify-end h-full p-2 md:p-10  z-20 text-start">
                <p class="text-2xl font-bold mb-4">
                   Academy
@@ -423,7 +443,7 @@
          ></video>
        </div>
       <div class="relative flex w-full text-white rounded text-center rounded flex flex-col 
-      border border-neutral-500/70 h-[230px] md:h-[530px] w-[450px] overflow-hidden " >
+      border border-neutral-500/70 h-[50vh] md:h-[530px] w-[450px] overflow-hidden " >
         <div class="absolute flex flex-col justify-end h-full p-2 md:p-10  z-20 text-start">
               <p class="text-2xl font-bold mb-4">
                  Academy
@@ -437,7 +457,7 @@
         <img class="test video-background " src="https://framerusercontent.com/images/JBauPF6ULpBVSUDMw6MpRqMF2PU.png" alt="Framer websites" >
       </div>
       <div class="relative flex w-full text-white rounded text-center rounded flex flex-col 
-      border border-neutral-500/70 h-[230px] md:h-[530px] w-[450px] overflow-hidden " >
+      border border-neutral-500/70 h-[50vh] md:h-[530px] w-[450px] overflow-hidden " >
         <div class="absolute flex flex-col justify-end h-full p-2 md:p-10  z-20 text-start">
               <p class="text-2xl font-bold mb-4">
                  Academy
@@ -532,7 +552,7 @@
       </div>
     </div>
     <div class="item flex-none h-[250px] md:h-[500px] w-[200px] md:w-[400px]  
-   text-white rounded p-10 w-80 text-center shadow-[0_0_25px_rgba(0,255,255,0.0)]
+    text-white rounded p-10 w-80 text-center shadow-[0_0_25px_rgba(0,255,255,0.0)]
     rounded flex flex-col border border-green-500  
     hover:bg-green-500 hover:shadow-green-500  hover:text-bgPrim" >
       <div class="flex flex-col justify-between h-full items-start ">
@@ -553,9 +573,9 @@
       </div>
     </div>
     <div class="item flex-none h-[250px] md:h-[500px] w-[200px] md:w-[400px]  
-   text-white rounded p-10 w-80 text-center shadow-[0_0_25px_rgba(0,255,255,0.0)]
-    rounded flex flex-col border border-red-500  
-    hover:bg-red-500 hover:shadow-red-500  hover:text-bgPrim" >
+    text-white rounded p-10 w-80 text-center shadow-[0_0_25px_rgba(0,255,255,0.0)]
+    rounded flex flex-col border border-purple-500  
+    hover:bg-purple-500 hover:shadow-purple-500  hover:text-bgPrim" >
       <div class="flex flex-col justify-between h-full items-start ">
          <svg viewBox="0 0 125 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g fill="currentColor">
@@ -598,17 +618,38 @@
 </section>
     
 
-   <section class="max-w-screen-2xl gap-10 p-4 py-20 w-full flex  justify-center items-center framer-glb1nx" >
-    <div class="flex w-2/6 h-full gap-8 flex-col text-left">
-      <div class="w-full flex ">
-          <p class="md:text-5xl font-bold">Design smarter, publish faster.</p>
-      </div>
-      <div class="hidden md:flex w-full flex flex-col gap-8 items-center">
-          <p>Get started with Framer’s website builder today. For seamless site migration and tailored support, explore enterprise.</p>
-      </div>
-   </div>
-   <div class="flex w-4/6 h-full relative">
-      <img style="  z-index: 2;mask: radial-gradient(105% 97% at 0% 0%,#000000 42.85789695945946%,rgba(0,0,0,0) 100%) add;"
+   <section class="max-w-screen-2xl gap-10 px-4 md:px-20 pt-20 pb-52 w-full flex flex-col lg:flex-row  justify-center items-center framer-glb1nx" >
+      <div class="z-10 max-w-screen-2xl mt-auto w-full lg:w-1/2  flex flex-col flex-nowrap gap-10  ">
+         <p class="text-6xl md:text-7xl font-semibold animate-slide-in-bottom animate-delay-300 animate-duration-600">More than a website  builder</p>
+            <p class="animate-slide-in-bottom animate-delay-400 animate-duration-600" >With Webflow’s visual-first platform, marketers, designers, and devs alike can create, optimize, and scale web experiences that get results — all backed by enterprise-grade hosting and security.</p>
+            <!-- <a class="w-min p-1 px-4 bg-primary font-semibold rounded  animate-slide-in-bottom animate-delay-500 animate-duration-600">
+               <p>Business</p>
+               </a> -->
+               <div class="flex w-full gap-2">
+                  <app-button3d  class="w-[100px] "
+                        [border]="'2px'"
+                        [rounded]="'10px'" [title]="''"
+                        [type]="'btn_primary'"
+                        [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
+                        [raise]="4" [width]="'100%'">
+            <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+              <p>Business</p>
+            </div>
+          </app-button3d>
+          <app-button3d  class="w-[100px] "
+                        [border]="'2px'"
+                        [rounded]="'10px'" [title]="''"
+                        [type]="'btn_anchor'"
+                        [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
+                        [raise]="4" [width]="'100%'">
+            <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+              <p>Business</p>
+            </div>
+          </app-button3d>
+               </div>
+        </div>
+   <div class="flex w-full lg:w-4/6 h-full relative">
+      <img style="  z-index: 2;mask:radial-gradient(150% 110% at 0% 0%,#000 42.85789695945946%,rgba(0,0,0,0) 100%) add;"
       class=" w-full h-full test border border-textPrimary/70  rounded " src="./assets/img/home5/Captura desde 2024-09-19 19-13-56.png" alt="">
    </div>
     <div class="framer-746qzd" data-framer-name="Glow" name="Glow"></div>

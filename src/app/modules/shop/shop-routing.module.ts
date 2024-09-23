@@ -14,6 +14,7 @@ import {Home2Component} from './pages/homes/home2/home2.component';
 import {Home3Component} from './pages/homes/home3/home3.component';
 import {Home4Component} from './pages/homes/home4/home4.component';
 import {Home5Component} from './pages/homes/home5/home5.component';
+import {Home6Component} from './pages/homes/home6/home6.component';
 import {ContactComponent} from './pages/contact/contact.component';
 
 const routes: Routes = [
@@ -56,6 +57,11 @@ const routes: Routes = [
         path: 'home5',
         
         component: Home5Component
+      },
+      {
+        path: 'home6',
+        
+        component: Home6Component
       },
       {
         path: 'products',

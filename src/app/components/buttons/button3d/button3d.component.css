@@ -1,3 +1,30 @@
+.h-screen{
+  height:90vh;
+}
+.mt-auto{
+  margin-top:auto;
+}
+.justify-center {
+  justify-content: center;
+}
+.items-center {
+  align-items: center;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex{
+  display : flex;
+}
+.opacity-0{
+  opacity:0;
+}
+.hidden{
+  display:none;
+}
 
 button {
   all: unset;
@@ -13,10 +40,10 @@ button {
   --height: 100px;
   --width:100px;
   --raise: 0px;
-  --rounded: var(--rounded-sm);
+  --rounded: 2px;
   --rotate: 0;
   --rotate_invers: 0;/* 1 * - 1*/
-  --border:4px;
+  --border:1px;
   --border_style:solid #004c65 var(--border);
   --bg_front_color: #AAD3EA;
   --bg_front_color_hover: rgba(170, 211, 234, 0.08);
@@ -45,7 +72,7 @@ button {
 }
 .btn_shadow:before {
   content:" ";
-  position:absolute;  top:0;
+  position:absolute;  top:0; left:0;
 
   height: var(--height);
   margin-top: calc(var(--raise) + (var(--raise)/1.2));
@@ -53,15 +80,14 @@ button {
   background: var(--bg_shadow_color);
   border-radius: var(--rounded);
   transition:transform 0.2s ease-out;
-  /*border: var(--border) solid transparent;*/
+  border: var(--border) solid transparent;
 }
 .btn_shadow .btn_back{
   width:var(--width);
 }
 .btn_shadow .btn_back:before{
   content:" ";
-  position: absolute;  top:0;
-
+  position:absolute;  top:0; left:0;
   height: var(--height);
   margin-top: var(--raise);
   width:var(--width);
@@ -69,6 +95,7 @@ button {
   background: var(--bg_back_color);
   border-radius:var(--rounded);
   transition:transform 0.1s ease-out;
+  border: var(--border) solid transparent;
 }
 .btn_shadow .btn_front{
   position: absolute;
@@ -76,7 +103,7 @@ button {
   width:var(--width);
   top:0;
   background: var(--bg_front_color);
-  /*display: flex;*/
+  display: flex;
   align-items: center;
   justify-content: center;
   border-radius:var(--rounded);
@@ -103,7 +130,7 @@ button {
 }
 
 .btn_shadow_default:hover:before{
-  transform: translateY(-5px);
+  transform: translateY(calc((var(--raise)/2) * -1 ));
 }
 .btn_shadow_default:active:before{
   transform: translateY(calc((var(--raise)/1.2) * -1 ));
@@ -390,5 +417,33 @@ button {
 @keyframes wave-back {
   100% {
     transform: translate(-50%, 0);
+  }
+}
+
+/* ripple for buttons*/
+.mdc-line-ripple{
+  display: none;
+
+}
+.ripple-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.42);
+  transform: scale(0);
+  animation: rippleEffect 0.7s;
+  overflow: hidden;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(2);
+    opacity: 0;
   }
 }

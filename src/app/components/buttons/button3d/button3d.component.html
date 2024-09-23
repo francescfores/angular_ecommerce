@@ -1,15 +1,13 @@
-<button #btn class="btn btn_shadow btn_loading flex-nowrap overflow-x-hidden {{type}}"
-     (click)="handleButtonClick($event)"
-     >
+
+<button #btn class="flex justify-center btn btn_shadow btn_loading flex-nowrap overflow-x-hidden {{type}}" (click)="handleButtonClick($event)">
   <div class="btn_back">
-    <div class="btn_front" [ngClass]="{
+    <div class="btn_front" [ngClass]="
+    {
     'cursor-not-allowed ': loading,
     'ripple-button': ripple
-  }">
-        <ng-content></ng-content>
-
+    }">
+      <ng-content></ng-content>
       <div *ngIf="loading_type!==''" class="btn_loading_wrapp opacity-0 ">
-
         <div *ngIf="loading_type=='waves'" class="bubble ">
           <div id="water" class="water">
             <svg viewBox="0 0 560 40" class="water_wave water_wave_back">
@@ -25,7 +23,6 @@
         <p class="txt_loading">{{title_loading}}</p>
         <p class="txt_loaded hidden">{{title_loading_success}}</p>
       </div>
-
       <p *ngIf="title!==''">{{title}}</p>
     </div>
   </div>

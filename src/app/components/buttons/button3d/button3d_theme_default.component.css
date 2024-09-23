@@ -23,9 +23,9 @@
   --font_color: hsl(var(--twc-btn_ternary_font_color));
 }
 .btn_anchor{
-  --border_style:solid transparent var(--border);
+  --border_style:solid hsl(var(--twc-btn_anchor_border_style)) var(--border);
   --bg_front_color:transparent;/**/
-  --bg_shadow_color: transparent;
+  --bg_shadow_color: rgba(217, 217, 217, 0);
   --bg_back_color: transparent;
   --font_color: hsl(var(--twc-btn_anchor_font_color));
 }

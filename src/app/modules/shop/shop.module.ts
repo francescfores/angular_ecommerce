@@ -23,6 +23,7 @@ import { Home2Component } from './pages/homes/home2/home2.component';
 import { Home3Component } from './pages/homes/home3/home3.component';
 import { Home4Component } from './pages/homes/home4/home4.component';
 import { Home5Component } from './pages/homes/home5/home5.component';
+import { Home6Component } from './pages/homes/home6/home6.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { Home5Component } from './pages/homes/home5/home5.component';
     Home3Component,
     Home4Component,
     Home5Component,
+    Home6Component,
   ],
     imports: [
         CommonModule,

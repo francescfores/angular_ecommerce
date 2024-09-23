@@ -85,7 +85,7 @@ export class Button3dComponent implements OnInit{
             setTimeout(function() {
               childElement.classList.add('opacity-0');
               childElement.classList.remove('flex','btn_loading_slideInLeft');
-            }, 600);
+            }, 6000);
             myButton.style.pointerEvents = "auto";
 
           }else {

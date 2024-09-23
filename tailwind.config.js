@@ -178,9 +178,9 @@ module.exports = {
         // 'secondary': '#CBF7ED',
         // 'ternary': '#1D3557',
         // 'quaternary': '#1D3557',
-        'textPrimary': '#901E3C', //0e1a2a
-        'textSecondary': '#72192f',//89919d
-        'textTertiary': '#66182b',//c0c0c0
+        'textPrimary': '#0c0c0c', //0e1a2a
+        'textSecondary': '#111111',//89919d
+        'textTertiary': '#222222',//c0c0c0
         // 'nav-color': '#242b3b',
         // 'theme': '#fff',
         // 'header-color': '#404040',
@@ -227,10 +227,10 @@ module.exports = {
 
       },
       dark: {
-        'primary': '#70ff93',
-        'primary-2': '#43d565',
+        'primary': '#3cb4ff',
+        'primary-2': '#3ca4ff',
         'primary-3': '#35a14e',
-        'secondary': '#989898', //'#70d0f8',
+        'secondary': '#ffb43c', //'#70d0f8',
         'secondary-2': '#C4C4C4', //'#70d0f8',
         'secondary-3': '#d9d9d9', //'#70d0f8',
         'ternary': '#92c200', ///29335C99 //17BEBBE4 29335C99
@@ -239,15 +239,15 @@ module.exports = {
         'warning': '#FFC43D99', //'#FFC43D',
         'help': '#55319199', //'#29335C',
         'danger': '#EF476F99', //'#29335C',
-        'bgPrim': '#181b39', ////0F1C2E //rgb(36, 28, 81) rgb(36, 28, 81) rgb(28, 20, 69)
-        'bgSeco': '#10132e',//0A131F
-        'bgTern': '#080917',//1e314b #474954
+        'bgPrim': '#0c0c0c', ////0F1C2E //rgb(36, 28, 81) rgb(36, 28, 81) rgb(28, 20, 69)
+        'bgSeco': '#111111',//0A131F
+        'bgTern': '#222222',//1e314b #474954
         // 'secondary': '#CBF7ED',
         // 'ternary': '#1D3557',
         // 'quaternary': '#1D3557',
-        'textPrimary': '#a9aff5',//CBF7ED
-        'textSecondary': '#797fc4',//658cbb
-        'textTertiary': '#373c77',//364c69
+        'textPrimary': '#ffffff',//CBF7ED
+        'textSecondary': '#f5f5f5',//658cbb
+        'textTertiary': '#e9e9e9',//364c69
         // 'primary-bg': '#404040',
         // 'bt-primary': 'rgb(34,80,77)',
         // 'nav-color': 'rgb(34,80,77)',
@@ -257,11 +257,11 @@ module.exports = {
         'link-color': '#41FF6CCA',
         // 'border-color': '#E85651',
 
-        'btn_primary_border_style': '#ac2447',
-        'btn_primary_bg_front_color': '#901E3C',
+        'btn_primary_border_style': '#ffdbac',
+        'btn_primary_bg_front_color': '#f08257',
         'btn_primary_bg_shadow_color': '#D9D9D949',
-        'btn_primary_bg_back_color': '#69162d',
-        'btn_primary_font_color': '#f9f7d8',
+        'btn_primary_bg_back_color': '#c67503d1',
+        'btn_primary_font_color': '#fffdf4',
 
         'btn_secondary_border_style': '#b4b4b4',
         'btn_secondary_bg_front_color': '#C4C4C4',
@@ -275,11 +275,11 @@ module.exports = {
         'btn_ternary_bg_back_color': '#819a73',
         'btn_ternary_font_color': '#5a6b52',
 
-        'btn_anchor_border_style': 'transparent',
+        'btn_anchor_border_style': '#fff',
         'btn_anchor_bg_front_color': 'transparent',
         'btn_anchor_bg_shadow_color': 'transparent',
         'btn_anchor_bg_back_color': 'transparent',
-        'btn_anchor_font_color': '#95D44A',
+        'btn_anchor_font_color': '#fff',
 
         'btn_danger_border_style': '#531849',
         'btn_danger_bg_front_color': '#8B3357',
