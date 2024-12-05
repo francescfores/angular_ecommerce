@@ -79,7 +79,7 @@ export class ProductDetailComponent implements OnInit {
         data => {
           this.product = data.data;
           this.getCartFromLocalStorage();
-          console.log('--------this.cart----------');
+          console.log('--------selectet variation----------');
           console.log(this.cart);
 
           //listamos las variaciones
@@ -108,7 +108,7 @@ export class ProductDetailComponent implements OnInit {
                 // product.selectedVariation.imgs= product.selectedVariation.attributes.find(x=>x.name==='color').imgs
                 this.selectedVariation.imgs= this.product.variations.find(variation => {
                   return variation.attributes.some(attribute => {
-                    return attribute.name === 'color' && variation.imgs.length>0;
+                    return  variation.imgs.length>0;
                   });
                 }).imgs
                 console.log(this.selectedVariation);
@@ -227,7 +227,7 @@ export class ProductDetailComponent implements OnInit {
       // product.selectedVariation.imgs= product.selectedVariation.attributes.find(x=>x.name==='color').imgs
       this.selectedVariation.imgs= this.product.variations.find(variation => {
         return variation.attributes.some(attribute => {
-          return attribute.name === 'color' && variation.imgs.length>0;
+          return  variation.imgs.length>0;
         });
       }).imgs
       console.log(this.selectedVariation);

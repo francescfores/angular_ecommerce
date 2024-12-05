@@ -95,7 +95,7 @@
                 class="rounded w-full hover:scale-105 hover:rotate-1
                   transition-transform w-full h-96 object-cover" alt="Imagen 1">
             <img (click)="detail(product.id,product.variations[0].id)"
-            *ngIf="product.type===2" src="{{ product.variations[0]?.imgs[0]?.path }}"
+            *ngIf="product.type===2" src="{{ product.imgs[0]?.path }}"
             class="rounded w-full hover:scale-105 hover:rotate-1
                 transition-transform w-full h-96 object-cover" alt="Imagen 1">
                 <div class="flex flex-col gap-2 px-2 py-6 justify-center items-center">
@@ -106,14 +106,16 @@
               </div>               
           </div>
         </div>
-        <app-button3d  class="w-[100px] "
+          <app-button3d (click)="showProductType(category)" class="w-[100px] "
                         [rounded]="'5px'" [title]="''"
                         [type]="'btn_primary'"
                         [font_size]="'12px'" [font_body_weight]="'900'" [height]="'30px'"
                         [raise]="5" [width]="'100%'">
-            <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
-              <p>Show all</p>
-            </div>
+                                <a href="#filter">
+                    <div class="w-full h-full gap-3 text-warmGray-50 flex flex-nowrap justify-center items-center uppercase">
+                    <p>Show all</p>
+                  </div>
+                  </a>
           </app-button3d>
       </div>
       
@@ -176,7 +178,7 @@
       </div>
 
     </div>
-    <section>
+    <section id="filter">
       <div class="p-2 pt-4 grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-6">
         <form class="lg:col-span-1 hidden lg:block">
           <ul role="list" class=" space-y-4 border-b border-gray-200 pb-6 text-sm font-medium ">
@@ -270,19 +272,20 @@
                            *ngIf="product.type===2" src="{{ product.selectedVariation?.imgs[0]?.path }}"
                       class="rounded w-full hover:scale-105 hover:rotate-1
                            transition-transform w-full h-auto sm:h-80 object-cover" alt="Imagen 1">
+                            <button *ngIf="product.type===2" (click)="detail(product.id,product.selectedVariation.id)" class="absolute right-0 bottom-0 mr-2 mb-2  z-50 flex items-center justify-center"> 
+                        <svg class=" w-6 h-6" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="1.008" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </button>
                     </div>
                   </div>
                   <div class="flex flex-col gap-2 px-2 py-6">
                     <div class="flex">
                       <p >
-                        {{ product?.name }}
+                        {{ product?.name }} 
                       </p>
 <!--                      <button *ngIf="product.type===1" (click)="detail(product.id,product.id)" class="ml-auto w-7 h-7 z-50 flex items-center justify-center"> &lt;!&ndash; Establecer un tamaño fijo para el contenedor del icono &ndash;&gt;-->
 <!--                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="1.008" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>-->
 <!--                      </button>-->
-<!--                      <button *ngIf="product.type===2" (click)="detail(product.id,product.selectedVariation.id)" class="ml-auto w-7 h-7 z-50 flex items-center justify-center"> &lt;!&ndash; Establecer un tamaño fijo para el contenedor del icono &ndash;&gt;-->
-<!--                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="1.008" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>-->
-<!--                      </button>-->
+                   
                       <h5 class="font-bold ml-auto">{{product?.price/100 | number:'1.2-2'}}€</h5>
                     </div>
                     <div class="w-full flex justify-center items-center">
@@ -318,7 +321,7 @@
                       </select>
                     </div>
                     <div class="flex justify-center items-center">
-                      <div *ngFor="let variation of uniqueVariations(product.variations)">
+                      <div *ngFor="let variation of product.variations">
                         <div *ngFor="let attr of variation.attributes;">
                           <label *ngIf="attr.name==='color'" class="relative flex cursor-pointer items-center p-1">
                             <input (click)="onColorChange(attr, product)" [style.background-color]="'#'+attr.desc" type="radio" name="color" [value]="attr" class="rounded focus:accent-pink-500 peer cursor-pointer appearance-none relative h-5 w-5 border border-gray-900 transition-all checked:border-blue-500 checked:bg-blue-500" />
@@ -328,6 +331,8 @@
                               </svg>
                             </div>
                           </label>
+
+                         
                         </div>
                       </div>
                     </div>
@@ -338,18 +343,15 @@
 
               <!--/ Product Item -->
             </div>
-            <div *ngIf="loading" class='flex items-center justify-center h-96'>
-              <div style="border-top-color:transparent" class="w-8 h-8 border-4 border-blue-200 rounded-full animate-spin"></div>
-              <p class="ml-2"></p>
-            </div>
+            
           </div>
           <div *ngIf="product_pg" class="flex justify-center p-4">
             <nav aria-label="Page navigation example">
               <ul class="flex list-style-none">
                 <li class="page-item" *ngFor="let pr of product_pg.links">
                   <a (click)="paginatedProducts(pr.label)" [ngClass]="{
-              'bg-primary text-textPrimary': product_pg.current_page === pr.label,
-              'bg-transparent ': product_pg.current_page !== pr.label
+              'bg-primary text-white': product_pg.current_page === pr.label,
+              'bg-transparent text-textPrimary': product_pg.current_page !== pr.label
               }"
                      class="page-link relative block py-1.5 px-3 rounded border-0
               outline-none transition-all

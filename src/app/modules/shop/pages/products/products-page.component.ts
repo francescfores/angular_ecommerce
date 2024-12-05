@@ -97,6 +97,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
         res => {
           console.log(res);
           this.categories2 = res.data.category;
+          console.log('this.categories2');
           console.log(this.categories2);
         },
         error => {
@@ -295,13 +296,18 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
       data => {
         //this.products = data.data.product;
         this.loading=false;
-        this.product_pg = data.data.product_pg;
+          this.product_pg = data.data.product_pg;
         this.product_pg.current_page = this.product_pg.current_page+'';
         this.products  = this.product_pg.data;
         console.log(this.products )
         this.products  = this.getObjectValues( this.products );
         console.log(this.products )
-
+        this.products.forEach(product => {
+          product.selectedVariation=product.variations[0]
+          // product.variations.forEach(variation => {
+          //   console.log(variation);
+          // });
+        });
         /*this.products  = data.data.product.flatMap(product => {
           if (product.type===2) {
             return product.variations.map(variation => ({
@@ -381,25 +387,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     this.filterProducts();
   }
 
-  onColorSelected(color: any) {
-    const index = this.filters.searchFilters[3].colors.findIndex(c => c.id === color.id);
-    if (index !== -1) {
-      this.filters.searchFilters[3].colors.splice(index, 1);
-    } else {
-      this.filters.searchFilters[3].colors.push({ id: color.id });
-    }
-    this.filterProducts();
-  }
-  onSizeSelected(size: any) {
-    const index = this.filters.searchFilters[4].sizes.findIndex(c => c.id === size.id);
-    if (index !== -1) {
-      this.filters.searchFilters[4].sizes.splice(index, 1);
-    } else {
-      this.filters.searchFilters[4].sizes.push({ id: size.id });
-    }
-    this.filterProducts();
 
-  }
 
   detail(id_product: number, id_variation: any) {
     console.log(id_product)

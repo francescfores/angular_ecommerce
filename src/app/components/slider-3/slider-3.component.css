@@ -42,18 +42,18 @@ input{
 /* -------------------------------------------------------- codepen */
 /* -------------------------------------------------------- slider */
 .slider{
-  @apply h-[280px] md:h-[520px]  ;
+  @apply h-[200px] sm:h-[280px] md:h-[400px] lg:h-[540px] xl:h-[640px]  ;
 /*   margin-bottom: 40px;
  */  overflow: hidden;
 }
 /* -------------------------------------------------------- slide */
 .slider > ul {
-  @apply h-[280px] md:h-[520px]  ;
+  @apply h-[200px] sm:h-[280px] md:h-[400px] lg:h-[540px] xl:h-[640px]  ;
   z-index: 12;
 }
 
 .slider > ul > li{
-  @apply h-[280px] md:h-[520px]  ;
+  @apply h-[200px] sm:h-[280px] md:h-[400px] lg:h-[540px] xl:h-[640px]  ;
   width: 100%;
   position: absolute;
   opacity: 0;
@@ -75,14 +75,17 @@ input{
   /*height: 9900px;*/
 position: fixed!important;
 }
-
+  
 .slider img{
-  filter: blur(1.5px) brightness(0.6) ;
+  /*filter: blur(1.5px) brightness(0.6) ;*/
+  opacity:1;
+  height:inherit;
+  object-fit: cover ;
 }
 .slide-0 img{
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  filter: blur(1.5px) brightness(0.6) ;
+
 }
 
 .slide-0 img.loaded {
@@ -122,8 +125,9 @@ position: fixed!important;
   z-index: 41;
   /*font-size: 0;  */
   height: 40px;
-  @apply absolute  top-[320px] md:top-[560px]  bg-bgPrim; 
+  @apply absolute  top-[240px] sm:top-[320px] md:top-[440px] lg:top-[580px] xl:top-[680px]  bg-bgPrim; 
   width: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -460,7 +464,8 @@ position: fixed!important;
 
 /*claw end*/
 .slider_waves {
-  @apply absolute text-center  top-[260px] md:top-[500px]  ;
+  @apply absolute text-center  top-[166px] sm:top-[246px] md:top-[366px] lg:top-[506px] xl:top-[606px]  ; 
+
 /*   @apply absolute text-center  top-[230px] md:top-[400px] lg:top-[300px]  h-[100px] md:h-[200px] lg:h-[300px] w-[500%];
  */
   /*position: relative;*/
