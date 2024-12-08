@@ -296,7 +296,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
       data => {
         //this.products = data.data.product;
         this.loading=false;
-          this.product_pg = data.data.product_pg;
+        this.product_pg = data.data.product_pg;
         this.product_pg.current_page = this.product_pg.current_page+'';
         this.products  = this.product_pg.data;
         console.log(this.products )

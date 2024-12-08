@@ -46,6 +46,7 @@ export class Button3dComponent implements OnInit{
   @Input() loading_time:number=500;//slideInLeft
   @Input() type:string='';//slideInLeft
   @Input() ripple = true;
+  @Input() disabled = true;
 
   @ViewChild('btn') btn!: ElementRef<HTMLButtonElement>;
 

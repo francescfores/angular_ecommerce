@@ -79,8 +79,7 @@ export class ProductDetailComponent implements OnInit {
         data => {
           this.product = data.data;
           this.getCartFromLocalStorage();
-          console.log('--------selectet variation----------');
-          console.log(this.cart);
+          console.error('--------selectet variation----------');
 
           //listamos las variaciones
           if(this.product.type===2){
@@ -99,13 +98,13 @@ export class ProductDetailComponent implements OnInit {
               console.log(this.images);
 
             });
+
             this.groupAttributes();
             this.selectedVariation.count=1;
             this.selectedVariation.total=this.selectedVariation.price;
             //this.selectedVariation = this.product.variations[0];
             this.selectedVariation = this.product.variations.find(x=>x.id=== +this.id_variation);
               if(this.selectedVariation?.imgs?.length===0){
-                // product.selectedVariation.imgs= product.selectedVariation.attributes.find(x=>x.name==='color').imgs
                 this.selectedVariation.imgs= this.product.variations.find(variation => {
                   return variation.attributes.some(attribute => {
                     return  variation.imgs.length>0;
@@ -115,8 +114,9 @@ export class ProductDetailComponent implements OnInit {
               }
             console.log(this.product);
             console.log(this.id_variation);
+            console.error('--------selectet selectedVariation----------');
             console.log(this.selectedVariation);
-
+            console.log(this.images);
             this.selectedVariation.attributes.forEach(atributo => {
               this.selectedOptions[atributo.name]=this.attributes_group[atributo.name].find(x=>x.id===atributo.id).id;
               this.selectAttribute(atributo.id);
@@ -178,6 +178,7 @@ export class ProductDetailComponent implements OnInit {
     });
   }
   checkAttributes(attribute){
+      console.error('checkAttributes');
     this.loaded=false;
     if(isNaN(Number(attribute))){
       delete this.selectAttributes[attribute];
@@ -232,10 +233,12 @@ export class ProductDetailComponent implements OnInit {
       }).imgs
       console.log(this.selectedVariation);
     }
-    Object.entries(this.selectedVariation.imgs).forEach(([key, value2], index) => {
+    if(this.selectedVariation?.imgs.length>0){
+       Object.entries(this.selectedVariation.imgs).forEach(([key, value2], index) => {
       this.images.push(value2.path)
       console.log(value2);
     });
+    }
     console.log(this.selectedVariation);
     console.log(this.images);
 

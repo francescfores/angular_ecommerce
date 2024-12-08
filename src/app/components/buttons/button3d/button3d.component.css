@@ -43,7 +43,7 @@ button {
   --rounded: 2px;
   --rotate: 0;
   --rotate_invers: 0;/* 1 * - 1*/
-  --border:1px;
+  --border:3px;
   --border_style:solid #004c65 var(--border);
   --bg_front_color: #AAD3EA;
   --bg_front_color_hover: rgba(170, 211, 234, 0.08);
